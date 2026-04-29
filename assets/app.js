@@ -70,7 +70,7 @@ async function renderHomepage() {
       const cls = f === '最新' ? 'flag-new' : 'flag-region';
       return `<span class="flag ${cls}">${escapeHtml(f)}</span>`;
     }).join('');
-    weeklyEl.href = m.weekly.url;
+    weeklyEl.href = w.url || m.weekly.url;
     weeklyEl.innerHTML = `
       <div class="weekly-date-inline">
         <div class="range">${escapeHtml(w.range)}</div>
