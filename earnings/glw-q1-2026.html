@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>康寧 GLW 1Q26 財報分析</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3ee;--sf:#fff;--bd:#ddd8cc;--bdl:#eae6dc;--tp:#1a1814;--ts:#3a3730;--tm:#6b6558;--ac:#b5451b;--gn:#1a5e35;--gnb:#eaf3ee;--rd:#b5451b;--rdb:#f8edea;--ab:#8a5f00;--abb:#fef5e0;--bl:#1a3f6f;--blb:#e8eef7;--rl:#cdc8bc;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);font-family:'Noto Sans TC',sans-serif;color:var(--tp);font-size:16px;line-height:1.8;}
+.header{background:#1a1814;color:#fff;padding:48px 60px 40px;}
+.ey{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:#aaa;margin-bottom:12px;}
+.header h1{font-family:'Noto Serif TC',serif;font-size:28px;font-weight:700;line-height:1.35;margin-bottom:8px;}
+.hsub{font-size:14px;color:#bbb;margin-bottom:22px;}
+.hp{display:flex;flex-wrap:wrap;gap:8px;}
+.hpill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:4px 11px;font-size:12px;color:#ccc;}
+.hpill.neg{background:rgba(181,69,27,0.25);border-color:rgba(181,69,27,0.4);color:#f0a080;}
+.hpill.pos{background:rgba(26,94,53,0.3);border-color:rgba(26,94,53,0.5);color:#7ecf9e;}
+.abar{height:4px;background:linear-gradient(90deg,#b5451b,#e07a40,#c8a020);}
+.main{max-width:1060px;margin:0 auto;padding:48px 60px;}
+.sec{margin-bottom:56px;}
+.shd{display:flex;align-items:baseline;gap:13px;margin-bottom:22px;padding-bottom:11px;border-bottom:2px solid var(--rl);}
+.sn{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ac);letter-spacing:2px;font-weight:600;}
+.st{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:700;}
+.krow{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin-bottom:24px;}
+.kpi{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:15px 13px;text-align:center;}
+.kl{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--tm);font-weight:600;margin-bottom:6px;}
+.kv{font-family:'IBM Plex Mono',monospace;font-size:21px;font-weight:700;}
+.ks{font-size:11px;margin-top:4px;}
+.gn{color:var(--gn);}.rd{color:var(--rd);}.ab{color:var(--ab);}.bl{color:var(--bl);}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+.rc{background:var(--sf);border:1px solid var(--bd);border-radius:6px;overflow:hidden;}
+.rh{padding:10px 16px;font-size:12.5px;font-weight:700;color:#fff;}
+.rh.beat{background:var(--gn);}.rh.guide{background:var(--ab);}
+.rt{width:100%;border-collapse:collapse;}
+.rt tr{border-bottom:1px solid var(--bdl);}
+.rt tr:last-child{border-bottom:none;}
+.rt td{padding:9px 16px;font-size:13.5px;vertical-align:top;}
+.rt td:first-child{color:var(--ts);font-weight:500;width:40%;}
+.mn{font-family:'IBM Plex Mono',monospace;}
+.av{font-weight:700;}
+.vl{font-size:11px;color:var(--tm);}
+.bv{color:var(--gn);font-weight:700;font-size:12px;}
+.mv{color:var(--rd);font-weight:700;font-size:12px;}
+.iv{color:var(--ab);font-weight:700;font-size:12px;}
+.st2{width:100%;border-collapse:collapse;background:var(--sf);border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.st2 th{background:#eeebe3;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--tm);padding:10px 14px;text-align:left;border-bottom:1px solid var(--bd);}
+.st2 td{padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--bdl);vertical-align:top;}
+.st2 tr:last-child td{border-bottom:none;}
+.st2 tr:hover td{background:#fbf9f5;}
+.snm{font-weight:700;font-size:14px;}
+.bdg{display:inline-block;padding:2px 6px;border-radius:3px;font-size:10.5px;font-weight:700;font-family:'IBM Plex Mono',monospace;}
+.bstar{background:var(--gnb);color:var(--gn);}.bwrn{background:var(--abb);color:var(--ab);}.bflt{background:#f0ede5;color:#888;}
+.cl{border-radius:6px;padding:14px 18px;margin-bottom:14px;border-left:3px solid;}
+.cl.pos{background:var(--gnb);border-color:var(--gn);}.cl.neg{background:var(--rdb);border-color:var(--rd);}
+.cl.neu{background:var(--blb);border-color:var(--bl);}.cl.wrn{background:var(--abb);border-color:var(--ab);}
+.cl p{font-size:14.5px;color:var(--ts);line-height:1.75;}
+.cl strong{color:var(--tp);font-weight:600;}
+.prose{font-size:15px;line-height:1.85;color:var(--ts);margin-bottom:16px;}
+.prose strong{color:var(--tp);font-weight:600;}
+.rl2{display:flex;flex-direction:column;gap:11px;}
+.ri{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:16px 18px;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;}
+.rnum{width:35px;height:35px;background:var(--ac);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;font-family:'IBM Plex Mono',monospace;}
+.ri h4{font-size:14.5px;font-weight:700;margin-bottom:4px;}
+.ri p{font-size:13px;color:var(--ts);line-height:1.7;}
+.ql{display:flex;flex-direction:column;border:1px solid var(--bd);border-radius:6px;overflow:hidden;}
+.qi{padding:15px 20px;border-bottom:1px solid var(--bdl);background:var(--sf);}
+.qi:last-child{border-bottom:none;}
+.qi:nth-child(even){background:#fbf9f5;}
+.qq{font-size:12.5px;font-weight:700;color:var(--bl);margin-bottom:6px;display:flex;align-items:flex-start;gap:7px;flex-wrap:wrap;}
+.qtg{font-family:'IBM Plex Mono',monospace;font-size:9.5px;background:var(--blb);color:var(--bl);padding:2px 5px;border-radius:3px;white-space:nowrap;flex-shrink:0;}
+.qa{font-size:13.5px;color:var(--ts);line-height:1.75;}
+.qa strong{color:var(--tp);font-weight:600;}
+.at{width:100%;border-collapse:collapse;background:var(--sf);border:1px solid var(--bd);border-radius:6px;overflow:hidden;}
+.at th{background:#1a3f6f;color:#fff;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:left;}
+.at td{padding:12px 14px;font-size:13.5px;border-bottom:1px solid var(--bdl);vertical-align:top;}
+.at tr:last-child td{border-bottom:none;}
+.at tr:hover td{background:#f8f7f3;}
+.sig{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;}
+.sp{background:var(--gnb);color:var(--gn);}.sn2{background:var(--rdb);color:var(--rd);}.sm{background:var(--abb);color:var(--ab);}
+.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+.ac2{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:17px;}
+.af{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--tm);margin-bottom:7px;font-weight:600;}
+.ar{font-size:13px;font-weight:700;margin-bottom:3px;}
+.apt{font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;margin-bottom:7px;}
+.an{font-size:12px;color:var(--tm);line-height:1.6;}
+.dv{height:1px;background:var(--bdl);margin:20px 0;}
+.ft{background:#eeebe3;border-top:1px solid var(--bd);padding:18px 60px;font-size:11.5px;color:var(--tm);line-height:1.7;}
+@media(max-width:780px){.header,.main,.ft{padding-left:20px;padding-right:20px;}.krow{grid-template-columns:repeat(2,1fr);}.rg,.ag{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="ey">EQUITY RESEARCH · EARNINGS ANALYSIS · 繁體中文版</div>
+<h1>康寧公司 (GLW US) — 1Q26 財報深度分析報告</h1>
+<div class="hsub">涵蓋：財報數據 · 業務線詳情 · 法說會逐字重點 · 股價大跌原因 · Sterlite Technologies 投資含義</div>
+<div class="hp">
+<span class="hpill">財報日期 2026-04-28</span>
+<span class="hpill neg">財報後股價 ▼ −9%</span>
+<span class="hpill">收盤 US$168（財報前 ~$185）</span>
+<span class="hpill pos">營收 +18% YoY ✓</span>
+<span class="hpill pos">EPS +30% YoY ✓</span>
+<span class="hpill neg">2Q指引低於共識</span>
+<span class="hpill neg">FCF 大幅不及預期</span>
+<span class="hpill">來源：Bloomberg法說稿 · JPMorgan · Citi · MS</span>
+</div>
+</div>
+<div class="abar"></div>
+
+<div class="main">
+
+<!-- SEC 1 -->
+<div class="sec">
+<div class="shd"><span class="sn">01</span><span class="st">1Q26 財報實際數據 vs 市場預期</span></div>
+<div class="krow">
+<div class="kpi"><div class="kl">核心營收</div><div class="kv">$4.35B</div><div class="ks gn">+18% YoY · 超預期 ✓</div></div>
+<div class="kpi"><div class="kl">毛利率</div><div class="kv">39.1%</div><div class="ks gn">+120bps YoY ✓</div></div>
+<div class="kpi"><div class="kl">營業利益率</div><div class="kv">20.2%</div><div class="ks gn">+220bps YoY ✓</div></div>
+<div class="kpi"><div class="kl">核心 EPS</div><div class="kv">$0.70</div><div class="ks gn">+30% YoY · 持平 ✓</div></div>
+<div class="kpi"><div class="kl">自由現金流</div><div class="kv">$188M</div><div class="ks rd">vs JPMe $715M ✗</div></div>
+</div>
+
+<div class="rg">
+<div class="rc">
+<div class="rh beat">1Q26 實際 vs 預期（逐項對比）</div>
+<table class="rt">
+<tr><td>核心營收</td><td><span class="av mn">$4,345M</span><br><span class="vl">JPMe $4,306M / 共識 $4,298M</span><br><span class="bv">+$39M / +$47M ✓ 超出</span></td></tr>
+<tr><td>毛利率</td><td><span class="av mn">39.1%</span><br><span class="vl">JPMe 38.1% / 共識 38.3%</span><br><span class="bv">+1.0pp / +0.8pp ✓ 超出</span></td></tr>
+<tr><td>Opex 佔比</td><td><span class="av mn">19.0%（$823M）</span><br><span class="vl">JPMe / 共識預期約 17.6%</span><br><span class="mv">+1.4pp ✗ SBC 因股價飆升而激增</span></td></tr>
+<tr><td>營業利益</td><td><span class="av mn">$876M（20.2%）</span><br><span class="vl">JPMe $886M（20.6%）</span><br><span class="mv">−$10M ✗ 高Opex抵銷毛利超出</span></td></tr>
+<tr><td>核心 EPS</td><td><span class="av mn">$0.70</span><br><span class="vl">JPMe $0.70 / 共識 $0.69</span><br><span class="bv">持平 / +$0.01 ✓</span></td></tr>
+<tr><td>ROIC</td><td><span class="av mn">13.5%</span><br><span class="vl">+190bps YoY</span><br><span class="bv">持續改善 ✓</span></td></tr>
+<tr><td>自由現金流</td><td><span class="av mn">$188M</span><br><span class="vl">JPMe $715M</span><br><span class="mv">−$527M ✗ Solar CapEx 集中拖累</span></td></tr>
+</table>
+</div>
+<div class="rc">
+<div class="rh guide">2Q26 公司指引（關鍵失望來源）</div>
+<table class="rt">
+<tr><td>2Q26 核心營收</td><td><span class="av mn">~$4,600M</span><br><span class="vl">JPMe $4,723M / 共識 $4,637M</span><br><span class="mv">−$123M / −$37M ✗ 低於預期</span></td></tr>
+<tr><td>2Q26 EPS</td><td><span class="av mn">$0.73–$0.77（中值 $0.75）</span><br><span class="vl">JPMe $0.79 / 共識 $0.76</span><br><span class="mv">−$0.04 / −$0.01 ✗</span></td></tr>
+<tr><td>YoY 增速（指引）</td><td><span class="av mn">營收 +14% / EPS +25%</span><br><span class="vl">公司稱「今年最強季度之一」</span><br><span class="iv">→ 但市場標準已更高</span></td></tr>
+<tr><td>Solar wafer 費用</td><td><span class="av mn">+$30M vs 1Q（~$0.07 EPS）</span><br><span class="vl">永久電力切換 + 設備大修</span><br><span class="mv">✗ 新增不確定性，無明確時程</span></td></tr>
+<tr><td>全年 Opex</td><td><span class="av mn">維持 ~$3.4B</span><br><span class="iv">→ 中性</span></td></tr>
+<tr><td>全年 CapEx</td><td><span class="av mn">~$1.7B（可能略超）</span><br><span class="vl">部分由客戶風險共擔抵消</span><br><span class="iv">→ 維持原指引</span></td></tr>
+<tr><td>全年 FCF</td><td><span class="av mn">「顯著高於去年」</span><br><span class="iv">→ 定性表態，缺具體數字</span></td></tr>
+</table>
+</div>
+</div>
+<div class="cl wrn"><p><strong>Opex 超出背景：</strong>1Q Opex 高於預期的主因是<strong>股基薪酬（SBC）大幅增加</strong>——因為 GLW 股價在季內大漲，SBC 成本隨之激增。此屬技術性一次性因素，但未被市場充分折扣，導致 EPS 的毛利超出被部分抵銷。</p></div>
+</div>
+
+<!-- SEC 2 -->
+<div class="sec">
+<div class="shd"><span class="sn">02</span><span class="st">各業務線表現詳情（含新分部結構）</span></div>
+<div class="cl neu"><p><strong>新分部結構（1Q26 起生效）：</strong>Display + Specialty Materials 合併為「Glass Innovations」；Solar 從 Hemlock & Emerging Growth 獨立成單獨分部；Automotive 與 Optical 維持不變；其餘歸入「Life Sciences & Emerging Growth」。</p></div>
+<table class="st2">
+<thead><tr><th>分部</th><th>1Q26 營收</th><th>YoY</th><th>淨利 / 利潤率</th><th>評級</th><th>核心要點</th></tr></thead>
+<tbody>
+<tr>
+<td><span class="snm">光通信<br>Optical Comm.</span></td>
+<td class="mn">$1,800M</td>
+<td class="mn gn" style="font-weight:700;">+36% YoY</td>
+<td class="mn">$387M<br>+93% YoY<br>淨利率 ~21.5%</td>
+<td><span class="bdg bstar">★ 明星</span></td>
+<td style="font-size:13px;">企業端 +36%、電信端 +36%（兩端相同）。企業端：Meta LTA（最高 $6B）+ 新增兩個超大規模客戶 LTA（各約 $6B 規模）。電信端：FTTH 擴張 + DCI（數據中心互連）。增量利潤率季環比逾 50%，全年 ROIC 目標超越歷史強勢的 Display 業務。</td>
+</tr>
+<tr>
+<td><span class="snm">玻璃創新<br>Glass Innovations<br>（Display + 特殊玻璃）</span></td>
+<td class="mn">$1,400M</td>
+<td class="mn ab">+1% YoY</td>
+<td class="mn">$324M<br>淨利率 22.8%</td>
+<td><span class="bdg bflt">→ 平穩</span></td>
+<td style="font-size:13px;">Display 玻璃量季環比微降，優於原導引（曾預期中個位數下滑）。Gorilla Glass 需求韌性強，但管理層示警記憶體漲價將對 2026 年市場造成重大衝擊。新推 Gorilla Glass Ceramic 3。半導體光學（EUV）受 AI 晶片擴產帶動長期需求。</td>
+</tr>
+<tr>
+<td><span class="snm">汽車<br>Automotive</span></td>
+<td class="mn">$437M</td>
+<td class="mn rd">−1% YoY</td>
+<td class="mn">$70M<br>+3% YoY<br>淨利率 ~16%</td>
+<td><span class="bdg bflt">→ 平穩</span></td>
+<td style="font-size:13px;">全球整車市場 −3%；歐洲及印度重型車銷售抵銷北美疲軟。「More Corning」策略推進（更大更高解析度車用顯示 + 排放控制新品）。獲利逆市 +3%，顯示結構性份額擴張能力。</td>
+</tr>
+<tr>
+<td><span class="snm">太陽能<br>Solar（新分部）</span></td>
+<td class="mn">$370M</td>
+<td class="mn gn">+80% YoY</td>
+<td class="mn">$7M<br>−$20M YoY<br>淨利率 ~2%</td>
+<td><span class="bdg bwrn">⚠ 建設期</span></td>
+<td style="font-size:13px;">三大環節：① 多晶矽：已超公司 20% 利潤率目標，良好。② 晶圓：核心問題——臨時電力需切換至永久系統，設備大修，2Q 停線帶來 $30M 額外費用（~$0.07 EPS 拖累）。③ 模組（亞利桑那）：預計 2Q 達 20%。目標 2028 年建立 ≥$2.5B 收入；Investor Day 5/6 將上調目標。</td>
+</tr>
+<tr>
+<td><span class="snm">生命科學 &amp;<br>新興成長</span></td>
+<td class="mn">（未單獨揭示）</td>
+<td class="mn">≈ 0% YoY</td>
+<td class="mn">季環比略降</td>
+<td><span class="bdg bflt">→ 無驚喜</span></td>
+<td style="font-size:13px;">年比持平，季環比下滑。目前無催化劑，非股價投資論述核心，市場關注度低。</td>
+</tr>
+</tbody>
+</table>
+<div class="cl pos"><p><strong>Springboard 里程碑（自 4Q23 起點累計）：</strong>營收 +33%、EPS +79%、營業利益率 +390bps、ROIC +470bps。管理層將於 <strong>2026年5月6日 Investor Day（紐交所）</strong> 發佈 Springboard 計畫延伸版至 2030，並首次公開介紹全新 <strong>Photonics MAP</strong>（光子學市場准入平台），鎖定 Gen AI OEM 客戶的機箱內光子互連（CPO 等）機會。</p></div>
+</div>
+
+<!-- SEC 3 -->
+<div class="sec">
+<div class="shd"><span class="sn">03</span><span class="st">法說會 Q&amp;A 關鍵問答重點</span></div>
+<div class="ql">
+<div class="qi">
+<div class="qq"><span class="qtg">Mizuho · Roberts</span>新 LTA 是否觸發光纖拉絲產能擴張？</div>
+<div class="qa"><strong>Weeks：</strong>這些協議的規模足以帶動我們所有主要光通信廠區全面擴張，<strong>包括光纖生產線</strong>。模式是讓客戶共同承擔擴產風險（類似 Gen 10.5 玻璃模型），確保股東獲得適當回報。<br><strong>→ 光纖產能擴張明確確認；LTA 結構包含預付資金、保證收入、加速份額協議等組合。</strong></div>
+</div>
+<div class="qi">
+<div class="qq"><span class="qtg">BofA · Mohan</span>光纖供需狀況？是否跟進同業提高裸光纖（bare fiber）價格？</div>
+<div class="qa"><strong>Weeks（極重要！）：</strong>定價環境確實對有產能者有利，<strong>但 GLW 的利潤提升策略不是靠大宗光纖漲價，而是靠創新產品</strong>——新一代系統能為客戶降低總體安裝成本（total installed cost），再共享價值增量；此模式比追漲大宗光纖更持續且快速提升獲利。<br><strong>→ GLW 刻意不做大宗光纖價格領頭羊；利潤增長來自 innovation mix-up，非 ASP 漲價。對市場整體光纖定價走勢是重要差異化信號。</strong></div>
+</div>
+<div class="qi">
+<div class="qq"><span class="qtg">BofA · Mohan</span>Optical 利潤率長期能超越 Display 的歷史強勢表現？</div>
+<div class="qa"><strong>Weeks：「簡短答案是肯定的」</strong>，關鍵在創新採用速度及競爭護城河深度，目標使 Optical ROIC 超越玻璃業務。<br><strong>Schlesinger：</strong>Optical 資本密集度低於 Display（後者需純粹熔融成形玻璃），因此 ROIC 結構更佳，帶動大量利潤與現金轉換。<br><strong>→ 長期正面，但兌現節奏是市場辯論焦點。</strong></div>
+</div>
+<div class="qi">
+<div class="qq"><span class="qtg">JPMorgan · Chatterjee</span>新 LTA 風險共擔機制？是否包含 scale-up（機箱內）？</div>
+<div class="qa"><strong>Weeks：</strong>風險共擔工具包含：預付資金、保證收入、價格安排、加速份額協議等，依不同客戶需求組合使用。<br>關於 scale-up：現有協議初期聚焦 <strong>scale-out</strong>（機架間）；隨協議年期拉長，CPO 等 scale-up 需求的承諾量將逐步增加。<strong>新的 Photonics MAP</strong> 針對 Gen AI OEM 客戶，與超大規模 LTA 屬加乘關係。<br><strong>→ 關鍵升級：Weeks 首次確認 scale-up 在近期收入展望的貢獻概率「顯著提升」（此前明確表示不計入 2028 前預測）。5/6 將公佈技術驅動因素讓投資人自行判斷採用時間。</strong></div>
+</div>
+<div class="qi">
+<div class="qq"><span class="qtg">Citi · Merchant</span>Solar wafer 停線費用何時結束？LTA 合約內可否漲價？</div>
+<div class="qa"><strong>Schlesinger（Solar）：</strong>多晶矽良好；模組 2Q 可達 20%。問題集中在 <strong>wafer（晶圓）</strong>：1Q 爬坡拖累 ~$0.04 EPS，2Q 停線再加 ~$0.07（含停線期間收入損失）；重啟後預計每季逐步改善，但無法承諾精確達標時間。<br><strong>Weeks（定價）：</strong>GLW 增利核心是更高價值創新產品，非調整大宗光纖定價。<br><strong>→ Solar 晶圓為目前 GLW 唯一真正混亂的環節，管理層定性為「暫時性」。</strong></div>
+</div>
+<div class="qi">
+<div class="qq"><span class="qtg">MS · Marshall</span>電信端成長驅動因素？BEAD 補貼計畫貢獻？</div>
+<div class="qa"><strong>Weeks：</strong>BEAD 目前規模仍小，主驅動力是<strong>主要電信運營商強力擴建 FTTH</strong>。Springboard 以來，大型電信客戶的「homes passed」部署速率已增加約 <strong>50%</strong>。FTTH 相較於 FWA、混合同軸、衛星等技術的主導地位持續增強。<br><strong>→ 確認全球 FTTH 需求為結構性多年趨勢，非一次性脈衝。</strong></div>
+</div>
+<div class="qi">
+<div class="qq"><span class="qtg">Wolfe Research · Rogers</span>CapEx 未因新協議上調？含義？</div>
+<div class="qa"><strong>Schlesinger：</strong>全年 CapEx 約 $1.7B，可能略超；Optical 各產品線皆需投資，部分由客戶共擔。<br><strong>Weeks：</strong>宣佈指引時就預期協議能達成，故擴產行動已提前啟動。目標透過客戶風險共擔<strong>避免因投資循環出現顯著 FCF 低谷</strong>。<br><strong>→ CapEx 低谷已在 1Q 出現（FCF $188M），管理層預期全年 FCF 顯著高於去年。</strong></div>
+</div>
+</div>
+</div>
+
+<!-- SEC 4 -->
+<div class="sec">
+<div class="shd"><span class="sn">04</span><span class="st">股價財報後大跌 −9% 深度原因分析</span></div>
+<div class="cl neg"><p><strong>核心框架：</strong>典型的「業績不差，但已充分定價」賣出案例。GLW 股價財報前 2026 YTD 漲約 +92%（~$88 → ~$185），已接近完美定價。任何細微缺口都引發高倉位持有者的獲利了結。</p></div>
+<div class="rl2">
+<div class="ri">
+<div class="rnum">①</div>
+<div><h4>2Q 指引低於已大幅拉高的市場預期——Solar wafer 停線是元凶</h4>
+<p>2Q 營收指引 $4.6B vs 共識 $4.64B（差 −$37M），EPS 中值 $0.75 vs 共識 $0.76。絕對差距雖小，但市場已習慣 GLW「指引保守、實際超出」的慣性。此次 Solar wafer 停線造成約 $0.07 EPS 拖累，且管理層坦言無法給出確切修復時程，令市場無法輕易折扣此不確定性。</p></div>
+</div>
+<div class="ri">
+<div class="rnum">②</div>
+<div><h4>自由現金流嚴重不及——$188M vs JPMorgan 預估 $715M</h4>
+<p>差距高達 $527M，主因是 Solar 擴產 CapEx 集中在 1Q。高成長股估值高度依賴 FCF 轉換率。市場擔憂 Springboard 快速擴張是否持續消耗現金，儘管管理層表示全年 FCF「顯著高於去年」，缺乏具體數字難以安撫。</p></div>
+</div>
+<div class="ri">
+<div class="rnum">③</div>
+<div><h4>+92% YTD 升幅造成估值無容錯空間；JPMorgan 財報前已先行降評</h4>
+<p>股價自年初 ~$88 漲至財報前 ~$185，已接近完美定價。JPMorgan 早在 4 月 16 日率先從 Overweight 降評至 Neutral，目標價 $175，理由正是「美好前景已反映在股價」。財報後機構性賣壓是高倉位持有者的系統性風險管理，並非對 GLW 商業模式的質疑。</p></div>
+</div>
+<div class="ri">
+<div class="rnum">④</div>
+<div><h4>Opex 超出預期——SBC 因股價大漲而激增，引發側目</h4>
+<p>1Q Opex 佔比 19.0% vs 預期 17.6%，差距主因是 SBC 在股價飆升季大幅增加。雖屬技術性一次性因素，但「股價漲越多費用越高」的機制令部分投資人不適，且侵蝕了本應更亮眼的 EPS 表現。</p></div>
+</div>
+<div class="ri">
+<div class="rnum">⑤</div>
+<div><h4>非 Optical 業務普遍乏力——集中度風險浮現</h4>
+<p>Glass Innovations +1%、Automotive −1%、Life Sciences 持平。全公司增長故事幾乎完全依賴 Optical 一個分部。若 Optical 未來某季出現任何放緩，缺乏其他業務托底，部分機構開始重估此集中度風險是否被股價充分反映。</p></div>
+</div>
+<div class="ri">
+<div class="rnum">⑥</div>
+<div><h4>Scale-up 仍為定性表述，未納入近期財務數字</h4>
+<p>Weeks 提升了對 scale-up（CPO、機箱內光子連接）的概率評估，但明確表示未計入 2Q 指引。市場期待更具體量化承諾，而非「概率提升」的定性描述。</p></div>
+</div>
+<div class="ri">
+<div class="rnum">⑦</div>
+<div><h4>重磅資訊保留至 5/6 Investor Day——短線決策真空觸發防守性賣壓</h4>
+<p>新 LTA 客戶身份未披露、Springboard 2030 財務目標未披露、Photonics MAP 規模未披露。合理的資訊管理造成財報後 24 小時「不知是否應繼續持有」的決策真空，高倉位投資人選擇「先賣等 5/6 再說」。</p></div>
+</div>
+</div>
+<div class="dv"></div>
+<div class="ag">
+<div class="ac2"><div class="af">Citi</div><div class="ar gn">Buy ↔ 維持</div><div class="apt">$170</div><div class="an">財報後管理層電話會確認 Solar wafer 問題為暫時性；LTA 進展超預期；看好 5/6 重估機會。</div></div>
+<div class="ac2"><div class="af">Morgan Stanley</div><div class="ar ab">Equal-weight ↔ 維持</div><div class="apt">$140</div><div class="an">對 scale-up 時間表持保守態度；非 Optical 業務疲軟限制整體上行；指引低於預期印證謹慎立場。</div></div>
+<div class="ac2"><div class="af">JPMorgan</div><div class="ar ab">Neutral（4/16 降評）</div><div class="apt">$175</div><div class="an">財報前已降評（美好前景已定價）。財報後 2Q 指引低於 JPMe 印證降評。</div></div>
+</div>
+</div>
+
+<!-- SEC 5 -->
+<div class="sec">
+<div class="shd"><span class="sn">05</span><span class="st">GLW 財報對持股 Sterlite Technologies (STL IN) 的投資含義</span></div>
+<div class="prose">Sterlite Technologies（STL）是印度最大光纖及光纜製造商，同時提供網路解決方案，核心市場涵蓋印度電信運營商、BharatNet 政府寬頻計畫、歐非新興市場，以及部分全球超大型雲端客戶。以下從 GLW 法說的關鍵信號逐一推導對 STL 的含義：</div>
+<table class="at">
+<thead><tr><th style="width:16%;">驅動因素</th><th style="width:50%;">GLW 法說信號與解讀</th><th style="width:12%;">對STL信號</th><th style="width:22%;">說明</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>全球 FTTH 需求結構性加速</strong></td>
+<td>Weeks 確認大型電信商 homes passed 速率自 Springboard 起點增加約 <strong>50%</strong>；FTTH 對 FWA/衛星/HFC 的技術主導地位持續鞏固，且電信商已公開宣示大規模擴建。這是結構性多年趨勢，非週期性脈衝。</td>
+<td><span class="sig sp">明顯正面</span></td>
+<td>STL 的印度及新興市場電信客戶正是這波 FTTH 擴建主體；需求能見度支撐訂單積壓（backlog）持續性。</td>
+</tr>
+<tr>
+<td><strong>超大規模 LTA 確認 AI 光纖需求爆發</strong></td>
+<td>GLW 已與 Meta + 兩家未披露超大規模客戶簽署 LTA，各約 $6B，合計可能逾 $15B。全面擴產確認。供需緊張格局進一步強化。</td>
+<td><span class="sig sp">正面</span></td>
+<td>全球光纖需求超過現有供給的格局支撐業界整體 ASP；STL 可受益於更有利的定價環境。</td>
+</tr>
+<tr>
+<td><strong>GLW 不打大宗光纖漲價牌</strong></td>
+<td>Weeks 明確表示 GLW 不以提高裸光纖/套管光纜的大宗價格作為主要利潤手段，而是聚焦高端創新產品的 mix-up（超高密度、Gen AI 專用系統）。</td>
+<td><span class="sig sm">中性偏正</span></td>
+<td>GLW 主動移向高端創新層，為 STL 等標準光纖供應商保留更大定價空間。GLW 不領頭大宗漲價 = 大宗市場不被 GLW 主導壓制。</td>
+</tr>
+<tr>
+<td><strong>供需偏緊對有產能廠商有利</strong></td>
+<td>Weeks 原話：定價環境「對有產能者明顯有利」。GLW 擴產需時，短期供給仍偏緊。</td>
+<td><span class="sig sp">正面</span></td>
+<td>STL 現有產能在供給緊缺期可取得更好的訂單條件與定價；對 STL 毛利率修復具正面支撐。</td>
+</tr>
+<tr>
+<td><strong>印度市場獨立催化劑</strong></td>
+<td>BEAD 在 GLW 層面仍小；但印度 BharatNet Phase 3 及 Jio/Airtel FTTH 擴張是 STL 核心驅動力，與 GLW 論述屬平行獨立軌道。</td>
+<td><span class="sig sp">正面（獨立）</span></td>
+<td>STL 的印度增長由本地政策驅動，不依賴 GLW 論述；GLW 確認全球趨勢是有力旁證。</td>
+</tr>
+<tr>
+<td><strong>Photonics MAP / Scale-up</strong></td>
+<td>GLW 即將推出 Photonics MAP（CPO、光子互連），目標進入 AI 伺服器機箱內部；這是比 STL 更高端的技術層，STL 不具備此競爭能力。</td>
+<td><span class="sig sm">中性</span></td>
+<td>Scale-up 市場 STL 無份，但也不構成威脅；GLW 向上移動反而為 STL 的標準光纖市場留出更大空間。</td>
+</tr>
+<tr>
+<td><strong>Display 面板價格週期</strong></td>
+<td>JPM Display Monthly：4月面板均價 YoY −6.0%，需求風險移至 2Q/3Q；記憶體漲價衝擊 TV 成本結構。</td>
+<td><span class="sig sm">無直接影響</span></td>
+<td>STL 聚焦電信基礎設施，消費電子波動幾乎無影響；但需關注記憶體漲價若擴散至 AI 伺服器 DRAM 是否影響 hyperscaler capex 節奏。</td>
+</tr>
+</tbody>
+</table>
+<div class="dv"></div>
+<div class="cl pos"><p><strong>STL 整體結論：</strong>GLW 1Q26 法說對 Sterlite Technologies 整體構成 <strong>正面至略正面</strong> 的旁證支撐。三個核心支柱：① FTTH 需求確認為結構性多年趨勢（速率 +50%）；② 全球供需緊張支撐業界 ASP 改善，STL 直接受益；③ GLW 刻意不打大宗光纖漲價牌，市場定價主導權不被 GLW 壟斷，對 STL 標準光纖業務有利。STL 的核心風險仍在本地執行力（印度專案交付、毛利率修復）與政府採購節奏，而非 GLW 的競爭動態。</p></div>
+<div class="cl wrn"><p><strong>需追蹤的潛在風險（5/6 後）：</strong>若 GLW Investor Day 公佈大幅上調標準/中端光纖產能，可能在 2027–2028 年對全球光纖 ASP 形成壓力。目前暫無此跡象，但需關注 Investor Day 後 GLW 具體擴產量化目標，評估對 STL 中期定價的潛在影響。</p></div>
+</div>
+
+<!-- SEC 6 -->
+<div class="sec">
+<div class="shd"><span class="sn">06</span><span class="st">近期關鍵催化劑</span></div>
+<table class="st2">
+<thead><tr><th>日期</th><th>事件</th><th>市場關注核心問題</th><th>重要性</th></tr></thead>
+<tbody>
+<tr><td class="mn" style="white-space:nowrap;font-size:13px;">2026-05-06</td><td><strong>GLW Investor Day（紐交所）</strong></td><td>Springboard 2030 財務目標；Photonics MAP 規模與技術驅動；Solar 銷售計畫上調；新 LTA 客戶身份；scale-up 時間表量化承諾</td><td><span class="bdg bstar">★★★ 極重要</span></td></tr>
+<tr><td class="mn" style="white-space:nowrap;font-size:13px;">2026-05-19</td><td>出席 JPMorgan 科技媒體電信大會</td><td>Investor Day 後管理層訊息強化與補充 Q&A</td><td><span class="bdg bwrn">⚠ 中等</span></td></tr>
+<tr><td class="mn" style="white-space:nowrap;font-size:13px;">2026-07 ~</td><td>GLW 2Q26 財報</td><td>Solar wafer 修復進度；Optical 是否維持 36%+；scale-up 是否計入指引；FCF 是否顯著回升</td><td><span class="bdg bstar">★★★ 極重要</span></td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+<div class="ft">本分析基於：Bloomberg 法說逐字稿（2026-04-28）· JPMorgan Display Monthly（2026-04-27）· 各券商評論（Citi、Morgan Stanley、JPMorgan）。財務數據以公司核心業績指標（non-GAAP）為準，除非另有說明。本文件僅供內部研究參考使用，不構成投資建議。| 資料截止：2026年4月29日</div>
+</body>
+</html>

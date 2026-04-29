@@ -1,0 +1,117 @@
+{
+  "site": {
+    "title": "Research Hub",
+    "subtitle": "Irene 個人股票研究資料庫",
+    "maintainer": "Irene",
+    "year": 2026
+  },
+  "weekly": {
+    "url": "https://weekly-market-recap.netlify.app/archive",
+    "latest": {
+      "range": "Apr 20–24",
+      "year": "2026",
+      "title": "衝高後震盪，Nasdaq 創歷史新高",
+      "summary": "WTI 突破 <strong>$100</strong>、INTC <strong>+25.6%</strong>、GEV <strong>+16.1%</strong>、ServiceNow 重挫 <strong>-17.7%</strong>",
+      "flags": ["最新", "US", "EU"]
+    }
+  },
+  "categories": [
+    { "id": "all", "name": "全部", "color": "slate" },
+    { "id": "semi", "name": "半導體", "color": "blue" },
+    { "id": "tech", "name": "科技硬體與通訊", "color": "cyan" },
+    { "id": "software", "name": "軟體", "color": "violet" },
+    { "id": "industrial", "name": "工業", "color": "amber" },
+    { "id": "utility", "name": "公用事業與能源", "color": "emerald" },
+    { "id": "other", "name": "其他", "color": "slate" }
+  ],
+  "earnings": [
+    {
+      "id": "be-q1-2026",
+      "ticker": "BE",
+      "company_en": "Bloom Energy",
+      "company_zh": "燃料電池",
+      "quarter": "Q1 2026",
+      "date": "2026-04-30",
+      "category": "utility",
+      "tags": ["AI 電力", "燃料電池", "資料中心"],
+      "headline": "營收年增雙位數、燃料電池接單激增，AI 電力主題下飆漲 +42%",
+      "metrics": {
+        "stock_reaction": "+42.0%",
+        "stock_reaction_dir": "up",
+        "rev_yoy": "+12%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/be-q1-2026.html"
+    },
+    {
+      "id": "intc-q1-2026",
+      "ticker": "INTC",
+      "company_en": "Intel",
+      "company_zh": "英特爾",
+      "quarter": "Q1 2026",
+      "date": "2026-04-24",
+      "category": "semi",
+      "tags": ["先進製程", "轉型", "代工"],
+      "headline": "18A 進度確認、毛利改善，市場對轉型重新定價，股價 +25.6%",
+      "metrics": {
+        "stock_reaction": "+25.6%",
+        "stock_reaction_dir": "up",
+        "rev_yoy": "+8%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/intc-q1-2026.html"
+    },
+    {
+      "id": "txn-q1-2026",
+      "ticker": "TXN",
+      "company_en": "Texas Instruments",
+      "company_zh": "德州儀器",
+      "quarter": "Q1 2026",
+      "date": "2026-04-22",
+      "category": "semi",
+      "tags": ["AI 資料中心", "類比 IC", "工業恢復"],
+      "headline": "Q1 大幅超預期，AI 資料中心電源需求帶動股價單日 +19%",
+      "metrics": {
+        "stock_reaction": "+19.0%",
+        "stock_reaction_dir": "up",
+        "rev_yoy": "+11%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/txn-q1-2026.html"
+    },
+    {
+      "id": "glw-q1-2026",
+      "ticker": "GLW",
+      "company_en": "Corning",
+      "company_zh": "康寧",
+      "quarter": "Q1 2026",
+      "date": "2026-04-29",
+      "category": "tech",
+      "tags": ["AI 資料中心", "光通訊", "光纖"],
+      "headline": "光通訊事業強勁，Gen-AI 資料中心需求結構性成長",
+      "metrics": {
+        "stock_reaction": "+6.4%",
+        "stock_reaction_dir": "up",
+        "rev_yoy": "+13%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/glw-q1-2026.html"
+    }
+  ],
+  "research": [
+    {
+      "id": "semi-equipment-chain",
+      "title": "美股半導體設備公司總覽",
+      "subtitle": "20 家公司 × 完整製程價值鏈：黃光、沉積、蝕刻、CMP、量測檢測、測試、系統驗證",
+      "category": "semi",
+      "tags": ["設備產業鏈", "AI 主題", "製程"],
+      "date": "2026-04",
+      "stats": [
+        { "value": "20", "label": "家公司" },
+        { "value": "5", "label": "大製程" }
+      ],
+      "eyebrow": "SEMICONDUCTOR · 設備產業鏈",
+      "file": "research/semi-equipment-chain.html"
+    }
+  ]
+}

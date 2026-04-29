@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Hub · Irene 個人股票研究資料庫</title>
+<meta name="description" content="收錄全球市場週報、個股財報深度分析，與跨產業主題研究">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="brand"><span class="brand-dot"></span>RESEARCH HUB</div>
+    <nav class="topnav">
+      <a href="#weekly">Weekly</a>
+      <a href="#earnings">Earnings</a>
+      <a href="#research">Research</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <h1>Research Hub<span class="accent-mark"></span></h1>
+      <div class="hero-zh">Irene 個人股票研究資料庫</div>
+    </div>
+    <div class="hero-stats" id="hero-stats">
+      <!-- 由 app.js 動態渲染 -->
+    </div>
+  </div>
+
+  <!-- SECTION 1 — 週報 -->
+  <div class="section" id="weekly">
+    <div class="section-head">
+      <div class="left">
+        <span class="section-num">01</span>
+        <h2 class="section-title">全球市場週報</h2>
+        <span class="section-title-en">Weekly Recap</span>
+      </div>
+      <a href="https://weekly-market-recap.netlify.app/archive" class="section-cta" target="_blank" rel="noopener">進入週報歸檔 →</a>
+    </div>
+    <a id="weekly-row" class="weekly-row" target="_blank" rel="noopener" href="#">
+      <!-- 由 app.js 動態渲染 -->
+    </a>
+  </div>
+
+  <!-- SECTION 2 — 個股財報 -->
+  <div class="section" id="earnings">
+    <div class="section-head">
+      <div class="left">
+        <span class="section-num">02</span>
+        <h2 class="section-title">最新個股財報</h2>
+        <span class="section-title-en">Latest Earnings</span>
+      </div>
+      <a href="earnings.html" class="section-cta">查看全部財報 →</a>
+    </div>
+    <div class="earnings-grid" id="earnings-grid">
+      <!-- 由 app.js 動態渲染 -->
+    </div>
+  </div>
+
+  <!-- SECTION 3 — 主題研究 -->
+  <div class="section" id="research">
+    <div class="section-head">
+      <div class="left">
+        <span class="section-num">03</span>
+        <h2 class="section-title">主題研究</h2>
+        <span class="section-title-en">Thematic Research</span>
+      </div>
+      <a href="research.html" class="section-cta">查看全部研究 →</a>
+    </div>
+    <div class="research-grid" id="research-grid">
+      <!-- 由 app.js 動態渲染 -->
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="left">RESEARCH HUB · MAINTAINED BY IRENE · 2026</div>
+    <div class="right">僅供研究參考，不構成投資建議</div>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+  renderHomepage().catch(err => {
+    console.error('Failed to render homepage:', err);
+    document.querySelector('.wrap').innerHTML += `
+      <div style="padding:24px;background:#FEF2F2;border:1.5px solid #FECACA;border-radius:8px;color:#991B1B;font-size:14px;">
+        ⚠️ 載入 manifest.json 失敗。如果你是用本地檔案直接打開（file://），需要透過 HTTP server 才能載入；部署到 Netlify 後就會正常。
+      </div>
+    `;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個股財報 · Research Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="brand"><a href="index.html"><span class="brand-dot"></span>RESEARCH HUB</a></div>
+    <nav class="topnav">
+      <a href="index.html#weekly">Weekly</a>
+      <a href="earnings.html" class="active">Earnings</a>
+      <a href="research.html">Research</a>
+    </nav>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Earnings</span>
+    </div>
+    <h1>個股財報<span class="accent-mark"></span></h1>
+    <div class="sub">深度分析報告 · 按公司代號或產業搜尋</div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-row">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="搜尋公司代號或名稱（例如 TXN、Intel、康寧）..." autocomplete="off">
+      </div>
+      <div class="sort-toggle" id="sort-toggle">
+        <button data-sort="date" class="active">按時間</button>
+        <button data-sort="company">按公司</button>
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div class="cat-tabs" id="cat-tabs">
+        <!-- 由 app.js 動態渲染 -->
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div class="tag-chips" id="tag-chips">
+        <!-- 由 app.js 動態渲染 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT BAR -->
+  <div class="result-bar">
+    <div>共 <strong id="result-count">0</strong> 份財報</div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-container" class="earnings-grid">
+    <!-- 由 app.js 動態渲染 -->
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="left">RESEARCH HUB · MAINTAINED BY IRENE · 2026</div>
+    <div class="right">僅供研究參考，不構成投資建議</div>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+  initEarningsPage().catch(err => {
+    console.error('Failed to init earnings page:', err);
+    document.getElementById('results-container').innerHTML = `
+      <div class="empty-state">
+        <div class="icon">⚠️</div>
+        <div class="text">載入失敗，請部署到 Netlify 後再試</div>
+      </div>
+    `;
+  });
+</script>
+</body>
+</html>

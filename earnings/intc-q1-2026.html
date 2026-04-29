@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英特爾 INTC Q1 2026 財報分析</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; font-size: 17px; line-height: 1.7; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #0f172a 50%, #1e293b 100%);
+    border-bottom: 1px solid #2d3748;
+    padding: 36px 44px;
+    position: relative; overflow: hidden;
+  }
+  .header::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ticker-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white; font-size: 15px; font-weight: 700;
+    padding: 5px 14px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .header h1 { font-size: 32px; font-weight: 800; color: #f0f6fc; line-height: 1.25; }
+  .header .subtitle { color: #8b949e; font-size: 17px; margin-top: 8px; }
+  .date-badge {
+    position: absolute; top: 36px; right: 44px;
+    background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.35);
+    color: #a5b4fc; font-size: 14px; padding: 7px 16px; border-radius: 8px;
+  }
+
+  .container { max-width: 1120px; margin: 0 auto; padding: 36px 44px; }
+
+  /* STOCK BANNER */
+  .stock-banner {
+    background: linear-gradient(135deg, #064e3b, #065f46);
+    border: 1px solid #10b981; border-radius: 18px;
+    padding: 28px 36px; display: flex; align-items: center; gap: 36px; margin-bottom: 36px;
+  }
+  .stock-price-block { text-align: center; }
+  .stock-label { font-size: 13px; color: #6ee7b7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .stock-val { font-size: 34px; font-weight: 800; color: #fff; }
+  .stock-sub { font-size: 13px; color: #a7f3d0; margin-top: 3px; }
+  .divider-v { width: 1px; background: rgba(16,185,129,0.3); height: 65px; }
+  .surge-block { flex: 1; }
+  .surge-pct { font-size: 56px; font-weight: 900; color: #10b981; line-height: 1; }
+  .surge-desc { font-size: 15px; color: #a7f3d0; margin-top: 8px; }
+  .reason-tags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
+  .tag { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7; font-size: 13px; padding: 4px 12px; border-radius: 20px; }
+
+  /* SECTION */
+  .section { margin-bottom: 44px; }
+  .section-title {
+    font-size: 18px; font-weight: 700; color: #f0f6fc;
+    padding-bottom: 12px; border-bottom: 2px solid #21262d;
+    margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+
+  /* BEAT GRID */
+  .beat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  .beat-card {
+    background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 20px 22px; position: relative; overflow: hidden;
+  }
+  .beat-card.green { border-color: #238636; }
+  .beat-card.green::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #238636, #2ea043); }
+  .beat-card.blue { border-color: #4f46e5; }
+  .beat-card.blue::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #4f46e5, #6366f1); }
+  .beat-card.orange { border-color: #d97706; }
+  .beat-card.orange::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #d97706, #f59e0b); }
+
+  .metric-label { font-size: 13px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .metric-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .metric-name { font-size: 14px; color: #8b949e; }
+  .metric-val { font-size: 16px; font-weight: 700; color: #e6edf3; }
+  .metric-val.highlight { font-size: 24px; color: #fff; }
+  .beat-pill { display: inline-block; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(35,134,54,0.2); color: #3fb950; border: 1px solid #238636; margin-top: 8px; }
+
+  /* TABLE */
+  .cmp-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; font-size: 15px; }
+  .cmp-table th { font-size: 13px; font-weight: 600; color: #8b949e; text-align: left; padding: 10px 16px; background: #161b22; border-bottom: 1px solid #30363d; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cmp-table td { padding: 14px 16px; color: #c9d1d9; border-bottom: 1px solid #21262d; }
+  .cmp-table tr:hover td { background: #1c2128; }
+  .cmp-table td:first-child { font-weight: 600; color: #e6edf3; }
+  .beat-txt { color: #3fb950; font-weight: 700; }
+  .warn-txt { color: #f0883e; }
+
+  /* SEGMENT */
+  .segment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  .seg-card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 18px 20px; }
+  .seg-name { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 5px; }
+  .seg-yoy { font-size: 13px; color: #8b949e; margin-bottom: 12px; }
+  .seg-bar-wrap { height: 7px; background: #21262d; border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+  .seg-bar { height: 100%; border-radius: 4px; }
+  .seg-pcts { display: flex; gap: 18px; font-size: 13px; }
+  .seg-yoy-val { color: #3fb950; font-weight: 700; }
+  .seg-qoq-val { color: #60a5fa; font-weight: 700; }
+  .seg-label { color: #6e7681; }
+
+  /* GUIDANCE */
+  .guidance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  .guide-card { background: #1c2128; border: 1px solid #30363d; border-radius: 14px; padding: 22px; }
+  .guide-title { font-size: 13px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .guide-range { font-size: 24px; font-weight: 800; color: #f0f6fc; }
+  .guide-mid { font-size: 14px; color: #60a5fa; margin-top: 5px; }
+  .guide-vs-label { font-size: 13px; color: #6e7681; margin-top: 12px; }
+  .guide-vs-beat { font-size: 15px; color: #3fb950; font-weight: 700; }
+
+  /* INSIGHTS */
+  .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  .insight-card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 18px 20px; }
+  .insight-icon { font-size: 22px; margin-bottom: 10px; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 8px; }
+  .insight-body { font-size: 14px; color: #8b949e; line-height: 1.7; }
+  .insight-highlight { color: #60a5fa; font-weight: 600; }
+
+  /* REASON GRID */
+  .reason-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+  .reason-card { background: #161b22; border-radius: 14px; border: 1px solid #30363d; padding: 18px; text-align: center; }
+  .reason-num { font-size: 30px; font-weight: 800; margin-bottom: 8px; }
+  .reason-title { font-size: 14px; font-weight: 600; color: #e6edf3; margin-bottom: 8px; }
+  .reason-desc { font-size: 13px; color: #8b949e; line-height: 1.6; }
+
+  /* IMPLICATION */
+  .impl-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  .impl-card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 18px; }
+  .impl-company { font-size: 13px; font-weight: 700; color: #a5b4fc; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+  .impl-title { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 8px; }
+  .impl-body { font-size: 13px; color: #8b949e; line-height: 1.6; }
+  .impl-sentiment { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-top: 10px; }
+  .pos { background: rgba(35,134,54,0.2); color: #3fb950; border: 1px solid #238636; }
+  .neg { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid #ef4444; }
+  .mixed { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid #d97706; }
+
+  .footer { text-align: center; padding: 28px; color: #484f58; font-size: 13px; border-top: 1px solid #21262d; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="date-badge">法說會 2026年4月23日</div>
+  <div class="ticker-badge">NASDAQ: INTC</div>
+  <h1>英特爾 Intel Corporation<br>Q1 2026 財報深度分析</h1>
+  <div class="subtitle">Q1 2026 業績史詩級超標 · 第六連季超預期 · CPU AI 復甦敘事確立 · 同業影響全面解析</div>
+</div>
+
+<div class="container">
+
+  <!-- STOCK BANNER -->
+  <div class="stock-banner">
+    <div class="stock-price-block">
+      <div class="stock-label">財報前收盤</div>
+      <div class="stock-val">~$57</div>
+      <div class="stock-sub">2026/04/23 收盤</div>
+    </div>
+    <div class="divider-v"></div>
+    <div class="stock-price-block">
+      <div class="stock-label">盤後高點</div>
+      <div class="stock-val">~$75+</div>
+      <div class="stock-sub">突破 2000 年科技泡沫歷史高點</div>
+    </div>
+    <div class="divider-v"></div>
+    <div class="surge-block">
+      <div class="stock-label">盤後漲幅</div>
+      <div class="surge-pct">+19%</div>
+      <div class="surge-desc">創歷史新高，今年 YTD 漲幅超過 +80%</div>
+      <div class="reason-tags">
+        <span class="tag">EPS 超預期 2900%+</span>
+        <span class="tag">營收超預期 9%+</span>
+        <span class="tag">Q2 指引大幅超標</span>
+        <span class="tag">CPU AI 敘事確立</span>
+        <span class="tag">18A 良率提前達標</span>
+        <span class="tag">Google 長約加持</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: KEY METRICS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(35,134,54,0.2)">📊</div>
+      Q1 2026 關鍵指標 vs. 市場預期
+    </div>
+    <div class="beat-grid">
+      <div class="beat-card green">
+        <div class="metric-label">總營收 Revenue</div>
+        <div class="metric-row"><span class="metric-name">實際</span><span class="metric-val highlight">$13.6B</span></div>
+        <div class="metric-row"><span class="metric-name">市場預期（LSEG）</span><span class="metric-val">$12.42B</span></div>
+        <div class="metric-row"><span class="metric-name">YoY 增長</span><span class="metric-val" style="color:#3fb950">+7.2%</span></div>
+        <div class="metric-row"><span class="metric-name">vs. 公司自身指引中位</span><span class="metric-val" style="color:#3fb950">+$1.4B</span></div>
+        <div class="beat-pill">超預期 +9.5%</div>
+      </div>
+      <div class="beat-card blue">
+        <div class="metric-label">Non-GAAP EPS</div>
+        <div class="metric-row"><span class="metric-name">實際</span><span class="metric-val highlight">$0.29</span></div>
+        <div class="metric-row"><span class="metric-name">市場預期</span><span class="metric-val">$0.00～$0.01</span></div>
+        <div class="metric-row"><span class="metric-name">vs. 公司指引</span><span class="metric-val" style="color:#3fb950">損益兩平 → +$0.29</span></div>
+        <div class="metric-row"><span class="metric-name">YoY vs Q1 2025</span><span class="metric-val" style="color:#3fb950">$0.13 → $0.29</span></div>
+        <div class="beat-pill">超預期 +2,900%</div>
+      </div>
+      <div class="beat-card orange">
+        <div class="metric-label">Non-GAAP 毛利率</div>
+        <div class="metric-row"><span class="metric-name">實際</span><span class="metric-val highlight">41.0%</span></div>
+        <div class="metric-row"><span class="metric-name">公司指引</span><span class="metric-val">~34.3%</span></div>
+        <div class="metric-row"><span class="metric-name">超出指引</span><span class="metric-val" style="color:#f59e0b">+650bps</span></div>
+        <div class="metric-row"><span class="metric-name">GAAP 毛利率</span><span class="metric-val">39.4%（+250bps YoY）</span></div>
+        <div class="beat-pill">超指引 650bps</div>
+      </div>
+    </div>
+
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>財務指標</th><th>Q1 2026 實際</th><th>市場預期</th><th>Q1 2025 實際</th><th>YoY 變化</th><th>vs. 公司指引</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>總營收</td><td class="beat-txt">$13.6B</td><td>$12.42B</td><td>$12.67B</td><td class="beat-txt">+7.2%</td><td class="beat-txt">+$1.4B（超中位）</td></tr>
+        <tr><td>Non-GAAP 毛利率</td><td class="beat-txt">41.0%</td><td>~34%</td><td>~39.2%</td><td class="beat-txt">+180bps</td><td class="beat-txt">+650bps</td></tr>
+        <tr><td>GAAP 毛利率</td><td>39.4%</td><td>—</td><td>36.9%</td><td class="beat-txt">+250bps</td><td>—</td></tr>
+        <tr><td>Non-GAAP EPS</td><td class="beat-txt">$0.29</td><td>$0.00～$0.01</td><td>$0.13</td><td class="beat-txt">+123%</td><td class="beat-txt">vs. 損益兩平指引</td></tr>
+        <tr><td>GAAP EPS（虧損）</td><td class="warn-txt">-$0.73</td><td>-$0.14</td><td>-$0.19</td><td class="warn-txt">虧損擴大</td><td class="warn-txt">低於預期（重組費）</td></tr>
+        <tr><td>AI 驅動業務佔比</td><td class="beat-txt">60%營收</td><td>—</td><td>—</td><td class="beat-txt">YoY +40%</td><td>—</td></tr>
+        <tr><td>營業現金流（季）</td><td>$1.1B</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>資本支出（季）</td><td>$5.0B</td><td>—</td><td>—</td><td>—</td><td>持平去年（調升）</td></tr>
+        <tr><td>調整後自由現金流</td><td class="warn-txt">-$2.0B</td><td>—</td><td>—</td><td>—</td><td>重買 Fab 34 後預計全年轉正</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 2: SEGMENTS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(59,130,246,0.2)">🏭</div>
+      各業務部門表現
+    </div>
+    <div class="segment-grid">
+      <div class="seg-card">
+        <div class="seg-name">💻 CCG｜客戶端（PC）</div>
+        <div class="seg-yoy">最大部門｜AI PC 驅動，供不應求</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:55%;background:linear-gradient(90deg,#4f46e5,#6366f1)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">營收 $7.7B</span> <span class="seg-label">（QoQ -6%，優於預期）</span></span>
+        </div>
+        <div style="font-size:13px;color:#8b949e;margin-top:8px">AI PC 佔比 &gt;60%客戶 CPU；Core Ultra Series 3 五年最強新品；供應仍跟不上需求</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">🖥️ DCAI｜資料中心 & AI</div>
+        <div class="seg-yoy">最大驚喜｜AI 基礎設施 CPU 強勁拉動</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:75%;background:linear-gradient(90deg,#10b981,#059669)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">YoY +22%</span></span>
+          <span><span class="seg-qoq-val">QoQ +7%</span></span>
+        </div>
+        <div style="font-size:13px;color:#8b949e;margin-top:8px">營收 $5.1B；ASIC 季增 +30%、YoY 近翻倍；Xeon 6 入選 NVIDIA DGX Rubin 主機 CPU；Google 簽署多年長約</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">🔬 Intel Foundry｜晶圓代工</div>
+        <div class="seg-yoy">仍在虧損，但快速改善</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:85%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">營收 $5.4B（QoQ +20%）</span></span>
+        </div>
+        <div style="font-size:13px;color:#8b949e;margin-top:8px">外部代工營收 $174M；營業虧損 -$2.4B（改善 $72M）；18A 良率超前達標；14A 進度優於 18A 同期；馬來西亞後端廠擴建</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">🚗 其他（Mobileye 等）</div>
+        <div class="seg-yoy">穩健表現</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:25%;background:linear-gradient(90deg,#7c3aed,#8b5cf6)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-qoq-val">QoQ +9%</span></span>
+        </div>
+        <div style="font-size:13px;color:#8b949e;margin-top:8px">營收 $628M；Mobileye 表現強勁；整體利潤 $102M</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Q2 GUIDANCE -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(245,158,11,0.2)">🎯</div>
+      Q2 2026 公司指引 vs. 市場預期
+    </div>
+    <div class="guidance-grid">
+      <div class="guide-card" style="border-color:#238636">
+        <div class="guide-title">Q2 2026 營收指引</div>
+        <div class="guide-range" style="color:#3fb950">$13.8B – $14.8B</div>
+        <div class="guide-mid">中位數 $14.3B｜QoQ +2%～+9%</div>
+        <div class="guide-vs-label">市場預期：$13.03B～$13.11B</div>
+        <div class="guide-vs-beat">↑ 超出市場預期 中位 +9.7%</div>
+        <div style="margin-top:10px;font-size:13px;color:#6e7681">CCG + DCAI 均預期 QoQ 成長；DCAI 兩位數季增</div>
+      </div>
+      <div class="guide-card" style="border-color:#4f46e5">
+        <div class="guide-title">Q2 2026 EPS 指引（Non-GAAP）</div>
+        <div class="guide-range" style="color:#a5b4fc">$0.20</div>
+        <div class="guide-mid">Non-GAAP 毛利率預期 39%；稅率 11%</div>
+        <div class="guide-vs-label">市場預期：$0.09～$0.10</div>
+        <div class="guide-vs-beat">↑ 超出市場預期 +100%+</div>
+        <div style="margin-top:10px;font-size:13px;color:#6e7681">毛利率 Q2 微降（18A 量產初期拖累），但全年趨勢向上</div>
+      </div>
+    </div>
+
+    <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #f59e0b;border-radius:12px;padding:18px 22px;margin-bottom:14px">
+      <div style="font-size:15px;font-weight:700;color:#fbbf24;margin-bottom:8px">⚠️ 全年關鍵風險提示（管理層主動揭露）</div>
+      <div style="font-size:14px;color:#9ca3af;line-height:1.7">
+        (1) PC 市場全年預估下滑低雙位數%（受 H2 需求走弱拖累）；(2) 記憶體、基板、晶圓等原物料成本上漲，H2 毛利率面臨逆風；
+        (3) 18A 仍在量產爬坡初期，良率雖超預期但仍拖累毛利率；(4) 2026 年 OpEx 較原目標 $16B 略高（通膨+激勵薪酬+14A 投資）
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: CALL INSIGHTS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(139,92,246,0.2)">💬</div>
+      法說會六大重點整理
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-icon">🤖</div>
+        <div class="insight-title">CPU 重返 AI 核心：最強敘事轉折</div>
+        <div class="insight-body">
+          Lip-Bu Tan 明確指出：AI 從訓練轉向推理、再到 Agentic，CPU 作為協調層和控制平面的重要性大幅提升。
+          CPU:GPU 比例從 <span class="insight-highlight">1:7-8 → 1:3-4 → Agentic 時代趨近 1:1 甚至更高</span>。
+          這是 Xeon 伺服器 CPU 需求爆發的結構性原因，預計 2026 和 2027 年仍是雙位數成長。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">📋</div>
+        <div class="insight-title">Google 長約 + 多家客戶 LTA 簽署</div>
+        <div class="insight-body">
+          Q1 簽署多個長期合約（LTA），Google 涵蓋 Xeon、IPO 及 ASIC 業務，通常 <span class="insight-highlight">3-5 年、含量與價格</span>。
+          CFO 坦言：部分客戶要求保密，還有更多合約未公告。
+          這些 LTA 大幅提升對未來供應投資決策的能見度，是管理層敢於上調 CapEx 指引的信心來源。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">⚡</div>
+        <div class="insight-title">18A 良率：提前達到年底目標</div>
+        <div class="insight-body">
+          CEO 設定的年底良率目標，預計將在<span class="insight-highlight">今年中提前達到</span>。
+          Q1 毛利率超指引 650bps，很大程度來自 18A 良率超預期帶來的成本下降。
+          但 18A 絕對良率仍低於公司平均，Panther Lake 產品 Q2 量增 6-7 倍，仍是毛利率壓力來源。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🏗️</div>
+        <div class="insight-title">Terafab / Elon Musk：顛覆性合作</div>
+        <div class="insight-body">
+          與 SpaceX、xAI、Tesla 合作 Terafab，探索<span class="insight-highlight">重新設計製造流程、提升晶圓製造經濟性</span>。
+          Lip-Bu 明確表示 14A 是 Tesla 的目標製程，合作細節仍在發展中。
+          這是 Intel Foundry 外部客戶敘事的重要催化劑，但具體合約及規模尚未確認。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🌏</div>
+        <div class="insight-title">供應嚴重不足：需求跑贏供應</div>
+        <div class="insight-body">
+          CFO 罕見暗示：即使 Q2 指引已大幅上調，<span class="insight-highlight">under-shipping 金額仍「以 B（十億）為單位」</span>。
+          Q1 還消化了部分原本放棄的呆滯庫存才達到這個成績，Q2 主要靠真實增產。
+          供應每季持續增加，Q3/Q4 繼續放量，全年 H2 vs H1 預計符合 10 年季節性趨勢（伺服器優於 PC）。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">💰</div>
+        <div class="insight-title">Fab 34 愛爾蘭回購：49% 股權 $14.2B</div>
+        <div class="insight-body">
+          耗費 <span class="insight-highlight">$7.7B 現金 + $6.5B 新債</span> 買回 2024 年以 $11.2B 出售給 Apollo 的 49% 股份。
+          管理層稱這是「高度增值交易」，讓股東完整參與這座正值巔峰的晶圓廠收益。
+          此舉雖使 FCF 短期惡化，但排除此項交易後預計全年 FCF 仍為正。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🔬</div>
+        <div class="insight-title">14A：進展速度優於 18A 同期</div>
+        <div class="insight-body">
+          Lip-Bu Tan 稱 14A 的良率、成熟度和性能<span class="insight-highlight">均優於 18A 在相同發展時間點的水準</span>。
+          0.5 PDK 已交付，正推進 0.9 PDK（這是客戶決定下單的關鍵里程碑）。
+          預計 H2 2026 開始看到更具體的設計承諾，2027H1 擴大。Intel 自身產品也計劃採用 14A。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🏆</div>
+        <div class="insight-title">ASIC 業務：規模已超 $1B 年營收</div>
+        <div class="insight-body">
+          CFO 表示 ASIC 業務年化規模已<span class="insight-highlight">超過 $1B</span>，超出市場原先預期（原以為只有數億美元）。
+          Q1 ASIC YoY 近翻倍，QoQ +30%+。
+          Lip-Bu 稱其為「目的性矽片」，是 Intel CPU + 先進封裝 + 代工三位一體獨特優勢的集中展現。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: WHY +19% -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(16,185,129,0.2)">🚀</div>
+      為何股價單日盤後暴漲 +19%？五大催化劑
+    </div>
+    <div class="reason-grid">
+      <div class="reason-card">
+        <div class="reason-num" style="color:#3fb950">①</div>
+        <div class="reason-title">EPS 超預期幅度史詩級</div>
+        <div class="reason-desc">
+          Non-GAAP EPS $0.29 vs 預期 ~$0.00-$0.01<br>超出幅度近 3000%，絕大多數人根本沒料到能轉正<br>短空方慘遭大軋空
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#4f46e5">②</div>
+        <div class="reason-title">Q2 指引遠超街頭所有模型</div>
+        <div class="reason-desc">
+          Q2 收入中位 $14.3B vs 預期 $13.0B（+10%）<br>Q2 EPS $0.20 vs 預期 $0.09-0.10（+100%+）<br>強迫分析師全面上修估值模型
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#f59e0b">③</div>
+        <div class="reason-title">CPU AI 敘事被市場接受</div>
+        <div class="reason-desc">
+          CPU:GPU 比從 1:8 → 趨近 1:1 的 Agentic 時代<br>Intel 是全球最大 CPU 製造商<br>AI TAM 接近 $1 兆，Intel 正站在風口上
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#ef4444">④</div>
+        <div class="reason-title">毛利率超指引 650bps</div>
+        <div class="reason-desc">
+          Non-GAAP 毛利 41% vs 指引 ~34.3%<br>18A 良率超預期 + 庫存活化 + 定價改善<br>毛利率結構性改善讓多空雙方都措手不及
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#06b6d4">⑤</div>
+        <div class="reason-title">Google LTA + Elon Terafab 雙催化</div>
+        <div class="reason-desc">
+          Google 多年大合約驗證 DCAI 動能可持續<br>Terafab 合作為 Intel Foundry 引入最高矚目客戶<br>14A 進展超預期，外部代工故事開始成型
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#8b5cf6">⑥</div>
+        <div class="reason-title">連六季超預期 = 信心重建完成</div>
+        <div class="reason-desc">
+          過去一年股價已大漲 80%+<br>本次財報是對「股價過度領先基本面」最好的回應<br>市場重新相信 Lip-Bu 的轉型執行力
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: IMPLICATIONS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(245,158,11,0.2)">🌐</div>
+      對同業的 Implications — 產業影響解析
+    </div>
+    <div class="impl-grid">
+      <div class="impl-card">
+        <div class="impl-company">AMD</div>
+        <div class="impl-title">EPYC 競爭加劇，但市場大餅變更大</div>
+        <div class="impl-body">
+          Intel Xeon 6 重新獲得 NVIDIA DGX Rubin 首選地位，直接挑戰 AMD 在伺服器 CPU 的份額優勢。
+          但 CPU TAM 整體快速擴張（AI Agentic 帶動），AMD 短期仍有 EPYC 動能，不至於單純是零和競爭。
+          AMD Instinct GPU 在訓練市場仍有空間，但 CPU AI 比重提升對 AMD 是中性偏正面。
+        </div>
+        <div class="impl-sentiment mixed">中性偏負面（CPU競爭）/ 中性偏正面（TAM擴張）</div>
+      </div>
+      <div class="impl-card">
+        <div class="impl-company">NVIDIA</div>
+        <div class="impl-title">GPU/CPU 比重變化，但整體需求仍龐大</div>
+        <div class="impl-body">
+          CPU:GPU 比趨近 1:1 的說法若成真，意味著以往每台 GPU 伺服器搭配更多 CPU，
+          不代表 GPU 絕對需求下降，只是 AI 支出組合更均衡。
+          Intel Xeon 6 被選為 DGX Rubin NVL8 的主機 CPU，反而是 NVIDIA 與 Intel 協同正面訊號。
+          短期對 NVIDIA 影響中性，中長期若 Agentic AI 以 CPU 為主，GPU 投資佔比可能被重新評估。
+        </div>
+        <div class="impl-sentiment mixed">中性（短期）/ 需觀察（長期）</div>
+      </div>
+      <div class="impl-card">
+        <div class="impl-company">TSMC</div>
+        <div class="impl-title">Intel 自產能力提升，但合作關係加深</div>
+        <div class="impl-body">
+          Intel 採用多晶圓廠策略，持續外包給 TSMC 彈性調配，且 Lip-Bu 強調與 Morris Chang 的長期友誼。
+          但 18A/14A 良率持續改善，長期 Intel 將內化更多高毛利產品的生產，對 TSMC Intel 訂單有替代風險。
+          整體 AI 晶圓需求大爆發，TSMC 短期供不應求，Intel 外包需求增加是正面訊號。
+        </div>
+        <div class="impl-sentiment mixed">短期正面 / 長期輕微競爭</div>
+      </div>
+      <div class="impl-card">
+        <div class="impl-company">ARM Holdings</div>
+        <div class="impl-title">x86 反擊，ARM 伺服器滲透腳步受阻</div>
+        <div class="impl-body">
+          Intel 重申 x86 在 AI 推理和 Agentic 工作負載的優勢，CPU:GPU 比提升主要受益者是 Intel/AMD 的 x86。
+          Amazon Graviton、Google Axion 等 ARM 架構雖有進展，但 Intel 透過生態系相容性和供應能力反擊。
+          Coral Rapids 加入 SMT（同步多執行緒），直接縮小與 ARM 的效能差距，市場份額競爭升溫。
+        </div>
+        <div class="impl-sentiment neg">負面（伺服器 CPU 滲透受阻）</div>
+      </div>
+      <div class="impl-card">
+        <div class="impl-company">德州儀器 / 類比半導體</div>
+        <div class="impl-title">資料中心電源需求持續爆發，雙雄受益</div>
+        <div class="impl-body">
+          Intel 確認資料中心繼續大量建設，且 18A 量產帶動更多伺服器機架部署，直接拉動電源管理 IC 需求。
+          TXN 在資料中心電源 IC YoY +90%、Intel 量產放量都將帶動 TXN、ADI、MCHP 等類比廠同步受益。
+          兩份財報同天互相印證「資料中心 AI 建設週期」的可持續性，是本週最強正向信號。
+        </div>
+        <div class="impl-sentiment pos">正面（電源與類比需求共同受益）</div>
+      </div>
+      <div class="impl-card">
+        <div class="impl-company">記憶體廠（Micron / SK Hynix）</div>
+        <div class="impl-title">漲價訊號確認，但也是 Intel 毛利率逆風</div>
+        <div class="impl-body">
+          Intel CFO 明確點名記憶體（HBM/DDR）、基板、晶圓玻璃等材料成本快速上漲，是 H2 毛利率最大隱憂。
+          這是記憶體廠商的正面訊號，確認漲價週期到來。
+          但 Intel 被迫漲價轉嫁給客戶，若客戶承受力有限，PC 端需求 H2 可能更快走弱。
+        </div>
+        <div class="impl-sentiment pos">正面（記憶體廠漲價訊號）</div>
+      </div>
+    </div>
+
+    <!-- OVERALL IMPLICATION SUMMARY -->
+    <div style="background:linear-gradient(135deg,#1a1f2e,#1e293b);border:1px solid #334155;border-radius:14px;padding:22px 26px;margin-top:4px">
+      <div style="font-size:16px;font-weight:700;color:#f0f6fc;margin-bottom:14px">🔑 跨公司核心結論</div>
+      <div style="font-size:14px;color:#94a3b8;line-height:1.8">
+        Intel + TXN 同週財報，雙雙大幅超預期，共同傳達一個訊號：<span style="color:#60a5fa;font-weight:600">「AI 資料中心建設週期遠比市場預期更長、更廣、更深」</span>。
+        CPU、類比 IC、電源管理、先進封裝都在同步受益，這不是個別公司的一次性表現，而是整個半導體業上升週期延伸的結構性確認。
+        最大的系統性風險是：H2 PC 需求走弱 + 記憶體/基板成本上漲 + 地緣政治關稅不確定性，
+        若這三者同時惡化，可能讓「資料中心強 vs PC 弱」的兩極化更加明顯，類比廠和 Intel Foundry 外部客戶的動向將是下季最重要觀察點。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  本報告綜合 Intel Q1 2026 法說會逐字稿 (2026/04/23)、LSEG / FactSet / GuruFocus 市場共識及 CNBC / Sherwood News 媒體報導整理 | 僅供參考，非投資建議
+</div>
+
+</body>
+</html>

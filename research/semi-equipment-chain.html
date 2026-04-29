@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股半導體設備公司總覽</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=DM+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFBFD;
+  --card-bg: #FFFFFF;
+  --text-primary: #1a1f36;
+  --text-secondary: #3c4257;
+  --text-tertiary: #5a6178;
+  --border: #e3e8ef;
+  --border-light: #f0f3f8;
+
+  --blue: #3B82F6;  --blue-bg: #EFF6FF;  --blue-border: #BFDBFE;  --blue-text: #1E40AF;
+  --emerald: #10B981;  --emerald-bg: #ECFDF5;  --emerald-border: #A7F3D0;  --emerald-text: #065F46;
+  --amber: #F59E0B;  --amber-bg: #FFFBEB;  --amber-border: #FDE68A;  --amber-text: #92400E;
+  --rose: #F43F5E;  --rose-bg: #FFF1F2;  --rose-border: #FECDD3;  --rose-text: #9F1239;
+  --violet: #8B5CF6;  --violet-bg: #F5F3FF;  --violet-border: #C4B5FD;  --violet-text: #5B21B6;
+  --cyan: #06B6D4;  --cyan-bg: #ECFEFF;  --cyan-border: #A5F3FC;  --cyan-text: #155E75;
+  --slate: #475569;  --slate-bg: #F8FAFC;  --slate-border: #CBD5E1;  --slate-text: #1E293B;
+
+  --tag-ai-gpu: #DBEAFE; --tag-ai-gpu-text: #1E40AF;
+  --tag-hbm: #FCE7F3; --tag-hbm-text: #9D174D;
+  --tag-cowos: #FEF3C7; --tag-cowos-text: #92400E;
+  --tag-sic: #D1FAE5; --tag-sic-text: #065F46;
+  --tag-photonics: #E0E7FF; --tag-photonics-text: #3730A3;
+  --tag-network: #CFFAFE; --tag-network-text: #155E75;
+  --tag-wfe: #F3E8FF; --tag-wfe-text: #6B21A8;
+  --tag-material: #FFF7ED; --tag-material-text: #9A3412;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Sans TC','DM Sans',sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width:1200px; margin:0 auto; padding:40px 24px 80px; }
+
+/* Header */
+.hdr { text-align:center; margin-bottom:16px; }
+.hdr h1 { font-size:36px; font-weight:900; letter-spacing:-0.5px; }
+.hdr .sub { font-size:17px; color:var(--text-secondary); }
+
+/* Controls */
+.ctrls { display:flex; justify-content:center; gap:10px; margin:12px 0 20px; }
+.cbtn {
+  background:var(--card-bg); border:1px solid var(--border); border-radius:8px;
+  padding:7px 16px; font-size:14px; font-weight:600; color:var(--text-secondary);
+  cursor:pointer; font-family:inherit; transition:all .15s;
+}
+.cbtn:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-bg); }
+
+/* Process Flow */
+.pflow {
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+  gap:0; margin:0 0 20px; padding:18px 16px;
+  background:var(--card-bg); border:1px solid var(--border); border-radius:14px;
+}
+.pfs {
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  padding:8px 14px; border-radius:10px; min-width:95px; text-align:center;
+}
+.pfs .pl { font-size:13px; font-weight:700; letter-spacing:.3px; }
+.pfs .ps { font-size:11px; font-weight:500; opacity:.85; }
+.pa { font-size:20px; color:#cbd5e1; margin:0 2px; }
+.pfs.blue { background:var(--blue-bg); } .pfs.blue .pl,.pfs.blue .ps { color:var(--blue-text); }
+.pfs.emerald { background:var(--emerald-bg); } .pfs.emerald .pl,.pfs.emerald .ps { color:var(--emerald-text); }
+.pfs.amber { background:var(--amber-bg); } .pfs.amber .pl,.pfs.amber .ps { color:var(--amber-text); }
+.pfs.rose { background:var(--rose-bg); } .pfs.rose .pl,.pfs.rose .ps { color:var(--rose-text); }
+.pfs.violet { background:var(--violet-bg); } .pfs.violet .pl,.pfs.violet .ps { color:var(--violet-text); }
+.pfs.cyan { background:var(--cyan-bg); } .pfs.cyan .pl,.pfs.cyan .ps { color:var(--cyan-text); }
+
+/* Legend */
+.legend {
+  display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+  margin:0 0 36px; padding:14px 20px;
+  background:var(--card-bg); border:1px solid var(--border); border-radius:14px;
+}
+.legend .lt {
+  width:100%; text-align:center; font-size:12px; font-weight:600;
+  color:var(--text-tertiary); margin-bottom:2px; letter-spacing:1px; text-transform:uppercase;
+}
+
+/* Tags */
+.tag {
+  font-size:12px; font-weight:600; padding:3px 10px; border-radius:6px; white-space:nowrap;
+}
+.tag-ai-gpu { background:var(--tag-ai-gpu); color:var(--tag-ai-gpu-text); }
+.tag-hbm { background:var(--tag-hbm); color:var(--tag-hbm-text); }
+.tag-cowos { background:var(--tag-cowos); color:var(--tag-cowos-text); }
+.tag-sic { background:var(--tag-sic); color:var(--tag-sic-text); }
+.tag-photonics { background:var(--tag-photonics); color:var(--tag-photonics-text); }
+.tag-network { background:var(--tag-network); color:var(--tag-network-text); }
+.tag-wfe { background:var(--tag-wfe); color:var(--tag-wfe-text); }
+.tag-material { background:var(--tag-material); color:var(--tag-material-text); }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; }
+
+/* ═══ Giant Section ═══ */
+.giant-section { margin-bottom:40px; }
+.giant-header {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:16px; padding-bottom:10px;
+  border-bottom:3px solid var(--slate-border);
+}
+.giant-header h2 { font-size:24px; font-weight:900; color:var(--slate-text); }
+.giant-header .gdesc { font-size:14px; color:var(--text-tertiary); margin-left:auto; }
+.giant-icon {
+  width:44px; height:44px; border-radius:10px; display:flex; align-items:center;
+  justify-content:center; font-size:22px; flex-shrink:0;
+  background:linear-gradient(135deg,#F1F5F9,#E2E8F0); color:var(--slate);
+}
+.giant-grid {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:14px;
+}
+.giant-card {
+  background:var(--card-bg);
+  border:2px solid var(--slate-border);
+  border-radius:14px;
+  overflow:hidden;
+  transition:box-shadow .2s, border-color .2s;
+}
+.giant-card:hover {
+  box-shadow:0 6px 24px rgba(0,0,0,.08);
+  border-color:#94a3b8;
+}
+.gc-top {
+  padding:18px 16px 12px;
+  cursor:pointer;
+  user-select:none;
+}
+.gc-top:hover .card-toggle { color:var(--blue); }
+.gc-row1 {
+  display:flex; align-items:center; gap:8px; margin-bottom:4px;
+}
+.gc-ticker {
+  font-family:'DM Sans',sans-serif;
+  font-size:26px; font-weight:900; color:var(--slate-text);
+}
+.gc-name { font-size:13px; color:var(--text-tertiary); font-weight:500; }
+.gc-oneliner {
+  font-size:15px; font-weight:600; color:var(--text-secondary);
+  margin-bottom:8px; line-height:1.5;
+}
+.gc-role {
+  font-size:12px; font-weight:700; color:var(--slate);
+  background:#F1F5F9; display:inline-block; padding:2px 10px;
+  border-radius:5px; margin-bottom:6px;
+}
+
+/* ═══ Regular Section ═══ */
+.section { margin-bottom:40px; }
+.section-header {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--border);
+}
+.section-icon {
+  width:40px; height:40px; border-radius:10px; display:flex;
+  align-items:center; justify-content:center; font-size:20px; flex-shrink:0;
+}
+.section-header h2 { font-size:22px; font-weight:700; }
+.section-header .sdesc { font-size:14px; color:var(--text-tertiary); margin-left:auto; }
+
+/* Card Grid */
+.card-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px;
+}
+
+/* Company Card */
+.cc {
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:14px; overflow:hidden; transition:box-shadow .2s, border-color .2s;
+}
+.cc:hover { box-shadow:0 4px 20px rgba(0,0,0,.06); border-color:#cdd5e0; }
+.ct { padding:20px 20px 14px; cursor:pointer; user-select:none; }
+.ct:hover .card-toggle { color:var(--blue); }
+.cr1 { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.tk { font-family:'DM Sans',sans-serif; font-size:22px; font-weight:700; }
+.cn { font-size:14px; color:var(--text-tertiary); font-weight:500; }
+.card-toggle {
+  margin-left:auto; font-size:18px; color:var(--text-tertiary);
+  transition:transform .25s,color .2s; flex-shrink:0;
+}
+.cc.open .card-toggle, .giant-card.open .card-toggle { transform:rotate(180deg); color:var(--blue); }
+.ol { font-size:16px; font-weight:600; color:var(--text-secondary); margin-bottom:10px; line-height:1.5; }
+
+/* Detail */
+.cd { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+.cc.open .cd, .giant-card.open .cd { max-height:1600px; }
+.di { padding:0 18px 18px; border-top:1px solid var(--border-light); }
+.ds { margin-top:14px; }
+.ds h4 {
+  font-size:13px; font-weight:700; color:var(--text-tertiary);
+  letter-spacing:.5px; text-transform:uppercase; margin-bottom:6px;
+}
+.ds p, .ds li { font-size:15px; color:var(--text-secondary); line-height:1.7; }
+.ds ul { padding-left:18px; }
+.ds li { margin-bottom:4px; }
+.ds li::marker { color:#c0c8d8; }
+
+.hb {
+  border-radius:10px; padding:12px 16px; margin-top:12px; border-width:1px; border-style:solid;
+}
+.hb p { font-size:14px; color:var(--text-secondary); font-weight:500; line-height:1.7; }
+.hb strong { color:var(--text-primary); }
+.hb.blue { background:var(--blue-bg); border-color:var(--blue-border); }
+.hb.emerald { background:var(--emerald-bg); border-color:var(--emerald-border); }
+.hb.amber { background:var(--amber-bg); border-color:var(--amber-border); }
+.hb.rose { background:var(--rose-bg); border-color:var(--rose-border); }
+.hb.violet { background:var(--violet-bg); border-color:var(--violet-border); }
+.hb.cyan { background:var(--cyan-bg); border-color:var(--cyan-border); }
+.hb.slate { background:var(--slate-bg); border-color:var(--slate-border); }
+
+/* Relationship badge */
+.rel-badge {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:12px; font-weight:600; color:#6366F1;
+  background:#EEF2FF; padding:3px 10px; border-radius:5px; margin-top:6px;
+}
+
+/* Footer */
+.footer {
+  text-align:center; margin-top:60px; padding-top:24px;
+  border-top:1px solid var(--border); color:var(--text-tertiary); font-size:13px;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width:1024px) {
+  .giant-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:768px) {
+  .hdr h1 { font-size:26px; }
+  .giant-grid { grid-template-columns:1fr; }
+  .card-grid { grid-template-columns:1fr; }
+  .section-header .sdesc, .giant-header .gdesc { display:none; }
+  .pflow { padding:12px 8px; }
+  .pfs { min-width:70px; padding:6px 6px; }
+  .pfs .pl { font-size:11px; } .pfs .ps { font-size:9px; }
+  .pa { font-size:15px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="hdr">
+    <h1>🔬 美股半導體設備公司總覽</h1>
+    <p class="sub">4 大產業巨頭 + 16 家專精型設備/材料公司 — 點擊卡片展開業務細節</p>
+  </div>
+
+  <div class="ctrls">
+    <button class="cbtn" onclick="expandAll()">📂 全部展開</button>
+    <button class="cbtn" onclick="collapseAll()">📁 全部收合</button>
+  </div>
+
+  <!-- Process Flow -->
+  <div class="pflow">
+    <div class="pfs blue"><span class="pl">前段製程</span><span class="ps">微影·沉積·蝕刻·植入</span></div>
+    <span class="pa">→</span>
+    <div class="pfs emerald"><span class="pl">材料 & 次系統</span><span class="ps">化學品·電源·氣體</span></div>
+    <span class="pa">→</span>
+    <div class="pfs amber"><span class="pl">量測 / 檢測</span><span class="ps">薄膜·缺陷·3D形貌</span></div>
+    <span class="pa">→</span>
+    <div class="pfs rose"><span class="pl">先進封裝</span><span class="ps">CoWoS·HBM·RDL</span></div>
+    <span class="pa">→</span>
+    <div class="pfs violet"><span class="pl">測試</span><span class="ps">ATE·探針·燒機</span></div>
+    <span class="pa">→</span>
+    <div class="pfs cyan"><span class="pl">系統驗證</span><span class="ps">高速訊號·網路</span></div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="lt">AI 受益主題標籤</div>
+    <span class="tag tag-ai-gpu">AI 先進邏輯</span>
+    <span class="tag tag-hbm">HBM 記憶體</span>
+    <span class="tag tag-cowos">CoWoS 封裝</span>
+    <span class="tag tag-sic">SiC 功率</span>
+    <span class="tag tag-photonics">矽光子/光互連</span>
+    <span class="tag tag-network">高速網路</span>
+    <span class="tag tag-wfe">WFE 設備鏈</span>
+    <span class="tag tag-material">半導體材料</span>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--        SECTION 0: 產業巨頭             -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="giant-section">
+    <div class="giant-header">
+      <div class="giant-icon">🏛️</div>
+      <h2>產業巨頭 — 平台型龍頭</h2>
+      <span class="gdesc">半導體設備市值前四大 · 多家中小型公司為其供應鏈</span>
+    </div>
+    <div class="giant-grid">
+
+      <!-- ASML -->
+      <div class="giant-card" id="asml">
+        <div class="gc-top" onclick="toggle('asml')">
+          <div class="gc-row1">
+            <span class="gc-ticker">ASML</span>
+            <span class="card-toggle">▼</span>
+          </div>
+          <span class="gc-role">微影設備 · 獨占</span>
+          <div class="gc-oneliner">EUV / DUV 光刻機 — 全球唯一供應商</div>
+          <div class="tag-row">
+            <span class="tag tag-ai-gpu">AI 先進邏輯</span>
+            <span class="tag tag-hbm">HBM 記憶體</span>
+          </div>
+        </div>
+        <div class="cd"><div class="di">
+          <div class="ds"><h4>核心產品</h4>
+            <ul>
+              <li><strong>EUV（極紫外光）：</strong>TWINSCAN NXE/NXT 系列，波長 13.5nm，7nm 以下先進節點必備。High-NA EUV（EXE:5000 系列）開始用於 2nm</li>
+              <li><strong>DUV（深紫外光）：</strong>TWINSCAN NXT/XT 系列，ArF 浸潤式，成熟節點與多重曝光仍大量使用</li>
+              <li><strong>光源（Cymer）：</strong>EUV/DUV 光源子公司，提供雷射驅動電漿光源</li>
+              <li><strong>計算光刻軟體：</strong>HMI 電子束量測系統、光罩修正軟體</li>
+            </ul>
+          </div>
+          <div class="ds"><h4>製程位置</h4>
+            <p>前段製程 — 微影（Lithography），是定義晶片電路圖案的核心步驟。每層電路都需要光刻曝光，先進邏輯晶片可達 80+ 層。</p>
+          </div>
+          <div class="hb slate">
+            <p>🤖 <strong>AI 受益邏輯：</strong>AI GPU 使用 3nm/2nm 製程，高度仰賴 EUV。ASML 是唯一 EUV 供應商，每台售價 3~3.5 億美元（High-NA 約 3.5 億歐元）。HBM 所需 DRAM 也在轉向 EUV 節點，進一步擴大需求。</p>
+          </div>
+          <div class="ds" style="margin-top:10px">
+            <span class="rel-badge">🔗 供應鏈：EUV 雷射由 Trumpf 提供 · ENTG 供應 EUV 光罩盒</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- AMAT -->
+      <div class="giant-card" id="amat">
+        <div class="gc-top" onclick="toggle('amat')">
+          <div class="gc-row1">
+            <span class="gc-ticker">AMAT</span>
+            <span class="card-toggle">▼</span>
+          </div>
+          <span class="gc-role">全製程設備 · 最大營收</span>
+          <div class="gc-oneliner">沉積 · 蝕刻 · CMP · 離子植入 — 全球最大</div>
+          <div class="tag-row">
+            <span class="tag tag-ai-gpu">AI 先進邏輯</span>
+            <span class="tag tag-hbm">HBM 記憶體</span>
+            <span class="tag tag-cowos">CoWoS 封裝</span>
+          </div>
+        </div>
+        <div class="cd"><div class="di">
+          <div class="ds"><h4>核心產品</h4>
+            <ul>
+              <li><strong>CVD / PVD / ALD 沉積：</strong>Endura、Producer、Centura 平台，覆蓋金屬/介電/阻障層沉積</li>
+              <li><strong>蝕刻：</strong>Centris / Sym3 導體與介電質蝕刻</li>
+              <li><strong>CMP（化學機械研磨）：</strong>Reflexion 系列，晶圓平坦化</li>
+              <li><strong>離子植入：</strong>VIISta 系列（與 ACLS 競爭）</li>
+              <li><strong>檢測量測：</strong>e-beam 缺陷檢測（與 KLAC 競爭）</li>
+            </ul>
+          </div>
+          <div class="ds"><h4>製程位置</h4>
+            <p>橫跨前段製程（FEOL）幾乎所有步驟：薄膜沉積 → 蝕刻 → CMP → 植入。也涉足先進封裝設備（混合鍵合 Hybrid Bonding）。</p>
+          </div>
+          <div class="hb slate">
+            <p>🤖 <strong>AI 受益邏輯：</strong>GAA 電晶體需要更多 ALD 沉積與選擇性蝕刻步驟；HBM TSV 需要特殊 CVD 與 PVD；CoWoS Hybrid Bonding 設備市佔領先。AMAT 是設備市場最大受益者之一。</p>
+          </div>
+          <div class="ds" style="margin-top:10px">
+            <span class="rel-badge">🔗 供應鏈：ICHR、UCTT 為其供應氣體模組與零組件 · MKSI、AEIS 供應 RF 電源/MFC</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- LRCX -->
+      <div class="giant-card" id="lrcx">
+        <div class="gc-top" onclick="toggle('lrcx')">
+          <div class="gc-row1">
+            <span class="gc-ticker">LRCX</span>
+            <span class="card-toggle">▼</span>
+          </div>
+          <span class="gc-role">蝕刻 & 沉積 · 第二大</span>
+          <div class="gc-oneliner">蝕刻 · CVD/ALD 沉積 · 清洗 — 記憶體製程強者</div>
+          <div class="tag-row">
+            <span class="tag tag-ai-gpu">AI 先進邏輯</span>
+            <span class="tag tag-hbm">HBM 記憶體</span>
+          </div>
+        </div>
+        <div class="cd"><div class="di">
+          <div class="ds"><h4>核心產品</h4>
+            <ul>
+              <li><strong>蝕刻：</strong>Flex® / Kiyo® / Syndion® 系列，電漿蝕刻市佔領先（尤其 DRAM/NAND HAR 蝕刻）</li>
+              <li><strong>CVD/ALD 沉積：</strong>ALTUS® / VECTOR® / Striker® 系列</li>
+              <li><strong>清洗：</strong>EOS® / DV-Prime® 晶圓清洗設備</li>
+              <li><strong>電鍍：</strong>SABRE® 銅電鍍系統</li>
+            </ul>
+          </div>
+          <div class="ds"><h4>製程位置</h4>
+            <p>前段製程 — 蝕刻（圖案轉移）與薄膜沉積。Lam 在記憶體（DRAM/NAND）領域的市佔率尤其強勢，高深寬比（HAR）蝕刻是其看家本領。</p>
+          </div>
+          <div class="hb slate">
+            <p>🤖 <strong>AI 受益邏輯：</strong>HBM 使用 DRAM 製程 + TSV 蝕刻，Lam 在 DRAM 蝕刻與沉積市佔率領先。GAA 節點的多層 nanosheet 蝕刻也帶來新的步驟增量。</p>
+          </div>
+          <div class="ds" style="margin-top:10px">
+            <span class="rel-badge">🔗 供應鏈：ICHR 為其最大客戶之一 · MKSI、AEIS 供應 RF 電源 / MFC</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- KLAC -->
+      <div class="giant-card" id="klac">
+        <div class="gc-top" onclick="toggle('klac')">
+          <div class="gc-row1">
+            <span class="gc-ticker">KLAC</span>
+            <span class="card-toggle">▼</span>
+          </div>
+          <span class="gc-role">檢測 & 量測 · 龍頭</span>
+          <div class="gc-oneliner">晶圓缺陷檢測 · CD-SEM · 光罩檢測</div>
+          <div class="tag-row">
+            <span class="tag tag-ai-gpu">AI 先進邏輯</span>
+            <span class="tag tag-hbm">HBM 記憶體</span>
+            <span class="tag tag-cowos">CoWoS 封裝</span>
+          </div>
+        </div>
+        <div class="cd"><div class="di">
+          <div class="ds"><h4>核心產品</h4>
+            <ul>
+              <li><strong>光學晶圓檢測：</strong>29xx / 39xx 系列暗場/亮場檢測，捕捉奈米級缺陷</li>
+              <li><strong>電子束檢測：</strong>eSL10™ 等 e-beam 缺陷審查</li>
+              <li><strong>CD-SEM：</strong>eDR™ 系列，量測關鍵尺寸</li>
+              <li><strong>光罩檢測：</strong>Teron™ 系列，EUV 光罩品質把關</li>
+              <li><strong>Overlay 量測：</strong>對準精度量測</li>
+            </ul>
+          </div>
+          <div class="ds"><h4>製程位置</h4>
+            <p>貫穿全製程的「製程控制」— 每一層微影/蝕刻/沉積後檢查缺陷、量測尺寸、驗證對準。KLA 的角色是「品質警察」。</p>
+          </div>
+          <div class="hb slate">
+            <p>🤖 <strong>AI 受益邏輯：</strong>先進節點容錯空間趨近於零，檢測步驟數隨節點推進持續增加。EUV 光罩價值極高（數十萬美元/片），KLA 的光罩檢測不可或缺。在先進封裝領域也有封裝缺陷檢測方案。</p>
+          </div>
+          <div class="ds" style="margin-top:10px">
+            <span class="rel-badge">🔗 相關公司：NVMI、ONTO、CAMT 在特定量測/檢測領域與 KLA 互補或競爭</span>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--      S1: 前段製程設備                   -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--blue-bg);color:var(--blue);">⚙️</div>
+      <h2>前段製程設備</h2>
+      <span class="sdesc">FEOL — 離子植入 · 薄膜沉積</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="cc" id="acls"><div class="ct" onclick="toggle('acls')">
+        <div class="cr1"><span class="tk">ACLS</span><span class="cn">Axcelis Technologies</span><span class="card-toggle">▼</span></div>
+        <div class="ol">離子植入機 — SiC 功率元件核心設備</div>
+        <div class="tag-row"><span class="tag tag-sic">SiC 功率</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>Purion H（高電流）：</strong>源極/汲極高劑量植入，晶片量產主力</li>
+          <li><strong>Purion M（中電流）：</strong>閘極、井區等中劑量植入</li>
+          <li><strong>Purion XE/EXE（高能量）：</strong>深井植入、影像感測器</li>
+          <li><strong>Purion Power Series+（2025新）：</strong>專為 SiC 設計，全系列 H200+/M+/XE+/EXE+ SiC</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>前段製程（FEOL）— 電晶體形成。將摻雜原子以高能射入矽晶圓改變電性，建構電晶體源極/汲極及調控閾值電壓。</p></div>
+        <div class="hb emerald"><p>🤖 <strong>AI 受益邏輯：</strong>SiC MOSFET 大量用於 AI 資料中心 PSU，降低電力轉換損耗。ACLS 是 SiC 離子植入主要供應商，2025 年 Purion Power Series+ 專攻 SiC 超接面架構。</p></div>
+        <span class="rel-badge">🔗 與 AMAT VIISta 系列在離子植入領域競爭</span>
+      </div></div></div>
+
+      <div class="cc" id="veco"><div class="ct" onclick="toggle('veco')">
+        <div class="cr1"><span class="tk">VECO</span><span class="cn">Veeco Instruments</span><span class="card-toggle">▼</span></div>
+        <div class="ol">MOCVD / MBE 薄膜沉積 — 化合物半導體磊晶</div>
+        <div class="tag-row"><span class="tag tag-photonics">矽光子/光互連</span><span class="tag tag-sic">SiC 功率</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>MOCVD 系統：</strong>GaAs/InP/GaN 化合物半導體磊晶（光通訊雷射、LED、功率元件）</li>
+          <li><strong>MBE 系統：</strong>超晶格與量子結構研究/量產</li>
+          <li><strong>離子束沉積/蝕刻（IBD/IBE）：</strong>精密薄膜沉積，磁頭/光學鍍膜</li>
+          <li><strong>先進封裝微影：</strong>收購 Ultratech 取得（非業務主力）</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>前段製程 — 化合物半導體薄膜成長。主要應用於光通訊雷射（InP/GaAs）、LED（GaN）、功率元件（SiC/GaN 磊晶）。與矽基 CVD 不同，MOCVD 專攻 III-V 族。</p></div>
+        <div class="hb blue"><p>🤖 <strong>AI 受益邏輯：</strong>AI 資料中心的高速光互連需要 InP/GaAs 雷射元件做光收發，磊晶層由 MOCVD 生長。SiC 磊晶也部分使用 MOCVD。VECO 的 AI 主線是「矽光子與光互連」。</p></div>
+      </div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--      S2: 材料 & 次系統                  -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--emerald-bg);color:var(--emerald);">🧪</div>
+      <h2>材料 & 次系統供應商</h2>
+      <span class="sdesc">化學品 · 電源 · 氣體輸送 · 零組件</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="cc" id="entg"><div class="ct" onclick="toggle('entg')">
+        <div class="cr1"><span class="tk">ENTG</span><span class="cn">Entegris</span><span class="card-toggle">▼</span></div>
+        <div class="ol">製程材料 & 化學品輸送 — 純度的守門人</div>
+        <div class="tag-row"><span class="tag tag-hbm">HBM 記憶體</span><span class="tag tag-cowos">CoWoS 封裝</span><span class="tag tag-material">半導體材料</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>三大業務支柱</h4><ul>
+          <li><strong>Specialty Chemicals：</strong>CMP 研磨液、蝕刻液、清洗液、ALD/CVD 前驅物</li>
+          <li><strong>Advanced Materials Handling：</strong>晶圓盒 FOUP、EUV 光罩盒、化學品儲存桶</li>
+          <li><strong>Microcontamination Control：</strong>超高純度過濾器、氣體純化器、<strong>化學品輸送模組 CDM</strong></li>
+        </ul></div>
+        <div class="ds"><h4>化學品輸送系統</h4><p>Bulk Chemical Management（大宗化學品全程輸送）、Point-of-Use 過濾混合（進腔前最後純化）、Chemical Blending Module（CMP 研磨液即時調配）。ENTG 不只賣「藥」，也賣「針筒與靜脈注射系統」。</p></div>
+        <div class="hb rose"><p>🤖 <strong>AI 受益邏輯：</strong>HBM 多層堆疊每層需 CMP；CoWoS 需大量清洗材料；先進節點（3nm↓）對金屬離子汙染容忍度趨近 ppb 以下，ENTG 的輸送與純化系統是良率基礎設施。</p></div>
+        <span class="rel-badge">🔗 供應 ASML EUV 光罩盒 · 與 Q 在 CMP 材料互補</span>
+      </div></div></div>
+
+      <div class="cc" id="qcard"><div class="ct" onclick="toggle('qcard')">
+        <div class="cr1"><span class="tk">Q</span><span class="cn">Qnity Electronics（2025 DuPont 分拆）</span><span class="card-toggle">▼</span></div>
+        <div class="ol">CMP · 光阻 · PCB 材料 — 化學配方本身</div>
+        <div class="tag-row"><span class="tag tag-hbm">HBM 記憶體</span><span class="tag tag-cowos">CoWoS 封裝</span><span class="tag tag-ai-gpu">AI 先進邏輯</span><span class="tag tag-material">半導體材料</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>兩大業務部門</h4><ul>
+          <li><strong>Semiconductor Technologies：</strong>CMP 研磨液 Acuplane™、CMP 研磨墊 Emblem™、ArF 光阻 Epic™、清洗液、基板電鍍化學品 Circuposit™ / Microfill™、Kalrez® 密封件</li>
+          <li><strong>Interconnect Solutions：</strong>軟性 PCB Pyralux®、聚醯亞胺 Kapton®、熱管理 Laird™、EMI 屏蔽、銀奈米線</li>
+        </ul></div>
+        <div class="ds"><h4>與 ENTG 的差異</h4><p>ENTG 強在材料「輸送與純化」基礎設施；Q 強在材料「配方本身」。兩者在 CMP 有部分重疊，整體互補。</p></div>
+        <div class="hb amber"><p>🤖 <strong>AI 受益邏輯：</strong>2025/11 由 DuPont 分拆上市並加入 S&P 500。HBM 堆疊倍增 CMP 用量；AI 伺服器需高頻低損耗 PCB（Pyralux®）；Laird™ 導熱材料用於 GPU 散熱。近期宣布與 NVIDIA 合作。</p></div>
+      </div></div></div>
+
+      <div class="cc" id="mksi"><div class="ct" onclick="toggle('mksi')">
+        <div class="cr1"><span class="tk">MKSI</span><span class="cn">MKS Instruments</span><span class="card-toggle">▼</span></div>
+        <div class="ol">MFC · RF 電源 · 壓力計 — 製程控制全能王</div>
+        <div class="tag-row"><span class="tag tag-ai-gpu">AI 先進邏輯</span><span class="tag tag-wfe">WFE 設備鏈</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>質量流量控制器（MFC）：</strong>精確控制蝕刻/CVD 製程氣體流量</li>
+          <li><strong>壓力計 & 真空量規：</strong>腔體壓力即時監測</li>
+          <li><strong>RF 功率供應：</strong>電漿蝕刻與沉積的射頻能量源</li>
+          <li><strong>殘餘氣體分析器（RGA）：</strong>腔體氣氛純度監測</li>
+          <li><strong>雷射與光學（Newport 併入）：</strong>科研與加工用雷射（非 EUV 光源）</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>蝕刻、CVD、ALD、PVD 等幾乎所有氣相製程的核心次系統與控制儀器。產品橫跨最多製程步驟。</p></div>
+        <div class="hb blue"><p>🤖 <strong>AI 受益邏輯：</strong>先進節點（GAA / 3nm↓）每一步製程控制精度要求提升，MKS 多元產品線全面受益。注意：MKS 並非 EUV 雷射主供應商（EUV 雷射由 Trumpf / Cymer 提供），核心價值在製程控制儀器。</p></div>
+        <span class="rel-badge">🔗 供應 LRCX、AMAT 蝕刻/沉積設備的 MFC 與 RF 電源</span>
+      </div></div></div>
+
+      <div class="cc" id="aeis"><div class="ct" onclick="toggle('aeis')">
+        <div class="cr1"><span class="tk">AEIS</span><span class="cn">Advanced Energy Industries</span><span class="card-toggle">▼</span></div>
+        <div class="ol">精密電源供應 — 蝕刻電漿的心臟</div>
+        <div class="tag-row"><span class="tag tag-ai-gpu">AI 先進邏輯</span><span class="tag tag-wfe">WFE 設備鏈</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>RF 功率供應：</strong>蝕刻與 PECVD 的射頻電漿激發源</li>
+          <li><strong>DC / 脈衝 DC 電源：</strong>PVD 濺鍍與離子源</li>
+          <li><strong>高壓電源：</strong>高能離子束與電子束系統</li>
+          <li><strong>資料中心電源 CRPS：</strong>近年跨入 Server rack 高效電源模組</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>蝕刻、CVD/ALD 設備的電源核心。電漿蝕刻精度直接取決於 RF 電源的穩定性。</p></div>
+        <div class="hb blue"><p>🤖 <strong>AI 受益邏輯：</strong>AI 晶片多重圖案蝕刻對電漿能量精度要求極高；同時切入資料中心 CRPS 電源市場，半導體 + 資料中心雙重題材。</p></div>
+        <span class="rel-badge">🔗 與 MKSI 在 RF 電源領域競爭 · 供應 LRCX、AMAT 設備</span>
+      </div></div></div>
+
+      <div class="cc" id="ichr"><div class="ct" onclick="toggle('ichr')">
+        <div class="cr1"><span class="tk">ICHR</span><span class="cn">Ichor Holdings</span><span class="card-toggle">▼</span></div>
+        <div class="ol">氣體輸送次系統 — 設備 OEM 的一階供應商</div>
+        <div class="tag-row"><span class="tag tag-wfe">WFE 設備鏈</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>Gas Delivery Systems（GDS）：</strong>超高純度製程氣體從氣源到設備腔體的分配系統</li>
+          <li><strong>Liquid Delivery Modules：</strong>液態前驅物供應模組</li>
+          <li><strong>Weldments & Gas Panels：</strong>焊接管路板與氣體面板</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>為 Lam Research、Applied Materials 等主要設備 OEM 代工製造蝕刻/CVD 設備的氣體輸送子系統。不直接面對晶圓廠。</p></div>
+        <div class="hb violet"><p>🤖 <strong>AI 受益邏輯：</strong>AI 推動先進邏輯與 HBM 投資 → WFE 設備出貨量增加 → ICHR 作為一階供應商同步受益。半導體設備景氣領先指標之一。</p></div>
+        <span class="rel-badge">🔗 LRCX 為最大客戶 · 同時供應 AMAT</span>
+      </div></div></div>
+
+      <div class="cc" id="uctt"><div class="ct" onclick="toggle('uctt')">
+        <div class="cr1"><span class="tk">UCTT</span><span class="cn">Ultra Clean Holdings</span><span class="card-toggle">▼</span></div>
+        <div class="ol">設備零組件 & 零件清洗 — WFE 的後勤部隊</div>
+        <div class="tag-row"><span class="tag tag-wfe">WFE 設備鏈</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>精密零組件：</strong>氣體管路板、噴淋頭、腔體零件</li>
+          <li><strong>零件清洗再生：</strong>石英/陶瓷/矽零件化學清洗，使設備零件可重複使用</li>
+          <li><strong>化學品分析：</strong>超純水與製程化學品品質檢驗</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>支援 CVD、蝕刻、薄膜設備的維護與零組件供應。設備使用率高時，零件消耗與清洗頻率同步上升。</p></div>
+        <div class="hb violet"><p>🤖 <strong>AI 受益邏輯：</strong>AI 投資帶動晶圓廠稼動率飆高，設備零件磨耗加速，零組件與清洗服務需求同步上升。與 ICHR 並列為 WFE 景氣代理指標。</p></div>
+      </div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--      S3: 量測 & 檢測                    -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--amber-bg);color:var(--amber);">🔍</div>
+      <h2>量測 & 檢測設備</h2>
+      <span class="sdesc">In-line Metrology · 缺陷檢測 · 封裝量測</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="cc" id="nvmi"><div class="ct" onclick="toggle('nvmi')">
+        <div class="cr1"><span class="tk">NVMI</span><span class="cn">Nova Ltd</span><span class="card-toggle">▼</span></div>
+        <div class="ol">光學薄膜量測 — GAA 結構的眼睛</div>
+        <div class="tag-row"><span class="tag tag-ai-gpu">AI 先進邏輯</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>OCD（光學臨界尺寸量測）：</strong>奈米級結構線寬、高度、側壁角度</li>
+          <li><strong>XRF（X 射線螢光）：</strong>薄膜成分與厚度</li>
+          <li><strong>SAXS（小角 X 射線散射）：</strong>先進 3D 結構形貌</li>
+          <li><strong>Raman 光譜：</strong>材料應力與結晶品質</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>前段製程各步驟後的線內量測（In-line Metrology），每一層沉積/蝕刻/CMP 後確認偏差，即時回饋製程調整。</p></div>
+        <div class="hb blue"><p>🤖 <strong>AI 受益邏輯：</strong>GAA 電晶體從平面走向 3D 多層堆疊，量測難度指數級上升。Nova 的 OCD + SAXS 是解析 GAA nanosheet 結構的關鍵手段。</p></div>
+        <span class="rel-badge">🔗 與 KLAC 在光學量測領域互補 · 專攻薄膜特性分析</span>
+      </div></div></div>
+
+      <div class="cc" id="onto"><div class="ct" onclick="toggle('onto')">
+        <div class="cr1"><span class="tk">ONTO</span><span class="cn">Onto Innovation</span><span class="card-toggle">▼</span></div>
+        <div class="ol">光學檢測 + 先進封裝量測 — AI 封裝良率關鍵</div>
+        <div class="tag-row"><span class="tag tag-cowos">CoWoS 封裝</span><span class="tag tag-hbm">HBM 記憶體</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>宏觀缺陷檢測：</strong>晶圓表面刮傷、微粒汙染全片掃描</li>
+          <li><strong>薄膜量測：</strong>CMP 後厚度均勻性</li>
+          <li><strong>先進封裝檢測：</strong>TSV 深度/輪廓、Bump height 均勻性、RDL 線寬/對準</li>
+          <li><strong>面板級封裝量測：</strong>Panel Level Packaging 新需求</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>橫跨前段 Fab 量測與後段先進封裝檢測，少數同時覆蓋兩端的量測公司。</p></div>
+        <div class="hb amber"><p>🤖 <strong>AI 受益邏輯：</strong>CoWoS 數千個 microbump 高度必須一致（誤差 &lt;1μm）；HBM 的 TSV 對準精度直接決定良率。ONTO 是封裝廠品質管控標準配備。</p></div>
+      </div></div></div>
+
+      <!-- CAMT -->
+      <div class="cc" id="camt"><div class="ct" onclick="toggle('camt')">
+        <div class="cr1"><span class="tk">CAMT</span><span class="cn">Camtek</span><span class="card-toggle">▼</span></div>
+        <div class="ol">2D/3D 封裝檢測 — HBM & Chiplet 良率守護者</div>
+        <div class="tag-row"><span class="tag tag-cowos">CoWoS 封裝</span><span class="tag tag-hbm">HBM 記憶體</span><span class="tag tag-ai-gpu">AI 先進邏輯</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>Eagle G5（第五代）：</strong>全晶圓 2D 宏觀缺陷檢測，高產能 + 高解析度，先進封裝標準方案</li>
+          <li><strong>Hawk 平台（2025新）：</strong>高階 2D+3D 檢測量測平台，專為 Chiplet、HBM、Hybrid Bonding 設計</li>
+          <li><strong>MicroProf 系列：</strong>精密 3D 量測 — TTV（晶圓總厚度偏差）、Wafer Warp、TSV 量測、RDL Overlay</li>
+          <li><strong>化合物半導體專用方案：</strong>SiC / GaN 晶圓缺陷檢測</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>覆蓋前段（Front-end）至中段（Mid-end）再到封裝後切割（Post Dicing）的檢測量測。以色列公司，在先進封裝（Advanced Packaging）檢測市場佔有業界標準地位。</p></div>
+        <div class="hb amber"><p>🤖 <strong>AI 受益邏輯：</strong>HPC/AI 應用佔營收約 45~50%，是 HBM4 所有主要製造商的參考量測工具。2026 Q1 來自 OSAT 的 CoWoS 類訂單已超過 $90M。Hawk 平台在 Chiplet 與 Hybrid Bonding 的 3D 量測取得突破性採用。近期收購 Visual Layer（AI 視覺分析公司）以強化 AI 驅動缺陷檢測。</p></div>
+        <span class="rel-badge">🔗 與 KLAC、ONTO 在先進封裝檢測互補競爭 · OSAT 為主要客戶群</span>
+      </div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--      S4: 測試設備                       -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--violet-bg);color:var(--violet);">🧪</div>
+      <h2>測試設備</h2>
+      <span class="sdesc">ATE · 探針卡 · 搬運機 · 燒機</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="cc" id="ter"><div class="ct" onclick="toggle('ter')">
+        <div class="cr1"><span class="tk">TER</span><span class="cn">Teradyne</span><span class="card-toggle">▼</span></div>
+        <div class="ol">ATE 測試龍頭 — AI GPU & HBM 測試暴增</div>
+        <div class="tag-row"><span class="tag tag-ai-gpu">AI 先進邏輯</span><span class="tag tag-hbm">HBM 記憶體</span><span class="tag tag-network">高速網路</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>UltraFLEX 系列：</strong>高階 SoC 測試平台，AI GPU / AP / 網通</li>
+          <li><strong>Magnum 系列：</strong>記憶體測試，DRAM、HBM、NAND</li>
+          <li><strong>J750 / ETS：</strong>中低階類比/混訊測試</li>
+          <li><strong>Universal Robots：</strong>協作型工業機器人（非半導體部門）</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>後段製程 — 晶圓測試（Wafer Sort）與封裝後最終測試（Final Test）。IC 出貨前最後一道品質關卡。</p></div>
+        <div class="hb rose"><p>🤖 <strong>AI 受益邏輯：</strong>AI GPU 測試時間是傳統 SoC 數倍；HBM 每層獨立測試 + 堆疊後再測，Magnum 系列直接受益。Chiplet 封裝讓測試複雜度大增。</p></div>
+      </div></div></div>
+
+      <div class="cc" id="formcard"><div class="ct" onclick="toggle('formcard')">
+        <div class="cr1"><span class="tk">FORM</span><span class="cn">FormFactor</span><span class="card-toggle">▼</span></div>
+        <div class="ol">晶圓探針卡 — HBM KGD 測試的標配</div>
+        <div class="tag-row"><span class="tag tag-hbm">HBM 記憶體</span><span class="tag tag-ai-gpu">AI 先進邏輯</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>MEMS 探針卡：</strong>微機電超高密度探針，先進邏輯晶圓測試</li>
+          <li><strong>Vertical Probe Card：</strong>DRAM / HBM 記憶體專用探針卡</li>
+          <li><strong>Probe Stations：</strong>工程分析用探測台</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>後段製程前端 — 晶圓測試（Wafer Sort）。探針卡是 ATE 訊號傳至晶圓上每顆晶粒的物理介面。</p></div>
+        <div class="hb rose"><p>🤖 <strong>AI 受益邏輯：</strong>HBM = Known Good Die（KGD）概念 — 堆疊前每片 DRAM 必須先通過晶圓級測試。HBM3e 堆疊 8~12 層，每層都需探針卡，用量倍增。</p></div>
+      </div></div></div>
+
+      <div class="cc" id="cohu"><div class="ct" onclick="toggle('cohu')">
+        <div class="cr1"><span class="tk">COHU</span><span class="cn">Cohu</span><span class="card-toggle">▼</span></div>
+        <div class="ol">IC 測試搬運機 — ATE 的配套系統</div>
+        <div class="tag-row"><span class="tag tag-sic">SiC 功率</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>Gravity / Turret Handler：</strong>封裝後 IC 搬運機</li>
+          <li><strong>Thermal Subsystem：</strong>高溫/低溫測試環境控制</li>
+          <li><strong>Test Socket / Contactor：</strong>連接 IC 與 ATE 的接觸組件</li>
+          <li><strong>Vision Inspection：</strong>視覺檢測（收購 Xcerra 取得）</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>後段製程 — 封裝後最終測試。Handler 取料 → 放入測試座 → 施加溫度 → 測試 → 分類良品/不良品。</p></div>
+        <div class="hb emerald"><p>🤖 <strong>AI 受益邏輯：</strong>SiC / GaN 功率晶片需在 +175°C 以上做高溫測試，COHU 的 Thermal Subsystem 在此場景不可替代。車用 AEC-Q 認證測試也帶動需求。</p></div>
+      </div></div></div>
+
+      <div class="cc" id="aehr"><div class="ct" onclick="toggle('aehr')">
+        <div class="cr1"><span class="tk">AEHR</span><span class="cn">Aehr Test Systems</span><span class="card-toggle">▼</span></div>
+        <div class="ol">晶圓級燒機測試 — SiC 可靠度強制關卡</div>
+        <div class="tag-row"><span class="tag tag-sic">SiC 功率</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>FOX-XP™：</strong>全晶圓級燒機系統，對整片晶圓施加高溫高電壓老化篩選</li>
+          <li><strong>FOX-NP™：</strong>多晶圓同時燒機，提升產能</li>
+          <li><strong>WaferPak™：</strong>專用探針接觸介面，搭配 FOX 系統</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>後段製程 — 封裝前晶圓級燒機（WLBI）。在高溫高電壓下加速壽命測試，提前篩除早夭型失效品（Infant Mortality），確保出廠 SiC MOSFET 可靠度達標。</p></div>
+        <div class="hb emerald"><p>🤖 <strong>AI 受益邏輯：</strong>SiC MOSFET 用於 AI 資料中心電源與電動車，可靠度要求極高。WLBI 是 SiC 製造的<strong>強制性</strong>良率把關步驟，AEHR 是此領域的絕對龍頭。</p></div>
+      </div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--      S5: 系統級驗證                     -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--cyan-bg);color:var(--cyan);">📡</div>
+      <h2>系統級測試與驗證</h2>
+      <span class="sdesc">高速訊號 · 網路互連 · 設計驗證</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="cc" id="keys"><div class="ct" onclick="toggle('keys')">
+        <div class="cr1"><span class="tk">KEYS</span><span class="cn">Keysight Technologies</span><span class="card-toggle">▼</span></div>
+        <div class="ol">電子測試量測儀器 — AI 高速互連的品保</div>
+        <div class="tag-row"><span class="tag tag-network">高速網路</span><span class="tag tag-photonics">矽光子/光互連</span></div>
+      </div><div class="cd"><div class="di">
+        <div class="ds"><h4>核心產品</h4><ul>
+          <li><strong>向量網路分析儀（VNA）：</strong>高速訊號完整性，驗證 PCIe Gen6/7、InfiniBand</li>
+          <li><strong>高頻寬示波器：</strong>捕捉超高速數位訊號波形</li>
+          <li><strong>訊號產生器 & BERT：</strong>800G/1.6T 光模組收發測試</li>
+          <li><strong>電磁模擬軟體 PathWave / ADS：</strong>晶片與封裝高頻訊號模擬</li>
+        </ul></div>
+        <div class="ds"><h4>製程位置</h4><p>價值鏈最末端 — 晶片設計驗證、封裝後高速測試、系統級合規測試。驗證 AI GPU 之間的通訊是否達到規格。</p></div>
+        <div class="hb cyan"><p>🤖 <strong>AI 受益邏輯：</strong>AI 訓練叢集使用 400G/800G → 1.6T 高速互連，每一代頻寬翻倍都需 Keysight 儀器重新驗證。光模組廠、交換器廠、GPU 廠全是客戶。</p></div>
+      </div></div></div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>資料整理：Claude AI · 2026 年 4 月 · 僅供研究參考，不構成投資建議</p>
+  </div>
+
+</div>
+
+<script>
+function toggle(id){ document.getElementById(id).classList.toggle('open'); }
+function expandAll(){ document.querySelectorAll('.cc,.giant-card').forEach(c=>c.classList.add('open')); }
+function collapseAll(){ document.querySelectorAll('.cc,.giant-card').forEach(c=>c.classList.remove('open')); }
+</script>
+</body>
+</html>

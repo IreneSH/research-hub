@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主題研究 · Research Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="brand"><a href="index.html"><span class="brand-dot"></span>RESEARCH HUB</a></div>
+    <nav class="topnav">
+      <a href="index.html#weekly">Weekly</a>
+      <a href="earnings.html">Earnings</a>
+      <a href="research.html" class="active">Research</a>
+    </nav>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Research</span>
+    </div>
+    <h1>主題研究<span class="accent-mark"></span></h1>
+    <div class="sub">跨產業主題、產業鏈全景、結構性機會分析</div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-row">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="搜尋主題或標題..." autocomplete="off">
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div class="cat-tabs" id="cat-tabs">
+        <!-- 由 app.js 動態渲染 -->
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div class="tag-chips" id="tag-chips">
+        <!-- 由 app.js 動態渲染 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT BAR -->
+  <div class="result-bar">
+    <div>共 <strong id="result-count">0</strong> 份研究</div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-container" class="research-grid">
+    <!-- 由 app.js 動態渲染 -->
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="left">RESEARCH HUB · MAINTAINED BY IRENE · 2026</div>
+    <div class="right">僅供研究參考，不構成投資建議</div>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+  initResearchPage().catch(err => {
+    console.error('Failed to init research page:', err);
+    document.getElementById('results-container').innerHTML = `
+      <div class="empty-state">
+        <div class="icon">⚠️</div>
+        <div class="text">載入失敗，請部署到 Netlify 後再試</div>
+      </div>
+    `;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德州儀器 TXN Q1 2026 財報分析</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; font-size: 17px; line-height: 1.75; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #0f172a 50%, #1e293b 100%);
+    border-bottom: 1px solid #2d3748;
+    padding: 36px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ticker-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: white;
+    font-size: 16px; font-weight: 700;
+    padding: 5px 14px; border-radius: 20px;
+    letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .header h1 { font-size: 34px; font-weight: 800; color: #f0f6fc; line-height: 1.2; }
+  .header .subtitle { color: #8b949e; font-size: 17px; margin-top: 8px; }
+  .date-badge {
+    position: absolute; top: 36px; right: 44px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: #60a5fa;
+    font-size: 15px; padding: 7px 16px; border-radius: 8px;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 36px 44px; }
+
+  /* STOCK MOVE BANNER */
+  .stock-banner {
+    background: linear-gradient(135deg, #064e3b, #065f46);
+    border: 1px solid #10b981;
+    border-radius: 16px;
+    padding: 28px 36px;
+    display: flex; align-items: center; gap: 36px;
+    margin-bottom: 36px;
+  }
+  .stock-price-block { text-align: center; }
+  .stock-label { font-size: 14px; color: #6ee7b7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+  .stock-val { font-size: 36px; font-weight: 800; color: #fff; }
+  .stock-sub { font-size: 14px; color: #a7f3d0; margin-top: 3px; }
+  .divider-v { width: 1px; background: rgba(16,185,129,0.3); height: 65px; }
+  .surge-block { flex: 1; }
+  .surge-title { font-size: 16px; color: #6ee7b7; margin-bottom: 8px; }
+  .surge-pct { font-size: 56px; font-weight: 900; color: #10b981; line-height: 1; }
+  .surge-desc { font-size: 15px; color: #a7f3d0; margin-top: 8px; }
+  .reason-tags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 13px; }
+  .tag {
+    background: rgba(16,185,129,0.15);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: #6ee7b7; font-size: 14px; padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-size: 20px; font-weight: 700; color: #f0f6fc;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #21262d;
+    margin-bottom: 22px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+  }
+
+  /* BEAT TABLE */
+  .beat-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px; margin-bottom: 36px;
+  }
+  .beat-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px; padding: 20px 22px;
+    position: relative; overflow: hidden;
+  }
+  .beat-card.green { border-color: #238636; }
+  .beat-card.green::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #238636, #2ea043); }
+  .beat-card.blue { border-color: #1d4ed8; }
+  .beat-card.blue::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+  .beat-card.orange { border-color: #d97706; }
+  .beat-card.orange::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #d97706, #f59e0b); }
+
+  .metric-label { font-size: 14px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .metric-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .metric-name { font-size: 15px; color: #8b949e; }
+  .metric-val { font-size: 18px; font-weight: 700; color: #e6edf3; }
+  .metric-val.highlight { font-size: 26px; color: #fff; }
+  .beat-pill {
+    display: inline-block; font-size: 14px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+    background: rgba(35,134,54,0.2); color: #3fb950; border: 1px solid #238636;
+    margin-top: 8px;
+  }
+
+  /* COMPARISON TABLE */
+  .cmp-table { width: 100%; border-collapse: collapse; margin-bottom: 36px; }
+  .cmp-table th {
+    font-size: 14px; font-weight: 600; color: #8b949e;
+    text-align: left; padding: 11px 16px;
+    background: #161b22; border-bottom: 1px solid #30363d;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .cmp-table td {
+    padding: 14px 16px; font-size: 16px; color: #c9d1d9;
+    border-bottom: 1px solid #21262d;
+  }
+  .cmp-table tr:hover td { background: #1c2128; }
+  .cmp-table td:first-child { font-weight: 600; color: #e6edf3; }
+  .beat-txt { color: #3fb950; font-weight: 700; }
+  .neutral-txt { color: #e6edf3; }
+  .warn-txt { color: #f0883e; }
+
+  /* SEGMENT BARS */
+  .segment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 36px; }
+  .seg-card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 18px 20px; }
+  .seg-name { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 5px; }
+  .seg-yoy { font-size: 14px; color: #8b949e; margin-bottom: 12px; }
+  .seg-bar-wrap { height: 7px; background: #21262d; border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+  .seg-bar { height: 100%; border-radius: 3px; }
+  .seg-pcts { display: flex; gap: 18px; font-size: 14px; }
+  .seg-yoy-val { color: #3fb950; font-weight: 700; }
+  .seg-qoq-val { color: #60a5fa; font-weight: 700; }
+  .seg-label { color: #6e7681; }
+
+  /* GUIDANCE TABLE */
+  .guidance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 36px; }
+  .guide-card { background: #1c2128; border: 1px solid #30363d; border-radius: 12px; padding: 22px; }
+  .guide-title { font-size: 14px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .guide-range { font-size: 26px; font-weight: 800; color: #f0f6fc; }
+  .guide-mid { font-size: 15px; color: #60a5fa; margin-top: 5px; }
+  .guide-vs { margin-top: 12px; }
+  .guide-vs-label { font-size: 14px; color: #6e7681; }
+  .guide-vs-beat { font-size: 16px; color: #3fb950; font-weight: 700; }
+
+  /* CALL INSIGHTS */
+  .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 36px; }
+  .insight-card {
+    background: #161b22; border: 1px solid #30363d;
+    border-radius: 12px; padding: 18px 20px;
+  }
+  .insight-icon { font-size: 24px; margin-bottom: 10px; }
+  .insight-title { font-size: 16px; font-weight: 700; color: #e6edf3; margin-bottom: 8px; }
+  .insight-body { font-size: 15px; color: #8b949e; line-height: 1.75; }
+  .insight-highlight { color: #60a5fa; font-weight: 600; }
+
+  /* STOCK MOVE BREAKDOWN */
+  .reason-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 36px; }
+  .reason-card {
+    background: #161b22; border-radius: 12px;
+    border: 1px solid #30363d;
+    padding: 18px; text-align: center;
+  }
+  .reason-num { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+  .reason-title { font-size: 15px; font-weight: 600; color: #e6edf3; margin-bottom: 8px; }
+  .reason-desc { font-size: 14px; color: #8b949e; line-height: 1.65; }
+
+  .footer {
+    text-align: center; padding: 28px;
+    color: #484f58; font-size: 14px;
+    border-top: 1px solid #21262d;
+  }
+
+  /* SECTION WRAPPER */
+  .section { margin-bottom: 44px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="date-badge">法說會 2026年4月22日</div>
+  <div class="ticker-badge">NASDAQ: TXN</div>
+  <h1>德州儀器 Texas Instruments<br>Q1 2026 財報深度分析</h1>
+  <div class="subtitle">Q1 2026 業績大幅超預期 · 股價創歷史新高 · 全面解析法說會重點</div>
+</div>
+
+<div class="container">
+
+  <!-- STOCK MOVE -->
+  <div class="stock-banner">
+    <div class="stock-price-block">
+      <div class="stock-label">財報前收盤</div>
+      <div class="stock-val">$236</div>
+      <div class="stock-sub">2026/04/22</div>
+    </div>
+    <div class="divider-v"></div>
+    <div class="stock-price-block">
+      <div class="stock-label">財報後高點</div>
+      <div class="stock-val">~$280</div>
+      <div class="stock-sub">2026/04/23 盤中</div>
+    </div>
+    <div class="divider-v"></div>
+    <div class="surge-block">
+      <div class="surge-title">📈 單日漲幅</div>
+      <div class="surge-pct">+19%</div>
+      <div class="surge-desc">創歷史新高，股價回升至 2024 年水準</div>
+      <div class="reason-tags">
+        <span class="tag">營收大幅超標</span>
+        <span class="tag">EPS打臉空方</span>
+        <span class="tag">Q2指引遠超預期</span>
+        <span class="tag">資料中心爆發</span>
+        <span class="tag">工業廣泛復甦</span>
+        <span class="tag">多家券商升評</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: KEY METRICS BEAT -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(35,134,54,0.2)">📊</div>
+      Q1 2026 關鍵指標 vs. 市場預期
+    </div>
+    <div class="beat-grid">
+      <div class="beat-card green">
+        <div class="metric-label">營收 Revenue</div>
+        <div class="metric-row">
+          <span class="metric-name">實際</span>
+          <span class="metric-val highlight">$4.83B</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">市場預期</span>
+          <span class="metric-val">$4.53B</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">YoY 增長</span>
+          <span class="metric-val" style="color:#3fb950">+19%</span>
+        </div>
+        <div class="beat-pill">超預期 +6.6%</div>
+      </div>
+      <div class="beat-card blue">
+        <div class="metric-label">每股盈餘 EPS (GAAP)</div>
+        <div class="metric-row">
+          <span class="metric-name">實際</span>
+          <span class="metric-val highlight">$1.68</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">市場預期</span>
+          <span class="metric-val">$1.36–$1.40</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">YoY 增長</span>
+          <span class="metric-val" style="color:#3fb950">+31%</span>
+        </div>
+        <div class="beat-pill">超預期 +23%</div>
+      </div>
+      <div class="beat-card orange">
+        <div class="metric-label">調整後 EBITDA</div>
+        <div class="metric-row">
+          <span class="metric-name">實際</span>
+          <span class="metric-val highlight">$2.46B</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">市場預期</span>
+          <span class="metric-val">$2.12B</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">EBITDA Margin</span>
+          <span class="metric-val" style="color:#f59e0b">50.9%</span>
+        </div>
+        <div class="beat-pill">超預期 +15.7%</div>
+      </div>
+    </div>
+
+    <!-- DETAILED COMPARISON TABLE -->
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>財務指標</th>
+          <th>Q1 2026 實際</th>
+          <th>市場預期</th>
+          <th>Q1 2025 實際</th>
+          <th>YoY 變化</th>
+          <th>QoQ 變化</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>總營收</td>
+          <td class="beat-txt">$4.83B</td>
+          <td>$4.53B</td>
+          <td>$4.07B</td>
+          <td class="beat-txt">+19%</td>
+          <td class="beat-txt">+9%</td>
+        </tr>
+        <tr>
+          <td>毛利</td>
+          <td class="beat-txt">$2.8B</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td class="beat-txt">+210bps</td>
+        </tr>
+        <tr>
+          <td>毛利率</td>
+          <td class="beat-txt">58%</td>
+          <td>—</td>
+          <td>~54.5%</td>
+          <td class="beat-txt">+約350bps</td>
+          <td class="beat-txt">+210bps</td>
+        </tr>
+        <tr>
+          <td>營業利益</td>
+          <td class="beat-txt">$1.8B</td>
+          <td>—</td>
+          <td>—</td>
+          <td class="beat-txt">+37%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>營業利益率</td>
+          <td class="beat-txt">37%</td>
+          <td>—</td>
+          <td>32.5%</td>
+          <td class="beat-txt">+450bps</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>EPS (GAAP)</td>
+          <td class="beat-txt">$1.68</td>
+          <td>$1.36–1.40</td>
+          <td>$1.28</td>
+          <td class="beat-txt">+31%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>自由現金流 (TTM)</td>
+          <td class="beat-txt">$4.4B</td>
+          <td>—</td>
+          <td>$1.7B</td>
+          <td class="beat-txt">+159%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>營業現金流 (季)</td>
+          <td class="beat-txt">$1.5B</td>
+          <td>—</td>
+          <td>~$0.84B</td>
+          <td class="beat-txt">+79%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>資本支出 (季)</td>
+          <td>$676M</td>
+          <td>—</td>
+          <td>~$1.1B</td>
+          <td style="color:#3fb950">-39.8%（改善）</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>庫存 (天)</td>
+          <td class="neutral-txt">209天</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td style="color:#3fb950">-13天（改善）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 2: END MARKETS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(59,130,246,0.2)">🏭</div>
+      各終端市場表現 End Markets
+    </div>
+    <div class="segment-grid">
+      <div class="seg-card">
+        <div class="seg-name">🏭 工業 Industrial</div>
+        <div class="seg-yoy">最大驚喜｜廣泛復甦，所有子板塊全面成長</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:90%;background:linear-gradient(90deg,#3fb950,#238636)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">YoY +30%+</span> <span class="seg-label">年增</span></span>
+          <span><span class="seg-qoq-val">QoQ +20%+</span> <span class="seg-label">季增</span></span>
+        </div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">🖥️ 資料中心 Data Center</div>
+        <div class="seg-yoy">最高增速｜AI基礎設施建設持續爆發</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:100%;background:linear-gradient(90deg,#1d4ed8,#3b82f6)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">YoY ~+90%</span> <span class="seg-label">年增</span></span>
+          <span><span class="seg-qoq-val">QoQ +25%+</span> <span class="seg-label">季增</span></span>
+        </div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">📡 通訊設備 Communications</div>
+        <div class="seg-yoy">強勁反彈｜季增超30%</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:75%;background:linear-gradient(90deg,#7c3aed,#8b5cf6)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">YoY +25%</span> <span class="seg-label">年增</span></span>
+          <span><span class="seg-qoq-val">QoQ +30%+</span> <span class="seg-label">季增</span></span>
+        </div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">🚗 汽車 Automotive</div>
+        <div class="seg-yoy">穩健｜中國下滑、其餘地區上升；長期成長不變</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:35%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">YoY +中個位數</span> <span class="seg-label">年增</span></span>
+          <span><span style="color:#f59e0b;font-weight:700">QoQ 持平</span> <span class="seg-label">季增</span></span>
+        </div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">📱 個人電子 Personal Electronics</div>
+        <div class="seg-yoy">中性｜優於季節性，但年增持平</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:20%;background:linear-gradient(90deg,#6e7681,#8b949e)"></div></div>
+        <div class="seg-pcts">
+          <span><span style="color:#8b949e;font-weight:700">YoY 持平</span> <span class="seg-label">年增</span></span>
+          <span><span class="seg-qoq-val">QoQ +低個位數</span> <span class="seg-label">季增</span></span>
+        </div>
+      </div>
+      <div class="seg-card" style="background:linear-gradient(135deg,#0f2027,#1a2a3a);border-color:#3b82f6;">
+        <div class="seg-name" style="color:#60a5fa">🔬 類比 Analog（段落）</div>
+        <div class="seg-yoy" style="color:#93c5fd">佔總營收 81.3%（$3.92B）</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:80%;background:linear-gradient(90deg,#1d4ed8,#3b82f6)"></div></div>
+        <div class="seg-pcts">
+          <span><span class="seg-yoy-val">YoY +22%</span> <span class="seg-label">年增</span></span>
+          <span><span class="seg-qoq-val">連8季順序成長</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Q2 GUIDANCE -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(245,158,11,0.2)">🎯</div>
+      Q2 2026 公司指引 vs. 市場預期
+    </div>
+    <div class="guidance-grid">
+      <div class="guide-card" style="border-color:#238636">
+        <div class="guide-title">Q2 2026 營收指引</div>
+        <div class="guide-range" style="color:#3fb950">$5.0B – $5.4B</div>
+        <div class="guide-mid">中位數 $5.2B｜QoQ +8%（高於季節性）</div>
+        <div class="guide-vs" style="margin-top:14px">
+          <div class="guide-vs-label">市場預期：$4.86B</div>
+          <div class="guide-vs-beat">↑ 超出市場預期 +7.1%</div>
+        </div>
+        <div style="margin-top:8px; font-size:11px; color:#6e7681">YoY 中位數成長 +17%</div>
+      </div>
+      <div class="guide-card" style="border-color:#1d4ed8">
+        <div class="guide-title">Q2 2026 EPS 指引</div>
+        <div class="guide-range" style="color:#60a5fa">$1.77 – $2.05</div>
+        <div class="guide-mid">中位數 $1.91</div>
+        <div class="guide-vs" style="margin-top:14px">
+          <div class="guide-vs-label">市場預期：$1.55</div>
+          <div class="guide-vs-beat">↑ 超出市場預期 +23%</div>
+        </div>
+        <div style="margin-top:8px; font-size:11px; color:#6e7681">有效稅率預估 ~13%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: KEY CALL TAKEAWAYS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(139,92,246,0.2)">💬</div>
+      法說會重點整理
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-icon">🏭</div>
+        <div class="insight-title">工業廣泛復甦，史上最強信號</div>
+        <div class="insight-body">
+          <span class="insight-highlight">全行業、全地區、全規模客戶</span>同步成長，為本周期最廣泛的工業需求。
+          CEO Haviv Ilan 特別強調：「長尾小客戶（Broad Market）終於從長期冬眠中甦醒」，這是首次看到此現象。
+          工業目前仍低於 2022 年峰值 15%，長期上升空間仍大。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🤖</div>
+        <div class="insight-title">資料中心：AI 基礎建設強勁拉動</div>
+        <div class="insight-body">
+          YoY 近 <span class="insight-highlight">+90%</span>，連續多季高速成長。
+          TXN 具雙重優勢：
+          (1) 廣泛通用類比晶片組合，可填補機架上幾乎所有插槽；
+          (2) 主動布局應用特定（VRM, Stage 1/2）高壓電源。
+          北美製造（德州）符合客戶供應鏈去風險需求。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🚗</div>
+        <div class="insight-title">汽車：穩在高位，靜待中國回暖</div>
+        <div class="insight-body">
+          整體持平，但結構分歧：中國下滑、其餘地區上升。
+          管理層類比 COVID 周期：<span class="insight-highlight">汽車最晚加入上升周期，也最晚觸頂</span>。
+          電動車、油電混合、傳統燃油車均持續導入更多晶片內容，長期成長邏輯不變。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">💰</div>
+        <div class="insight-title">定價環境轉向：H2 可能漲價</div>
+        <div class="insight-body">
+          Q1 定價優於預期：YoY 及 QoQ <span class="insight-highlight">均持平</span>（往年 Q1 通常季節性下滑低個位數）。
+          Haviv Ilan 明確指出：若需求持續強勁，預計 H2 將有機會選擇性提價。
+          2025 年簽訂的年度合約是在需求較弱環境下制定，當前談判空間已開啟。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🏗️</div>
+        <div class="insight-title">產能充裕：隨需擴張，不憂短缺</div>
+        <div class="insight-body">
+          300mm 晶圓廠（Sherman, TX）投產，已獲 CHIPS Act <span class="insight-highlight">$5.55億直接補貼</span>。
+          總資本支出指引維持 $2–3B，其中增量 CapEx 加碼後端封測（AT），因外部 OSAT 出現瓶頸。
+          管理層態度：「若市場要以 Q1 速度加速，我們已準備好」。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🧾</div>
+        <div class="insight-title">Silicon Labs 收購：2027H1 完成</div>
+        <div class="insight-body">
+          Q1 首次揭露本次策略性收購，強化嵌入式無線連接（IoT、工業）布局。
+          財報 GAAP 已開始提列<span class="insight-highlight">收購相關費用</span>，影響毛利率分析需剔除。
+          CFO 表示：收購完成後費用將大幅增加，之後趨於穩定；承諾持續 GAAP 報告並提供完整拆分。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🌊</div>
+        <div class="insight-title">H2 前景：謹慎樂觀，不重演 2025 假突破</div>
+        <div class="insight-body">
+          2025 年上半年同樣強勁，但下半年放緩。
+          管理層「拒絕過度樂觀」，先讓 Q2 展現可持續性。
+          <span class="insight-highlight">決策依據：</span>直銷模式讓 TXN 近乎即時看到實際需求，過濾預防性備貨雜訊。
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">💵</div>
+        <div class="insight-title">自由現金流：大幅優化，股東回報強勁</div>
+        <div class="insight-body">
+          TTM FCF $4.4B，大幅優於去年同期 $1.7B（成長 +159%）。
+          管理層展望：若全年維持 mid-high teen 成長，<span class="insight-highlight">FCF/股有望輕鬆超越 $8</span>（原本目標值）。
+          Q1 股東回報 $1.45B（股息$1.3B + 回購$158M），TTM 回報 $6B。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: WHY +19% -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(16,185,129,0.2)">🚀</div>
+      為何股價單日暴漲 +19%？六大催化劑
+    </div>
+    <div class="reason-grid">
+      <div class="reason-card">
+        <div class="reason-num" style="color:#3fb950">①</div>
+        <div class="reason-title">業績三維度全面大幅超標</div>
+        <div class="reason-desc">
+          營收 +6.6%、EPS +23%、EBITDA +15.7%<br>
+          同時打臉三個核心指標，確認復甦非曇花一現
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#3b82f6">②</div>
+        <div class="reason-title">Q2 指引遠高於街頭預期</div>
+        <div class="reason-desc">
+          營收指引中位 $5.2B 比預期高 7.1%<br>
+          EPS 指引中位 $1.91 比預期高 23%<br>
+          這才是最強催化劑——跌破眼鏡
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#f59e0b">③</div>
+        <div class="reason-title">資料中心爆炸性成長</div>
+        <div class="reason-desc">
+          YoY +90% 遠超預期<br>
+          直接受益 AI 基礎設施資本支出浪潮<br>
+          TXN 從類比晶片中的配角轉正角
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#8b5cf6">④</div>
+        <div class="reason-title">工業「最廣泛復甦」信號</div>
+        <div class="reason-desc">
+          +30% YoY 且涵蓋所有子板塊<br>
+          長尾市場首次大規模回補<br>
+          仍低於 2022 峰值 15%，上升空間仍大
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#ef4444">⑤</div>
+        <div class="reason-title">空方回補 + 下修預期崩潰</div>
+        <div class="reason-desc">
+          多家分析師之前假設 2025 走樣再現<br>
+          結果反覆超預期，短倉被迫平倉追漲<br>
+          Mizuho / Aletheia 由賣轉中性
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num" style="color:#06b6d4">⑥</div>
+        <div class="reason-title">產能優勢 + 定價提升預期</div>
+        <div class="reason-desc">
+          率先建好 300mm 產能，市場緊俏受益<br>
+          H2 可能提價，進一步提升利潤率<br>
+          BofA 升評至 Buy，目標價 $320
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYST REACTIONS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(245,158,11,0.2)">📋</div>
+      主要券商反應
+    </div>
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>券商</th>
+          <th>行動</th>
+          <th>新目標價</th>
+          <th>理由</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bank of America Securities</td>
+          <td class="beat-txt">中性 → 買入 ↑</td>
+          <td class="beat-txt">$235 → $320</td>
+          <td>AI 伺服器需求 + 工業廣泛復甦</td>
+        </tr>
+        <tr>
+          <td>Evercore ISI</td>
+          <td class="beat-txt">目標價上調 ↑</td>
+          <td class="beat-txt">—</td>
+          <td>資料中心爆發成長，長期份額提升</td>
+        </tr>
+        <tr>
+          <td>Citi</td>
+          <td class="beat-txt">目標價上調 ↑</td>
+          <td class="beat-txt">—</td>
+          <td>H2 定價改善 + 半導體上升周期確認</td>
+        </tr>
+        <tr>
+          <td>TD Cowen</td>
+          <td class="beat-txt">維持買入</td>
+          <td class="beat-txt">→ $250</td>
+          <td>業績超標，維持看好</td>
+        </tr>
+        <tr>
+          <td>Mizuho</td>
+          <td style="color:#f0883e">賣出 → 中性 ↑</td>
+          <td style="color:#f0883e">→ $215</td>
+          <td>AI 伺服器 + 工業需求強於預期，回補空方</td>
+        </tr>
+        <tr>
+          <td>Aletheia</td>
+          <td style="color:#f0883e">賣出 → 持有 ↑</td>
+          <td style="color:#f0883e">→ $220</td>
+          <td>需求可持續性高於預期</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RISKS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(239,68,68,0.2)">⚠️</div>
+      潛在風險 / 需持續追蹤
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #ef4444;border-radius:10px;padding:18px">
+        <div style="font-size:15px;font-weight:700;color:#e6edf3;margin-bottom:8px">📉 2025 年假突破風險</div>
+        <div style="font-size:14px;color:#8b949e;line-height:1.75">去年同樣強勁起步但 H2 急踩剎車，管理層坦承此風險，Q2 將是關鍵驗證</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #f59e0b;border-radius:10px;padding:18px">
+        <div style="font-size:15px;font-weight:700;color:#e6edf3;margin-bottom:8px">🌏 地緣政治與總體經濟</div>
+        <div style="font-size:14px;color:#8b949e;line-height:1.75">中美貿易摩擦、中國汽車市場短暫走弱、全球關稅不確定性都被列為需監測因素</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #d97706;border-radius:10px;padding:18px">
+        <div style="font-size:15px;font-weight:700;color:#e6edf3;margin-bottom:8px">📦 SLAB 收購整合風險</div>
+        <div style="font-size:14px;color:#8b949e;line-height:1.75">Silicon Labs 收購預計 2027H1 完成，短期 GAAP 費用上升，整合期間利潤率受壓</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #7c3aed;border-radius:10px;padding:18px">
+        <div style="font-size:15px;font-weight:700;color:#e6edf3;margin-bottom:8px">💹 估值偏高</div>
+        <div style="font-size:14px;color:#8b949e;line-height:1.75">暴漲後 P/E 達 50x+，接近歷史高位，需持續業績支撐；任何 miss 懲罰將倍增</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #0ea5e9;border-radius:10px;padding:18px">
+        <div style="font-size:15px;font-weight:700;color:#e6edf3;margin-bottom:8px">⚡ 折舊費用持續上升</div>
+        <div style="font-size:14px;color:#8b949e;line-height:1.75">2026 年折舊 $2.2–2.4B，2027 繼續上升（速度放緩），壓縮毛利率改善幅度</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #10b981;border-radius:10px;padding:18px">
+        <div style="font-size:15px;font-weight:700;color:#e6edf3;margin-bottom:8px">🔬 客戶庫存去化進度</div>
+        <div style="font-size:14px;color:#8b949e;line-height:1.75">TXN 庫存天數 209 天（目標 150–250），上升周期應逐步回落至低端，需緊盯節奏</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  本報告綜合 TXN Q1 2026 法說會逐字稿 (2026/04/22)、LSEG / Zacks / Benzinga 市場共識及 CNBC / Motley Fool 媒體報導整理 | 僅供參考，非投資建議
+</div>
+
+</body>
+</html>
