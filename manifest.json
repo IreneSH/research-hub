@@ -27,6 +27,72 @@
   ],
   "earnings": [
     {
+      "id": "ter-q1-2026",
+      "ticker": "TER",
+      "company_en": "Teradyne",
+      "company_zh": "泰瑞達",
+      "quarter": "Q1 2026",
+      "date": "2026-04-29",
+      "category": "semi",
+      "tags": ["半導體設備", "ATE", "AI 晶片測試"],
+      "headline": "Q1 全面 blowout 但 Q2 guidance 暗示 QoQ -6%；股價下跌 19% 反映預期過高",
+      "metrics": {
+        "stock_reaction": "-12.0%",
+        "stock_reaction_dir": "down",
+        "rev_yoy": "+87%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/ter-q1-2026.html"
+    },
+    {
+      "id": "googl-q1-2026",
+      "ticker": "GOOGL",
+      "company_en": "Alphabet",
+      "company_zh": "字母",
+      "quarter": "Q1 2026",
+      "date": "2026-04-30",
+      "category": "software",
+      "tags": ["AI 全棧", "雲端", "搜尋廣告"],
+      "headline": "Cloud 史上首破 $200 億、利潤率躍升至 32.9%；AI 全棧策略全面落地",
+      "metrics": {
+        "rev_yoy": "+22%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/googl-q1-2026.html"
+    },
+    {
+      "id": "amzn-q1-2026",
+      "ticker": "AMZN",
+      "company_en": "Amazon",
+      "company_zh": "亞馬遜",
+      "quarter": "Q1 2026",
+      "date": "2026-04-29",
+      "category": "software",
+      "tags": ["AWS", "AI 資料中心", "自研晶片"],
+      "headline": "AWS +28% 創 15 季最快、營業利潤率 13.1% 史上最高；Tranium 訂單積壓 $225B+",
+      "metrics": {
+        "rev_yoy": "+17%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/amzn-q1-2026.html"
+    },
+    {
+      "id": "msft-fq3-2026",
+      "ticker": "MSFT",
+      "company_en": "Microsoft",
+      "company_zh": "微軟",
+      "quarter": "FQ3 2026",
+      "date": "2026-04-29",
+      "category": "software",
+      "tags": ["Azure", "Copilot", "AI 資料中心"],
+      "headline": "Azure +39% CC 持續加速、AI 業務 ARR 突破 $370 億；CapEx 低於預期化解效率疑慮",
+      "metrics": {
+        "rev_yoy": "+18%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/msft-fq3-2026.html"
+    },
+    {
       "id": "be-q1-2026",
       "ticker": "BE",
       "company_en": "Bloom Energy",
@@ -100,6 +166,20 @@
     }
   ],
   "research": [
+    {
+      "id": "hyperscaler-q1-2026-comparison",
+      "title": "Hyperscaler Q1 2026 三巨頭比較",
+      "subtitle": "GOOGL × MSFT × AMZN 同日財報對照：成長率、CapEx、AI 變現、利潤率、自研晶片戰略全面比較",
+      "category": "software",
+      "tags": ["雲端比較", "AI 資料中心", "CapEx", "自研晶片"],
+      "date": "2026-04",
+      "stats": [
+        { "value": "3", "label": "家公司" },
+        { "value": "5", "label": "對照維度" }
+      ],
+      "eyebrow": "HYPERSCALER · 雲端三巨頭",
+      "file": "research/hyperscaler-q1-2026-comparison.html"
+    },
     {
       "id": "semi-equipment-chain",
       "title": "美股半導體設備公司總覽",
