@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alphabet (GOOGL) Q1 2026 財報分析</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1114;
+    --ink-secondary: #3a3d44;
+    --ink-muted: #6b7080;
+    --rule: #d8dae0;
+    --rule-light: #eef0f4;
+    --accent-google: #1a73e8;
+    --accent-cloud: #0d652d;
+    --accent-search: #c5221f;
+    --accent-youtube: #cc0000;
+    --accent-ai: #7b2fff;
+    --accent-gold: #b8860b;
+    --bg: #fafaf8;
+    --card-bg: #ffffff;
+    --beat-up: #0d652d;
+    --beat-miss: #c5221f;
+    --beat-neutral: #1a73e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--ink);
+    color: #fff;
+    padding: 48px 64px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853);
+  }
+  .masthead-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 32px;
+  }
+  .masthead h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .masthead h1 span {
+    color: #FBBC05;
+  }
+  .masthead-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 680px;
+  }
+  .ticker-badge {
+    position: absolute;
+    right: 64px;
+    top: 48px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 16px 24px;
+    text-align: center;
+  }
+  .ticker-badge .ticker {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #FBBC05;
+    letter-spacing: 2px;
+  }
+  .ticker-badge .exchange {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+
+  /* ── VERDICT BANNER ── */
+  .verdict {
+    background: #eaf4ea;
+    border-left: 5px solid #0d652d;
+    padding: 20px 28px;
+    margin: 40px 0 0;
+    font-size: 16px;
+    color: var(--ink-secondary);
+  }
+  .verdict strong {
+    color: var(--beat-up);
+    font-size: 18px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section {
+    padding: 48px 0 16px;
+    border-top: 2px solid var(--ink);
+    margin-top: 48px;
+  }
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .section h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  /* ── SCORECARDS ── */
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .scorecard {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    padding: 24px 20px;
+    position: relative;
+  }
+  .scorecard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .scorecard.beat::before { background: var(--beat-up); }
+  .scorecard.miss::before { background: var(--beat-miss); }
+  .scorecard.inline::before { background: var(--beat-neutral); }
+
+  .scorecard .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .scorecard .actual {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .scorecard .vs-row {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    flex-wrap: wrap;
+  }
+  .scorecard .est {
+    color: var(--ink-muted);
+  }
+  .scorecard .delta {
+    font-weight: 600;
+  }
+  .scorecard.beat .delta { color: var(--beat-up); }
+  .scorecard.miss .delta { color: var(--beat-miss); }
+  .scorecard .yoy {
+    font-size: 13px;
+    color: var(--ink-secondary);
+    margin-top: 6px;
+  }
+  .beat-tag, .miss-tag, .inline-tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .beat-tag { background: #d4edda; color: #0d652d; }
+  .miss-tag { background: #fde8e8; color: #c5221f; }
+  .inline-tag { background: #e8f0fe; color: #1a73e8; }
+
+  /* ── SEGMENT TABLE ── */
+  .seg-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 15px;
+  }
+  .seg-table th {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    border-bottom: 2px solid var(--ink);
+    padding: 10px 14px;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .seg-table th:first-child { text-align: left; }
+  .seg-table td {
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--rule-light);
+    text-align: right;
+    vertical-align: middle;
+  }
+  .seg-table td:first-child { text-align: left; font-weight: 600; }
+  .seg-table tr.segment-parent td { background: #f5f5f3; font-weight: 700; }
+  .seg-table tr.sub td:first-child {
+    padding-left: 28px;
+    font-weight: 400;
+    color: var(--ink-secondary);
+  }
+  .seg-table .up { color: var(--beat-up); font-family: 'DM Sans', sans-serif; font-size: 13px; }
+  .seg-table .down { color: var(--beat-miss); font-family: 'DM Sans', sans-serif; font-size: 13px; }
+  .seg-table .num { font-family: 'DM Sans', sans-serif; font-size: 14px; }
+
+  /* ── AI HIGHLIGHT GRID ── */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .ai-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    position: relative;
+  }
+  .ai-card .cat {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-ai);
+    margin-bottom: 12px;
+  }
+  .ai-card .big-num {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .ai-card .caption {
+    font-size: 14px;
+    color: var(--ink-secondary);
+    line-height: 1.5;
+  }
+  .ai-card .sub-stat {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-light);
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── CAPEX / FCF PANEL ── */
+  .capex-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .capex-block {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    padding: 28px;
+  }
+  .capex-block h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 18px;
+  }
+  .capex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .capex-row:last-child { border-bottom: none; }
+  .capex-row .cr-label { font-size: 14px; color: var(--ink-secondary); }
+  .capex-row .cr-val {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .capex-row .cr-val.highlight { color: var(--accent-ai); }
+  .capex-row .cr-val.warn { color: var(--beat-miss); }
+
+  /* ── GUIDANCE BOX ── */
+  .guidance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .guidance-item {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent-ai);
+    padding: 20px 22px;
+  }
+  .guidance-item.negative { border-left-color: var(--beat-miss); }
+  .guidance-item.positive { border-left-color: var(--beat-up); }
+  .guidance-item.neutral { border-left-color: var(--accent-google); }
+  .guidance-item .g-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .guidance-item .g-val {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .guidance-item .g-note {
+    font-size: 13px;
+    color: var(--ink-secondary);
+    line-height: 1.5;
+  }
+
+  /* ── QA THEMES ── */
+  .qa-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .qa-item:last-child { border-bottom: none; }
+  .qa-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .qa-analyst {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    min-width: 140px;
+    padding-top: 2px;
+  }
+  .qa-theme {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .qa-body {
+    padding-left: 156px;
+    font-size: 15px;
+    color: var(--ink-secondary);
+    line-height: 1.7;
+  }
+  .qa-tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: #e8f0fe;
+    color: #1a73e8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .qa-tag.ai { background: #f3e8ff; color: #7b2fff; }
+  .qa-tag.capex { background: #fef8e1; color: #b8860b; }
+  .qa-tag.margin { background: #e8f4ea; color: #0d652d; }
+  .qa-tag.cloud { background: #e3f2fd; color: #1565c0; }
+
+  /* ── SEMI / TPU BOX ── */
+  .tpu-box {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 32px;
+    margin-top: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tpu-box::before {
+    content: 'TPU';
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .tpu-box h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+  }
+  .tpu-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .tpu-spec .spec-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #FBBC05;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .tpu-spec .spec-val {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 4px;
+  }
+  .tpu-spec .spec-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+
+  /* ── INVESTMENT VIEW ── */
+  .invest-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .invest-card {
+    padding: 24px;
+    border: 1px solid var(--rule);
+    background: var(--card-bg);
+  }
+  .invest-card .ic-head {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .invest-card.bull .ic-head { color: var(--beat-up); border-color: var(--beat-up); }
+  .invest-card.bear .ic-head { color: var(--beat-miss); border-color: var(--beat-miss); }
+  .invest-card.watch .ic-head { color: var(--accent-gold); border-color: var(--accent-gold); }
+  .invest-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .invest-card ul li {
+    font-size: 14px;
+    color: var(--ink-secondary);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule-light);
+    line-height: 1.5;
+  }
+  .invest-card ul li::before {
+    margin-right: 8px;
+  }
+  .invest-card.bull ul li::before { content: '↑'; color: var(--beat-up); }
+  .invest-card.bear ul li::before { content: '↓'; color: var(--beat-miss); }
+  .invest-card.watch ul li::before { content: '◆'; color: var(--accent-gold); font-size: 9px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 28px 64px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    margin-top: 72px;
+  }
+  .footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ── UTILITY ── */
+  .mt-4 { margin-top: 16px; }
+  .mt-6 { margin-top: 24px; }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 32px 0;
+  }
+  .note {
+    background: #fffbf0;
+    border: 1px solid #ffe082;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #5a4000;
+    margin-top: 16px;
+  }
+  .note strong { color: #b8860b; }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-meta">
+    <span>2026-04-30</span>
+    <span>Bloomberg Terminal Transcript</span>
+    <span>Q1 FY2026 Earnings</span>
+    <span>研究備忘錄</span>
+  </div>
+  <h1>Alphabet<span> Q1 2026</span><br>財報深度分析</h1>
+  <div class="masthead-sub">搜尋、雲端、AI 三箭齊發；Cloud 史上首次突破 $200 億，整體營收超預期。AI 全棧策略成效全面體現。</div>
+  <div class="ticker-badge">
+    <div class="ticker">GOOGL</div>
+    <div class="exchange">NASDAQ · USD</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <strong>✦ 強力超越（Strong Beat）</strong> — 營收、EPS、Cloud 及 Search 均全面超出街頭預期。Cloud 利潤率大幅躍升至 32.9%（YoY +15.1pp），一舉消除市場對 AI 投資侵蝕獲利的疑慮。AI 已從概念轉為核心財務驅動力，Capex 再度上調仍難以掩蓋亮眼結果。
+  </div>
+
+  <!-- ── SECTION 1: 財務結果 vs 預期 ── -->
+  <div class="section">
+    <div class="section-label">Section 01</div>
+    <h2>財務結果 vs. 市場預期</h2>
+  </div>
+
+  <div class="scorecard-grid">
+    <div class="scorecard beat">
+      <div class="label">合併營收</div>
+      <div class="actual">$109.9B</div>
+      <div class="vs-row">
+        <span class="est">預期 $106.1B</span>
+        <span class="delta">+$3.8B</span>
+      </div>
+      <div class="yoy">YoY +22%（定匯 +19%）</div>
+      <span class="beat-tag">✓ Beat</span>
+    </div>
+    <div class="scorecard beat">
+      <div class="label">EPS（稀釋後）</div>
+      <div class="actual">$5.11</div>
+      <div class="vs-row">
+        <span class="est">預期 $4.62</span>
+        <span class="delta">+$0.49</span>
+      </div>
+      <div class="yoy">YoY +82%（含未實現投資利得）</div>
+      <span class="beat-tag">✓ Beat</span>
+    </div>
+    <div class="scorecard beat">
+      <div class="label">Google Cloud 營收</div>
+      <div class="actual">$20.0B</div>
+      <div class="vs-row">
+        <span class="est">預期 $18.9B</span>
+        <span class="delta">+$1.1B</span>
+      </div>
+      <div class="yoy">YoY +63%，史上首次破 $200 億</div>
+      <span class="beat-tag">✓ Beat</span>
+    </div>
+    <div class="scorecard beat">
+      <div class="label">Search & Other</div>
+      <div class="actual">$60.4B</div>
+      <div class="vs-row">
+        <span class="est">預期 $57.8B</span>
+        <span class="delta">+$2.6B</span>
+      </div>
+      <div class="yoy">YoY +19%，零售 & 金融雙驅動</div>
+      <span class="beat-tag">✓ Beat</span>
+    </div>
+    <div class="scorecard beat">
+      <div class="label">Google Services 營收</div>
+      <div class="actual">$89.6B</div>
+      <div class="vs-row">
+        <span class="est">預期 $87.1B</span>
+        <span class="delta">+$2.5B</span>
+      </div>
+      <div class="yoy">YoY +16%，FX 順風 +3pp</div>
+      <span class="beat-tag">✓ Beat</span>
+    </div>
+    <div class="scorecard beat">
+      <div class="label">YouTube 廣告</div>
+      <div class="actual">$9.9B</div>
+      <div class="vs-row">
+        <span class="est">預期 $9.3B</span>
+        <span class="delta">+$0.6B</span>
+      </div>
+      <div class="yoy">YoY +11%，直效廣告為主</div>
+      <span class="beat-tag">✓ Beat</span>
+    </div>
+    <div class="scorecard beat">
+      <div class="label">Cloud 營業利潤率</div>
+      <div class="actual">32.9%</div>
+      <div class="vs-row">
+        <span class="est">預期 ~26%</span>
+        <span class="delta">+~7pp</span>
+      </div>
+      <div class="yoy">Q1'25：17.8%，YoY +15.1pp</div>
+      <span class="beat-tag">✓ 大幅 Beat</span>
+    </div>
+    <div class="scorecard beat">
+      <div class="label">整體營業利潤率</div>
+      <div class="actual">36.1%</div>
+      <div class="vs-row">
+        <span class="est">預期 ~34%</span>
+        <span class="delta">+~2pp</span>
+      </div>
+      <div class="yoy">營業利潤 $39.7B，YoY +30%</div>
+      <span class="beat-tag">✓ Beat</span>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: 分業績 ── -->
+  <div class="section">
+    <div class="section-label">Section 02</div>
+    <h2>各業務分部結果</h2>
+  </div>
+
+  <table class="seg-table">
+    <thead>
+      <tr>
+        <th style="text-align:left">業務分部</th>
+        <th>Q1 2026 ($B)</th>
+        <th>Q1 2025 ($B)</th>
+        <th>YoY 成長</th>
+        <th>營業利潤 ($B)</th>
+        <th>利潤率</th>
+        <th>備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="segment-parent">
+        <td>Google Services 合計</td>
+        <td class="num">89.6</td>
+        <td class="num">~77.2</td>
+        <td class="up">+16%</td>
+        <td class="num">40.6</td>
+        <td class="num">45.3%</td>
+        <td>FX 順風 +3pp</td>
+      </tr>
+      <tr class="sub">
+        <td>Search & Other</td>
+        <td class="num">60.4</td>
+        <td class="num">~50.7</td>
+        <td class="up">+19%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>零售 & 金融最強</td>
+      </tr>
+      <tr class="sub">
+        <td>YouTube 廣告</td>
+        <td class="num">9.9</td>
+        <td class="num">~8.9</td>
+        <td class="up">+11%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>直效 > 品牌廣告</td>
+      </tr>
+      <tr class="sub">
+        <td>Network 廣告</td>
+        <td class="num">7.0</td>
+        <td class="num">~7.3</td>
+        <td class="down">−4%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>持續趨弱</td>
+      </tr>
+      <tr class="sub">
+        <td>訂閱 / 平台 / 裝置</td>
+        <td class="num">12.4</td>
+        <td class="num">~10.4</td>
+        <td class="up">+19%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Gemini AI 方案帶動</td>
+      </tr>
+      <tr class="segment-parent">
+        <td>Google Cloud</td>
+        <td class="num">20.0</td>
+        <td class="num">~12.3</td>
+        <td class="up">+63%</td>
+        <td class="num">6.6</td>
+        <td class="num">32.9%</td>
+        <td>利潤三倍成長 YoY</td>
+      </tr>
+      <tr class="segment-parent">
+        <td>Other Bets</td>
+        <td class="num">0.41</td>
+        <td class="num">—</td>
+        <td>—</td>
+        <td class="num">(2.1)</td>
+        <td class="down">虧損</td>
+        <td>Waymo 持續投資</td>
+      </tr>
+      <tr class="segment-parent">
+        <td>Alphabet 合計</td>
+        <td class="num">109.9</td>
+        <td class="num">~90.2</td>
+        <td class="up">+22%</td>
+        <td class="num">39.7</td>
+        <td class="num">36.1%</td>
+        <td>第 11 季連續雙位數成長</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── SECTION 3: AI 核心指標 ── -->
+  <div class="section">
+    <div class="section-label">Section 03</div>
+    <h2>AI 核心業務指標</h2>
+  </div>
+
+  <div class="ai-grid">
+    <div class="ai-card">
+      <div class="cat">Cloud · AI 變現</div>
+      <div class="big-num">+800%</div>
+      <div class="caption">Q1 GenAI 模型相關產品營收年增幅（成為 Cloud 最大成長驅動）</div>
+      <div class="sub-stat">首次成為 Cloud 主要成長引擎</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">Cloud · 合約積壓</div>
+      <div class="big-num">$462B</div>
+      <div class="caption">Cloud Backlog，季度環比翻近倍（+~$220B QoQ）</div>
+      <div class="sub-stat">50%+ 預計 24 個月內認列</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">Gemini Enterprise · MAU</div>
+      <div class="big-num">+40%</div>
+      <div class="caption">Gemini Enterprise 付費月活 QoQ 成長，Bosch、Merck、Mars 等大牌加入</div>
+      <div class="sub-stat">合作夥伴席位 YoY 9x 成長</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">API · Token 處理量</div>
+      <div class="big-num">16B/min</div>
+      <div class="caption">第一方模型每分鐘 Token 處理量</div>
+      <div class="sub-stat">上季 10B/min → 本季 16B/min</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">Subscriptions · AI 訂閱</div>
+      <div class="big-num">350M</div>
+      <div class="caption">付費訂閱用戶總數（YouTube + Google One 為主），AI 方案貢獻顯著</div>
+      <div class="sub-stat">本季 AI 訂閱方案史上最強季度</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">Search · 查詢量</div>
+      <div class="big-num">ATH</div>
+      <div class="caption">Search 查詢量達歷史新高，AI Mode 與 AI Overviews 是主要驅動力</div>
+      <div class="sub-stat">廣告覆蓋率歷史約 20%，AI 有上調空間</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">Cloud · 新客戶</div>
+      <div class="big-num">2×</div>
+      <div class="caption">新客戶獲取速度 YoY 翻倍；$1 億以上大單數量 YoY 翻倍</div>
+      <div class="sub-stat">客戶超出承諾用量 +45% QoQ 加速</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">開源模型 · Gemma</div>
+      <div class="big-num">500M+</div>
+      <div class="caption">開源模型累計下載量突破 5 億次；Gemma 4 上線數週即破 5000 萬</div>
+      <div class="sub-stat">開發者生態加速建立</div>
+    </div>
+    <div class="ai-card">
+      <div class="cat">AI 成本效率</div>
+      <div class="big-num">−30%</div>
+      <div class="caption">升級至 Gemini 3 後，核心 AI 回應成本 YoY 降低逾 30%</div>
+      <div class="sub-stat">Search 延遲五年累計降 35%+</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4: CapEx / FCF / 資本配置 ── -->
+  <div class="section">
+    <div class="section-label">Section 04</div>
+    <h2>CapEx、FCF 與資本配置</h2>
+  </div>
+
+  <div class="note">
+    <strong>⚠ 市場焦點：</strong> CapEx 再度上調，2027 年更將「顯著增加」，FCF 壓縮至 $101 億（TTM $644 億仍健康）。管理層以強勁 ROIC 論據為投資正名；Cloud backlog 破 $4,600 億為市場提供能見度錨點。
+  </div>
+
+  <div class="capex-panel">
+    <div class="capex-block">
+      <h3>現金流動量（Q1 2026）</h3>
+      <div class="capex-row">
+        <div class="cr-label">營業現金流</div>
+        <div class="cr-val">$45.8B</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">資本支出（CapEx）</div>
+        <div class="cr-val warn">$35.7B</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">自由現金流（FCF）</div>
+        <div class="cr-val">$10.1B</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">FCF（TTM）</div>
+        <div class="cr-val">$64.4B</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">CapEx 結構：伺服器</div>
+        <div class="cr-val">~60%</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">CapEx 結構：資料中心 & 網路</div>
+        <div class="cr-val">~40%</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">現金 & 有價證券</div>
+        <div class="cr-val">$126.8B</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">長期負債</div>
+        <div class="cr-val">$77.5B</div>
+      </div>
+    </div>
+    <div class="capex-block">
+      <h3>CapEx Guidance 更新</h3>
+      <div class="capex-row">
+        <div class="cr-label">FY2026 CapEx（原）</div>
+        <div class="cr-val">$175–185B</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">FY2026 CapEx（更新後）</div>
+        <div class="cr-val highlight">$180–190B</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">上調原因</div>
+        <div class="cr-val" style="font-size:12px;">Intersect 收購（3 月完成）</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">FY2027 CapEx 展望</div>
+        <div class="cr-val warn">顯著高於 2026</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">股息</div>
+        <div class="cr-val">季配 +5% 提升</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">凈利潤</div>
+        <div class="cr-val">$62.6B（YoY +81%）</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">折舊壓力</div>
+        <div class="cr-val warn">持續擴大中</div>
+      </div>
+      <div class="capex-row">
+        <div class="cr-label">R&D 費用</div>
+        <div class="cr-val">YoY +26%（AI / 人才）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: TPU / 半導體 ── -->
+  <div class="section">
+    <div class="section-label">Section 05 · 半導體產業視角</div>
+    <h2>TPU 第八代架構 & 硬體外銷策略</h2>
+  </div>
+
+  <div class="tpu-box">
+    <h3>Google Cloud Next 發布 · Gen-8 TPU 系列規格</h3>
+    <div class="tpu-specs">
+      <div class="tpu-spec">
+        <div class="spec-name">TPU 8t（訓練型）</div>
+        <div class="spec-val">3× 算力</div>
+        <div class="spec-desc">vs. Ironwood（上一代）<br>專為大模型訓練優化，支援最高強度 Agentic 工作負載</div>
+      </div>
+      <div class="tpu-spec">
+        <div class="spec-name">TPU 8i（推理型）</div>
+        <div class="spec-val">80% ↑ 性價比</div>
+        <div class="spec-desc">每美元推理效能較上一代提升 80%<br>低延遲推理場景專屬</div>
+      </div>
+      <div class="tpu-spec">
+        <div class="spec-name">NVIDIA 合作</div>
+        <div class="spec-val">Vera Rubin NVL72</div>
+        <div class="spec-desc">將成為首批提供 Vera Rubin 的雲端業者（現有 Blackwell & Hopper 持續供應）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6" style="font-size:15px; color: var(--ink-secondary); line-height:1.8; background: var(--card-bg); border:1px solid var(--rule); padding:24px;">
+    <strong style="display:block; font-family:'DM Sans', sans-serif; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:12px;">TPU 外銷策略分析</strong>
+    Alphabet 首次宣布將 TPU 硬體銷售至客戶自有資料中心，目標客群涵蓋：<strong>資本市場公司（Capital Markets）、AI 實驗室（Frontier AI Labs）、高效能運算（HPC）</strong>等需要本地部署的場景。管理層明確以 <strong>ROIC 框架</strong>決策，並表示部分外銷有助於整體運算環境的規模經濟。收入認列時點：2026 年下半年開始小比例認列，<strong>2027 年為主要收入年</strong>。此舉將 TPU 可服務市場（TAM）從純雲服務大幅向外延伸，其 Backlog $462B 中已含部分 TPU 硬體合約。
+    <br><br>
+    <strong>半導體供應鏈影響：</strong>CapEx 上調至 $180–190B（FY2026），2027 年「顯著增加」→ 對 AI 伺服器供應鏈（HBM、CoWoS、先進封裝）、資料中心電力/冷卻設備以及網路設備（Infiniband / Ethernet switches）均屬正面催化。Alphabet 強調 AI 計算需求「史無前例（unprecedented）」，compute 是目前的限制瓶頸，Cloud 收入「若能滿足需求將更高」。
+  </div>
+
+  <!-- ── SECTION 6: Guidance ── -->
+  <div class="section">
+    <div class="section-label">Section 06</div>
+    <h2>Q2 & 全年 2026 Guidance</h2>
+  </div>
+
+  <div class="guidance-grid">
+    <div class="guidance-item neutral">
+      <div class="g-label">Q2 匯率影響</div>
+      <div class="g-val">FX 順風 ~+1pp</div>
+      <div class="g-note">較 Q1 的 +3pp 順風縮小，Q2 整體營收成長率將因此略有壓力。</div>
+    </div>
+    <div class="guidance-item positive">
+      <div class="g-label">Cloud 成長動能</div>
+      <div class="g-val">持續加速中</div>
+      <div class="g-note">企業 AI 方案成為主要成長引擎，Backlog $462B 提供強勁能見度；管理層強調需求遠超供給。</div>
+    </div>
+    <div class="guidance-item negative">
+      <div class="g-label">Wiz 收購影響（Cloud 利潤率）</div>
+      <div class="g-val">低個位數 pp 逆風</div>
+      <div class="g-note">2026 年剩餘季度 Cloud 利潤率預計受 Wiz 收購整合費用拖累（低個位數 pp），已計入 Q1 以後。</div>
+    </div>
+    <div class="guidance-item negative">
+      <div class="g-label">FY2026 CapEx（更新）</div>
+      <div class="g-val">$180–190B</div>
+      <div class="g-note">原為 $175–185B，因 Intersect 收購（3 月完成）上調 $5B。折舊 & 資料中心能源成本持續加壓 P&L。</div>
+    </div>
+    <div class="guidance-item negative">
+      <div class="g-label">FY2027 CapEx 展望</div>
+      <div class="g-val">「顯著增加」vs 2026</div>
+      <div class="g-note">管理層原話：「significantly increase」，未提供具體數字，市場將持續關注規模。</div>
+    </div>
+    <div class="guidance-item">
+      <div class="g-label">TPU 硬體收入認列</div>
+      <div class="g-val">2026 小比例 / 2027 為主</div>
+      <div class="g-note">TPU 外銷合約已含於 Backlog，2026H2 開始小幅認列，季度間波動性大，主要貢獻年為 2027。</div>
+    </div>
+    <div class="guidance-item positive">
+      <div class="g-label">費用效率 / AI 賦能降本</div>
+      <div class="g-val">持續改善</div>
+      <div class="g-note">內部使用 AI Coding（Gemini）降低研發成本；核心 AI 回應成本 Q1 已降 30%；管理層承諾繼續提升效率。</div>
+    </div>
+    <div class="guidance-item positive">
+      <div class="g-label">Other Bets 精簡</div>
+      <div class="g-val">Verily / GFiber 剝離</div>
+      <div class="g-note">Verily 已完成外部融資並脫合並；GFiber 計劃與 Astound Broadband 合并，預計 Q4 完成去合並。</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 7: Earnings Call Q&A ── -->
+  <div class="section">
+    <div class="section-label">Section 07</div>
+    <h2>Earnings Call 重點 Q&A 解析</h2>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-header">
+      <div class="qa-analyst">Brian Nowak<br>Morgan Stanley</div>
+      <div class="qa-theme">
+        <span class="qa-tag ai">AI</span>
+        <span class="qa-tag capex">CapEx</span>
+        Search 中下一代算力 ROIC 場景？TPU 外銷定價邏輯？
+      </div>
+    </div>
+    <div class="qa-body">
+      <strong>Sundar：</strong>Search 的主要算力機會在於<strong>深化 Agentic Workflows</strong>（讓消費者更易使用複雜代理流程）；目前仍在「非常早期」。TPU 外銷定價以「如何幫助 Cloud 客戶」為框架，ROIC 優先，部分外銷可強化整體算力規模經濟。目標客群為 Capital Markets、AI Labs 及多元化產業的本地部署需求。
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-header">
+      <div class="qa-analyst">Doug Anmuth<br>JP Morgan</div>
+      <div class="qa-theme">
+        <span class="qa-tag capex">CapEx</span>
+        <span class="qa-tag ai">AI</span>
+        2027 CapEx 規劃 vs. Backlog 消化能力？Search AI 廣告覆蓋率上調空間？
+      </div>
+    </div>
+    <div class="qa-body">
+      <strong>Anat：</strong>歷年 CapEx 增加均有 ROIC 支撐（見 Search 及 Cloud 成長），2027 具體數字待後續財報揭曉。需求強勁，管理層有信心「負責任地資本化」此機會。<br>
+      <strong>Philipp：</strong>搜尋查詢處於歷史高點，並非單一驅動——零售、金融、醫療全面貢獻。AI 理解意圖的能力大幅擴展了對較長、較複雜查詢的廣告服務能力，歷史廣告覆蓋率 ~20% 有明確上調空間（「upside in that coverage number」）。
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-header">
+      <div class="qa-analyst">Eric Sheridan<br>Goldman Sachs</div>
+      <div class="qa-theme">
+        <span class="qa-tag cloud">Cloud</span>
+        <span class="qa-tag ai">AI</span>
+        AI 基礎設施競爭差異化？UCP 的長期商業意義？
+      </div>
+    </div>
+    <div class="qa-body">
+      <strong>Philipp：</strong>Alphabet 競爭優勢在於<strong>垂直整合 AI 棧</strong>——從自研晶片（TPU）→ 基礎設施 → 平台 → 應用/代理人，且擁有前沿模型，安全層深度投資。市場唯一全棧垂直整合供應商。<strong>UCP（通用商業協議）</strong>已吸引 Amazon、Meta、Microsoft、Salesforce、Stripe 加入，將成為 Agentic Commerce 時代從「發現」到「結帳」到「售後」的開放基礎設施，直接連結 Gemini App / AI Mode 內的無摩擦購物體驗。
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-header">
+      <div class="qa-analyst">Michael Nathanson<br>MoffettNathanson</div>
+      <div class="qa-theme">
+        <span class="qa-tag capex">CapEx</span>
+        <span class="qa-tag ai">AI</span>
+        算力配置決策框架？Gemini App 廣告變現計劃？
+      </div>
+    </div>
+    <div class="qa-body">
+      <strong>Sundar：</strong>第一原則：先保障 GDM（Google DeepMind）訓練算力，再依 Search、YouTube、Cloud 各業務長期計劃分配。Cloud AI Solution 本季 YoY +800%，為高優先級。目前 Cloud 收入「若無算力瓶頸將更高」。<br>
+      <strong>Philipp：</strong>Gemini App 目前聚焦免費層 & 訂閱；廣告優先在 AI Mode 驗證格式，「有效的格式自然會遷移至 Gemini App」。廣告始終是產品規模化的核心工具，但「不急於推進」（not rushing）。
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-header">
+      <div class="qa-analyst">Ron Josey<br>Citi</div>
+      <div class="qa-theme">
+        <span class="qa-tag margin">利潤率</span>
+        <span class="qa-tag cloud">Cloud</span>
+        Cloud 利潤率大幅擴張的驅動分解？
+      </div>
+    </div>
+    <div class="qa-body">
+      <strong>Anat：</strong>利潤率提升三要素：① <strong>頂線高速成長提供費用槓桿</strong>；② <strong>技術基礎設施效率（Scientific Process Innovation）</strong>——降低每算力成本；③ <strong>AI 賦能降低營運成本</strong>（含 Gemini 輔助編碼、房地產優化等）。管理層表示仍有持續推進空間，但須承接 CapEx 增加帶來的折舊逆風。
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-header">
+      <div class="qa-analyst">Justin Post<br>BofA Securities</div>
+      <div class="qa-theme">
+        <span class="qa-tag cloud">Cloud</span>
+        <span class="qa-tag capex">CapEx</span>
+        TPU 外銷機會規模？Backlog 構成拆解？大型 GenAI 合約利潤率？
+      </div>
+    </div>
+    <div class="qa-body">
+      <strong>Anat：</strong>$462B Backlog 中 TPU 硬體合約占少數，主體仍為 GCP 合約；50%+ 預計 24 個月內認列。TPU 硬體收入：2026 年小比例，2027 年為主。<br>
+      <strong>Sundar：</strong>大型 GenAI 合約利潤率不予具體評論，但強調在算力受限環境下，所有配置均依 ROIC 框架優化——即有隱性的「高門檻篩選」。
+    </div>
+  </div>
+
+  <!-- ── SECTION 8: 投資視角 ── -->
+  <div class="section">
+    <div class="section-label">Section 08</div>
+    <h2>投資關鍵論點</h2>
+  </div>
+
+  <div class="invest-grid">
+    <div class="invest-card bull">
+      <div class="ic-head">多頭論點（Bulls）</div>
+      <ul>
+        <li>Cloud 利潤率快速擴張（32.9%），反駁「AI 侵蝕獲利」敘事</li>
+        <li>Backlog $462B QoQ 幾乎翻倍，未來 2 年能見度極高</li>
+        <li>GenAI Cloud 收入 YoY +800%，AI 貨幣化已真實落地</li>
+        <li>Search 廣告覆蓋率 ~20% 歷史低位，AI 提升有巨大上調空間</li>
+        <li>TPU 外銷開啟全新 TAM，硬體收入流 2027 起放量</li>
+        <li>Wiz 網路安全協同效應超預期，Agentic Defense 需求强勁</li>
+        <li>訂閱 350M 付費用戶，AI 方案史上最強季</li>
+      </ul>
+    </div>
+    <div class="invest-card bear">
+      <div class="ic-head">空頭論點（Bears）</div>
+      <ul>
+        <li>CapEx 2027 「顯著增加」，FCF 壓縮持續，估值折現敏感</li>
+        <li>算力瓶頸制約 Cloud 成長（管理層承認「若無約束收入更高」）</li>
+        <li>Wiz 收購全年拖累 Cloud 利潤率低個位數 pp</li>
+        <li>Network 廣告 YoY −4%，結構性弱化趨勢未見改善</li>
+        <li>FX 順風 Q2 大幅縮小（3pp→1pp），名義成長率將下降</li>
+        <li>DOJ 反壟斷訴訟持續懸而未決（G&A 法務費用上升 21%）</li>
+        <li>YouTube 廣告 +11% 遜於 Meta 同期表現，競爭壓力加大</li>
+      </ul>
+    </div>
+    <div class="invest-card watch">
+      <div class="ic-head">關鍵觀察指標（Watch）</div>
+      <ul>
+        <li>Q2 Cloud 利潤率：Wiz 影響是否如預期控制在低個位數</li>
+        <li>TPU 外銷合約細節 & 認列節奏（2027 前能見度）</li>
+        <li>Gemini App 廣告格式正式推出時間點</li>
+        <li>UCP 生態整合速度（Amazon、Meta 等大廠加入後的實際應用）</li>
+        <li>AI Mode 廣告貨幣化試驗結果（Gap、Marvell、Chewy 試點）</li>
+        <li>I/O（5/19）技術發布對 Gemini 競爭格局的影響</li>
+        <li>2027 CapEx 具體數字（Q2 法說前市場將持續炒作）</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div><strong>免責聲明</strong> 本文件依 Bloomberg Terminal 初稿逐字稿（2026-04-30）編製，內容僅供參考，不構成任何投資建議或買賣招攬。</div>
+  <div>資料來源：Bloomberg LP · Alphabet Q1 2026 Earnings Call Transcript · 研究部整理</div>
+  <div>© 2026 Bloomberg LP. All rights reserved. 嚴禁轉載或再發行。</div>
+</div>
+
+</body>
+</html>

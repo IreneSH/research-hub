@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TER Q1 2026 Earnings Deep Dive</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+  
+  :root {
+    --bg: #FAFAF8;
+    --text: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --accent: #0F52BA;
+    --accent-light: #E8F0FE;
+    --green: #0A7B4F;
+    --green-bg: #E6F5EE;
+    --red: #C62828;
+    --red-bg: #FDECEA;
+    --orange: #E65100;
+    --orange-bg: #FFF3E0;
+    --border: #D8D8D8;
+    --card-bg: #FFFFFF;
+    --explainer-bg: #F5F3EE;
+    --explainer-border: #C9C3B8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', 'Source Serif 4', serif;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+
+  /* Header */
+  .report-header {
+    border-bottom: 4px solid var(--text);
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+  }
+  .report-header .ticker-badge {
+    display: inline-block;
+    background: var(--text);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .report-header h1 { font-size: 34px; font-weight: 900; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .report-header .subtitle { font-size: 18px; color: var(--text-secondary); font-weight: 400; }
+  .report-header .meta { margin-top: 14px; font-size: 13px; color: #888; font-family: 'JetBrains Mono', monospace; }
+
+  /* Verdict Box */
+  .verdict-box {
+    background: linear-gradient(135deg, #0F52BA 0%, #1565C0 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .verdict-box h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .verdict-box p { font-size: 17px; line-height: 1.75; font-weight: 400; }
+  .verdict-box .vh { font-weight: 700; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.4); text-underline-offset: 3px; }
+
+  /* Section Headers */
+  h2.section-title { font-size: 22px; font-weight: 900; margin-top: 48px; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid var(--text); }
+  h3.subsection { font-size: 17px; font-weight: 700; margin-top: 28px; margin-bottom: 12px; color: var(--accent); }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+  .data-table thead th {
+    background: var(--text); color: #fff; font-weight: 700; padding: 10px 14px; text-align: left;
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .data-table thead th:not(:first-child) { text-align: right; }
+  .data-table tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .data-table tbody td:not(:first-child) { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+  .data-table tbody tr:hover { background: var(--accent-light); }
+  .data-table .row-label { font-weight: 600; }
+  .beat { color: var(--green); font-weight: 700; }
+  .miss { color: var(--red); font-weight: 700; }
+  .neutral { color: var(--orange); font-weight: 600; }
+
+  /* Explainer Box — 產品知識補充 */
+  .explainer {
+    background: var(--explainer-bg);
+    border: 1px solid var(--explainer-border);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 18px 0;
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+  .explainer .explainer-tag {
+    display: inline-block;
+    background: #8D6E4C;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .explainer strong { color: #5D4037; }
+
+  /* Callout Cards */
+  .callout { border-radius: 8px; padding: 20px 24px; margin: 20px 0; border-left: 5px solid; }
+  .callout-green { background: var(--green-bg); border-color: var(--green); }
+  .callout-red { background: var(--red-bg); border-color: var(--red); }
+  .callout-orange { background: var(--orange-bg); border-color: var(--orange); }
+  .callout .callout-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .callout p { font-size: 15px; line-height: 1.7; }
+
+  /* Body Text */
+  .body-text { font-size: 16px; line-height: 1.85; margin-bottom: 16px; color: var(--text); }
+
+  /* KPI Grid */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+  .kpi-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 18px 16px; text-align: center; }
+  .kpi-card .kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .kpi-card .kpi-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-card .kpi-delta { font-size: 12px; margin-top: 4px; font-weight: 600; }
+
+  /* Two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+
+  /* Segment Bars */
+  .segment-bar-container { margin: 20px 0; }
+  .segment-row { display: flex; align-items: center; margin-bottom: 10px; }
+  .segment-label { width: 140px; font-size: 14px; font-weight: 600; flex-shrink: 0; }
+  .segment-bar-wrapper { flex: 1; background: #E0E0E0; border-radius: 4px; height: 22px; overflow: hidden; }
+  .segment-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 12px; font-weight: 700; color: #fff; font-family: 'JetBrains Mono', monospace; }
+  .segment-value { width: 90px; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; margin-left: 10px; flex-shrink: 0; }
+
+  /* Timeline */
+  .timeline-item { position: relative; padding-left: 24px; margin-bottom: 16px; border-left: 2px solid var(--border); }
+  .timeline-item::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+
+  /* MS Table */
+  .ms-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .ms-table th { background: #F5F5F0; font-weight: 700; padding: 8px 12px; text-align: right; border-bottom: 2px solid var(--border); font-size: 12px; }
+  .ms-table th:first-child { text-align: left; }
+  .ms-table td { padding: 8px 12px; text-align: right; border-bottom: 1px solid #E8E8E4; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .ms-table td:first-child { text-align: left; font-family: 'Noto Sans TC', sans-serif; font-weight: 600; }
+  .revised-up { color: var(--green); }
+
+  /* Appendix */
+  .appendix { margin-top: 56px; padding-top: 32px; border-top: 3px double var(--border); }
+  .appendix h2 { font-size: 20px; font-weight: 900; margin-bottom: 20px; }
+  .glossary-item { margin-bottom: 18px; }
+  .glossary-item dt { font-weight: 700; font-size: 15px; color: var(--accent); margin-bottom: 2px; }
+  .glossary-item dd { font-size: 14.5px; line-height: 1.7; color: var(--text-secondary); padding-left: 0; }
+
+  /* Footer */
+  .report-footer { margin-top: 60px; padding-top: 20px; border-top: 2px solid var(--border); font-size: 12px; color: #999; text-align: center; }
+
+  @media (max-width: 700px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .report-header h1 { font-size: 26px; }
+    .container { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="report-header">
+  <div class="ticker-badge">NASDAQ: TER</div>
+  <h1>Teradyne Q1 2026 Earnings Deep Dive</h1>
+  <div class="subtitle">Blowout Quarter, but Sequential Slowdown Guidance Triggers 12% After-Hours Sell-Off</div>
+  <div class="meta">Report Date: 2026-04-30 &nbsp;|&nbsp; Earnings Call: 2026-04-29 &nbsp;|&nbsp; Sources: LSEG Transcript, Morgan Stanley Research</div>
+</div>
+
+<!-- Verdict -->
+<div class="verdict-box">
+  <h2>核心結論</h2>
+  <p>Q1 業績全面 blowout — 營收 $1.28B 創歷史新高、EPS $2.56 打敗預期 21%、營業利益率 37.5% 為公司史上最高。但盤後跌 12% 的原因不在業績本身，而在於 <span class="vh">Q2 guidance 暗示營收 QoQ 下滑 6%</span>、全年框架維持而未上修、AI 晶片測試中最大的營收來源（超大客戶的自研 AI 加速器）被定調為上半年集中出貨、<span class="vh">次世代要等到 2027 年初</span>。Morgan Stanley 的判斷：「This isn't a miss, it's an expectations issue」——在 YTD 漲 108%、PE 100x+ 的估值下，buyside 期待已過高（FY27 EPS whisper $15-18 vs Street ~$11），任何「非加速」訊號都構成 de-rating 壓力。</p>
+</div>
+
+<!-- Context Box -->
+<div class="explainer">
+  <div class="explainer-tag">公司簡介</div>
+  <p><strong>Teradyne 是全球最大的半導體自動測試設備（ATE）供應商之一</strong>，與日本的 Advantest 形成雙寡頭格局。每一顆晶片從晶圓廠製造出來到最終進入手機、伺服器、汽車之前，都必須經過測試以確認功能、速度和可靠性。Teradyne 就是賣這些測試機台的公司。此外，公司旗下還有協作機器人品牌 Universal Robots（UR）和自主移動機器人品牌 MiR，合稱 Robotics 事業群。</p>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-value beat">$1,282M</div>
+    <div class="kpi-label">Q1 營收</div>
+    <div class="kpi-delta beat">Beat +5.6% / YoY +87%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-value beat">$2.56</div>
+    <div class="kpi-label">Non-GAAP EPS</div>
+    <div class="kpi-delta beat">Beat consensus +21%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-value beat">60.9%</div>
+    <div class="kpi-label">毛利率</div>
+    <div class="kpi-delta beat">QoQ +370bps 創紀錄</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-value beat">37.5%</div>
+    <div class="kpi-label">營業利益率</div>
+    <div class="kpi-delta beat">歷史新高 vs Q4 29%</div>
+  </div>
+</div>
+
+<!-- Section 1 -->
+<h2 class="section-title">一、Q1 實際表現 vs. 市場預期</h2>
+
+<table class="data-table">
+  <thead><tr><th>指標</th><th>Q1 實際</th><th>Street Consensus</th><th>MS 預估</th><th>公司 Guidance 中位數</th><th>Beat 幅度</th></tr></thead>
+  <tbody>
+    <tr><td class="row-label">營收</td><td>$1,282M</td><td>$1,195M</td><td>$1,223M</td><td>$1,200M</td><td class="beat">+5.6% vs Street</td></tr>
+    <tr><td class="row-label">Non-GAAP EPS</td><td>$2.56</td><td>$2.09</td><td>$2.11</td><td>$2.07</td><td class="beat">+21.1%</td></tr>
+    <tr><td class="row-label">毛利率</td><td>60.9%</td><td>59.5%</td><td>59.0%</td><td>59.0%</td><td class="beat">+190bps vs MS</td></tr>
+    <tr><td class="row-label">營業利益</td><td>$480M</td><td>$396M</td><td>$395M</td><td>—</td><td class="beat">+24.9%</td></tr>
+  </tbody>
+</table>
+
+<h3 class="subsection">Segment 拆解 — Semi Test 首度突破 $1B</h3>
+
+<div class="segment-bar-container">
+  <div class="segment-row">
+    <div class="segment-label">Semi Test</div>
+    <div class="segment-bar-wrapper"><div class="segment-bar" style="width:86.6%;background:var(--accent);">$1,111M</div></div>
+    <div class="segment-value">86.7%</div>
+  </div>
+  <div class="segment-row">
+    <div class="segment-label">Robotics</div>
+    <div class="segment-bar-wrapper"><div class="segment-bar" style="width:7.1%;background:#43A047;">$91M</div></div>
+    <div class="segment-value">7.1%</div>
+  </div>
+  <div class="segment-row">
+    <div class="segment-label">Product Test</div>
+    <div class="segment-bar-wrapper"><div class="segment-bar" style="width:6.2%;background:#FF8F00;">$80M</div></div>
+    <div class="segment-value">6.2%</div>
+  </div>
+</div>
+
+<div class="explainer">
+  <div class="explainer-tag">Semi Test 的三大子區塊</div>
+  <p><strong>① SoC 測試（本季 $882M）：</strong>測試「系統單晶片」——包括 AI 加速器、手機處理器、網路交換晶片、車用 ADAS 晶片等複雜數位/混合訊號 IC。Teradyne 的旗艦測試平台 <strong>UltraFLEXplus</strong>（2019 年推出，採用專利 PACE 多控制器架構）就是用來做這件事的，競爭對手是 Advantest 的 V93000。全球有超過 10,000 名工程師使用 Teradyne 的 IG-XL 軟體撰寫測試程式，形成龐大的生態系壁壘。本季 UltraFLEXplus 的出貨量在 9 個月內翻倍以上，同時維持 12-16 週的交期。</p>
+  <p><strong>② Memory 測試（本季 $203M）：</strong>專門測試 DRAM、HBM（高頻寬記憶體）、Flash/NAND 等記憶體晶片，使用 <strong>Magnum</strong> 系列測試平台。本季成功量產了最新的 <strong>Magnum 7</strong>。HBM 的測試需求特別高——每顆 HBM 在 die 堆疊前後都需要測試，測試時間和成本遠高於傳統 DRAM。</p>
+  <p><strong>③ IST 系統級測試（本季 $27M）：</strong>不測單顆晶片，而是測「整個系統」。包括 <strong>SLT</strong>（System-Level Test，把晶片裝到板子上模擬真實運作環境測試）和 <strong>HDD 測試</strong>（硬碟測試）。AI 驅動每年 exabyte 需求成長 20%+，每顆硬碟的測試時間更長，TAM 正在擴大。</p>
+</div>
+
+<p class="body-text"><strong>SoC 內部的終端市場變化：</strong>法說會上 CFO Turner 說「Compute 佔 SoC 營收的約 75%」，這代表 TER 賣出的 SoC 測試機台中，每 4 塊錢有 3 塊是拿來測 AI 相關運算晶片的。2023 年時 Compute 只佔 SoC 的約 10%，過去兩年成長了約 8 倍。Mobile（手機晶片測試）影響已被完全稀釋——Teradyne 已從一家「手機測試公司」徹底轉型為「AI 測試公司」。Auto/Industrial 子區塊中，46% 營收來自 data center 用的電源管理晶片（而非傳統車用/工業晶片），反映 AI data center 對電力元件的龐大需求。</p>
+
+<div class="explainer">
+  <div class="explainer-tag">什麼是 VIP Compute？</div>
+  <p>這不是產品名稱，而是 Teradyne 內部對終端市場的分類。<strong>VIP = Vertically Integrated Platform</strong>（垂直整合平台），指那些自己設計晶片的超大型科技公司。<strong>VIP Compute</strong> 就是這些公司的「AI 運算晶片」測試需求，具體包括兩類：</p>
+  <p><strong>① Hyperscaler 自研 ASIC：</strong>Google 的 TPU、Amazon 的 Trainium/Inferentia、Microsoft 的 Maia 等。這些公司不買現成 GPU，而是自己設計專用 AI 晶片。Teradyne 在這塊市佔約 50%，是公司最強的領域，目前有兩家 hyperscaler 的 compute 專案已達大規模量產。</p>
+  <p><strong>② Merchant GPU：</strong>就是 NVIDIA 賣給所有人用的通用 GPU（H100、B200 等）。這塊過去幾乎 100% 被 Advantest 獨佔，Teradyne 這季才首度拿到生產訂單，全年營收能見度約 $50M。</p>
+  <p>法說會上 CEO 明確表示 VIP Compute 是<strong>最偏向上半年</strong>的區塊——因為目前這一代 ASIC 的量產高峰已過，下一代技術的 ramp 要到 2027 年初。這就是 Q2 guidance 營收環比下滑的最核心原因。</p>
+</div>
+
+<p class="body-text"><strong>營運執行與毛利率：</strong>Q1 GPM 高達 60.9% 受惠於三大因素同時發生——① AI 驅動的極高 Semi Test 佔比（87%），② 有利的產品組合（高階 UltraFLEXplus 佔比高），③ 部分非經常性營運利益。CFO 明確表示此為多重正面因素同時出現的結果，不應視為常態 run rate。Q2 毛利率預估回落至 58.5%，約一半的下滑來自非經常性利益不再重複，另一半是產品組合正常化。H1 整體約 59.7%，仍在公司長期目標模型 59-61% 的低端。</p>
+
+
+<!-- Section 2: Q2 Guidance -->
+<h2 class="section-title">二、Q2 Guidance — 股價下跌的核心原因</h2>
+
+<table class="data-table">
+  <thead><tr><th>指標</th><th>Q2 Guidance 中位數</th><th>Street Consensus</th><th>MS 預估</th><th>vs Q1 實際</th></tr></thead>
+  <tbody>
+    <tr><td class="row-label">營收</td><td>$1,200M</td><td>$1,171M</td><td>$1,184M</td><td class="miss">QoQ -6.4%</td></tr>
+    <tr><td class="row-label">Non-GAAP EPS</td><td>$2.01</td><td>$1.95</td><td>$1.85</td><td class="miss">QoQ -21.5%</td></tr>
+    <tr><td class="row-label">毛利率</td><td>58.5%</td><td>59.8%</td><td>58.3%</td><td class="miss">QoQ -240bps</td></tr>
+    <tr><td class="row-label">營業利益率</td><td>31%</td><td>—</td><td>—</td><td class="miss">QoQ -650bps</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">注意：Q2 guidance 中位數其實仍<strong>略高於</strong> Street consensus（營收高 2.4%、EPS 高 3%）。問題不在於 Q2 本身低於預期，而在於<strong>市場期待的是持續加速，但 Q2 卻是環比下滑</strong>。在 YTD 漲 108% 的股價下，投資人已經在 price-in 一個「每季都會更好」的敘事，任何 step-down 都會引發 de-rating。</p>
+
+<div class="callout callout-red">
+  <div class="callout-title">盤後跌 12% 的五大驅動因素</div>
+  <p><strong>1. VIP Compute 世代交替 gap：</strong>CEO 明確說「VIP compute 最 H1-weighted」，當前這代 AI ASIC 的測試需求高峰已過，下一代 ramp 是 early 2027。在 Compute 佔 SoC 營收 75% 的結構下，這個 gap 直接壓低 Q2-Q4 的 Semi Test 營收。</p>
+  <p><strong>2. 全年框架維持未上修：</strong>H1/H2 split 從 1 月的固定 60:40「擴展」為 55-60:40-45。表面上看 low-end 改善了（55% 意味著 H2 可能更強），但 high-end 仍是 60%，市場期待的明確 raise 落空。</p>
+  <p><strong>3. 毛利率正常化：</strong>從 60.9%（含一次性利益）降至 58.5%，EPS 從 $2.56 降至 $2.01（QoQ -21.5%），利潤降幅大於營收降幅。</p>
+  <p><strong>4. H2 能見度有限：</strong>CFO 表示「目前能看到比當季再多一季的訂單，但不如當季清楚，Q4 仍有未確定的部分」。ATE 的 lead time 與晶圓相似（約 12-16 週），不像前端設備有 1-2 年的 lead time，因此天然能見度就比較短。</p>
+  <p><strong>5. Buyside whisper 過高：</strong>Morgan Stanley 指出進入財報前，buyside 對 FY27 EPS 的期待已到 $15-18，遠高於 Street consensus 的 ~$11。即使公司維持 $6B 營收 / $9.50-11 EPS 的長期目標模型，也無法滿足最樂觀的預期。</p>
+</div>
+
+
+<!-- Section 3: Earnings Call Deep Dive -->
+<h2 class="section-title">三、法說會關鍵洞察</h2>
+
+<h3 class="subsection">3.1 各產品線的上下半年節奏</h3>
+
+<p class="body-text">CEO Greg Smith 在回答 UBS 分析師 Tim Arcuri 的提問時，逐一拆解了每個產品線的 H1/H2 權重：</p>
+
+<table class="data-table">
+  <thead><tr><th>產品/市場</th><th>H1 vs H2</th><th>管理層說法</th></tr></thead>
+  <tbody>
+    <tr><td class="row-label">VIP Compute<br><span style="font-size:12px;color:#888;">（自研 ASIC + GPU 測試）</span></td><td class="miss">H1 >> H2</td><td>最 H1-weighted。次世代技術 wave 是 early 2027，可能部分 bleed into late 2026 但不確定</td></tr>
+    <tr><td class="row-label">Networking<br><span style="font-size:12px;color:#888;">（網路交換/矽光子晶片測試）</span></td><td class="neutral">全年穩定</td><td>開年非常強，H2 能見度不如 H1 但歷史上「tends to go up, not down」，有 upside 潛力</td></tr>
+    <tr><td class="row-label">Memory<br><span style="font-size:12px;color:#888;">（HBM/DRAM/Flash 測試）</span></td><td class="beat">H2 > H1</td><td>需求比 1 月更強。Memory 越強，H1 佔比越趨近 55% 低端</td></tr>
+    <tr><td class="row-label">Auto/Industrial<br><span style="font-size:12px;color:#888;">（車用/工業/電源管理 IC 測試）</span></td><td class="neutral">DC 端持續強</td><td>Data center 電源管理「hot, hot, hot」。傳統 auto/industrial 庫存降但尚未轉化為資本設備需求</td></tr>
+    <tr><td class="row-label">IST<br><span style="font-size:12px;color:#888;">（HDD 硬碟測試 + 系統級測試）</span></td><td class="beat">H2 > H1</td><td>Q1 僅 $27M 低基期，HDD exabyte 年增 20%+ 帶動</td></tr>
+    <tr><td class="row-label">Product Test<br><span style="font-size:12px;color:#888;">（國防/航太/板級測試）</span></td><td class="beat">H2 > H1</td><td>Defense/Aerospace 穩定 + 新產品 Omnyx 帶動</td></tr>
+    <tr><td class="row-label">Robotics<br><span style="font-size:12px;color:#888;">（協作機器人 UR + 移動機器人 MiR）</span></td><td class="neutral">通常 H2 強</td><td>連四季成長，大型電商客戶出貨增加，AI 佔 Robotics 營收 15%</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text"><strong>核心解讀：</strong>H2 放緩的問題集中在 VIP Compute 的世代交替 gap。其餘所有產品線都被定位為 H2 穩定或更強。但 VIP Compute 佔比太大（SoC 的 75% → Semi Test 的 ~80% → 總營收的 87%），其他產品線的回升難以完全抵消 compute 的回落。這就是為什麼全年框架仍然是 H1-weighted。</p>
+
+
+<h3 class="subsection">3.2 Merchant GPU — 首度獲得生產訂單</h3>
+
+<div class="callout callout-green">
+  <div class="callout-title">NVIDIA GPU 測試：從零到一的里程碑</div>
+  <p>CEO Smith 確認 Q1 收到首批 merchant GPU 多系統生產測試訂單，預計 Q2 出貨、安裝並投入生產。這標誌著 Teradyne 正式打入過去幾乎被 Advantest 獨佔的 NVIDIA GPU 測試市場。全年有約 $50M 營收的能見度。</p>
+</div>
+
+<p class="body-text"><strong>Share gain 路徑三階段：</strong></p>
+
+<div class="explainer">
+  <div class="explainer-tag">GPU 測試市場的競爭邏輯</div>
+  <p>NVIDIA 的 GPU 過去幾乎 100% 在 Advantest 的 V93000 平台上測試。Teradyne 要切入這個市場，必須先讓 NVIDIA（或其封測代工廠）把所有測試程式「轉換」到 UltraFLEXplus 平台上——這是一個漫長且昂貴的過程。CEO 描述了三個階段：</p>
+  <p><strong>① Qualification 階段（已完成）：</strong>最困難的第一步，包括平台認證和底層測試 library 的全面轉換。</p>
+  <p><strong>② Fast Follower 階段（進行中）：</strong>針對更早期的 SKU（不同型號的 GPU）進行轉換，速度比第一個專案快。Late 2026 或 early 2027 可能開始有更多 SKU 進入量產。</p>
+  <p><strong>③ Tester Agnostic 階段（中長期目標）：</strong>客戶最終希望在「虛擬測試環境」中開發測試程式，一鍵切換到不同測試平台。屆時競爭將從 incumbency（誰先進場）轉向 throughput（測試速度）、performance（測試精度）和 availability（交期彈性）。</p>
+  <p>中期目標：在 dual-source 架構下取得 30-70% 的 share range。但從 2026 年的低個位數到進入該區間，需要數年時間。達到 $6B target model 只需要 low double-digit share。</p>
+</div>
+
+<p class="body-text">Morgan Stanley 對此的評價較為審慎：確認首批訂單是正面的，但考慮到 Advantest 更積極的產能擴張、以及 TER 最初進入 qualification 主要是基於供應保障（supply assurance）而非性能差異，MS 對長期 share gain 仍持觀望態度，維持 FY26/FY27 各 $200M/$300M 的保守假設。MS 認為要看到 TER 達到 20-25% share 才會上調，這將使 FY27 營收估計升至 $7.1B、EPS 升至 $13.93。</p>
+
+
+<h3 class="subsection">3.3 矽光子 / CPO 測試 — 中期重大機會，但競爭加劇</h3>
+
+<div class="explainer">
+  <div class="explainer-tag">什麼是矽光子（Silicon Photonics）和 CPO？</div>
+  <p>在 AI data center 中，伺服器之間需要高速傳輸大量資料。傳統用銅線連接，但速度和功耗已接近極限。<strong>矽光子</strong>技術是在矽晶片上整合光學元件，用「光」而非「電」來傳輸資料，速度更快、功耗更低。<strong>CPO（Co-Packaged Optics，共封裝光學）</strong>則是把這些光學元件和交換晶片封裝在一起。這些新型光電元件在量產前也需要大量測試，形成一個全新的 ATE 市場。</p>
+  <p>Teradyne 本季推出了 <strong>Photon 100</strong> 測試平台——基於 UltraFLEXplus 改造，整合光學和電學測試能力，讓矽光子測試從實驗室走向量產。TER 正與德國的 ficonTEC（光學對準設備專家）、晶圓代工廠和終端客戶組成四方合作推進量產。</p>
+</div>
+
+<p class="body-text">CEO 提供了重要的市場量化框架：2026 年矽光子測試市場約 $100M 上下，中期可達 $300-700M/年。2027 年主要由 scale-out networking（機架之間的連接）驅動，2028-29 年 scale-up networking（機架內部的連接）將帶來更大量。但 CEO 也說測試效率可能在未來幾年提升 10 倍，因此不應線性外推當前的測試成本。</p>
+
+<p class="body-text">在法說會上，Morgan Stanley 的分析師 Shane Brett 特別追問了 share 問題。CEO 坦承目前和 Advantest 的市佔「大致平衡」。MS 在研究報告中對此表示擔憂——networking 歷來是 TER 的強項，Advantest 在矽光子拿到首個大量訂單代表競爭正在加劇。這對 TER 的 bull case（networking 主導地位）構成挑戰。</p>
+
+
+<h3 class="subsection">3.4 新產品與 M&A</h3>
+
+<p class="body-text"><strong>Omnyx（本季新發布）：</strong>專門測試 AI 伺服器主機板和 tray assembly 的新平台。AI data center 在建置過程中，伺服器板組裝後常出現電力、散熱、光學連接和訊號完整性等缺陷，導致 build-out 延遲。Omnyx 整合了 Teradyne 跨產品線的測試能力（電力、熱、光學、TDR 反射測試），幫客戶提早抓出問題。這個產品體現了公司「wafer to data center（從晶圓到資料中心）」的策略——不只測晶片，還測整個系統。</p>
+
+<p class="body-text"><strong>MultiLane Test Products JV（4/8 close）：</strong>與 MultiLane 成立合資公司，TER 為多數持股方，聚焦高速 I/O 和 data center interconnect 測試。併入 Product Test group。</p>
+
+<p class="body-text"><strong>TestInsight 收購（4/16 close）：</strong>領先的測試開發工具供應商，其工具同時支援 Teradyne 和競爭對手的測試平台。收購後可強化 design-to-test 軟體能力，建構「虛擬測試環境」，縮短 AI 和網路晶片的上市時間。兩筆交易合計約 $165M，透過 credit revolver 融資。</p>
+
+
+<h3 class="subsection">3.5 ATE 能見度為什麼比前端設備差？</h3>
+
+<p class="body-text">BofA 分析師 Vivek Arya 提出了一個尖銳問題：為什麼 AI 供應鏈上的每家公司（包括前端設備商 ASML、LRCX）都聲稱有很好的 2027 能見度，唯獨 ATE 端卻看不太遠？</p>
+
+<div class="explainer">
+  <div class="explainer-tag">CEO 的回答：ATE 天然比前端設備更 lumpy</div>
+  <p>測試機台的 lead time 與<strong>晶圓本身</strong>類似（約 12-16 週），而不是前端設備的 lead time（通常 6-18 個月）。客戶在投入大量資金建造晶圓廠和購買曝光機後，要等到<strong>實際看到晶圓通過產線</strong>，才會下測試設備的訂單。前端設備的需求較穩定（fab 一旦開建就持續需要設備），但後端測試需求與特定 device ramp 高度綁定。如果一款 ASIC 的 first silicon 有缺陷，可能注入 2 個季度的延遲，直接影響 tester 訂購時點。</p>
+  <p>CEO 的結論：「前端成長<strong>必然</strong>帶動後端成長，但時間點不確定。前端比較不 lumpy。」</p>
+</div>
+
+
+<!-- Section 4: Morgan Stanley -->
+<h2 class="section-title">四、Morgan Stanley 觀點與估值調整</h2>
+
+<div class="callout callout-orange">
+  <div class="callout-title">MS 核心判斷：This isn't a miss, it's an expectations issue</div>
+  <p>Morgan Stanley 維持 Equal-weight 評級，PT 從 $376 小幅上調至 $387（34x FY27e EPS $11.37）。Shane Brett 認為盤後跌幅更多反映「預期跑太快」而非基本面問題。MS 表示「傾向於更正面而非更負面」，但尚未準備好在 numbers 中反映 NVDA share gains + networking + Apple + memory 全面同時兌現的情境。</p>
+</div>
+
+<table class="ms-table">
+  <thead><tr><th>MS 預估修正</th><th>FY26 Prior</th><th>FY26 Current</th><th>FY27 Prior</th><th>FY27 Current</th></tr></thead>
+  <tbody>
+    <tr><td>營收 ($B)</td><td>$4.73</td><td class="revised-up">$4.75</td><td>$6.30</td><td>$6.30</td></tr>
+    <tr><td>EPS ($)</td><td>$7.25</td><td class="revised-up">$8.03</td><td>$11.05</td><td class="revised-up">$11.37</td></tr>
+    <tr><td>營業利益率</td><td>—</td><td>31.4%</td><td>32.4%</td><td class="revised-up">33.2%</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">MS 的季度 EPS 估計路徑：Q2e $2.05 → Q3e $1.69 → Q4e $1.71。這反映了 VIP Compute gap + 全年 H1-weighted 的結構。MS 假設 H2 佔全年 48%，略高於公司 guidance 的 40-45% 區間上緣，暗示 MS 認為管理層偏保守。</p>
+
+<h3 class="subsection">MS 三種情境分析</h3>
+<table class="data-table">
+  <thead><tr><th>情境</th><th>FY27 EPS</th><th>Multiple</th><th>目標價</th><th>核心假設</th></tr></thead>
+  <tbody>
+    <tr><td class="row-label">Bull Case</td><td>$13.84</td><td>37x</td><td>$512</td><td>NVIDIA 份額突破 + networking/memory/Apple 全面強勢</td></tr>
+    <tr><td class="row-label">Base Case</td><td>$11.37</td><td>34x</td><td>$387</td><td>核心業務穩健 + cyclical recovery，不假設大幅 GPU share gain</td></tr>
+    <tr><td class="row-label">Bear Case</td><td>$9.90</td><td>27x</td><td>$267</td><td>Mobile/NAND 復甦有限，ATE 市場不如預期</td></tr>
+  </tbody>
+</table>
+
+
+<!-- Section 5: Temporary vs Structural -->
+<h2 class="section-title">五、Q2 放緩因素的性質判斷</h2>
+
+<div class="two-col">
+  <div class="callout callout-green">
+    <div class="callout-title">✅ 暫時性因素</div>
+    <p><strong>毛利率正常化：</strong>Q1 的 60.9% 含非經常性利益，H1 整體約 59.7%，仍在目標模型 59-61% 區間低端。年度波動 200bps 內屬正常。</p>
+    <p><strong>VIP Compute 世代交替：</strong>當前世代出貨高峰已過，次世代 ramp 預計 early 2027。這是 ATE 產業典型的 program-driven 波動，不代表 AI 測試需求減弱。</p>
+    <p><strong>Memory H2 回升：</strong>CEO 明確表示 Memory 是 H2 > H1，demand 比 1 月更強。HBM + Flash/SSD 雙驅動。</p>
+    <p><strong>Robotics 連續改善：</strong>連四季成長、Q1 通常季節性最弱但反而上升、AI 佔比升至 15%。</p>
+  </div>
+  <div class="callout callout-red">
+    <div class="callout-title">⚠️ 需持續觀察</div>
+    <p><strong>客戶集中度 / Lumpiness：</strong>2 家 specifying customers + 1 家 purchasing customer 超過營收 10%。ASIC first silicon 失敗可延遲 2 季。結構性特徵，不會改變。</p>
+    <p><strong>Networking share 風險：</strong>矽光子/CPO 是 TER 傳統強項，但 Advantest 拿到首個大量訂單。MS 對此表示擔憂。</p>
+    <p><strong>NVDA GPU 進度：</strong>首批訂單已確認，但從低個位數到 20-30% share 可能需數年。Advantest 的 incumbent 優勢 + 產能擴張可能限制 TER 的 share gain。</p>
+    <p><strong>貿易政策尾部風險：</strong>直接影響有限（Q2 EPS -$0.02），但若 AI diffusion rule 收緊可能影響 Compute 市場。</p>
+  </div>
+</div>
+
+
+<!-- Section 6: Key Quotes -->
+<h2 class="section-title">六、法說會關鍵引述</h2>
+
+<div class="timeline-item">
+  <p class="body-text"><strong>CEO 論 AI 三波浪：</strong>第一波是通用 AI 資料中心算力建設（2025 年主力）；2026 年進入第二波——針對大規模推論（inference）優化的運算晶片（如 NVIDIA 降低推論延遲的努力）；第三波是 Edge AI / Physical AI（自駕車、機器人、PC、穿戴裝置）。這三波會疊加而非替代，驅動整個中期 ATE 市場成長。</p>
+</div>
+<div class="timeline-item">
+  <p class="body-text"><strong>CEO 論 ATE TAM 預測的困難：</strong>拒絕公開給出 2026 TAM 預估，坦承「去年 4 月時我們和 Advantest 對 2025 TAM 的估計都大幅低估了全年實際值」。不認為 Advantest 給的 ~$11.5B 數字（SoC ~$9B + Memory ~$2.5B）「荒謬」，但沒信心到可以公開分享自己的預估。</p>
+</div>
+<div class="timeline-item">
+  <p class="body-text"><strong>CEO 論 Agentic AI 帶來的新機會：</strong>Agentic AI 催生了新型 ARM-based CPU for data center 的需求（有別於傳統 x86 架構多用 in-house 測試方案）。TER 正在進行相關的 design-in。這是「不在計畫中但有 upside 潛力」的新機會。</p>
+</div>
+<div class="timeline-item">
+  <p class="body-text"><strong>CFO 論應收帳款膨脹：</strong>Q1 末 AR 大幅增加，原因是客戶原本要求延後出貨的測試機台在 Q1 末集中出貨。這反映了客戶端供應鏈的雙向波動——不僅訂單端有 lumpiness，acceptance（驗收）端也有不確定性。</p>
+</div>
+
+
+<!-- Section 7: Implications -->
+<h2 class="section-title">七、投資啟示與後續觀察重點</h2>
+
+<p class="body-text"><strong>估值面：</strong>若以 MS 的 FY26e EPS $8.03 計算，即使回到盤後的 ~$345 水準，PE 仍有約 43x。以 FY27e $11.37 計算則約 30x。考慮到 ATE 的 lumpiness 和 H2 能見度有限，這個估值需要相當程度的信念。</p>
+
+<div class="callout callout-orange">
+  <div class="callout-title">後續催化劑 Checklist</div>
+  <p><strong>1. Q2 法說（7月底）：</strong>Q3 guidance 是否反映 VIP compute gap 的最低點？Memory H2 回升是否兌現？</p>
+  <p><strong>2. Merchant GPU fast follower 進度：</strong>下半年是否有更多 GPU 型號（SKU）轉換完成並進入量產測試？</p>
+  <p><strong>3. CPO/矽光子訂單動態：</strong>TER vs Advantest 的 share 演變，特別是 Photon 100 平台的量產進度。</p>
+  <p><strong>4. Agentic AI / Inference at Scale：</strong>ARM-based DC CPU 的 design-in 進度，可能成為 2027 年新增量。</p>
+  <p><strong>5. Apple Baltra（傳聞中的自研 AI server ASIC）：</strong>MS 在模型中假設 H2 可能有初始採購。若確認將為 FY27 帶來重大營收增量。</p>
+</div>
+
+<p class="body-text"><strong>對半導體設備板塊的 read-through：</strong>TER 和 Advantest 的同步爆發確認 ATE 市場在 CY2025 從 ~$6B 擴張至 ~$9B（+50%），CY2026 可能達到 $11-12B。但後端 ATE 的 lumpiness 遠高於前端設備（ASML、LRCX、AMAT、KLAC），投資人需要習慣 ATE 公司的季度波動不代表趨勢反轉。</p>
+
+
+<!-- Appendix -->
+<div class="appendix">
+  <h2>附錄：專有名詞速查表</h2>
+
+  <dl class="glossary-item">
+    <dt>ATE（Automated Test Equipment）</dt>
+    <dd>自動測試設備。泛指用來測試半導體晶片功能、性能和可靠性的機台。每顆晶片出廠前都必須通過 ATE 測試。全球市場主要由 Teradyne 和 Advantest 雙寡頭壟斷。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>SoC（System-on-Chip）</dt>
+    <dd>系統單晶片。將 CPU、GPU、記憶體控制器、I/O 等多種功能整合在同一顆晶片上的設計方式。手機處理器（如 Apple A 系列、Qualcomm Snapdragon）、AI 加速器（如 Google TPU）都是 SoC。SoC 測試是 Teradyne 最大的營收來源。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>UltraFLEXplus</dt>
+    <dd>Teradyne 的旗艦 SoC 測試平台（2019 年推出），採用 PACE 多控制器架構。用來測試最複雜的數位/混合訊號晶片，包括 AI 加速器、高階處理器、網路晶片等。全球有超過 10,000 名工程師使用其 IG-XL 軟體。UltraFLEX 家族的舊型號仍有超過 4,000 台在運作中。競爭對手是 Advantest 的 V93000。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Magnum（含 Magnum 7）</dt>
+    <dd>Teradyne 的記憶體測試平台系列。專門測試 DRAM、HBM、Flash/NAND 等記憶體晶片。Magnum 7 是最新一代，本季開始量產出貨。競爭對手是 Advantest 的 T5503/T5513 系列。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>J750 / Eagle</dt>
+    <dd>Teradyne 的中低階 SoC 測試平台。用來測試微控制器（MCU）、汽車晶片、消費性 IC 等較簡單但出貨量大的晶片。價格比 UltraFLEXplus 便宜，但量大穩定。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>VIP Compute</dt>
+    <dd>Teradyne 內部的終端市場分類，非產品名。VIP = Vertically Integrated Platform（垂直整合平台），指自己設計晶片的超大型科技公司。VIP Compute = 這些公司的 AI 運算晶片測試需求，包括 hyperscaler 自研 ASIC（Google TPU、Amazon Trainium 等）和 merchant GPU（NVIDIA GPU）。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Merchant GPU</dt>
+    <dd>指 NVIDIA 等公司設計、販售給多家客戶使用的通用 GPU（如 H100、B200），相對於 hyperscaler 自行設計只供內部使用的 custom ASIC。Merchant GPU 的測試市場過去幾乎 100% 被 Advantest 壟斷，Teradyne 本季首度獲得生產訂單。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Custom ASIC</dt>
+    <dd>客製化特殊應用積體電路。指 Google、Amazon、Microsoft 等 hyperscaler 自行設計的專用 AI 晶片，只在自家資料中心使用，不對外銷售。Teradyne 在 custom ASIC 測試市佔約 50%。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>HBM（High Bandwidth Memory）</dt>
+    <dd>高頻寬記憶體。一種將多層 DRAM die 垂直堆疊並透過矽穿孔（TSV）連接的先進記憶體，頻寬遠高於傳統 DRAM，是 AI 加速器的關鍵元件。HBM 的測試需求特別高——堆疊前每個 die 需要 known-good-die 測試，堆疊後還需要 final test。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>SLT（System-Level Test）</dt>
+    <dd>系統級測試。不像傳統 ATE 只測單顆晶片的電性參數，SLT 是把晶片裝到實際的電路板上，模擬真實運作環境來測試。隨著 AI 晶片複雜度提升，越來越多缺陷只有在系統級才能被偵測到，推動 SLT 需求成長。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Silicon Photonics / CPO（Co-Packaged Optics）</dt>
+    <dd>矽光子技術是在矽晶片上整合光學元件，用光（而非傳統的銅線電訊號）來傳輸資料，速度更快、功耗更低。CPO 是把光學元件和交換晶片封裝在一起的技術。目前處於早期量產階段，Teradyne 推出了 Photon 100 測試平台來服務此市場。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Photon 100</dt>
+    <dd>Teradyne 本季新推出的矽光子/CPO 測試平台，基於 UltraFLEXplus 架構改造，整合光學和電學測試能力。目標是讓矽光子測試從實驗室規模走向量產。與德國 ficonTEC（光學對準設備專家）合作開發。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Omnyx</dt>
+    <dd>Teradyne 本季新推出的生產級板測試平台。專門針對 AI 伺服器主機板和 tray assembly 的測試挑戰設計，整合電力、熱、光學和 TDR（Time Domain Reflectometry，時域反射）測試能力，幫助提早偵測 AI 資料中心建置過程中的缺陷。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>IST（Integrated System Test）</dt>
+    <dd>Teradyne 的系統級測試事業，包含 HDD 硬碟測試和 SLT。本季營收 $27M，規模較小但 AI 驅動的 exabyte 需求成長正在擴大 HDD 測試 TAM。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Universal Robots（UR）/ MiR</dt>
+    <dd>Teradyne 的 Robotics 事業群。UR 做協作機器人（cobot，可安全地與人類一起工作的小型機械手臂），MiR 做自主移動機器人（AMR，在工廠和倉庫自動搬運的小車）。與半導體測試業務無直接關聯，但管理層將其定位為「wafer to data center」策略的一環——機器人可用於半導體組裝、測試和資料中心營運。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Wafer to Data Center（從晶圓到資料中心）</dt>
+    <dd>Teradyne 的企業策略口號。意思是公司的產品和服務涵蓋從晶圓測試（Semi Test）、系統板測試（Product Test / Omnyx）、到資料中心自動化營運（Robotics）的完整價值鏈，能夠服務同一批大客戶的多重需求。</dd>
+  </dl>
+  <dl class="glossary-item">
+    <dt>Target Earnings Model（長期目標模型）</dt>
+    <dd>Teradyne 給投資人的中期財務目標：ATE TAM 達到 $12-14B 時，公司營收目標 $6B、毛利率 59-61%、營業利益率 30-34%、Non-GAAP EPS $9.50-11.00。不綁定特定年度，管理層表示要達到此目標只需要在 NVIDIA GPU 市場取得 low double-digit share。</dd>
+  </dl>
+</div>
+
+
+<!-- Footer -->
+<div class="report-footer">
+  <p>Sources: TER Q1 2026 Earnings Call Transcript (LSEG StreetEvents, Apr 29, 2026) &nbsp;|&nbsp; Morgan Stanley Research — Shane Brett (Apr 29, 2026) &nbsp;|&nbsp; Company filings &nbsp;|&nbsp; Teradyne Investor Relations</p>
+  <p style="margin-top:6px;">本報告僅供研究參考，不構成投資建議。</p>
+</div>
+
+</div>
+</body>
+</html>
