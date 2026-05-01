@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterpillar Q1 2026 財報深度分析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --cat-yellow: #FFCD11;
+    --cat-black: #111111;
+    --blue: #2563eb;
+    --purple: #7c3aed;
+    --amber: #d97706;
+    --green: #059669;
+    --red: #dc2626;
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --border: #e5e3dc;
+    --text-primary: #111111;
+    --text-secondary: #666560;
+    --text-muted: #999894;
+    --pos: #16a34a;
+    --neg: #dc2626;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  /* ── HEADER ── */
+  header {
+    background: var(--cat-black);
+    padding: 0;
+    border-bottom: 4px solid var(--cat-yellow);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 40px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+  }
+  .header-left h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .header-left h1 span { color: var(--cat-yellow); }
+  .header-left p {
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .header-meta {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .meta-item { text-align: right; }
+  .meta-val {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.1;
+  }
+  .meta-val.beat { color: var(--cat-yellow); }
+  .meta-label { font-size: 10px; color: #888; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+
+  /* ── LAYOUT ── */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin: 36px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    background: var(--cat-black);
+    color: var(--cat-yellow);
+    font-size: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── KPI GRID ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px; }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .kpi-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+  .kpi-val { font-size: 24px; font-weight: 600; font-family: 'IBM Plex Mono', monospace; color: var(--text-primary); line-height: 1.1; }
+  .kpi-sub { font-size: 11px; margin-top: 4px; }
+  .pos { color: var(--pos); font-weight: 500; }
+  .neg { color: var(--neg); font-weight: 500; }
+  .neu { color: var(--text-secondary); }
+
+  /* ── SEGMENT TABLES ── */
+  .tbl-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead tr { background: var(--cat-black); }
+  th {
+    padding: 9px 14px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #aaa;
+    text-align: right;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  th:first-child { text-align: left; }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: var(--text-primary);
+  }
+  td:first-child { text-align: left; }
+  tbody tr:last-child td { border-bottom: none; background: #fafaf8; font-weight: 600; }
+  tbody tr:hover td { background: #fafaf8; }
+
+  .seg-label { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+  .seg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .bar-wrap { margin-top: 3px; }
+  .bar-bg { height: 3px; background: #eee; border-radius: 2px; width: 120px; }
+  .bar-fill { height: 3px; border-radius: 2px; }
+
+  .badge {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px 7px;
+    font-size: 10.5px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    white-space: nowrap;
+  }
+  .badge-beat { background: #dcfce7; color: #15803d; }
+  .badge-miss { background: #fee2e2; color: #b91c1c; }
+  .badge-inline { background: #fef9c3; color: #854d0e; }
+
+  .tbl-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-top: 8px;
+    padding: 0 2px;
+  }
+  .tbl-note strong { color: var(--text-secondary); font-weight: 500; }
+
+  /* ── CHARTS ── */
+  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .chart-card-full {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .chart-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .chart-wrap { position: relative; width: 100%; }
+
+  .legend-row {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* ── SEGMENT DETAIL CARDS ── */
+  .seg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .seg-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .seg-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+  .seg-card-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .seg-card-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .seg-row-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .seg-row-item span:last-child { font-weight: 500; color: var(--text-primary); }
+  .seg-divider { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
+  .seg-bar-bg { height: 5px; background: #f0ede8; border-radius: 3px; margin: 8px 0 12px; overflow: hidden; }
+  .seg-bar-fill { height: 5px; border-radius: 3px; }
+  .seg-note-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 4px;
+  }
+
+  /* ── GUIDANCE CARDS ── */
+  .guidance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .guide-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .guide-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .guide-val { font-size: 18px; font-weight: 600; color: var(--text-primary); font-family: 'IBM Plex Mono', monospace; }
+  .guide-note { font-size: 11px; color: var(--text-secondary); margin-top: 4px; line-height: 1.6; }
+  .guide-note strong { color: var(--text-primary); font-weight: 600; }
+  .guide-arrow {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .up { background: #dcfce7; color: #15803d; }
+  .down { background: #fee2e2; color: #b91c1c; }
+
+  /* ── EARNINGS CALL LIST ── */
+  .ec-list { list-style: none; margin: 0; padding: 0; }
+  .ec-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .ec-item:last-child { border-bottom: none; }
+  .ec-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--cat-black);
+    color: var(--cat-yellow);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .ec-body { flex: 1; }
+  .ec-body strong { font-weight: 600; }
+  .ec-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; font-style: italic; }
+  .ec-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 18px 0;
+  }
+
+  /* ── PEERS ── */
+  .peer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .peer-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .peer-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .peer-name { font-size: 14px; font-weight: 600; }
+  .peer-signal {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: auto;
+    letter-spacing: 0.03em;
+  }
+  .sig-pos { background: #dcfce7; color: #15803d; }
+  .sig-neg { background: #fee2e2; color: #b91c1c; }
+  .sig-mix { background: #fef9c3; color: #854d0e; }
+  .peer-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--cat-black);
+    border-top: 2px solid var(--cat-yellow);
+    padding: 16px 40px;
+    text-align: center;
+    font-size: 10px;
+    color: #555;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  footer span { color: var(--cat-yellow); }
+
+  @media (max-width: 760px) {
+    .header-inner { flex-direction: column; align-items: flex-start; padding: 20px 20px 18px; }
+    main { padding: 20px 20px 40px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .seg-grid, .chart-row, .peer-grid, .guidance-grid { grid-template-columns: 1fr; }
+    .kpi-val { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>Caterpillar <span>(CAT)</span> Q1 2026 財報深度分析</h1>
+      <p>NYSE: CAT ｜ 公布日期: April 30, 2026 ｜ 分析截至: 2026.05.01</p>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <div class="meta-val beat">$5.54</div>
+        <div class="meta-label">Adj. EPS（預期 $4.63）</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">$17.4B</div>
+        <div class="meta-label">Q1 2026 營收</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val beat">+22%</div>
+        <div class="meta-label">YoY 成長率</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ① OVERALL KPIs -->
+<div class="section-title"><span class="num">01</span>整體業績概覽</div>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">總營收</div>
+    <div class="kpi-val">$17.4B</div>
+    <div class="kpi-sub pos">+22% YoY ／ 超預期 +$0.9B</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">調整後 EPS</div>
+    <div class="kpi-val">$5.54</div>
+    <div class="kpi-sub pos">+30% YoY ／ vs 預期 $4.63 大超 +20%</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">調整後營業利益率</div>
+    <div class="kpi-val">18.0%</div>
+    <div class="kpi-sub pos">+30bps YoY（優於市場預期）</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">歷史新高 Backlog</div>
+    <div class="kpi-val">$63B</div>
+    <div class="kpi-sub pos">+79% YoY ／ +$11.5B QoQ</div>
+  </div>
+</div>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">營業現金流</div>
+    <div class="kpi-val">$1.9B</div>
+    <div class="kpi-sub pos">vs Q1'25 $1.3B</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">股東回饋（單季）</div>
+    <div class="kpi-val">$5.7B</div>
+    <div class="kpi-sub neu">回購 $5.0B ＋ 股息 $0.7B</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">關稅衝擊（Q1）</div>
+    <div class="kpi-val">$710M</div>
+    <div class="kpi-sub neg">製造成本主要逆風</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">MP&E 自由現金流</div>
+    <div class="kpi-val">~$600M</div>
+    <div class="kpi-sub pos">YoY +$350M</div>
+  </div>
+</div>
+
+<!-- ② SEGMENT SCORECARD TABLE 1 -->
+<div class="section-title"><span class="num">02</span>各事業部營收比重 ／ 成長率 ／ vs 市場預期</div>
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align:left">事業部</th>
+        <th>Q1'26 ($B)</th>
+        <th>佔總營收</th>
+        <th>YoY</th>
+        <th>QoQ vs Q4'25</th>
+        <th>vs 分析師預期（營收）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="seg-label"><span class="seg-dot" style="background:#2563eb"></span>Construction Industries</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:82%;background:#2563eb"></div></div></div>
+        </td>
+        <td>$7.16</td><td>41%</td>
+        <td class="pos">+38%</td>
+        <td class="pos">+3.8%</td>
+        <td><span class="badge badge-beat">大超 +29%</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="seg-label"><span class="seg-dot" style="background:#7c3aed"></span>Power &amp; Energy</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:80%;background:#7c3aed"></div></div></div>
+        </td>
+        <td>$7.03</td><td>40%</td>
+        <td class="pos">+22%</td>
+        <td class="neg">−25.2%</td>
+        <td><span class="badge badge-inline">符合預期</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="seg-label"><span class="seg-dot" style="background:#d97706"></span>Resource Industries</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:43%;background:#d97706"></div></div></div>
+        </td>
+        <td>$3.80</td><td>22%</td>
+        <td class="pos">+4%</td>
+        <td class="pos">+13.3%</td>
+        <td><span class="badge badge-beat">小超 +5%</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="seg-label"><span class="seg-dot" style="background:#059669"></span>Financial Products</div>
+          <div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:13%;background:#059669"></div></div></div>
+        </td>
+        <td>$1.10</td><td>6%</td>
+        <td class="pos">+9%</td>
+        <td class="pos">+0.5%</td>
+        <td><span class="badge badge-inline">符合預期</span></td>
+      </tr>
+      <tr>
+        <td>合計（含消除項）</td>
+        <td>$17.42</td><td>100%</td>
+        <td class="pos">+22%</td>
+        <td class="neg">−9.0%</td>
+        <td><span class="badge badge-beat">超預期 +$0.9B</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="tbl-note">• P&amp;E QoQ −25% 為正常季節性（Q4 為全年旺季）；Construction QoQ 小升反映春季補庫存啟動。<br>
+• 分析師共識總營收 $16.5B；Construction 預期 YoY +8%，實際 +38%，為本季最大驚喜。<br>
+• 各部門百分比以合併收入 $17.42B 為分母，部門加總超 100% 係因內部交易消除項（約 −$1.7B）。</p>
+
+<!-- ③ SEGMENT SCORECARD TABLE 2 -->
+<div class="section-title"><span class="num">03</span>各事業部利潤比重 ／ 利潤率 ／ vs 市場預期</div>
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align:left">事業部</th>
+        <th>部門利潤 ($B)</th>
+        <th>佔部門利潤合計</th>
+        <th>利潤率</th>
+        <th>YoY 利潤率</th>
+        <th>vs 分析師預期（利潤）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="seg-label"><span class="seg-dot" style="background:#2563eb"></span>Construction Industries</div></td>
+        <td>$1.535</td><td>42.5%</td><td>21.4%</td>
+        <td class="pos">+160bps</td>
+        <td><span class="badge badge-beat">大超 +30%</span></td>
+      </tr>
+      <tr>
+        <td><div class="seg-label"><span class="seg-dot" style="background:#7c3aed"></span>Power &amp; Energy</div></td>
+        <td>$1.450</td><td>40.2%</td><td>20.6%</td>
+        <td class="neg">−170bps</td>
+        <td><span class="badge badge-miss">低預期 −15%</span></td>
+      </tr>
+      <tr>
+        <td><div class="seg-label"><span class="seg-dot" style="background:#d97706"></span>Resource Industries</div></td>
+        <td>$0.378</td><td>10.5%</td><td>10.0%</td>
+        <td class="neg">−700bps</td>
+        <td><span class="badge badge-miss">大低 −38%</span></td>
+      </tr>
+      <tr>
+        <td><div class="seg-label"><span class="seg-dot" style="background:#059669"></span>Financial Products</div></td>
+        <td>$0.245</td><td>6.8%</td><td>22.3%</td>
+        <td class="pos">+14%↑</td>
+        <td><span class="badge badge-inline">符合預期</span></td>
+      </tr>
+      <tr>
+        <td>部門合計 ／ 合併營業利潤</td>
+        <td>$3.608 / $3.085</td><td>100%</td><td>17.7%</td>
+        <td class="neg">−40bps</td>
+        <td><span class="badge badge-beat">整體超預期</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="tbl-note">• P&amp;E 利潤低預期係因關稅製造成本 $346M（衝擊利潤率約 −270bps）；Revenue 符合，利潤不符。<br>
+• Resource 利潤 −700bps 為三部門最嚴重；分析師預期 $607M，實際 $378M（−38% miss）。<br>
+• Construction 利潤大超：$1.535B vs 預期 $1.18B，北美補庫存 + 定價均超乎預期。<br>
+• 合併營業利潤 $3.085B &lt; 部門加總 $3.608B，差額為公司總部費用與合併消除項。</p>
+
+<!-- ④ VISUAL COMPARISON -->
+<div class="section-title"><span class="num">04</span>視覺比較：營收 ／ 利潤貢獻比重 ／ YoY 成長 vs 預期</div>
+<div class="chart-row" style="margin-bottom:12px">
+  <div class="chart-card">
+    <div class="chart-subtitle">Q1 2026 營收比重</div>
+    <div class="chart-wrap" style="height:200px"><canvas id="revPie" role="img" aria-label="Q1 2026 各部門營收比重圓餅圖">Construction 41%, Power & Energy 40%, Resource 22%, Financial Products 6%</canvas></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-subtitle">Q1 2026 部門利潤貢獻比重</div>
+    <div class="chart-wrap" style="height:200px"><canvas id="profPie" role="img" aria-label="Q1 2026 各部門利潤貢獻比重圓餅圖">Construction 42.5%, Power & Energy 40.2%, Resource 10.5%, Financial Products 6.8%</canvas></div>
+  </div>
+</div>
+<div class="chart-card-full">
+  <div class="chart-subtitle">各事業部 YoY 利潤成長率：實際 vs 分析師預期</div>
+  <div class="chart-wrap" style="height:210px"><canvas id="growChart" role="img" aria-label="YoY 利潤成長率比較：Construction 實際+50% vs 預期+1%；Power & Energy 實際+13% vs 預期+33%；Resource 實際-39% vs 預期+2%">YoY 部門利潤成長率比較</canvas></div>
+  <div class="legend-row" style="margin-top:12px">
+    <div class="legend-item"><div class="legend-swatch" style="background:#2563eb"></div>Construction</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#7c3aed"></div>Power &amp; Energy</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#d97706"></div>Resource Industries</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:rgba(0,0,0,0.15)"></div>分析師預期（淡色）</div>
+  </div>
+</div>
+
+<!-- ⑤ SEGMENT ANALYSIS -->
+<div class="section-title"><span class="num">05</span>各事業部深度分析</div>
+<div class="seg-grid">
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div class="seg-card-name"><span class="seg-dot" style="background:#2563eb;width:10px;height:10px"></span>Construction Industries</div>
+      <div class="seg-card-tag" style="background:#eff6ff;color:#1d4ed8">本季領跑</div>
+    </div>
+    <div class="seg-row-item"><span>營收</span><span>$7.16B <span class="pos">+38%</span></span></div>
+    <div class="seg-row-item"><span>部門利潤</span><span>$1.535B <span class="pos">+50%</span></span></div>
+    <div class="seg-row-item"><span>利潤率</span><span>21.4% <span class="pos">+160bps</span></span></div>
+    <div class="seg-bar-bg"><div class="seg-bar-fill" style="width:88%;background:#2563eb"></div></div>
+    <div class="seg-note-text">北美銷售大漲 48%。經銷商季節性補庫存 $1.5B（去年同期略降）。關稅製造成本逆風 $362M，但被更強的銷量與定價完全抵消。建設設備透明度高（經銷商庫存可見），STU 為核心觀察指標。</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div class="seg-card-name"><span class="seg-dot" style="background:#7c3aed;width:10px;height:10px"></span>Power &amp; Energy</div>
+      <div class="seg-card-tag" style="background:#f5f3ff;color:#6d28d9">AI 核心驅動</div>
+    </div>
+    <div class="seg-row-item"><span>營收</span><span>$7.03B <span class="pos">+22%</span></span></div>
+    <div class="seg-row-item"><span>部門利潤</span><span>$1.450B <span class="pos">+13%</span></span></div>
+    <div class="seg-row-item"><span>利潤率</span><span>20.6% <span class="neg">−170bps</span></span></div>
+    <div class="seg-bar-bg"><div class="seg-bar-fill" style="width:84%;background:#7c3aed"></div></div>
+    <div class="seg-note-text">Sales to Users +32%，大型資料中心應用激增 48%。關稅衝擊利潤率 −270bps（$346M）。已簽署 6 項各至少 1GW 大型氣體發電機組協議。Solar 渦輪機油氣 Backlog 健康。中東/EAME 表現低於預期（項目遞延）。Rail 部門已遷移至 Resource Industries。</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div class="seg-card-name"><span class="seg-dot" style="background:#d97706;width:10px;height:10px"></span>Resource Industries</div>
+      <div class="seg-card-tag" style="background:#fffbeb;color:#b45309">關稅重災區</div>
+    </div>
+    <div class="seg-row-item"><span>營收</span><span>$3.80B <span class="pos">+4%</span></span></div>
+    <div class="seg-row-item"><span>部門利潤</span><span>$0.378B <span class="neg">−39%</span></span></div>
+    <div class="seg-row-item"><span>利潤率</span><span>10.0% <span class="neg">−700bps</span></span></div>
+    <div class="seg-bar-bg"><div class="seg-bar-fill" style="width:42%;background:#d97706"></div></div>
+    <div class="seg-note-text">三部門中受關稅衝擊最嚴重。利潤大幅下滑：高關稅製造成本 + 銷量低於預期。Rail 部門本期納入（歷史數據已重述）。礦業設備 Backlog 受銅金礦需求及車隊更換支撐，後續關稅緩解為主要觀察點。</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div class="seg-card-name"><span class="seg-dot" style="background:#059669;width:10px;height:10px"></span>Financial Products</div>
+      <div class="seg-card-tag" style="background:#ecfdf5;color:#047857">信用品質穩健</div>
+    </div>
+    <div class="seg-row-item"><span>營收</span><span>$1.10B <span class="pos">+9%</span></span></div>
+    <div class="seg-row-item"><span>部門利潤</span><span>$0.245B <span class="pos">+14%</span></span></div>
+    <div class="seg-row-item"><span>逾期率</span><span>1.39% <span class="pos">−19bps</span></span></div>
+    <div class="seg-bar-bg"><div class="seg-bar-fill" style="width:56%;background:#059669"></div></div>
+    <div class="seg-note-text">信用品質持續改善，備抵損失率 0.86% 與歷史最低水平持平。Construction 設備補庫存帶動融資業務成長。貸款組合健康度高，為全年服務收入穩定器。</div>
+  </div>
+</div>
+
+<!-- ⑥ GUIDANCE -->
+<div class="section-title"><span class="num">06</span>2026 全年指引</div>
+<div class="guidance-grid">
+  <div class="guide-card">
+    <div class="guide-label">全年營收成長目標</div>
+    <div class="guide-val">低雙位數（~+10–11%） <span class="guide-arrow up">↑上調</span></div>
+    <div class="guide-note"><strong>1 月原指引：5–7% CAGR 上緣（約 +7%）</strong>；本次上調至低雙位數，意味全年營收預估 ~$74–75B（較 2025 年 $67.6B 大幅加速）。三大部門預計全面成長。</div>
+  </div>
+  <div class="guide-card">
+    <div class="guide-label">全年關稅成本估計</div>
+    <div class="guide-val">$2.2–2.4B <span class="guide-arrow down">↓下調</span></div>
+    <div class="guide-note"><strong>較前次（1 月）$2.6B 下調約 $200–400M</strong>；主因：IEEPA 關稅依最高法院裁決剔除，改計入第 122 條款。H2 緩解措施（供應鏈、定價）逐步啟動。</div>
+  </div>
+  <div class="guide-card">
+    <div class="guide-label">Q2 2026 調整後營業利益率</div>
+    <div class="guide-val">高於去年同期</div>
+    <div class="guide-note"><strong>去年同期（Q2 2025）調整後營業利益率為 17.6%</strong>，故 Q2 2026 指引隱含 &gt;17.6%。Q2 關稅成本約 $700M，與 Q1 相近，但規模效益與定價改善可望抵消。</div>
+  </div>
+  <div class="guide-card">
+    <div class="guide-label">全年調整後營業利益率</div>
+    <div class="guide-val">接近目標範圍下緣</div>
+    <div class="guide-note"><strong>Progressive margin 目標範圍：年收入 $600億時 15–19%、$1,000億時 21–25%</strong>；以 2026 年預估全年營收 ~$750億插值，對應目標範圍約 17–21%，下緣 ~17%。含關稅衝擊後預計落在下緣附近；若排除關稅將位於目標上半段。長期目標維持目標中值（~19%）。</div>
+  </div>
+  <div class="guide-card">
+    <div class="guide-label">MP&E 自由現金流</div>
+    <div class="guide-val">&gt; $9.5B <span class="guide-arrow up">↑上調</span></div>
+    <div class="guide-note"><strong>1 月原指引：略低於 2025 年的 $9.5B</strong>（因 Capex 增加 $3.5B）；本次上調至超過 $9.5B，反映營收加速與獲利改善超乎預期。Q1 MP&E FCF $600M，年增 $350M。</div>
+  </div>
+  <div class="guide-card">
+    <div class="guide-label">長期 CAGR 目標（至 2030）</div>
+    <div class="guide-val">6%–9% <span class="guide-arrow up">↑上調</span></div>
+    <div class="guide-note"><strong>原目標（2025 年 Investor Day）：5–7% CAGR</strong>；本次上調至 6–9%，反映 Power & Energy 長期成長加速。發電銷售目標同步上調至 &gt;3x 2024 基準（原為 2x），大型引擎產能目標升至 ~3x。</div>
+  </div>
+</div>
+
+<!-- ⑦ EARNINGS CALL -->
+<div class="section-title"><span class="num">07</span>Earnings Call 重點摘要</div>
+<div class="ec-wrap">
+  <ul class="ec-list">
+    <li class="ec-item">
+      <div class="ec-num">1</div>
+      <div class="ec-body">
+        <strong>歷史新高 Backlog $63B，單季訂單達全時間最高紀錄</strong>——年增 79%，季增 $11.5B，三大部門均創新高。Power Generation + Construction 為主要貢獻來源，長期訂單延伸至 2028 年。
+        <div class="ec-sub">CEO Joe Creed：「Record backlog provides a strong foundation for continued positive momentum.」</div>
+      </div>
+    </li>
+    <li class="ec-item">
+      <div class="ec-num">2</div>
+      <div class="ec-body">
+        <strong>大型往復式引擎產能目標從 2x 升至 3x（相對 2024 基準）</strong>——資本支出計畫 2027–2029 年密集部署，平均佔 MP&E 銷售的 4–5%，管理層預計整體投資在十年底前達到正現金回報。
+        <div class="ec-sub">昨日公告：向資料中心/油氣/工業客戶供應最高 2.1GW 大型氣體發電機組；已簽 6 份各 ≥1GW 協議。</div>
+      </div>
+    </li>
+    <li class="ec-item">
+      <div class="ec-num">3</div>
+      <div class="ec-body">
+        <strong>關稅估算下調邏輯</strong>——美國最高法院 IEEPA 裁決後，去除相關項目並加入第 122 條款，全年從 $2.6B 降至 $2.2–2.4B。H2 開始加速緩解措施（供應鏈調整、定價策略）。
+        <div class="ec-sub">管理層強調：關稅局勢仍具流動性，目標長期在 Progressive margin 目標中值附近運作。</div>
+      </div>
+    </li>
+    <li class="ec-item">
+      <div class="ec-num">4</div>
+      <div class="ec-body">
+        <strong>Construction 強勁驗證，$1.5B 補庫存創近年之最</strong>——北美 STU 預計全年正成長；歐洲/中東/非洲及亞太部分市場表現分化。管理層提醒：Construction 終端用戶銷售（STU）是最佳追蹤指標。
+      </div>
+    </li>
+    <li class="ec-item">
+      <div class="ec-num">5</div>
+      <div class="ec-body">
+        <strong>股東回饋創季度紀錄 $5.7B</strong>——含 $4.5B 加速股票回購（ASR）。強調資產負債表充足，可同時支持成長投資與大規模資本回報並行。
+      </div>
+    </li>
+    <li class="ec-item">
+      <div class="ec-num">6</div>
+      <div class="ec-body">
+        <strong>P&E 中東訂單遞延，非需求消失</strong>——EAME 銷售低於預期，主因中東關鍵項目時程遞延。Power Generation STU +32%，資料中心應用 +48%，長期需求動能未受影響。
+      </div>
+    </li>
+    <li class="ec-item">
+      <div class="ec-num">7</div>
+      <div class="ec-body">
+        <strong>服務業務（Services）全年成長預期</strong>——服務收入為長期獲利穩定器，預計全年正成長，是 Progressive margin 策略重要支柱之一。Resource Industries 的自主科技投資雖短期壓制利潤率，但預計帶來未來營運槓桿。
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- ⑧ PEERS -->
+<div class="section-title"><span class="num">08</span>對同業的 Implication</div>
+<div class="peer-grid">
+  <div class="peer-card">
+    <div class="peer-header">
+      <div class="peer-name">Cummins (CMI)</div>
+      <div class="peer-signal sig-pos">正面信號</div>
+    </div>
+    <div class="peer-text">CAT 大型引擎訂單爆量（3x 產能計畫）直接印證 CMI 在資料中心後備電源及工業電力的需求端。CAT P&E 強勁 STU 驗證了 CMI Power Generation 業務在 2026 的需求韌性，尤其北美市場。關稅成本管理模式（H2 緩解）亦為 CMI 提供參考框架。</div>
+  </div>
+  <div class="peer-card">
+    <div class="peer-header">
+      <div class="peer-name">Eaton (ETN)</div>
+      <div class="peer-signal sig-pos">正面信號</div>
+    </div>
+    <div class="peer-text">CAT Backlog $63B 及資料中心 Power 需求激增 48%，直接利好 ETN 電氣基礎設施業務（UPS、PDU、配電設備）。CAT 產能擴張計畫（2027–2029）意味資料中心建設高峰期延長，支撐 ETN 長期訂單能見度。</div>
+  </div>
+  <div class="peer-card">
+    <div class="peer-header">
+      <div class="peer-name">Komatsu (6301.T)</div>
+      <div class="peer-signal sig-mix">混合信號</div>
+    </div>
+    <div class="peer-text">CAT Construction +38% 強勁反彈支持北美工程機械需求觀點。但 Resource 利潤率崩跌（−700bps）顯示礦業設備雖銷量穩，利潤率管理面臨關稅壓力——Komatsu 有類似暴露，需關注其關稅緩解能力。中國市場分化仍是獨立變數。</div>
+  </div>
+  <div class="peer-card">
+    <div class="peer-header">
+      <div class="peer-name">Deere &amp; Co. (DE)</div>
+      <div class="peer-signal sig-mix">分化信號</div>
+    </div>
+    <div class="peer-text">CAT Construction 北美強勁驗證工程機械需求回暖，對 DE 施工設備部門（Construction &amp; Forestry）為正。但 DE 核心農業設備業務與 CAT 無直接重疊，農機週期仍受農業收入低迷拖累。基建相關受惠，農業部門獨立評估。</div>
+  </div>
+  <div class="peer-card">
+    <div class="peer-header">
+      <div class="peer-name">CNH Industrial (CNHI)</div>
+      <div class="peer-signal sig-neg">負面對比</div>
+    </div>
+    <div class="peer-text">CAT 表現強化「工業設備 vs 農業設備」週期分化。CNHI 農業庫存過剩問題持續，CAT Construction 反彈和 P&E 繁榮更顯 CNHI 相對弱勢。CAT Resource −700bps 亦為 CNHI 利潤率警示提供參照。</div>
+  </div>
+  <div class="peer-card">
+    <div class="peer-header">
+      <div class="peer-name">Honeywell (HON)</div>
+      <div class="peer-signal sig-pos">間接正面</div>
+    </div>
+    <div class="peer-text">CAT Backlog 大幅擴張及三部門全面成長印證工業資本支出週期持續上行，間接支撐 HON Process Solutions 及 Building Automation 業務。資料中心投資熱潮亦與 HON 樓宇自動化和安全系統需求方向一致。</div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>CAT</span> Q1 2026 EARNINGS ANALYSIS ／ APRIL 30, 2026 ／ 資料來源：Caterpillar 官方新聞稿、SEC 8-K、Earnings Call Transcript、Bloomberg / Zacks 分析師共識預期
+</footer>
+
+<script>
+const COLORS = ['#2563eb','#7c3aed','#d97706','#059669'];
+const LABELS = ['Construction','Power & Energy','Resource','Fin. Products'];
+
+// Revenue Pie
+new Chart(document.getElementById('revPie'), {
+  type: 'doughnut',
+  data: {
+    labels: LABELS,
+    datasets: [{ data: [41, 40, 22, 6], backgroundColor: COLORS, borderWidth: 2, borderColor: '#f8f7f4', hoverOffset: 8 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '60%',
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11, family: 'IBM Plex Sans' }, padding: 12, boxWidth: 10, boxHeight: 10 } },
+      tooltip: { callbacks: { label: c => ' ' + c.label + ': ' + c.raw + '%' } }
+    }
+  }
+});
+
+// Profit Pie
+new Chart(document.getElementById('profPie'), {
+  type: 'doughnut',
+  data: {
+    labels: LABELS,
+    datasets: [{ data: [42.5, 40.2, 10.5, 6.8], backgroundColor: COLORS, borderWidth: 2, borderColor: '#f8f7f4', hoverOffset: 8 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '60%',
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11, family: 'IBM Plex Sans' }, padding: 12, boxWidth: 10, boxHeight: 10 } },
+      tooltip: { callbacks: { label: c => ' ' + c.label + ': ' + c.raw + '%' } }
+    }
+  }
+});
+
+// YoY Growth vs Estimate
+new Chart(document.getElementById('growChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Construction Industries', 'Power & Energy', 'Resource Industries'],
+    datasets: [
+      {
+        label: '實際 YoY 利潤成長率',
+        data: [50, 13, -39],
+        backgroundColor: ['#2563eb','#7c3aed','#d97706'],
+        borderRadius: 5,
+        barPercentage: 0.38
+      },
+      {
+        label: '分析師預期利潤成長率',
+        data: [1, 33, 2],
+        backgroundColor: ['rgba(37,99,235,0.2)','rgba(124,58,237,0.2)','rgba(217,119,6,0.2)'],
+        borderRadius: 5,
+        barPercentage: 0.38
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: c => ' ' + c.dataset.label + ': ' + (c.raw >= 0 ? '+' : '') + c.raw + '%'
+        }
+      }
+    },
+    scales: {
+      y: {
+        title: { display: true, text: 'YoY 利潤成長率 (%)', font: { size: 11, family: 'IBM Plex Sans' }, color: '#999' },
+        grid: { color: 'rgba(0,0,0,0.05)' },
+        ticks: { font: { size: 11 } }
+      },
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 12, family: 'IBM Plex Sans' } }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
