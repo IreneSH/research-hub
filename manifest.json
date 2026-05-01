@@ -37,6 +37,8 @@
       "tags": ["AI 電力", "工程機械", "資料中心", "Backlog 創新高"],
       "headline": "EPS $5.54 大超預期 +20%、Backlog $63B 史上新高；AI 資料中心電力需求驅動產能擴至 3x",
       "metrics": {
+        "stock_reaction": "+10%",
+        "stock_reaction_dir": "up",
         "rev_yoy": "+22%",
         "rev_yoy_dir": "up"
       },
