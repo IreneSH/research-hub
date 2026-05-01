@@ -27,6 +27,22 @@
   ],
   "earnings": [
     {
+      "id": "cat-q1-2026",
+      "ticker": "CAT",
+      "company_en": "Caterpillar",
+      "company_zh": "開拓重工",
+      "quarter": "Q1 2026",
+      "date": "2026-04-30",
+      "category": "industrial",
+      "tags": ["AI 電力", "工程機械", "資料中心", "Backlog 創新高"],
+      "headline": "EPS $5.54 大超預期 +20%、Backlog $63B 史上新高；AI 資料中心電力需求驅動產能擴至 3x",
+      "metrics": {
+        "rev_yoy": "+22%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/cat-q1-2026.html"
+    },
+    {
       "id": "ter-q1-2026",
       "ticker": "TER",
       "company_en": "Teradyne",
