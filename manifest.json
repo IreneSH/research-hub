@@ -185,6 +185,20 @@
   ],
   "research": [
     {
+      "id": "storage-memory-1q26",
+      "title": "儲存 & 記憶體產業 1Q26 財報整合分析",
+      "subtitle": "AI 超級週期下五大龍頭同步創歷史最強季度：STX、WDC、SNDK、SK Hynix、Samsung",
+      "category": "semi",
+      "tags": ["儲存產業", "DRAM", "HBM", "NAND", "AI 基礎建設"],
+      "date": "2026-05",
+      "stats": [
+        { "value": "5", "label": "家公司" },
+        { "value": "7", "label": "個分頁" }
+      ],
+      "eyebrow": "SEMICONDUCTOR · 儲存 & 記憶體",
+      "file": "research/storage-memory-1q26.html"
+    },
+    {
       "id": "hyperscaler-q1-2026-comparison",
       "title": "Hyperscaler Q1 2026 三巨頭比較",
       "subtitle": "GOOGL × MSFT × AMZN 同日財報對照：成長率、CapEx、AI 變現、利潤率、自研晶片戰略全面比較",
