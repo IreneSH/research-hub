@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>儲存 & 記憶體產業 · 1Q26 財報分析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1;
+  --surface: #ffffff;
+  --navy: #0d1b2a;
+  --navy2: #1a2f47;
+  --blue: #2155a3;
+  --blue-light: #e8eff9;
+  --gold: #c8973a;
+  --gold-light: #fdf4e3;
+  --hdd: #c05a2a;
+  --hdd-light: #fdf0e8;
+  --nand: #1a7a5a;
+  --nand-light: #e5f5ef;
+  --hbm: #5a3a8c;
+  --hbm-light: #f0eaf8;
+  --dram: #2264a8;
+  --dram-light: #e6f0fa;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #e2ddd6;
+  --positive: #1a7a5a;
+  --miss: #c05a2a;
+  --neutral: #888;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.site-header {
+  background: var(--navy);
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--gold);
+}
+.site-header .brand {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.site-header .nav-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  margin-left: 24px;
+  letter-spacing: .05em;
+}
+.site-header .nav-links a:hover { color: #fff; }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  background: var(--navy);
+  padding: 60px 40px 50px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 40%;
+  background: radial-gradient(ellipse at 80% 50%, rgba(33,85,163,.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  max-width: 700px;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--gold); }
+.hero-sub {
+  color: rgba(255,255,255,.6);
+  font-size: 15px;
+  max-width: 580px;
+  margin-bottom: 36px;
+}
+.hero-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero-meta-item { display: flex; flex-direction: column; }
+.hero-meta-item .label {
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 2px;
+}
+.hero-meta-item .val {
+  font-size: 13px;
+  color: rgba(255,255,255,.8);
+  font-weight: 500;
+}
+
+/* ── QUICK STATS ──────────────────────────────────────────── */
+.quick-stats {
+  background: var(--navy2);
+  padding: 28px 40px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.stat-cell {
+  padding: 16px 20px;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-company {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 6px;
+}
+.stat-rev {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.stat-yoy {
+  font-size: 12px;
+  font-weight: 600;
+  color: #52c48a;
+}
+.stat-beat {
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  margin-top: 2px;
+}
+
+/* ── NAV TABS ─────────────────────────────────────────────── */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  gap: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.nav-tab {
+  padding: 16px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.nav-tab:hover { color: var(--text); }
+.nav-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+/* ── CONTENT ──────────────────────────────────────────────── */
+.content-section {
+  display: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+.content-section.active { display: block; }
+
+/* ── SECTION HEADINGS ─────────────────────────────────────── */
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.section-lead {
+  color: var(--text-muted);
+  font-size: 15px;
+  max-width: 700px;
+  margin-bottom: 40px;
+  line-height: 1.75;
+}
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+/* ── ECOSYSTEM MAP ────────────────────────────────────────── */
+.ecosystem-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 36px;
+  margin-bottom: 40px;
+}
+.ecosystem-wrap h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.ecosystem-wrap .eco-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+.eco-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.eco-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 220px;
+  align-items: center;
+  gap: 16px;
+}
+.eco-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-align: right;
+  color: var(--text-muted);
+}
+.eco-bar {
+  border-radius: 6px;
+  padding: 12px 18px;
+  position: relative;
+}
+.eco-bar-hbm { background: var(--hbm); }
+.eco-bar-dram { background: var(--dram); }
+.eco-bar-ssd { background: var(--nand); }
+.eco-bar-hdd { background: var(--hdd); }
+.eco-bar .bar-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.eco-bar .bar-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,.7);
+}
+.eco-bar .bar-meta {
+  font-size: 10px;
+  color: rgba(255,255,255,.55);
+  margin-top: 4px;
+  font-family: 'DM Mono', monospace;
+}
+.eco-companies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.eco-chip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: .03em;
+}
+.chip-hbm { background: var(--hbm-light); color: var(--hbm); border: 1px solid rgba(90,58,140,.2); }
+.chip-dram { background: var(--dram-light); color: var(--dram); border: 1px solid rgba(34,100,168,.2); }
+.chip-nand { background: var(--nand-light); color: var(--nand); border: 1px solid rgba(26,122,90,.2); }
+.chip-hdd { background: var(--hdd-light); color: var(--hdd); border: 1px solid rgba(192,90,42,.2); }
+.chip-multi { background: #f0f0f0; color: #444; border: 1px solid #ccc; }
+.eco-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 11px;
+  padding: 4px 0;
+  gap: 8px;
+}
+.eco-arrow::before, .eco-arrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── THEME CARDS ──────────────────────────────────────────── */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.theme-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.theme-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.theme-card.t-supply::before { background: var(--hbm); }
+.theme-card.t-price::before { background: var(--gold); }
+.theme-card.t-ai::before { background: var(--blue); }
+.theme-card.t-contract::before { background: var(--nand); }
+.theme-card.t-tech::before { background: var(--hdd); }
+.theme-card.t-margin::before { background: #e05c8a; }
+.theme-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.theme-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.theme-card p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.theme-companies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 14px;
+}
+
+/* ── PRODUCT SECTION ──────────────────────────────────────── */
+.product-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.product-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+}
+.product-header.hdd { border-left: 4px solid var(--hdd); }
+.product-header.nand { border-left: 4px solid var(--nand); }
+.product-header.hbm { border-left: 4px solid var(--hbm); }
+.product-header.dram { border-left: 4px solid var(--dram); }
+.product-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  align-self: start;
+}
+.badge-hdd { background: var(--hdd-light); color: var(--hdd); }
+.badge-nand { background: var(--nand-light); color: var(--nand); }
+.badge-hbm { background: var(--hbm-light); color: var(--hbm); }
+.badge-dram { background: var(--dram-light); color: var(--dram); }
+.product-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.product-explainer {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 28px;
+}
+.product-explainer-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.product-explainer p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 780px;
+}
+.product-explainer strong { color: var(--text); }
+.product-body {
+  padding: 24px 28px;
+}
+.product-body h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* company voice cards */
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.voice-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.voice-company {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.vc-stx { color: var(--hdd); }
+.vc-wdc { color: #a04520; }
+.vc-sndk { color: var(--nand); }
+.vc-skh { color: var(--hbm); }
+.vc-sam { color: var(--dram); }
+.voice-card ul {
+  padding-left: 14px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.voice-card li { margin-bottom: 5px; }
+.voice-card li:last-child { margin-bottom: 0; }
+
+/* consensus / divergence */
+.consensus-box {
+  background: #f0f7ef;
+  border: 1px solid rgba(26,122,90,.2);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.consensus-box strong { color: var(--nand); }
+.diverge-box {
+  background: #fdf4e3;
+  border: 1px solid rgba(200,151,58,.25);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.diverge-box strong { color: var(--gold); }
+
+/* ── FINANCIAL TABLE ─────────────────────────────────────── */
+.fin-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 32px;
+}
+.fin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.fin-table th {
+  background: var(--navy);
+  color: rgba(255,255,255,.85);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .05em;
+  padding: 11px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+.fin-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-family: 'DM Mono', monospace;
+  font-size: 12.5px;
+}
+.fin-table tr:nth-child(even) td { background: var(--bg); }
+.fin-table td:first-child {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.beat { color: var(--positive); font-weight: 600; }
+.miss { color: var(--miss); }
+.inline { color: var(--neutral); }
+
+/* ── COMPANY DEEP DIVE ────────────────────────────────────── */
+.company-accordion {
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.accordion-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: var(--surface);
+  transition: background .15s;
+  user-select: none;
+}
+.accordion-header:hover { background: #f9f8f6; }
+.accordion-header.open { background: var(--navy); }
+.accordion-left { display: flex; align-items: center; gap: 16px; }
+.accordion-ticker {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  min-width: 56px;
+  text-align: center;
+}
+.at-stx { background: var(--hdd-light); color: var(--hdd); }
+.at-wdc { background: #faeee8; color: #a04520; }
+.at-sndk { background: var(--nand-light); color: var(--nand); }
+.at-skh { background: var(--hbm-light); color: var(--hbm); }
+.at-sam { background: var(--dram-light); color: var(--dram); }
+.accordion-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--navy);
+}
+.accordion-header.open .accordion-name { color: #fff; }
+.accordion-rev {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.accordion-header.open .accordion-rev { color: rgba(255,255,255,.55); }
+.accordion-arrow {
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform .2s;
+}
+.accordion-header.open .accordion-arrow {
+  transform: rotate(180deg);
+  color: rgba(255,255,255,.6);
+}
+.accordion-body {
+  display: none;
+  padding: 24px 28px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.accordion-body.open { display: block; }
+.acc-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.kpi-cell {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.kpi-label {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.kpi-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  color: var(--navy);
+  font-weight: 500;
+}
+.kpi-delta {
+  font-size: 11px;
+  margin-top: 2px;
+}
+.kpi-delta.pos { color: var(--positive); }
+.kpi-delta.neg { color: var(--miss); }
+.acc-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  margin-top: 20px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.acc-bullets {
+  padding-left: 16px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.acc-bullets li { margin-bottom: 7px; }
+.acc-bullets strong { color: var(--text); }
+.analyst-note {
+  background: var(--navy);
+  color: rgba(255,255,255,.75);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  font-size: 13px;
+  line-height: 1.65;
+  font-style: italic;
+}
+.analyst-note strong { color: var(--gold); font-style: normal; }
+.guidance-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.guide-cell {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.guide-cell .g-label { font-size: 10px; letter-spacing:.1em; text-transform:uppercase; color: var(--text-muted); margin-bottom:4px; }
+.guide-cell .g-val { font-family:'DM Mono',monospace; font-size:14px; color:var(--navy); font-weight:600; }
+
+/* ── RISK SECTION ─────────────────────────────────────────── */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.risk-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--miss);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.risk-card.medium { border-left-color: var(--gold); }
+.risk-card.low { border-left-color: var(--positive); }
+.risk-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--miss);
+  margin-bottom: 6px;
+}
+.risk-card.medium .risk-tag { color: var(--gold); }
+.risk-card.low .risk-tag { color: var(--positive); }
+.risk-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.risk-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ── CONCLUSION ───────────────────────────────────────────── */
+.conclusion-block {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 36px;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 32px;
+}
+.conclusion-block .section-eyebrow { color: var(--gold); }
+.conclusion-block .section-title { color: #fff; }
+.conclusion-block p {
+  font-size: 14.5px;
+  line-height: 1.75;
+  max-width: 780px;
+}
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.conclusion-item {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.conclusion-item .c-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.conclusion-item p {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.6;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  padding: 28px 40px;
+  text-align: center;
+}
+footer p {
+  font-size: 11.5px;
+  color: rgba(255,255,255,.35);
+  line-height: 1.7;
+}
+footer a { color: rgba(255,255,255,.5); }
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .quick-stats { grid-template-columns: repeat(2, 1fr); }
+  .eco-row { grid-template-columns: 80px 1fr; }
+  .eco-companies { display: none; }
+  .content-section { padding: 32px 20px 60px; }
+  .site-header .nav-links { display: none; }
+  .guidance-row { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="brand">Research Hub · 主題研究</div>
+  <nav class="nav-links">
+    <a href="#">半導體</a>
+    <a href="#">AI 基礎建設</a>
+    <a href="#">儲存產業</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">1Q26 財報整合分析</div>
+  <h1>AI 浪潮下的<span>儲存記憶體</span>超級週期</h1>
+  <p class="hero-sub">五家全球龍頭——Seagate、Western Digital、SanDisk、SK Hynix、Samsung——同步繳出歷史最強季度。這份報告帶你從產業全局看懂這場巨變。</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="label">涵蓋公司</span><span class="val">STX · WDC · SNDK · SK Hynix · Samsung</span></div>
+    <div class="hero-meta-item"><span class="label">財報期間</span><span class="val">2026 年 1 月 — 3 月底</span></div>
+    <div class="hero-meta-item"><span class="label">發布日期</span><span class="val">2026 年 5 月 2 日</span></div>
+  </div>
+</div>
+
+<!-- QUICK STATS BAR -->
+<div class="quick-stats">
+  <div class="stat-cell">
+    <div class="stat-company">STX · Seagate</div>
+    <div class="stat-rev">$3.11B</div>
+    <div class="stat-yoy">↑ 44% YoY</div>
+    <div class="stat-beat">EPS Beat +0.6% · 股價 +15%</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-company">WDC · Western Digital</div>
+    <div class="stat-rev">$3.34B</div>
+    <div class="stat-yoy">↑ 45% YoY</div>
+    <div class="stat-beat">EPS Beat +19.8% · GM 首破 50%</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-company">SNDK · SanDisk</div>
+    <div class="stat-rev">$5.95B</div>
+    <div class="stat-yoy">↑ 97% QoQ</div>
+    <div class="stat-beat">EPS Beat +69% · GM 78.4%</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-company">SK Hynix · 000660</div>
+    <div class="stat-rev">₩52.6T</div>
+    <div class="stat-yoy">↑ 198% YoY</div>
+    <div class="stat-beat">OP Margin 72% · 歷史新高</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-company">Samsung · 005930</div>
+    <div class="stat-rev">₩133.9T</div>
+    <div class="stat-yoy">↑ 69% YoY</div>
+    <div class="stat-beat">DS OP 超越 2025 全年利潤</div>
+  </div>
+</div>
+
+<!-- STICKY NAV TABS -->
+<nav class="sticky-nav">
+  <div class="nav-tab active" onclick="switchTab('overview')">產業框架</div>
+  <div class="nav-tab" onclick="switchTab('hdd')">HDD 硬碟</div>
+  <div class="nav-tab" onclick="switchTab('nand')">NAND / SSD</div>
+  <div class="nav-tab" onclick="switchTab('dram')">DRAM / HBM</div>
+  <div class="nav-tab" onclick="switchTab('trends')">共同趨勢</div>
+  <div class="nav-tab" onclick="switchTab('companies')">各公司深度</div>
+  <div class="nav-tab" onclick="switchTab('risks')">風險 · 結論</div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TAB: OVERVIEW -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="tab-overview" class="content-section active">
+  <div class="section-eyebrow">先讀這裡</div>
+  <h2 class="section-title">AI 資料中心需要什麼？——產業地圖</h2>
+  <p class="section-lead">很多人聽說「AI 帶動記憶體需求」，但不清楚具體是哪些產品、各家公司在哪個環節。這份地圖幫你 60 秒建立全局觀，再去看財報數字就不會迷路。</p>
+
+  <div class="ecosystem-wrap">
+    <h3>AI 資料中心的記憶體與儲存分工</h3>
+    <p class="eco-sub">速度最快的在最上層，容量最大的在最底層——每一層都有它不可取代的角色。</p>
+    <div class="eco-stack">
+
+      <div class="eco-row">
+        <div class="eco-label">最快<br>最貴<br>最小</div>
+        <div class="eco-bar eco-bar-hbm">
+          <div class="bar-name">HBM — 高頻寬記憶體（High Bandwidth Memory）</div>
+          <div class="bar-desc">直接堆疊在 AI 晶片（如 NVIDIA GPU）上的專用記憶體。AI 模型訓練時每秒需要處理海量數據，HBM 是唯一能提供足夠速度的選擇。沒有 HBM，就沒有現代 AI 訓練。</div>
+          <div class="bar-meta">速度: 最高 → 容量: 最小 → 單位成本: 最昂貴</div>
+        </div>
+        <div class="eco-companies">
+          <span class="eco-chip chip-hbm">SK Hynix ★ 市場領先</span>
+          <span class="eco-chip chip-hbm">Samsung</span>
+        </div>
+      </div>
+
+      <div class="eco-arrow">AI 推論（Inference）階段往下延伸</div>
+
+      <div class="eco-row">
+        <div class="eco-label">高速<br>較貴</div>
+        <div class="eco-bar eco-bar-dram">
+          <div class="bar-name">Server DRAM — 伺服器動態記憶體</div>
+          <div class="bar-desc">AI 推論運行時，模型需要大量工作記憶體來處理使用者的請求。每台 AI 伺服器需要數百 GB 甚至數 TB 的 DRAM。Agentic AI 興起後，同時服務多個使用者讓 DRAM 需求倍增。</div>
+          <div class="bar-meta">速度: 高 → 容量: 中 → 需求隨 AI 推論規模線性成長</div>
+        </div>
+        <div class="eco-companies">
+          <span class="eco-chip chip-dram">SK Hynix</span>
+          <span class="eco-chip chip-dram">Samsung</span>
+        </div>
+      </div>
+
+      <div class="eco-arrow">熱資料與近線資料層</div>
+
+      <div class="eco-row">
+        <div class="eco-label">中速<br>中等</div>
+        <div class="eco-bar eco-bar-ssd">
+          <div class="bar-name">Enterprise SSD — 企業級固態硬碟（基於 NAND Flash）</div>
+          <div class="bar-desc">AI 推論所需的模型權重、向量資料庫、活躍訓練資料，都存放在企業 SSD 中。比 DRAM 便宜、比傳統硬碟快。AI 伺服器數量爆增讓企業 SSD 需求呈現爆炸性成長。</div>
+          <div class="bar-meta">速度: 中高 → 容量: 中大 → 2026 Q1 資料中心需求 YoY +645%</div>
+        </div>
+        <div class="eco-companies">
+          <span class="eco-chip chip-nand">SanDisk / SNDK ★</span>
+          <span class="eco-chip chip-multi">Samsung</span>
+          <span class="eco-chip chip-nand">SK Hynix</span>
+        </div>
+      </div>
+
+      <div class="eco-arrow">海量冷資料層（Nearline Storage）</div>
+
+      <div class="eco-row">
+        <div class="eco-label">最慢<br>最便宜<br>容量最大</div>
+        <div class="eco-bar eco-bar-hdd">
+          <div class="bar-name">Nearline HDD — 近線硬碟</div>
+          <div class="bar-desc">AI 訓練需要的資料集動輒數十至數百 PB。這些冷資料以極低成本儲存在 HDD 中。每 TB 成本是 SSD 的 1/10，是 AI 訓練資料「大水庫」的唯一可行選擇。Physical AI（自駕、機器人）的合成資料更進一步推升需求。</div>
+          <div class="bar-meta">速度: 較慢 → 容量: 最大 → 每 TB 成本：HDD ≈ $15，SSD ≈ $150</div>
+        </div>
+        <div class="eco-companies">
+          <span class="eco-chip chip-hdd">Seagate / STX ★</span>
+          <span class="eco-chip chip-hdd">Western Digital / WDC</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-eyebrow">為什麼這季如此特別</div>
+  <h2 class="section-title">五家公司為何同時創下歷史紀錄？</h2>
+  <p class="section-lead">過去，HDD、NAND、DRAM 各有各的景氣週期，此起彼落。這一季，四個儲存/記憶體層次「同步爆發」，原因只有一個：AI 資料中心的全面擴張，對每一層都產生了前所未有的拉力。</p>
+
+  <div class="fin-table-wrap">
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>指標</th>
+          <th>STX（HDD）</th>
+          <th>WDC（HDD）</th>
+          <th>SNDK（NAND）</th>
+          <th>SK Hynix（DRAM/HBM）</th>
+          <th>Samsung（全品類）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>財報期間</td>
+          <td>FY26 Q3（至 4/3）</td>
+          <td>FY26 Q3（至 4/3）</td>
+          <td>FY26 Q3（至 4/3）</td>
+          <td>1Q26（至 3/31）</td>
+          <td>1Q26（至 3/31）</td>
+        </tr>
+        <tr>
+          <td>營收</td>
+          <td>$3.112B</td>
+          <td>$3.337B</td>
+          <td>$5.950B</td>
+          <td>₩52.6T (~$35.5B)</td>
+          <td>₩133.9T (~$90B)</td>
+        </tr>
+        <tr>
+          <td>YoY 成長</td>
+          <td class="beat">+44.1%</td>
+          <td class="beat">+45.5%</td>
+          <td class="beat">+251%*</td>
+          <td class="beat">+198%</td>
+          <td class="beat">+69%（DS +225%）</td>
+        </tr>
+        <tr>
+          <td>毛利率</td>
+          <td>46.5%</td>
+          <td>50.2% 🏆</td>
+          <td>78.4% 🏆</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>營業利益率</td>
+          <td>32.1%</td>
+          <td>35.7%</td>
+          <td>69.1%</td>
+          <td class="beat">72% 🏆歷史新高</td>
+          <td>DS ~66%</td>
+        </tr>
+        <tr>
+          <td>EPS vs. 預期</td>
+          <td class="beat">Beat +0.6%</td>
+          <td class="beat">Beat +19.8%</td>
+          <td class="beat">Beat +69% 🏆</td>
+          <td class="inline">符合預期</td>
+          <td class="beat">大幅超預期</td>
+        </tr>
+        <tr>
+          <td>FCF（自由現金流）</td>
+          <td>$953M</td>
+          <td>$978M</td>
+          <td>$4.41B</td>
+          <td>淨現金部位 ₩35T</td>
+          <td>歷史新高</td>
+        </tr>
+        <tr>
+          <td>下季 Q4 / 2Q26 展望</td>
+          <td>$3.45B ±$100M</td>
+          <td>$3.65B ±$100M</td>
+          <td>$7.75–8.25B 🚀</td>
+          <td>出貨持續成長</td>
+          <td>短缺延續至 2027+</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:-20px;margin-bottom:40px;">* SNDK +251% YoY 含分拆效應，更具意義的指標為 QoQ +97%。</p>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TAB: HDD -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="tab-hdd" class="content-section">
+  <div class="section-eyebrow">產品視角 · HDD</div>
+  <h2 class="section-title">Nearline HDD：AI 訓練資料的「大水庫」</h2>
+  <p class="section-lead">Seagate 與 Western Digital 是全球僅剩的兩大 HDD 製造商。這季他們同步繳出歷史性成績，背後是相同的驅動力——但技術路線與財務策略各有側重。</p>
+
+  <div class="product-block">
+    <div class="product-header hdd">
+      <div>
+        <h3>什麼是 Nearline HDD？為何 AI 讓它更旺？</h3>
+        <p style="font-size:13.5px;color:var(--text-muted);margin-top:6px;max-width:680px;line-height:1.65;">傳統認知是「HDD 快被 SSD 淘汰」，但 AI 時代反轉了這個敘事。</p>
+      </div>
+      <span class="product-type-badge badge-hdd">Nearline HDD</span>
+    </div>
+    <div class="product-explainer">
+      <div class="product-explainer-label">背景知識</div>
+      <p>AI 模型訓練需要海量資料——GPT 等大型模型的訓練資料集動輒數百 PB（Petabytes）。這些資料的特徵是「偶爾讀取、長期保存、容量極大」，這正是 <strong>Nearline HDD 的強項</strong>。每 TB 成本約 $15（vs. SSD 的 $150），使 HDD 成為 AI 訓練資料儲存的唯一經濟可行選擇。新興的 Physical AI（自動駕駛、機器人）還需要大量合成資料，進一步擴大了 HDD 的需求空間。<strong>HAMR（Heat-Assisted Magnetic Recording）</strong> 是下一代 HDD 核心技術，透過雷射加熱來寫入更密集的資料，可將單碟容量提升 30-50%，帶動成本下降與毛利率提升。</p>
+    </div>
+    <div class="product-body">
+      <h4>各公司在 HDD 的說法與現況</h4>
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="voice-company vc-stx">STX · Seagate — HDD 技術先行者</div>
+          <ul>
+            <li>Mozaic HAMR 已完成與<strong>全球前五大雲端業者</strong>的資格認證</li>
+            <li>Mosaic 4+ 可達 44TB/碟，Mosaic 5 目標 50TB（2027 底）</li>
+            <li>HAMR 出貨佔比預計 2026 年底超越傳統 PMR</li>
+            <li>所有 nearline 產能已透過 Build-to-Order 合約鎖定至 2027 年</li>
+            <li>FCF $953M，為 8 年新高</li>
+          </ul>
+        </div>
+        <div class="voice-card">
+          <div class="voice-company vc-wdc">WDC · Western Digital — 純 HDD 聚焦策略</div>
+          <ul>
+            <li>2025 年 2 月完成 SanDisk 分拆，<strong>成為純 HDD 公司</strong>，財務結構大幅簡化</li>
+            <li>HAMR 40-44TB 碟進入 4 家客戶認證；40TB EPMR 同時獲 3 家客戶認證</li>
+            <li>UltraSMR 技術：全球前三大客戶已全面採用</li>
+            <li>毛利率首破 50%（歷史里程碑），管理層預計 Q4 可達 51-52%</li>
+            <li>負債從分拆前 $8B+ 降至 $1.6B，財務彈性大幅提升</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="consensus-box">
+        <strong>兩家共同說法：</strong> STX 與 WDC 在法說會上高度一致——「AI 驅動的資料經濟正在創造對高容量 HDD 前所未有的需求」、nearline 產能幾乎全數售罄至 2026-2027 年、HAMR 是唯一能在 TCO（總擁有成本）上持續領先 SSD 的技術路線。兩家均強調長期資料儲存成長 CAGR 將超過 25%，且 Physical AI 帶來的合成資料需求是全新的增量。
+      </div>
+
+      <div class="diverge-box">
+        <strong>差異點：</strong> STX 在 HAMR 商業化進度上略為領先（已完成前 5 大 CSP 認證）；WDC 則以「純 HDD 後的資產負債表改善」和「UltraSMR + HAMR 雙線並行」作為差異化主軸。資本配置哲學上，兩者均極度精簡 CAPEX（WDC 單季僅 $145M），以最小投入撬動最大利潤。
+      </div>
+
+      <h4 style="margin-top:24px;">本季關鍵技術里程碑</h4>
+      <div class="fin-table-wrap">
+        <table class="fin-table">
+          <thead>
+            <tr><th>技術</th><th>STX 現況</th><th>WDC 現況</th><th>重要性</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>HAMR 認證</td>
+              <td class="beat">前 5 大 CSP 完成</td>
+              <td class="beat">4 家客戶進行中</td>
+              <td>認證完成 = 大量出貨開始</td>
+            </tr>
+            <tr>
+              <td>最大容量碟</td>
+              <td>44TB/碟（Mosaic 4+）</td>
+              <td>40TB EPMR / 44TB HAMR</td>
+              <td>密度越高，單位 TB 成本越低</td>
+            </tr>
+            <tr>
+              <td>HAMR 量產時程</td>
+              <td>2026 年加速，2026 底超越 PMR</td>
+              <td>HAMR 量產定為 2027 年初</td>
+              <td>量產落地 = 毛利率進一步提升</td>
+            </tr>
+            <tr>
+              <td>合約能見度</td>
+              <td class="beat">BTO 合約鎖至 2027 年</td>
+              <td class="beat">產能幾乎售罄至 2026 底</td>
+              <td>可預測收入，定價保護</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TAB: NAND/SSD -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="tab-nand" class="content-section">
+  <div class="section-eyebrow">產品視角 · NAND / SSD</div>
+  <h2 class="section-title">NAND Flash 與企業 SSD：推論端的新引擎</h2>
+  <p class="section-lead">SanDisk（SNDK）是本季最大的驚喜——毛利率 78.4%、EPS 超預期 69%、Q4 指引較 Q3 再跳升 34%。這不只是景氣復甦，而是商業模式的根本性轉型。</p>
+
+  <div class="product-block">
+    <div class="product-header nand">
+      <div>
+        <h3>什麼是 NAND Flash？Enterprise SSD 的 AI 角色？</h3>
+      </div>
+      <span class="product-type-badge badge-nand">NAND / eSSD</span>
+    </div>
+    <div class="product-explainer">
+      <div class="product-explainer-label">背景知識</div>
+      <p><strong>NAND Flash</strong> 是所有固態硬碟（SSD）的核心儲存晶片，也是你手機、電腦儲存空間的基礎。在 AI 資料中心，<strong>Enterprise SSD（企業級 SSD）</strong>扮演「熱資料」儲存的角色——AI 推論時，模型權重、向量資料庫、使用者查詢記錄等「頻繁讀取」的資料都存在這裡。隨著 AI 推論服務規模化（每天數十億次查詢），企業 SSD 需求以指數級成長。SanDisk（原隸屬 Western Digital，2025 年 2 月分拆獨立）是全球最大的獨立 NAND 廠之一，與日本 Kioxia 共同經營 NAND 製造合資公司。</p>
+    </div>
+    <div class="product-body">
+      <h4>SanDisk（SNDK）本季最大亮點：NBM 新商業模式</h4>
+      <div class="voice-grid">
+        <div class="voice-card" style="grid-column: 1/-1;max-width:680px;">
+          <div class="voice-company vc-sndk">SNDK · SanDisk — 本季最大驚喜</div>
+          <ul>
+            <li><strong>NBM（New Business Model）革命：</strong>與 5 家客戶簽署多年期合約，含逾 $110 億可執行財務保證。本季 3 份新合約提供最低 $420 億保障收入</li>
+            <li>超過 1/3 的 FY2027 bit 供應已在 NBM 框架下鎖定——這是傳統 NAND 業者從未做過的事</li>
+            <li>企業 SSD 價格 Q3 上漲 33-38% QoQ，供需嚴重失衡</li>
+            <li>Datacenter 營收 QoQ +233%，TLC 企業 SSD 是核心驅動力</li>
+            <li>BiCS8（次世代 3D NAND 製程）佔出貨 15%，目標 FY2026 底達到多數</li>
+            <li>QLC Stargate 解決方案（為超大規模資料中心設計）預計下季開始出貨</li>
+            <li>零負債 + 現金 $3.7B + 宣布 $60 億股票回購計劃</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="consensus-box" style="background:#e8f5f0;border-color:rgba(26,122,90,.25);">
+        <strong>NBM 模式是什麼？為什麼重要？</strong><br>
+        傳統 NAND 業者每季與採購商議價，價格隨供需大幅波動（過去曾從高點跌 70%）。NBM 模式讓 SanDisk 像 SaaS 公司一樣——客戶預付長期承諾，換取供應保障；SanDisk 換取可預測的高毛利收入流。78% 的毛利率已接近軟體公司水準，徹底脫離傳統 NAND 商品化競爭。
+      </div>
+
+      <div class="diverge-box">
+        <strong>風險點：</strong> NBM 合約的法律可執行性、客戶違約風險及收入認列時間點均有不確定性。Q4 指引 $7.75-8.25B 的跳升幅度在業界極為罕見，市場對此一轉型尚未完全定價，也意味著執行風險。
+      </div>
+
+      <h4 style="margin-top:24px;">SNDK 本季財務數字</h4>
+      <div class="fin-table-wrap">
+        <table class="fin-table">
+          <thead>
+            <tr><th>業務分部</th><th>Q3 FY26 營收</th><th>QoQ</th><th>YoY</th><th>說明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Datacenter（企業 SSD）</td><td class="beat">$1.47B</td><td class="beat">+233%</td><td class="beat">+645%</td><td>AI 推論需求爆發</td></tr>
+            <tr><td>Edge（PC / 手機）</td><td>$3.16B</td><td class="beat">+118%</td><td class="beat">+大幅</td><td>On-device AI 帶動升級</td></tr>
+            <tr><td>Consumer（消費型）</td><td>$0.82B</td><td class="miss">-10%</td><td>+52%</td><td>季節性回落，屬正常</td></tr>
+            <tr><td>整體</td><td class="beat">$5.95B</td><td class="beat">+97%</td><td>—</td><td>大幅超越指引 $4.4-4.8B</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TAB: DRAM/HBM -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="tab-dram" class="content-section">
+  <div class="section-eyebrow">產品視角 · DRAM / HBM</div>
+  <h2 class="section-title">DRAM 與 HBM：AI 訓練的「神經系統」</h2>
+  <p class="section-lead">SK Hynix 以 72% 的營業利益率創下歷史新高；Samsung 本季利潤超越 2025 全年。背後是 HBM 供不應求的極度緊缺，以及兩家的激烈競爭。</p>
+
+  <div class="product-block">
+    <div class="product-header hbm">
+      <div>
+        <h3>HBM vs. DRAM：都是記憶體，差在哪裡？</h3>
+      </div>
+      <span class="product-type-badge badge-hbm">HBM / DRAM</span>
+    </div>
+    <div class="product-explainer">
+      <div class="product-explainer-label">背景知識</div>
+      <p><strong>DRAM（動態隨機存取記憶體）</strong> 是電腦最基本的工作記憶體——你電腦裡的 RAM 就是 DRAM。AI 伺服器需要大量 DRAM 來同時處理多個用戶的推論請求（128GB 以上的高容量模組是新標準）。<strong>HBM（高頻寬記憶體）</strong> 則是 DRAM 的「超級強化版」——多層 DRAM 晶片垂直堆疊，透過數千個微小連接點直接貼合在 GPU 旁，速度是普通 DRAM 的 10-15 倍，但成本也高出 10 倍以上。NVIDIA 的 H100、H200、B200，以及最新的 <strong>Vera Rubin 平台</strong>，都需要大量 HBM 才能運作。沒有 HBM，就沒有現代 AI 訓練。全球 HBM 主要供應商只有兩家：SK Hynix（市佔約 57%）和 Samsung。</p>
+    </div>
+    <div class="product-body">
+      <h4>SK Hynix vs. Samsung：HBM 霸主之爭</h4>
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="voice-company vc-skh">SK Hynix — 全球 HBM 市場領導者（市佔 ~57%）</div>
+          <ul>
+            <li><strong>「HBM4 未來三年的客戶需求已超過我們的生產能力」</strong>——法說會最強烈的一句話</li>
+            <li>DRAM ASP QoQ +mid-60%；NAND ASP QoQ +mid-70%</li>
+            <li>HBM4 量產中，HBM4E 樣品預計 H2 2026，量產目標 2027</li>
+            <li>Yongin 新廠 Phase 1 提前 3 個月（2027/2，原 2027/5）</li>
+            <li>宣稱 AI 需求已進入「結構性轉移」，超越週期性分析框架</li>
+            <li>SK Group 董事長預測：晶圓短缺將延續至 2030 年</li>
+          </ul>
+        </div>
+        <div class="voice-card">
+          <div class="voice-company vc-sam">Samsung — 最大追趕者，本季最大驚喜</div>
+          <ul>
+            <li>2026/2 宣布<strong>全球首家量產 HBM4</strong>，已開始對 NVIDIA Vera Rubin 供貨</li>
+            <li>HBM4 產能已全數售罄（fully booked）</li>
+            <li>HBM4E 樣品預計 Q2 2026 出貨，2026 年 HBM 營收預計成長超 3 倍</li>
+            <li>「需求履行率創歷史最低點」——客戶爭相搶貨而非等待降價</li>
+            <li>客戶已開始預訂 2027 年供應</li>
+            <li>DS 部門 OP $53.7T，佔集團利潤 94%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="consensus-box">
+        <strong>兩家法說會的共同警告：</strong> Samsung 記憶體業務主管與 SK Hynix 高管，都在法說會上明確表示「重大短缺（significant shortages）」預計至少持續至 2027 年以上，且 2027 年的供需缺口可能比 2026 年更大。客戶已主動將 2027 年需求提前預訂，這在業界歷史上極為罕見。
+      </div>
+
+      <div class="diverge-box">
+        <strong>競爭態勢差異：</strong> SK Hynix 在 HBM3E 階段就已是絕對領先者，HBM4 也預計繼續保持。Samsung 雖在 HBM3E 階段落後，但搶先宣布 HBM4 量產（特別是為 Vera Rubin 供貨），是追趕 SK Hynix 的關鍵策略棋步。此外，Samsung 需面對 Foundry（晶圓代工）和 System LSI 虧損的壓力，以及德州 Taylor 廠的 CAPEX 承諾，地緣政治複雜度更高。
+      </div>
+
+      <h4 style="margin-top:24px;">SK Hynix 財務快照</h4>
+      <div class="fin-table-wrap">
+        <table class="fin-table">
+          <thead>
+            <tr><th>指標</th><th>1Q26 實際</th><th>QoQ</th><th>YoY</th><th>市場預期</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>合併營收</td><td>₩52.6T</td><td class="beat">+60%</td><td class="beat">+198%</td><td class="miss">₩53.55T（小幅未達）</td></tr>
+            <tr><td>營業利益</td><td class="beat">₩37.6T</td><td class="beat">+95%</td><td class="beat">+13x</td><td>₩37.61T（符合）</td></tr>
+            <tr><td>OP Margin</td><td class="beat">72%（歷史最高）</td><td>—</td><td>vs. ~16%</td><td>—</td></tr>
+            <tr><td>DRAM ASP</td><td class="beat">QoQ +mid-60%</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>NAND ASP</td><td class="beat">QoQ +mid-70%</td><td>—</td><td>—</td><td>NAND 出貨量 -10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="margin-top:24px;">Samsung DS 部門財務快照</h4>
+      <div class="fin-table-wrap">
+        <table class="fin-table">
+          <thead>
+            <tr><th>部門</th><th>1Q26 營收</th><th>1Q26 OP</th><th>OP Margin</th><th>備注</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>DS（半導體總計）</td><td class="beat">₩81.7T</td><td class="beat">₩53.7T</td><td>~66%</td><td>佔集團利潤 94%</td></tr>
+            <tr><td>▶ Memory（記憶體）</td><td class="beat">₩74.8T</td><td>~₩49T（估）</td><td>~65%</td><td>2025 全年利潤 ₩43.6T</td></tr>
+            <tr><td>▶ Foundry/System LSI</td><td>—</td><td class="miss">-₩1T+（虧損）</td><td>虧損</td><td>持續虧損但正在收窄</td></tr>
+            <tr><td>全公司合計</td><td>₩133.9T</td><td class="beat">₩57.2T 歷史新高</td><td>42.7%</td><td>超越 2025 全年利潤</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TAB: TRENDS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="tab-trends" class="content-section">
+  <div class="section-eyebrow">跨公司比較</div>
+  <h2 class="section-title">五家法說會說了什麼？——共同訊號與分歧解讀</h2>
+  <p class="section-lead">當全球五大儲存記憶體公司同時在法說會上說出相似的話，那就不是巧合，而是產業信號。以下整理他們的一致說法、以及值得注意的差異。</p>
+
+  <div class="section-eyebrow" style="margin-bottom:16px;">七大共同主題</div>
+  <div class="theme-grid">
+    <div class="theme-card t-ai">
+      <div class="theme-num">01</div>
+      <h4>AI 驅動需求是結構性轉移，非週期反彈</h4>
+      <p>五家公司均在法說會上明確表示，這不是庫存回補的週期性反彈，而是 AI 基礎設施建設帶來的質性變化。SK Hynix 更明確使用「Structural Shift（結構性轉移）」的說法。</p>
+      <div class="theme-companies">
+        <span class="eco-chip chip-hdd">STX</span><span class="eco-chip chip-hdd">WDC</span>
+        <span class="eco-chip chip-nand">SNDK</span><span class="eco-chip chip-hbm">SK Hynix</span><span class="eco-chip chip-dram">Samsung</span>
+      </div>
+    </div>
+    <div class="theme-card t-supply">
+      <div class="theme-num">02</div>
+      <h4>供不應求，短缺至少延伸至 2027 年以上</h4>
+      <p>Samsung 記憶體主管說「需求履行率創歷史最低點」；SK Hynix 說「客戶積極搶貨而非等待降價」；STX/WDC 說 nearline 產能幾乎全數透過 BTO 合約預訂至 2027 年。所有人都在說同一件事：供給跟不上需求。</p>
+      <div class="theme-companies">
+        <span class="eco-chip chip-hbm">SK Hynix</span><span class="eco-chip chip-dram">Samsung</span>
+        <span class="eco-chip chip-hdd">STX</span><span class="eco-chip chip-hdd">WDC</span>
+      </div>
+    </div>
+    <div class="theme-card t-price">
+      <div class="theme-num">03</div>
+      <h4>定價全面強勢：ASP 急漲，定價能力轉向賣方</h4>
+      <p>SK Hynix DRAM ASP 單季 +mid-60%；NAND ASP +mid-70%。SNDK 企業 SSD 價格 +33-38% QoQ。STX/WDC 宣稱「定價策略不變」但每 EB 售價持續上升。市場定價話語權已全面轉移至供應商。</p>
+      <div class="theme-companies">
+        <span class="eco-chip chip-hbm">SK Hynix</span><span class="eco-chip chip-nand">SNDK</span>
+        <span class="eco-chip chip-hdd">STX</span><span class="eco-chip chip-hdd">WDC</span>
+      </div>
+    </div>
+    <div class="theme-card t-contract">
+      <div class="theme-num">04</div>
+      <h4>多年期合約化浪潮：能見度延伸至 2027-2028</h4>
+      <p>STX 的 Build-to-Order 合約、WDC 的 4-5 年能見度表述、SNDK 的 $420 億 NBM 保障合約、Samsung/SK Hynix 稱客戶預訂 2027 年產能——整個產業正在從「季度議價」走向「長約鎖定」。</p>
+      <div class="theme-companies">
+        <span class="eco-chip chip-hdd">STX</span><span class="eco-chip chip-hdd">WDC</span>
+        <span class="eco-chip chip-nand">SNDK</span><span class="eco-chip chip-hbm">SK Hynix</span><span class="eco-chip chip-dram">Samsung</span>
+      </div>
+    </div>
+    <div class="theme-card t-tech">
+      <div class="theme-num">05</div>
+      <h4>次世代技術急速商業化，技術溢價拉大</h4>
+      <p>STX/WDC 的 HAMR、SNDK 的 BiCS8、SK Hynix 的 HBM4/1Cnm、Samsung 的 HBM4 量產——技術迭代的速度比市場預期快，且先進技術帶來顯著定價溢價，落後者的競爭劣勢持續擴大。</p>
+      <div class="theme-companies">
+        <span class="eco-chip chip-hdd">STX HAMR</span><span class="eco-chip chip-hdd">WDC HAMR</span>
+        <span class="eco-chip chip-nand">SNDK BiCS8</span><span class="eco-chip chip-hbm">SK HBM4</span><span class="eco-chip chip-dram">Sam HBM4</span>
+      </div>
+    </div>
+    <div class="theme-card t-margin">
+      <div class="theme-num">06</div>
+      <h4>利潤率集體創新高，FCF 爆發</h4>
+      <p>五家公司毛利率/OP margin 全面創歷史新高或多年高點：SNDK GM 78.4%、SK Hynix OP 72%、Samsung DS OP ~66%、WDC GM 50%、STX GM 47%。自由現金流也同步飆升，股東回報力度顯著加強。</p>
+      <div class="theme-companies">
+        <span class="eco-chip chip-hdd">STX</span><span class="eco-chip chip-hdd">WDC</span>
+        <span class="eco-chip chip-nand">SNDK</span><span class="eco-chip chip-hbm">SK Hynix</span><span class="eco-chip chip-dram">Samsung</span>
+      </div>
+    </div>
+    <div class="theme-card t-ai">
+      <div class="theme-num">07</div>
+      <h4>Agentic AI 成為新一波需求催化劑</h4>
+      <p>SK Hynix 和 Samsung 均在法說會中明確提及 AI 從「大型模型訓練」轉向「Agentic AI（自主決策、即時推理）」，後者對 DRAM、NAND、HDD 的需求有額外拉動。SNDK 也上修資料中心成長預期從「60% 中段」至「70% 中段」。</p>
+      <div class="theme-companies">
+        <span class="eco-chip chip-hbm">SK Hynix</span><span class="eco-chip chip-dram">Samsung</span>
+        <span class="eco-chip chip-nand">SNDK</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-eyebrow" style="margin-bottom:16px;">值得注意的分歧</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:24px;">各公司的差異化敘事</h3>
+
+  <div class="fin-table-wrap">
+    <table class="fin-table">
+      <thead>
+        <tr><th>比較維度</th><th>STX</th><th>WDC</th><th>SNDK</th><th>SK Hynix</th><th>Samsung</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>商業模式轉型幅度</td>
+          <td>漸進（BTO 合約）</td>
+          <td>漸進（純 HDD 聚焦）</td>
+          <td class="beat">激進（NBM 長約革命）</td>
+          <td>持續（HBM 領先）</td>
+          <td>追趕（HBM4 反超）</td>
+        </tr>
+        <tr>
+          <td>CAPEX 策略</td>
+          <td>謹慎（+110% YoY 但仍精準）</td>
+          <td class="beat">極度精簡（$145M/季）</td>
+          <td>輕資產（Kioxia JV）</td>
+          <td>大幅增加（新廠擴產）</td>
+          <td class="miss">史上最高（₩110T/年）</td>
+        </tr>
+        <tr>
+          <td>最大特有挑戰</td>
+          <td>Edge IoT 季節性疲軟</td>
+          <td>HAMR 認證時程風險</td>
+          <td>NBM 合約執行風險</td>
+          <td>晶圓產能擴充緩慢</td>
+          <td class="miss">HBM 落後 + Foundry 虧損 + 地緣政治</td>
+        </tr>
+        <tr>
+          <td>股東回報力度</td>
+          <td>股利調升 + 持續去槓桿</td>
+          <td>股利 +20% + $752M 回購</td>
+          <td class="beat">$60B 回購計劃（最大）</td>
+          <td>淨現金大幅增加</td>
+          <td>CAPEX 為主，現金回報次要</td>
+        </tr>
+        <tr>
+          <td>地緣政治敏感度</td>
+          <td>低（有指引保護）</td>
+          <td>低（純 HDD）</td>
+          <td>中（Kioxia JV 緩衝）</td>
+          <td>中（中美科技脫鉤）</td>
+          <td class="miss">高（Taylor 廠 + 中東供應鏈）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-eyebrow" style="margin-bottom:16px;">分析師觀點</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:16px;">為何分析師系統性低估了這季？</h3>
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">五家公司全數超預期，其中 SNDK EPS 超出 69%，顯示市場對整個產業的盈利模式理解有根本性落差：</p>
+
+  <div class="fin-table-wrap">
+    <table class="fin-table">
+      <thead>
+        <tr><th>公司</th><th>EPS 超出幅度</th><th>分析師低估的核心原因</th><th>股價反應</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>STX</td><td class="beat">+0.6%（但 FCF 大超）</td><td>低估 HAMR 認證速度及 BTO 定價保護能力對毛利率的貢獻</td><td class="beat">+15%</td></tr>
+        <tr><td>WDC</td><td class="beat">+19.8%</td><td>低估毛利率改善速度——50% 門檻比預期提早 1-2 季達到</td><td class="beat">+4.3%</td></tr>
+        <tr><td>SNDK</td><td class="beat">+69% 🏆</td><td>完全未預見 NBM 合約對收入加速認列的效果；企業 SSD ASP 遠超預期</td><td>財報後持平（已高漲）</td></tr>
+        <tr><td>SK Hynix</td><td class="inline">符合預期</td><td>OP 符合，營收小幅未達；市場已高度定價，重點在前瞻展望</td><td>持平</td></tr>
+        <tr><td>Samsung</td><td class="beat">大幅超預期</td><td>低估 HBM4 量產進展速度及傳統 DRAM 定價強勁程度</td><td>小幅上漲</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TAB: COMPANIES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="tab-companies" class="content-section">
+  <div class="section-eyebrow">各公司深度</div>
+  <h2 class="section-title">完整財報數字與法說會細節</h2>
+  <p class="section-lead">點擊各公司展開完整的財務指標、Guidance 與法說會核心訊息。</p>
+
+  <!-- STX -->
+  <div class="company-accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-left">
+        <span class="accordion-ticker at-stx">STX</span>
+        <div>
+          <div class="accordion-name">Seagate Technology</div>
+          <div class="accordion-rev">Nearline HDD · FY26 Q3（截至 2026/4/3）</div>
+        </div>
+      </div>
+      <span class="accordion-arrow">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="acc-kpi-grid">
+        <div class="kpi-cell"><div class="kpi-label">營收</div><div class="kpi-val">$3.112B</div><div class="kpi-delta pos">+44.1% YoY</div></div>
+        <div class="kpi-cell"><div class="kpi-label">毛利率</div><div class="kpi-val">46.5%</div><div class="kpi-delta pos">+1,131 bps YoY</div></div>
+        <div class="kpi-cell"><div class="kpi-label">OP Margin</div><div class="kpi-val">32.1%</div><div class="kpi-delta pos">+1,212 bps YoY</div></div>
+        <div class="kpi-cell"><div class="kpi-label">Non-GAAP EPS</div><div class="kpi-val">$3.27</div><div class="kpi-delta pos">vs. 預期 $3.25</div></div>
+        <div class="kpi-cell"><div class="kpi-label">FCF</div><div class="kpi-val">$953M</div><div class="kpi-delta pos">+503% YoY · 8年高</div></div>
+        <div class="kpi-cell"><div class="kpi-label">股價反應</div><div class="kpi-val">+15%</div><div class="kpi-delta pos">財報後單日</div></div>
+      </div>
+      <div class="acc-section-title">Q4 FY2026 Guidance</div>
+      <div class="guidance-row">
+        <div class="guide-cell"><div class="g-label">營收</div><div class="g-val">$3.45B ±$100M</div></div>
+        <div class="guide-cell"><div class="g-label">Non-GAAP EPS</div><div class="g-val">$5.00 ±$0.20</div></div>
+        <div class="guide-cell"><div class="g-label">OP Margin</div><div class="g-val">lower 40%+ range</div></div>
+      </div>
+      <div class="acc-section-title">法說會核心訊息</div>
+      <ul class="acc-bullets">
+        <li><strong>HAMR 商業化加速：</strong> Mozaic 4+ 達 44TB/碟，已完成全球前 5 大 CSP 認證，HAMR 出貨佔比預計 2026 底超越傳統 PMR</li>
+        <li><strong>Mozaic 5：</strong> 目標 50TB，資格認證出貨預計 2027 底</li>
+        <li><strong>BTO 合約能見度：</strong> 幾乎所有 nearline 產能已透過 Build-to-Order 合約分配至 2027 年，合約鎖定配置與定價</li>
+        <li><strong>年度成長目標上調至 ≥20%：</strong> 較先前 mid-teens 大幅提高</li>
+        <li><strong>定價策略不變：</strong> 明確表示定價不打折扣，每 TB 售價持續上升</li>
+        <li><strong>關稅影響：</strong> 已納入指引，管理層稱對業務基本面影響極小</li>
+        <li>信用評等獲調升；本季退還 $641M 債務</li>
+      </ul>
+      <div class="analyst-note"><strong>分析師觀點：</strong> STX 本季最大亮點在於 HAMR 技術認證進度超預期，搭配創歷史新高的毛利率及 FCF，顯示公司已進入高盈利的 HAMR 商業化週期。+15% 的股價反應反映市場對其技術主導地位的重新定價。HAMR crossover（超越 PMR）預計 2026 底，將是未來 12 個月最重要的追蹤指標。</div>
+    </div>
+  </div>
+
+  <!-- WDC -->
+  <div class="company-accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-left">
+        <span class="accordion-ticker at-wdc">WDC</span>
+        <div>
+          <div class="accordion-name">Western Digital</div>
+          <div class="accordion-rev">純 HDD 公司（分拆後） · FY26 Q3（截至 2026/4/3）</div>
+        </div>
+      </div>
+      <span class="accordion-arrow">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="acc-kpi-grid">
+        <div class="kpi-cell"><div class="kpi-label">營收</div><div class="kpi-val">$3.337B</div><div class="kpi-delta pos">+45.5% YoY</div></div>
+        <div class="kpi-cell"><div class="kpi-label">毛利率</div><div class="kpi-val">50.2%</div><div class="kpi-delta pos">首次突破 50% 🏆</div></div>
+        <div class="kpi-cell"><div class="kpi-label">OP Margin</div><div class="kpi-val">35.7%</div><div class="kpi-delta pos">+253 bps YoY</div></div>
+        <div class="kpi-cell"><div class="kpi-label">Non-GAAP EPS</div><div class="kpi-val">$2.72</div><div class="kpi-delta pos">vs. 預期 $2.27，Beat +19.8%</div></div>
+        <div class="kpi-cell"><div class="kpi-label">FCF</div><div class="kpi-val">$978M</div><div class="kpi-delta pos">+447% YoY</div></div>
+        <div class="kpi-cell"><div class="kpi-label">Cloud 佔比</div><div class="kpi-val">89%</div><div class="kpi-delta pos">$3.0B · +48% YoY</div></div>
+      </div>
+      <div class="acc-section-title">Q4 FY2026 Guidance</div>
+      <div class="guidance-row">
+        <div class="guide-cell"><div class="g-label">營收</div><div class="g-val">$3.65B ±$100M</div></div>
+        <div class="guide-cell"><div class="g-label">Non-GAAP EPS</div><div class="g-val">$3.25 ±$0.15</div></div>
+        <div class="guide-cell"><div class="g-label">毛利率</div><div class="g-val">51–52%</div></div>
+      </div>
+      <div class="acc-section-title">法說會核心訊息</div>
+      <ul class="acc-bullets">
+        <li><strong>純 HDD 策略定位：</strong> SanDisk 分拆後，WDC 聚焦 HDD，負債從 $8B+ 降至 $1.6B，財務結構大幅簡化</li>
+        <li><strong>HAMR 進展：</strong> 40-44TB HAMR 獲 4 家客戶認證；40TB EPMR 獲 3 家認證作為過渡</li>
+        <li><strong>UltraSMR：</strong> 全球前三大客戶已採用，出貨 4.1M 台（118 EB）</li>
+        <li><strong>長期成長：</strong> 長期資料儲存成長 CAGR >25%，能見度延伸至 2028-2029 年</li>
+        <li><strong>股利調升 20%：</strong> 至每季 $0.15/股；本季回購 $752M（2.9M 股）</li>
+        <li><strong>Physical AI：</strong> 強調自動駕駛、機器人等 Physical AI 的合成資料需求是全新增量</li>
+        <li>CAPEX 僅 $145M（極度精簡），以最小投入撬動最大利潤</li>
+      </ul>
+      <div class="analyst-note"><strong>分析師觀點：</strong> WDC 完成 SNDK 分割後，業務聚焦度大幅提升，資產負債表顯著改善。毛利率首破 50% 是歷史里程碑，管理層預計 Q4 可達 51-52%。HAMR 量產定於 2027 年初，將是未來毛利率進一步提升的關鍵驅動力。純 HDD 定位意味未來成長完全依賴 HDD 產業景氣，是主要集中風險。</div>
+    </div>
+  </div>
+
+  <!-- SNDK -->
+  <div class="company-accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-left">
+        <span class="accordion-ticker at-sndk">SNDK</span>
+        <div>
+          <div class="accordion-name">SanDisk Corporation</div>
+          <div class="accordion-rev">NAND Flash / Enterprise SSD · FY26 Q3（截至 2026/4/3）</div>
+        </div>
+      </div>
+      <span class="accordion-arrow">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="acc-kpi-grid">
+        <div class="kpi-cell"><div class="kpi-label">營收</div><div class="kpi-val">$5.950B</div><div class="kpi-delta pos">QoQ +97%；vs. 指引 +30.9%</div></div>
+        <div class="kpi-cell"><div class="kpi-label">毛利率（GAAP）</div><div class="kpi-val">78.4%</div><div class="kpi-delta pos">vs. 上季 22.5% 🏆</div></div>
+        <div class="kpi-cell"><div class="kpi-label">OP Margin</div><div class="kpi-val">69.1%</div><div class="kpi-delta pos">歷史新高</div></div>
+        <div class="kpi-cell"><div class="kpi-label">GAAP EPS（稀釋）</div><div class="kpi-val">$23.03</div><div class="kpi-delta pos">vs. 預期 $13.63，Beat +69%</div></div>
+        <div class="kpi-cell"><div class="kpi-label">FCF</div><div class="kpi-val">$4.41B</div><div class="kpi-delta pos">FCF Margin 74%</div></div>
+        <div class="kpi-cell"><div class="kpi-label">淨負債</div><div class="kpi-val">$0</div><div class="kpi-delta pos">零負債！Cash $3.7B</div></div>
+      </div>
+      <div class="acc-section-title">Q4 FY2026 Guidance（本季最震撼的指引）</div>
+      <div class="guidance-row">
+        <div class="guide-cell"><div class="g-label">營收</div><div class="g-val">$7.75–8.25B</div></div>
+        <div class="guide-cell"><div class="g-label">GAAP EPS</div><div class="g-val">$30.00–$33.00</div></div>
+        <div class="guide-cell"><div class="g-label">毛利率</div><div class="g-val">79–81%</div></div>
+      </div>
+      <div class="acc-section-title">法說會核心訊息——NBM 商業模式革命</div>
+      <ul class="acc-bullets">
+        <li><strong>五份 NBM（New Business Model）合約：</strong> 含逾 $110 億可執行財務保證；超過 1/3 的 FY2027 bit 供應已在 NBM 框架下鎖定</li>
+        <li><strong>$420 億最低保障收入：</strong> 本季簽署的 3 份合約提供至少 $420 億的合約保障收入 backlog</li>
+        <li><strong>企業 SSD 爆發：</strong> TLC 企業 SSD 組合完整，Q3 Datacenter 部門 QoQ +233%</li>
+        <li><strong>QLC Stargate：</strong> 超大規模資料中心導向的 QLC SSD 解決方案，預計下季開始出貨</li>
+        <li><strong>Kioxia JV 延長至 2034 年：</strong> 確保 NAND 供應鏈長期穩定</li>
+        <li><strong>$60 億股票回購計劃：</strong> 資本配置最進取的一家</li>
+        <li>資料中心成長預期上修：從「60% 中段」調升至「70% 中段」</li>
+      </ul>
+      <div class="analyst-note"><strong>分析師觀點：</strong> SNDK 本季是五家公司中最大的驚喜，也是業界結構性轉變最清晰的案例。NBM 合約模式將 NAND 業務從高度週期性的商品化交易，轉型為具有高度可預測現金流的「平台型長約服務」，78% 的毛利率堪比軟體公司。Q4 指引 $8B 中值意味著管理層預計需求持續加速，市場對這場轉型的定價可能尚未完成。</div>
+    </div>
+  </div>
+
+  <!-- SK Hynix -->
+  <div class="company-accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-left">
+        <span class="accordion-ticker at-skh">000660</span>
+        <div>
+          <div class="accordion-name">SK Hynix</div>
+          <div class="accordion-rev">DRAM + HBM + NAND · 1Q26（截至 2026/3/31）</div>
+        </div>
+      </div>
+      <span class="accordion-arrow">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="acc-kpi-grid">
+        <div class="kpi-cell"><div class="kpi-label">合併營收</div><div class="kpi-val">₩52.6T</div><div class="kpi-delta pos">+198% YoY / +60% QoQ</div></div>
+        <div class="kpi-cell"><div class="kpi-label">營業利益</div><div class="kpi-val">₩37.6T</div><div class="kpi-delta pos">約 $27.1B</div></div>
+        <div class="kpi-cell"><div class="kpi-label">OP Margin</div><div class="kpi-val">72%</div><div class="kpi-delta pos">歷史最高 🏆</div></div>
+        <div class="kpi-cell"><div class="kpi-label">淨利率</div><div class="kpi-val">77%</div><div class="kpi-delta pos">淨利 ₩40.3T</div></div>
+        <div class="kpi-cell"><div class="kpi-label">DRAM ASP</div><div class="kpi-val">+mid-60%</div><div class="kpi-delta pos">QoQ</div></div>
+        <div class="kpi-cell"><div class="kpi-label">淨現金部位</div><div class="kpi-val">₩35T</div><div class="kpi-delta pos">單季增加 ₩19.4T</div></div>
+      </div>
+      <div class="acc-section-title">2Q26 展望</div>
+      <div class="guidance-row">
+        <div class="guide-cell"><div class="g-label">DRAM 出貨</div><div class="g-val">QoQ +高個位數%</div></div>
+        <div class="guide-cell"><div class="g-label">NAND 出貨</div><div class="g-val">QoQ +mid-teens%</div></div>
+        <div class="guide-cell"><div class="g-label">定價環境</div><div class="g-val">持續有利</div></div>
+      </div>
+      <div class="acc-section-title">法說會核心訊息</div>
+      <ul class="acc-bullets">
+        <li><strong>最強烈的一句話：</strong> 「HBM4 未來三年的客戶需求已超過我們的生產能力」</li>
+        <li><strong>結構性轉移宣言：</strong> 管理層明確宣稱 AI 驅動記憶體需求已進入「Structural Shift（結構性轉移）」，超越週期性分析框架</li>
+        <li><strong>Agentic AI：</strong> AI 從訓練進化至即時推理，同步帶動 DRAM 與 NAND 需求擴張</li>
+        <li><strong>HBM4E 樣品：</strong> H2 2026 年開始提供，量產目標 2027 年，採用 1Cnm 製程</li>
+        <li><strong>Yongin 廠提前：</strong> Phase 1 提前 3 個月至 2027/2（原 2027/5）</li>
+        <li><strong>晶圓短缺警告：</strong> SK Group 董事長表示全球晶圓短缺可能延續至 2030 年，擴產需 4-5 年</li>
+        <li>「客戶積極搶貨而非等待降價」——定價話語權完全在供應商手上</li>
+      </ul>
+      <div class="analyst-note"><strong>分析師觀點：</strong> SK Hynix 是全球 HBM 市場的絕對領導者，72% 的 OP Margin 遠超所有可比競爭對手。「HBM4 需求超過 3 年產能」的說法意味著至少到 2028 年前，HBM 供不應求的格局不會改變。提前 Yongin 廠擴產節奏顯示管理層對需求能見度高度確信。</div>
+    </div>
+  </div>
+
+  <!-- Samsung -->
+  <div class="company-accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-left">
+        <span class="accordion-ticker at-sam">005930</span>
+        <div>
+          <div class="accordion-name">Samsung Electronics</div>
+          <div class="accordion-rev">記憶體 + HBM + 手機 + Foundry · 1Q26（截至 2026/3/31）</div>
+        </div>
+      </div>
+      <span class="accordion-arrow">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="acc-kpi-grid">
+        <div class="kpi-cell"><div class="kpi-label">合併營收</div><div class="kpi-val">₩133.9T</div><div class="kpi-delta pos">+69% YoY · 歷史新高</div></div>
+        <div class="kpi-cell"><div class="kpi-label">合併 OP</div><div class="kpi-val">₩57.2T</div><div class="kpi-delta pos">超越 2025 全年 🏆</div></div>
+        <div class="kpi-cell"><div class="kpi-label">DS 部門 OP</div><div class="kpi-val">₩53.7T</div><div class="kpi-delta pos">佔集團利潤 94%</div></div>
+        <div class="kpi-cell"><div class="kpi-label">記憶體 OP 成長</div><div class="kpi-val">+4,800%</div><div class="kpi-delta pos">YoY（~48倍）</div></div>
+        <div class="kpi-cell"><div class="kpi-label">2026 CapEx</div><div class="kpi-val">>₩110T</div><div class="kpi-delta neg">+128% YoY · 史上最高</div></div>
+        <div class="kpi-cell"><div class="kpi-label">vs. 預期（OP）</div><div class="kpi-val">大幅超預期</div><div class="kpi-delta pos">vs. ₩55.28T（預期）</div></div>
+      </div>
+      <div class="acc-section-title">前瞻展望</div>
+      <ul class="acc-bullets">
+        <li>記憶體主管：「重大短缺（significant shortages）預計至少持續至 2027 年，2027 年缺口可能更大」</li>
+        <li>HBM4 量產已於 2026/2 啟動（NVIDIA Vera Rubin 平台），HBM4 產能全數售罄</li>
+        <li>HBM4E 樣品預計 Q2 2026 出貨；全年 HBM 營收預計成長逾三倍</li>
+        <li>H2 伺服器 DRAM 需求預計持續強勁，Hyperscaler AI 採購加速</li>
+      </ul>
+      <div class="acc-section-title">法說會核心訊息</div>
+      <ul class="acc-bullets">
+        <li><strong>需求履行率創歷史最低：</strong> 「客戶擔憂供應短缺，已積極將 2027 年需求提前」</li>
+        <li><strong>HBM 競爭策略：</strong> 在 HBM3E 階段落後後，以 HBM4 優先搶占 NVIDIA Vera Rubin 平台，意圖重奪市佔</li>
+        <li><strong>德州 Taylor 廠：</strong> 設備已進場，Fab 1 預計 2026 年啟動，2027 年量產，Q2 起逐步增加投資</li>
+        <li><strong>中東供應鏈：</strong> 從以色列及中東採購部分特種氣體，已備有安全庫存並建立替代路線（美國、日本），整體風險可控</li>
+        <li><strong>Foundry 展望：</strong> 2nm 製程下半年為手機客戶量產，非記憶體業務虧損正在收窄</li>
+        <li><strong>Samsung 在 2025 年的落後：</strong> HBM3E 階段市佔率約 43%（vs. SK Hynix 57%），HBM4 是扳回一城的關鍵</li>
+      </ul>
+      <div class="analyst-note"><strong>分析師觀點：</strong> Samsung 本季最大看點是記憶體 OP ~48 倍的增長，Q1 利潤超越全年 2025 利潤。HBM4 優先搶佔 NVIDIA Vera Rubin 是關鍵策略棋步，有望在 2H26 改善 HBM 市佔率。主動示警 2027 年短缺加劇，可能是管理層刻意引導預期、維護定價能力的策略性說法——當兩大供應商同時示警，往往意味著他們有意維持供應紀律。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TAB: RISKS & CONCLUSION -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="tab-risks" class="content-section">
+  <div class="section-eyebrow">風險監控</div>
+  <h2 class="section-title">需要追蹤的風險因素</h2>
+  <p class="section-lead">本季表現強勁，但以下風險值得持續關注。</p>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-tag">高風險</div>
+      <h4>AI 資本支出泡沫化</h4>
+      <p>超大規模業者（Google、Microsoft、Meta、Amazon）的 AI 基礎建設支出高度集中。若任何主要 CSP 宣布削減 CapEx，需求衝擊將快速傳導至整個儲存產業，五家公司均無法倖免。</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-tag">高風險</div>
+      <h4>SNDK NBM 合約執行風險</h4>
+      <p>$420 億的「最低保障」合約前所未見，實際法律可執行性、客戶違約風險及收入認列時間點，均存在不確定性。若有大型客戶違約，SNDK 的商業模式敘事將面臨嚴峻考驗。</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-tag">高風險</div>
+      <h4>Samsung HBM4 良率風險</h4>
+      <p>Samsung 的 HBM 追趕計劃高度依賴 HBM4 在 Vera Rubin 平台的順利商業化。若 HBM4 遭遇技術問題（如良率不穩），市佔恢復計畫將延後，短缺期間的 pricing power 也可能受影響。</p>
+    </div>
+    <div class="risk-card medium">
+      <div class="risk-tag">中風險</div>
+      <h4>HAMR 認證時程延後（STX / WDC）</h4>
+      <p>若 HAMR 在客戶端遭遇良率或可靠性問題，認證時程可能延後，影響毛利率改善的時間軸。目前 STX 認證進度超預期，但 WDC 的 HAMR 量產仍在路上。</p>
+    </div>
+    <div class="risk-card medium">
+      <div class="risk-tag">中風險</div>
+      <h4>關稅與地緣政治升級</h4>
+      <p>中美科技戰升級（出口管制擴大、關稅提高）可能中斷供應鏈。Samsung 的德州廠建設與中東特種氣體採購尤為敏感。本季各公司表示影響有限，但非為零風險。</p>
+    </div>
+    <div class="risk-card medium">
+      <div class="risk-tag">中風險</div>
+      <h4>消費端需求持續疲軟</h4>
+      <p>企業/AI 需求強勁，但 PC 與手機端的記憶體需求復甦較緩。SK Hynix 和 Samsung 的 NAND 消費型業務若持續疲弱，可能影響整體毛利率組合。STX 的 Edge IoT 部門也是拖累點。</p>
+    </div>
+    <div class="risk-card low">
+      <div class="risk-tag">低風險（目前）</div>
+      <h4>供給擴產後的週期反轉</h4>
+      <p>各公司均有意維持供應紀律，且晶圓產能擴張需要 4-5 年。Samsung 和 SK Hynix 明確表示不以量換價。但如果 AI capex 週期走向放緩，目前的供需緊平衡可能在 2028 年後鬆動。</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="conclusion-block">
+    <div class="section-eyebrow">研究結論</div>
+    <h2 class="section-title" style="color:#fff;margin-bottom:20px;">1Q26 的核心敘事：AI 存儲超級週期，才剛開始</h2>
+    <p>1Q26 是儲存與記憶體產業歷史上最強勁的一季。五家公司同步創下歷史紀錄，且所有跡象指向這僅是更長期超級週期的開始，而非峰值。供應緊缺的警告（延伸至 2027 年以上）、多年期合約的鎖定、次世代技術的加速商業化，三大因素相互疊加，使本次景氣上行的持久性顯著高於過去任何一個週期。</p>
+    <div class="conclusion-grid">
+      <div class="conclusion-item">
+        <div class="c-num">01</div>
+        <p>AI 驅動的儲存需求是「結構性轉移」，不是庫存回補的週期反彈——五家管理層的共識。</p>
+      </div>
+      <div class="conclusion-item">
+        <div class="c-num">02</div>
+        <p>供應紀律是這次週期的最大不同：Samsung 與 SK Hynix 不以削價換量，主動示警 2027 年短缺。</p>
+      </div>
+      <div class="conclusion-item">
+        <div class="c-num">03</div>
+        <p>SNDK 的 NBM 商業模式轉型可能是本季最被低估的投資主題——NAND 正走向「平台型長約收入」。</p>
+      </div>
+      <div class="conclusion-item">
+        <div class="c-num">04</div>
+        <p>HBM 的供不應求可能延續至 2028 年。SK Hynix vs. Samsung 的 HBM 競爭，是 2H26-2027 的最重要觀察點。</p>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;padding:0 0 20px;">資料來源：各公司財報、法說會記錄、SEC 8-K 文件、TrendForce、IDC、公開新聞報導。本報告僅供資訊參考，不構成投資建議。資料截止日：2026 年 5 月 2 日。</p>
+</section>
+
+<footer>
+  <p>Research Hub · 主題研究 · 儲存記憶體產業 1Q26 財報分析<br>
+  資料截止：2026 年 5 月 2 日 &nbsp;|&nbsp; <a href="#">回到首頁</a> &nbsp;|&nbsp; 本報告僅供資訊參考，不構成投資建議</p>
+</footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const map = ['overview','hdd','nand','dram','trends','companies','risks'];
+  tabs[map.indexOf(id)].classList.add('active');
+  window.scrollTo({ top: document.querySelector('.sticky-nav').offsetTop - 2, behavior: 'smooth' });
+}
+
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  // close all
+  document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('open');
+    header.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
+HTMLEOF
