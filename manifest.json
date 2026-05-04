@@ -8,12 +8,12 @@
   "weekly": {
     "url": "https://weekly-market-recap.netlify.app/archive",
     "latest": {
-      "url": "https://weekly-market-recap.netlify.app/reports/2026-04-24",
-      "range": "Apr 20–24",
+      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-01",
+      "range": "Apr 27–May 1",
       "year": "2026",
-      "title": "衝高後震盪，Nasdaq 創歷史新高",
-      "summary": "WTI 突破 <strong>$100</strong>、INTC <strong>+25.6%</strong>、GEV <strong>+16.1%</strong>、ServiceNow 重挫 <strong>-17.7%</strong>",
-      "flags": ["最新", "US", "EU"]
+      "title": "Mag 7 財報驅動分化，S&P 500再創新高",
+      "summary":"GOOGL <strong>+10%</strong>、AAPL <strong>+3%</strong>、META <strong>-9%</strong>",
+      "flags": ["最新", "US"]
     }
   },
   "categories": [
