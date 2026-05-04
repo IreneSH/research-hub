@@ -6,18 +6,18 @@
 <title>英特爾 INTC Q1 2026 財報分析</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; font-size: 17px; line-height: 1.7; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: #f0f4f8; color: #1e293b; min-height: 100vh; font-size: 17px; line-height: 1.7; }
 
   .header {
-    background: linear-gradient(135deg, #1a1f2e 0%, #0f172a 50%, #1e293b 100%);
-    border-bottom: 1px solid #2d3748;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #ede9fe 100%);
+    border-bottom: 1px solid #c7d2fe;
     padding: 36px 44px;
     position: relative; overflow: hidden;
   }
   .header::before {
     content: ''; position: absolute; top: -60px; right: -60px;
     width: 220px; height: 220px;
-    background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
     border-radius: 50%;
   }
   .ticker-badge {
@@ -26,38 +26,38 @@
     color: white; font-size: 15px; font-weight: 700;
     padding: 5px 14px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px;
   }
-  .header h1 { font-size: 32px; font-weight: 800; color: #f0f6fc; line-height: 1.25; }
-  .header .subtitle { color: #8b949e; font-size: 17px; margin-top: 8px; }
+  .header h1 { font-size: 32px; font-weight: 800; color: #1e1b4b; line-height: 1.25; }
+  .header .subtitle { color: #4b5563; font-size: 17px; margin-top: 8px; }
   .date-badge {
     position: absolute; top: 36px; right: 44px;
-    background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.35);
-    color: #a5b4fc; font-size: 14px; padding: 7px 16px; border-radius: 8px;
+    background: rgba(99,102,241,0.10); border: 1px solid rgba(99,102,241,0.35);
+    color: #4338ca; font-size: 14px; padding: 7px 16px; border-radius: 8px; font-weight: 600;
   }
 
   .container { max-width: 1120px; margin: 0 auto; padding: 36px 44px; }
 
   /* STOCK BANNER */
   .stock-banner {
-    background: linear-gradient(135deg, #064e3b, #065f46);
-    border: 1px solid #10b981; border-radius: 18px;
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border: 1px solid #6ee7b7; border-radius: 18px;
     padding: 28px 36px; display: flex; align-items: center; gap: 36px; margin-bottom: 36px;
   }
   .stock-price-block { text-align: center; }
-  .stock-label { font-size: 13px; color: #6ee7b7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-  .stock-val { font-size: 34px; font-weight: 800; color: #fff; }
-  .stock-sub { font-size: 13px; color: #a7f3d0; margin-top: 3px; }
-  .divider-v { width: 1px; background: rgba(16,185,129,0.3); height: 65px; }
+  .stock-label { font-size: 13px; color: #065f46; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 700; }
+  .stock-val { font-size: 34px; font-weight: 800; color: #064e3b; }
+  .stock-sub { font-size: 13px; color: #047857; margin-top: 3px; }
+  .divider-v { width: 1px; background: rgba(5,150,105,0.35); height: 65px; }
   .surge-block { flex: 1; }
-  .surge-pct { font-size: 56px; font-weight: 900; color: #10b981; line-height: 1; }
-  .surge-desc { font-size: 15px; color: #a7f3d0; margin-top: 8px; }
+  .surge-pct { font-size: 56px; font-weight: 900; color: #059669; line-height: 1; }
+  .surge-desc { font-size: 15px; color: #065f46; margin-top: 8px; font-weight: 600; }
   .reason-tags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
-  .tag { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7; font-size: 13px; padding: 4px 12px; border-radius: 20px; }
+  .tag { background: rgba(5,150,105,0.12); border: 1px solid rgba(5,150,105,0.4); color: #065f46; font-size: 13px; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
 
   /* SECTION */
   .section { margin-bottom: 44px; }
   .section-title {
-    font-size: 18px; font-weight: 700; color: #f0f6fc;
-    padding-bottom: 12px; border-bottom: 2px solid #21262d;
+    font-size: 18px; font-weight: 700; color: #1e293b;
+    padding-bottom: 12px; border-bottom: 2px solid #e2e8f0;
     margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
   }
   .section-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
@@ -65,79 +65,80 @@
   /* BEAT GRID */
   .beat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 28px; }
   .beat-card {
-    background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 20px 22px; position: relative; overflow: hidden;
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px 22px; position: relative; overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
-  .beat-card.green { border-color: #238636; }
-  .beat-card.green::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #238636, #2ea043); }
-  .beat-card.blue { border-color: #4f46e5; }
+  .beat-card.green { border-color: #6ee7b7; }
+  .beat-card.green::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #059669, #10b981); }
+  .beat-card.blue { border-color: #a5b4fc; }
   .beat-card.blue::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #4f46e5, #6366f1); }
-  .beat-card.orange { border-color: #d97706; }
+  .beat-card.orange { border-color: #fcd34d; }
   .beat-card.orange::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #d97706, #f59e0b); }
 
-  .metric-label { font-size: 13px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .metric-label { font-size: 13px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; font-weight: 700; }
   .metric-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-  .metric-name { font-size: 14px; color: #8b949e; }
-  .metric-val { font-size: 16px; font-weight: 700; color: #e6edf3; }
-  .metric-val.highlight { font-size: 24px; color: #fff; }
-  .beat-pill { display: inline-block; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(35,134,54,0.2); color: #3fb950; border: 1px solid #238636; margin-top: 8px; }
+  .metric-name { font-size: 14px; color: #64748b; }
+  .metric-val { font-size: 16px; font-weight: 700; color: #1e293b; }
+  .metric-val.highlight { font-size: 24px; color: #0f172a; }
+  .beat-pill { display: inline-block; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(5,150,105,0.12); color: #047857; border: 1px solid #6ee7b7; margin-top: 8px; }
 
   /* TABLE */
   .cmp-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; font-size: 15px; }
-  .cmp-table th { font-size: 13px; font-weight: 600; color: #8b949e; text-align: left; padding: 10px 16px; background: #161b22; border-bottom: 1px solid #30363d; text-transform: uppercase; letter-spacing: 0.5px; }
-  .cmp-table td { padding: 14px 16px; color: #c9d1d9; border-bottom: 1px solid #21262d; }
-  .cmp-table tr:hover td { background: #1c2128; }
-  .cmp-table td:first-child { font-weight: 600; color: #e6edf3; }
-  .beat-txt { color: #3fb950; font-weight: 700; }
-  .warn-txt { color: #f0883e; }
+  .cmp-table th { font-size: 13px; font-weight: 700; color: #475569; text-align: left; padding: 10px 16px; background: #f1f5f9; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cmp-table td { padding: 14px 16px; color: #334155; border-bottom: 1px solid #e2e8f0; }
+  .cmp-table tr:hover td { background: #f8fafc; }
+  .cmp-table td:first-child { font-weight: 600; color: #1e293b; }
+  .beat-txt { color: #047857; font-weight: 700; }
+  .warn-txt { color: #b45309; }
 
   /* SEGMENT */
   .segment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
-  .seg-card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 18px 20px; }
-  .seg-name { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 5px; }
-  .seg-yoy { font-size: 13px; color: #8b949e; margin-bottom: 12px; }
-  .seg-bar-wrap { height: 7px; background: #21262d; border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+  .seg-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .seg-name { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 5px; }
+  .seg-yoy { font-size: 13px; color: #64748b; margin-bottom: 12px; }
+  .seg-bar-wrap { height: 7px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
   .seg-bar { height: 100%; border-radius: 4px; }
   .seg-pcts { display: flex; gap: 18px; font-size: 13px; }
-  .seg-yoy-val { color: #3fb950; font-weight: 700; }
-  .seg-qoq-val { color: #60a5fa; font-weight: 700; }
-  .seg-label { color: #6e7681; }
+  .seg-yoy-val { color: #047857; font-weight: 700; }
+  .seg-qoq-val { color: #2563eb; font-weight: 700; }
+  .seg-label { color: #94a3b8; }
 
   /* GUIDANCE */
   .guidance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
-  .guide-card { background: #1c2128; border: 1px solid #30363d; border-radius: 14px; padding: 22px; }
-  .guide-title { font-size: 13px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
-  .guide-range { font-size: 24px; font-weight: 800; color: #f0f6fc; }
-  .guide-mid { font-size: 14px; color: #60a5fa; margin-top: 5px; }
-  .guide-vs-label { font-size: 13px; color: #6e7681; margin-top: 12px; }
-  .guide-vs-beat { font-size: 15px; color: #3fb950; font-weight: 700; }
+  .guide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .guide-title { font-size: 13px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; font-weight: 700; }
+  .guide-range { font-size: 24px; font-weight: 800; color: #0f172a; }
+  .guide-mid { font-size: 14px; color: #2563eb; margin-top: 5px; font-weight: 600; }
+  .guide-vs-label { font-size: 13px; color: #94a3b8; margin-top: 12px; }
+  .guide-vs-beat { font-size: 15px; color: #047857; font-weight: 700; }
 
   /* INSIGHTS */
   .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
-  .insight-card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 18px 20px; }
+  .insight-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
   .insight-icon { font-size: 22px; margin-bottom: 10px; }
-  .insight-title { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 8px; }
-  .insight-body { font-size: 14px; color: #8b949e; line-height: 1.7; }
-  .insight-highlight { color: #60a5fa; font-weight: 600; }
+  .insight-title { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+  .insight-body { font-size: 14px; color: #475569; line-height: 1.7; }
+  .insight-highlight { color: #2563eb; font-weight: 600; }
 
   /* REASON GRID */
   .reason-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
-  .reason-card { background: #161b22; border-radius: 14px; border: 1px solid #30363d; padding: 18px; text-align: center; }
+  .reason-card { background: #ffffff; border-radius: 14px; border: 1px solid #e2e8f0; padding: 18px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
   .reason-num { font-size: 30px; font-weight: 800; margin-bottom: 8px; }
-  .reason-title { font-size: 14px; font-weight: 600; color: #e6edf3; margin-bottom: 8px; }
-  .reason-desc { font-size: 13px; color: #8b949e; line-height: 1.6; }
+  .reason-title { font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 8px; }
+  .reason-desc { font-size: 13px; color: #475569; line-height: 1.6; }
 
   /* IMPLICATION */
   .impl-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 28px; }
-  .impl-card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 18px; }
-  .impl-company { font-size: 13px; font-weight: 700; color: #a5b4fc; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
-  .impl-title { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 8px; }
-  .impl-body { font-size: 13px; color: #8b949e; line-height: 1.6; }
+  .impl-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .impl-company { font-size: 13px; font-weight: 700; color: #4338ca; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+  .impl-title { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+  .impl-body { font-size: 13px; color: #475569; line-height: 1.6; }
   .impl-sentiment { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-top: 10px; }
-  .pos { background: rgba(35,134,54,0.2); color: #3fb950; border: 1px solid #238636; }
-  .neg { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid #ef4444; }
-  .mixed { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid #d97706; }
+  .pos { background: rgba(5,150,105,0.10); color: #047857; border: 1px solid #6ee7b7; }
+  .neg { background: rgba(220,38,38,0.08); color: #b91c1c; border: 1px solid #fca5a5; }
+  .mixed { background: rgba(217,119,6,0.10); color: #b45309; border: 1px solid #fcd34d; }
 
-  .footer { text-align: center; padding: 28px; color: #484f58; font-size: 13px; border-top: 1px solid #21262d; }
+  .footer { text-align: center; padding: 28px; color: #94a3b8; font-size: 13px; border-top: 1px solid #e2e8f0; }
 </style>
 </head>
 <body>
@@ -183,7 +184,7 @@
   <!-- SECTION 1: KEY METRICS -->
   <div class="section">
     <div class="section-title">
-      <div class="section-icon" style="background:rgba(35,134,54,0.2)">📊</div>
+      <div class="section-icon" style="background:rgba(5,150,105,0.15)">📊</div>
       Q1 2026 關鍵指標 vs. 市場預期
     </div>
     <div class="beat-grid">
@@ -191,23 +192,23 @@
         <div class="metric-label">總營收 Revenue</div>
         <div class="metric-row"><span class="metric-name">實際</span><span class="metric-val highlight">$13.6B</span></div>
         <div class="metric-row"><span class="metric-name">市場預期（LSEG）</span><span class="metric-val">$12.42B</span></div>
-        <div class="metric-row"><span class="metric-name">YoY 增長</span><span class="metric-val" style="color:#3fb950">+7.2%</span></div>
-        <div class="metric-row"><span class="metric-name">vs. 公司自身指引中位</span><span class="metric-val" style="color:#3fb950">+$1.4B</span></div>
+        <div class="metric-row"><span class="metric-name">YoY 增長</span><span class="metric-val" style="color:#047857">+7.2%</span></div>
+        <div class="metric-row"><span class="metric-name">vs. 公司自身指引中位</span><span class="metric-val" style="color:#047857">+$1.4B</span></div>
         <div class="beat-pill">超預期 +9.5%</div>
       </div>
       <div class="beat-card blue">
         <div class="metric-label">Non-GAAP EPS</div>
         <div class="metric-row"><span class="metric-name">實際</span><span class="metric-val highlight">$0.29</span></div>
         <div class="metric-row"><span class="metric-name">市場預期</span><span class="metric-val">$0.00～$0.01</span></div>
-        <div class="metric-row"><span class="metric-name">vs. 公司指引</span><span class="metric-val" style="color:#3fb950">損益兩平 → +$0.29</span></div>
-        <div class="metric-row"><span class="metric-name">YoY vs Q1 2025</span><span class="metric-val" style="color:#3fb950">$0.13 → $0.29</span></div>
+        <div class="metric-row"><span class="metric-name">vs. 公司指引</span><span class="metric-val" style="color:#047857">損益兩平 → +$0.29</span></div>
+        <div class="metric-row"><span class="metric-name">YoY vs Q1 2025</span><span class="metric-val" style="color:#047857">$0.13 → $0.29</span></div>
         <div class="beat-pill">超預期 +2,900%</div>
       </div>
       <div class="beat-card orange">
         <div class="metric-label">Non-GAAP 毛利率</div>
         <div class="metric-row"><span class="metric-name">實際</span><span class="metric-val highlight">41.0%</span></div>
         <div class="metric-row"><span class="metric-name">公司指引</span><span class="metric-val">~34.3%</span></div>
-        <div class="metric-row"><span class="metric-name">超出指引</span><span class="metric-val" style="color:#f59e0b">+650bps</span></div>
+        <div class="metric-row"><span class="metric-name">超出指引</span><span class="metric-val" style="color:#b45309">+650bps</span></div>
         <div class="metric-row"><span class="metric-name">GAAP 毛利率</span><span class="metric-val">39.4%（+250bps YoY）</span></div>
         <div class="beat-pill">超指引 650bps</div>
       </div>
@@ -236,7 +237,7 @@
   <!-- SECTION 2: SEGMENTS -->
   <div class="section">
     <div class="section-title">
-      <div class="section-icon" style="background:rgba(59,130,246,0.2)">🏭</div>
+      <div class="section-icon" style="background:rgba(37,99,235,0.12)">🏭</div>
       各業務部門表現
     </div>
     <div class="segment-grid">
@@ -247,17 +248,17 @@
         <div class="seg-pcts">
           <span><span class="seg-yoy-val">營收 $7.7B</span> <span class="seg-label">（QoQ -6%，優於預期）</span></span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin-top:8px">AI PC 佔比 &gt;60%客戶 CPU；Core Ultra Series 3 五年最強新品；供應仍跟不上需求</div>
+        <div style="font-size:13px;color:#475569;margin-top:8px">AI PC 佔比 &gt;60%客戶 CPU；Core Ultra Series 3 五年最強新品；供應仍跟不上需求</div>
       </div>
       <div class="seg-card">
         <div class="seg-name">🖥️ DCAI｜資料中心 & AI</div>
         <div class="seg-yoy">最大驚喜｜AI 基礎設施 CPU 強勁拉動</div>
-        <div class="seg-bar-wrap"><div class="seg-bar" style="width:75%;background:linear-gradient(90deg,#10b981,#059669)"></div></div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:75%;background:linear-gradient(90deg,#059669,#10b981)"></div></div>
         <div class="seg-pcts">
           <span><span class="seg-yoy-val">YoY +22%</span></span>
           <span><span class="seg-qoq-val">QoQ +7%</span></span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin-top:8px">營收 $5.1B；ASIC 季增 +30%、YoY 近翻倍；Xeon 6 入選 NVIDIA DGX Rubin 主機 CPU；Google 簽署多年長約</div>
+        <div style="font-size:13px;color:#475569;margin-top:8px">營收 $5.1B；ASIC 季增 +30%、YoY 近翻倍；Xeon 6 入選 NVIDIA DGX Rubin 主機 CPU；Google 簽署多年長約</div>
       </div>
       <div class="seg-card">
         <div class="seg-name">🔬 Intel Foundry｜晶圓代工</div>
@@ -266,7 +267,7 @@
         <div class="seg-pcts">
           <span><span class="seg-yoy-val">營收 $5.4B（QoQ +20%）</span></span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin-top:8px">外部代工營收 $174M；營業虧損 -$2.4B（改善 $72M）；18A 良率超前達標；14A 進度優於 18A 同期；馬來西亞後端廠擴建</div>
+        <div style="font-size:13px;color:#475569;margin-top:8px">外部代工營收 $174M；營業虧損 -$2.4B（改善 $72M）；18A 良率超前達標；14A 進度優於 18A 同期；馬來西亞後端廠擴建</div>
       </div>
       <div class="seg-card">
         <div class="seg-name">🚗 其他（Mobileye 等）</div>
@@ -275,7 +276,7 @@
         <div class="seg-pcts">
           <span><span class="seg-qoq-val">QoQ +9%</span></span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin-top:8px">營收 $628M；Mobileye 表現強勁；整體利潤 $102M</div>
+        <div style="font-size:13px;color:#475569;margin-top:8px">營收 $628M；Mobileye 表現強勁；整體利潤 $102M</div>
       </div>
     </div>
   </div>
@@ -283,31 +284,31 @@
   <!-- SECTION 3: Q2 GUIDANCE -->
   <div class="section">
     <div class="section-title">
-      <div class="section-icon" style="background:rgba(245,158,11,0.2)">🎯</div>
+      <div class="section-icon" style="background:rgba(217,119,6,0.12)">🎯</div>
       Q2 2026 公司指引 vs. 市場預期
     </div>
     <div class="guidance-grid">
-      <div class="guide-card" style="border-color:#238636">
+      <div class="guide-card" style="border-color:#6ee7b7">
         <div class="guide-title">Q2 2026 營收指引</div>
-        <div class="guide-range" style="color:#3fb950">$13.8B – $14.8B</div>
+        <div class="guide-range" style="color:#047857">$13.8B – $14.8B</div>
         <div class="guide-mid">中位數 $14.3B｜QoQ +2%～+9%</div>
         <div class="guide-vs-label">市場預期：$13.03B～$13.11B</div>
         <div class="guide-vs-beat">↑ 超出市場預期 中位 +9.7%</div>
-        <div style="margin-top:10px;font-size:13px;color:#6e7681">CCG + DCAI 均預期 QoQ 成長；DCAI 兩位數季增</div>
+        <div style="margin-top:10px;font-size:13px;color:#94a3b8">CCG + DCAI 均預期 QoQ 成長；DCAI 兩位數季增</div>
       </div>
-      <div class="guide-card" style="border-color:#4f46e5">
+      <div class="guide-card" style="border-color:#a5b4fc">
         <div class="guide-title">Q2 2026 EPS 指引（Non-GAAP）</div>
-        <div class="guide-range" style="color:#a5b4fc">$0.20</div>
+        <div class="guide-range" style="color:#4338ca">$0.20</div>
         <div class="guide-mid">Non-GAAP 毛利率預期 39%；稅率 11%</div>
         <div class="guide-vs-label">市場預期：$0.09～$0.10</div>
         <div class="guide-vs-beat">↑ 超出市場預期 +100%+</div>
-        <div style="margin-top:10px;font-size:13px;color:#6e7681">毛利率 Q2 微降（18A 量產初期拖累），但全年趨勢向上</div>
+        <div style="margin-top:10px;font-size:13px;color:#94a3b8">毛利率 Q2 微降（18A 量產初期拖累），但全年趨勢向上</div>
       </div>
     </div>
 
-    <div style="background:#161b22;border:1px solid #30363d;border-left:4px solid #f59e0b;border-radius:12px;padding:18px 22px;margin-bottom:14px">
-      <div style="font-size:15px;font-weight:700;color:#fbbf24;margin-bottom:8px">⚠️ 全年關鍵風險提示（管理層主動揭露）</div>
-      <div style="font-size:14px;color:#9ca3af;line-height:1.7">
+    <div style="background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #f59e0b;border-radius:12px;padding:18px 22px;margin-bottom:14px">
+      <div style="font-size:15px;font-weight:700;color:#b45309;margin-bottom:8px">⚠️ 全年關鍵風險提示（管理層主動揭露）</div>
+      <div style="font-size:14px;color:#78350f;line-height:1.7">
         (1) PC 市場全年預估下滑低雙位數%（受 H2 需求走弱拖累）；(2) 記憶體、基板、晶圓等原物料成本上漲，H2 毛利率面臨逆風；
         (3) 18A 仍在量產爬坡初期，良率雖超預期但仍拖累毛利率；(4) 2026 年 OpEx 較原目標 $16B 略高（通膨+激勵薪酬+14A 投資）
       </div>
@@ -317,7 +318,7 @@
   <!-- SECTION 4: CALL INSIGHTS -->
   <div class="section">
     <div class="section-title">
-      <div class="section-icon" style="background:rgba(139,92,246,0.2)">💬</div>
+      <div class="section-icon" style="background:rgba(124,58,237,0.12)">💬</div>
       法說會六大重點整理
     </div>
     <div class="insights-grid">
@@ -399,47 +400,47 @@
   <!-- SECTION 5: WHY +19% -->
   <div class="section">
     <div class="section-title">
-      <div class="section-icon" style="background:rgba(16,185,129,0.2)">🚀</div>
+      <div class="section-icon" style="background:rgba(5,150,105,0.12)">🚀</div>
       為何股價單日盤後暴漲 +19%？五大催化劑
     </div>
     <div class="reason-grid">
       <div class="reason-card">
-        <div class="reason-num" style="color:#3fb950">①</div>
+        <div class="reason-num" style="color:#047857">①</div>
         <div class="reason-title">EPS 超預期幅度史詩級</div>
         <div class="reason-desc">
           Non-GAAP EPS $0.29 vs 預期 ~$0.00-$0.01<br>超出幅度近 3000%，絕大多數人根本沒料到能轉正<br>短空方慘遭大軋空
         </div>
       </div>
       <div class="reason-card">
-        <div class="reason-num" style="color:#4f46e5">②</div>
+        <div class="reason-num" style="color:#4338ca">②</div>
         <div class="reason-title">Q2 指引遠超街頭所有模型</div>
         <div class="reason-desc">
           Q2 收入中位 $14.3B vs 預期 $13.0B（+10%）<br>Q2 EPS $0.20 vs 預期 $0.09-0.10（+100%+）<br>強迫分析師全面上修估值模型
         </div>
       </div>
       <div class="reason-card">
-        <div class="reason-num" style="color:#f59e0b">③</div>
+        <div class="reason-num" style="color:#b45309">③</div>
         <div class="reason-title">CPU AI 敘事被市場接受</div>
         <div class="reason-desc">
           CPU:GPU 比從 1:8 → 趨近 1:1 的 Agentic 時代<br>Intel 是全球最大 CPU 製造商<br>AI TAM 接近 $1 兆，Intel 正站在風口上
         </div>
       </div>
       <div class="reason-card">
-        <div class="reason-num" style="color:#ef4444">④</div>
+        <div class="reason-num" style="color:#b91c1c">④</div>
         <div class="reason-title">毛利率超指引 650bps</div>
         <div class="reason-desc">
           Non-GAAP 毛利 41% vs 指引 ~34.3%<br>18A 良率超預期 + 庫存活化 + 定價改善<br>毛利率結構性改善讓多空雙方都措手不及
         </div>
       </div>
       <div class="reason-card">
-        <div class="reason-num" style="color:#06b6d4">⑤</div>
+        <div class="reason-num" style="color:#0e7490">⑤</div>
         <div class="reason-title">Google LTA + Elon Terafab 雙催化</div>
         <div class="reason-desc">
           Google 多年大合約驗證 DCAI 動能可持續<br>Terafab 合作為 Intel Foundry 引入最高矚目客戶<br>14A 進展超預期，外部代工故事開始成型
         </div>
       </div>
       <div class="reason-card">
-        <div class="reason-num" style="color:#8b5cf6">⑥</div>
+        <div class="reason-num" style="color:#7c3aed">⑥</div>
         <div class="reason-title">連六季超預期 = 信心重建完成</div>
         <div class="reason-desc">
           過去一年股價已大漲 80%+<br>本次財報是對「股價過度領先基本面」最好的回應<br>市場重新相信 Lip-Bu 的轉型執行力
@@ -451,7 +452,7 @@
   <!-- SECTION 6: IMPLICATIONS -->
   <div class="section">
     <div class="section-title">
-      <div class="section-icon" style="background:rgba(245,158,11,0.2)">🌐</div>
+      <div class="section-icon" style="background:rgba(217,119,6,0.12)">🌐</div>
       對同業的 Implications — 產業影響解析
     </div>
     <div class="impl-grid">
@@ -519,10 +520,10 @@
     </div>
 
     <!-- OVERALL IMPLICATION SUMMARY -->
-    <div style="background:linear-gradient(135deg,#1a1f2e,#1e293b);border:1px solid #334155;border-radius:14px;padding:22px 26px;margin-top:4px">
-      <div style="font-size:16px;font-weight:700;color:#f0f6fc;margin-bottom:14px">🔑 跨公司核心結論</div>
-      <div style="font-size:14px;color:#94a3b8;line-height:1.8">
-        Intel + TXN 同週財報，雙雙大幅超預期，共同傳達一個訊號：<span style="color:#60a5fa;font-weight:600">「AI 資料中心建設週期遠比市場預期更長、更廣、更深」</span>。
+    <div style="background:linear-gradient(135deg,#eff6ff,#eef2ff);border:1px solid #bfdbfe;border-radius:14px;padding:22px 26px;margin-top:4px">
+      <div style="font-size:16px;font-weight:700;color:#1e293b;margin-bottom:14px">🔑 跨公司核心結論</div>
+      <div style="font-size:14px;color:#374151;line-height:1.8">
+        Intel + TXN 同週財報，雙雙大幅超預期，共同傳達一個訊號：<span style="color:#2563eb;font-weight:600">「AI 資料中心建設週期遠比市場預期更長、更廣、更深」</span>。
         CPU、類比 IC、電源管理、先進封裝都在同步受益，這不是個別公司的一次性表現，而是整個半導體業上升週期延伸的結構性確認。
         最大的系統性風險是：H2 PC 需求走弱 + 記憶體/基板成本上漲 + 地緣政治關稅不確定性，
         若這三者同時惡化，可能讓「資料中心強 vs PC 弱」的兩極化更加明顯，類比廠和 Intel Foundry 外部客戶的動向將是下季最重要觀察點。
