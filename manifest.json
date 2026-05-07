@@ -26,6 +26,22 @@
     { "id": "other", "name": "其他", "color": "slate" }
   ],
   "earnings": [
+    {
+      "id": "ftnt-q1-2026",
+      "ticker": "FTNT",
+      "company_en": "Fortinet",
+      "company_zh": "防特網",
+      "quarter": "Q1 2026",
+      "date": "2026-05-06",
+      "category": "software",
+      "tags": ["資安", "AI 資料中心", "OT 安全", "SASE"],
+      "headline": "EPS beat +32%、Billings +31%、OT +70%；AI 從風險轉順風重塑敘事，全年大幅上調",
+      "metrics": {
+        "rev_yoy": "+20%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/ftnt-q1-2026.html"
+    },
   {
       "id": "arm-q1-2026",
       "ticker": "ARM",
