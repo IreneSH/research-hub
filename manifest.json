@@ -26,6 +26,22 @@
     { "id": "other", "name": "其他", "color": "slate" }
   ],
   "earnings": [
+  {
+      "id": "arm-q1-2026",
+      "ticker": "ARM",
+      "company_en": "Arm Holdings",
+      "company_zh": "安謀",
+      "quarter": "Q4 FY2026",
+      "date": "2026-05-06",
+      "category": "semi",
+      "tags": ["矽智財", "AI CPU", "資料中心", "Royalty"],
+      "headline": "營收創紀錄但 Royalty miss −4.1%；AGI CPU 需求六週翻倍，惟收入確認後移 FY28，股價下跌",
+      "metrics": {
+        "rev_yoy": "+20%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/arm-q1-2026.html"
+    },
     {
       "id": "cat-q1-2026",
       "ticker": "CAT",
