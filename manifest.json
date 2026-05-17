@@ -8,11 +8,11 @@
   "weekly": {
     "url": "https://weekly-market-recap.netlify.app/archive",
     "latest": {
-      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-01",
-      "range": "Apr 27–May 1",
+      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-15",
+      "range": "May 11–May 1",
       "year": "2026",
-      "title": "Mag 7 財報驅動分化，S&P 500再創新高",
-      "summary":"GOOGL <strong>+10%</strong>、AAPL <strong>+3%</strong>、META <strong>-9%</strong>",
+      "title": "川習峰會、CPI 3.8%、Warsh 就任、Cerebras IPO",
+      "summary":"WTI 破 $109、10Y 殖利率升至年高 4.54%、Cisco AI 爆發 +13%",
       "flags": ["最新", "US"]
     }
   },
