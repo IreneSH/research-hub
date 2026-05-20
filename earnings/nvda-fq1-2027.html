@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVIDIA Q1 FY2027 財報分析</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #1a3560;
+    --accent: #76b900; /* NVIDIA green */
+    --accent2: #c0873a;
+    --bg: #f5f3ee;
+    --surface: #ffffff;
+    --border: #d0c8b8;
+    --text: #1a1a1a;
+    --text-light: #555;
+    --beat-green: #1a7a3c;
+    --beat-bg: #eaf5ee;
+    --miss-red: #b02020;
+    --miss-bg: #faeaea;
+    --neutral-bg: #f0eeea;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Serif TC', serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.75;
+    padding: 32px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .report-header {
+    border-top: 4px solid var(--navy);
+    border-bottom: 2px solid var(--navy);
+    padding: 24px 0 20px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: end;
+  }
+  .report-header .ticker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .report-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .report-header .meta {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+    margin-bottom: 16px;
+  }
+
+  /* ── KPI Grid ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+  }
+  .kpi-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .kpi-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  .kpi-beat { color: var(--beat-green); font-weight: 700; }
+  .kpi-miss { color: var(--miss-red); font-weight: 700; }
+
+  /* ── Comparison Table ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--surface);
+  }
+  thead th {
+    background: var(--navy);
+    color: #fff;
+    padding: 9px 14px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  thead th:first-child { text-align: left; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: 2px solid var(--navy); }
+  tbody td {
+    padding: 9px 14px;
+    vertical-align: middle;
+  }
+  tbody td:not(:first-child) {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+  tbody tr:nth-child(even) td { background: var(--neutral-bg); }
+  .beat-cell {
+    background: var(--beat-bg) !important;
+    color: var(--beat-green);
+    font-weight: 700;
+  }
+  .actual-col { color: var(--navy); font-weight: 700; }
+  .row-label { font-weight: 500; color: var(--text); font-size: 13px; }
+  .row-sub { font-size: 11px; color: var(--text-light); font-weight: 400; }
+
+  /* ── Guidance Box ── */
+  .guidance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .guidance-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+  }
+  .guidance-card .g-label {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 6px;
+  }
+  .guidance-card .g-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .guidance-card .g-vs {
+    font-size: 11px;
+    margin-top: 6px;
+    color: var(--beat-green);
+    font-weight: 700;
+  }
+  .guidance-card .g-note {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ── Segment Table ── */
+  .seg-bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .seg-bar {
+    height: 8px;
+    border-radius: 1px;
+    background: var(--navy);
+    flex-shrink: 0;
+  }
+  .seg-bar.acie { background: var(--accent); }
+
+  /* ── Bullet list ── */
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+  }
+  .bullet-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+    font-size: 10px;
+    top: 8px;
+  }
+  .bullet-list li strong { color: var(--navy); }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    background: var(--navy);
+    color: #e8e4dc;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .highlight-box strong { color: var(--accent); }
+
+  /* ── Product roadmap ── */
+  .roadmap-table table { font-size: 12px; }
+
+  /* ── Capital return ── */
+  .capital-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .cap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent2);
+    padding: 14px 16px;
+  }
+  .cap-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 6px;
+  }
+  .cap-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .cap-note { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+
+  /* ── Jensen's 5 pillars ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .pillar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--navy);
+    padding: 12px 12px;
+    text-align: center;
+  }
+  .pillar .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 24px;
+    color: var(--navy);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .pillar .p-text { font-size: 11px; color: var(--text); line-height: 1.5; }
+
+  /* ── China risk ── */
+  .risk-box {
+    background: var(--miss-bg);
+    border: 1px solid #e0b8b8;
+    border-left: 3px solid var(--miss-red);
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .risk-box strong { color: var(--miss-red); }
+
+  /* ── Footer ── */
+  .report-footer {
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 10px;
+    color: var(--text-light);
+    font-family: 'DM Mono', monospace;
+  }
+
+  @media print {
+    body { padding: 20px; }
+    .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ────────── HEADER ────────── -->
+<div class="report-header">
+  <div>
+    <div class="ticker">NVDA US Equity ｜ Bloomberg Initial Draft Transcript</div>
+    <h1>NVIDIA Corp — Q1 FY2027 財報深度分析</h1>
+  </div>
+  <div class="meta">
+    財報日期：2026-05-20<br>
+    會計季度：FY27Q1（截至 2026-04-27）<br>
+    分析日期：2026-05-21
+  </div>
+</div>
+
+
+<!-- ────────── 01. 核心財務數字 vs 預期 ────────── -->
+<div class="section">
+  <div class="section-title">01 ｜ 核心財務數字 vs 市場預期</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">總營收</div>
+      <div class="kpi-value">$81.6B</div>
+      <div class="kpi-sub">預期 $79.2B</div>
+      <div class="kpi-sub kpi-beat">▲ 超預期 +3.1%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Non-GAAP EPS</div>
+      <div class="kpi-value">$1.87</div>
+      <div class="kpi-sub">預期 $1.77</div>
+      <div class="kpi-sub kpi-beat">▲ 超預期 +5.6%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">GAAP EPS</div>
+      <div class="kpi-value">$2.39</div>
+      <div class="kpi-sub">預期 ~$1.79</div>
+      <div class="kpi-sub kpi-beat">▲ 含股票投資利得 $15.9B</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">自由現金流</div>
+      <div class="kpi-value">$49B</div>
+      <div class="kpi-sub">Q4 FY26：$35B</div>
+      <div class="kpi-sub kpi-beat">▲ 歷史新高</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%">指標</th>
+        <th>實際值</th>
+        <th>市場預期</th>
+        <th>公司 Guidance</th>
+        <th>YoY</th>
+        <th>QoQ</th>
+        <th>Beat 幅度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">總營收</td>
+        <td class="actual-col">$81.6B</td>
+        <td>$79.2B</td>
+        <td>$78.0B ±2%</td>
+        <td>+85%</td>
+        <td>+20%</td>
+        <td class="beat-cell">+3.1%</td>
+      </tr>
+      <tr>
+        <td class="row-label">Data Center 營收</td>
+        <td class="actual-col">$75.2B</td>
+        <td>$73.5B</td>
+        <td>—</td>
+        <td>+92%</td>
+        <td>+21%</td>
+        <td class="beat-cell">+2.3%</td>
+      </tr>
+      <tr>
+        <td class="row-label">Edge Computing 營收 <span class="row-sub">（原 Gaming+Pro Viz）</span></td>
+        <td class="actual-col">$6.4B</td>
+        <td>—</td>
+        <td>—</td>
+        <td>+29%</td>
+        <td>+10%</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="row-label">Non-GAAP 毛利率</td>
+        <td class="actual-col">75.0%</td>
+        <td>75.0%</td>
+        <td>75.0% ±50bps</td>
+        <td>—</td>
+        <td>持平</td>
+        <td class="beat-cell">符合上限</td>
+      </tr>
+      <tr>
+        <td class="row-label">GAAP 毛利率</td>
+        <td class="actual-col">74.9%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="row-label">Non-GAAP EPS</td>
+        <td class="actual-col">$1.87</td>
+        <td>$1.77</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="beat-cell">+5.6%</td>
+      </tr>
+      <tr>
+        <td class="row-label">GAAP 營業利益</td>
+        <td class="actual-col">$53.5B</td>
+        <td>—</td>
+        <td>—</td>
+        <td>+147%</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="row-label">GAAP 淨利</td>
+        <td class="actual-col">$58.3B</td>
+        <td>—</td>
+        <td>—</td>
+        <td>+211%</td>
+        <td>—</td>
+        <td class="beat-cell">含大額投資利得</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box" style="margin-top:14px;">
+    本季為 NVIDIA 連續第 3 個季度 YoY 加速成長、連續第 <strong>14 個季度</strong> QoQ 成長。單季序列增量 <strong>$13.5B</strong> 亦創歷史紀錄。
+  </div>
+</div>
+
+
+<!-- ────────── 02. 業務分部 ────────── -->
+<div class="section">
+  <div class="section-title">02 ｜ 業務分部拆解（新框架首季披露）</div>
+
+  <p style="font-size:13px;margin-bottom:14px;color:var(--text-light);">
+    本季起 NVIDIA 更換報告框架，原 Gaming / Data Center / Professional Visualization / Automotive 四分部，重組為 <strong>Data Center</strong> 與 <strong>Edge Computing</strong> 兩大平台。
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:32%">分部</th>
+        <th>Q1 FY27 營收</th>
+        <th>占 DC 比例</th>
+        <th>QoQ</th>
+        <th>YoY</th>
+        <th>重點說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Data Center 合計</td>
+        <td class="actual-col">$75.2B</td>
+        <td>—</td>
+        <td>+21%</td>
+        <td>+92%</td>
+        <td>Blackwell 架構持續驅動</td>
+      </tr>
+      <tr>
+        <td class="row-label">
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:38px"></div> Hyperscale</div>
+          <span class="row-sub">公有雲 + 大型消費網路公司</span>
+        </td>
+        <td class="actual-col">$38B</td>
+        <td>~50%</td>
+        <td>+12%</td>
+        <td>—</td>
+        <td>MSFT、AWS、Google、Meta</td>
+      </tr>
+      <tr>
+        <td class="row-label">
+          <div class="seg-bar-wrap"><div class="seg-bar acie" style="width:37px"></div> ACIE</div>
+          <span class="row-sub">AI 雲、工業、企業</span>
+        </td>
+        <td class="actual-col">$37B</td>
+        <td>~49%</td>
+        <td>+31%</td>
+        <td>AI 雲 YoY 3倍+</td>
+        <td>主權 AI YoY +80%；CoreWeave 等</td>
+      </tr>
+      <tr>
+        <td class="row-label">Edge Computing</td>
+        <td class="actual-col">$6.4B</td>
+        <td>—</td>
+        <td>+10%</td>
+        <td>+29%</td>
+        <td>Blackwell 工作站強勁；消費端微降</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:14px;" class="bullet-list">
+    <ul class="bullet-list">
+      <li><strong>主權 AI</strong>：YoY 成長 >80%，NVIDIA AI 基礎設施已部署至近 40 個國家，合計 GDP 達 $50 兆</li>
+      <li><strong>AI 工廠夥伴數據中心</strong>（>10MW 站點）：一年內近乎翻倍，現逾 80 個站點</li>
+      <li><strong>物理 AI</strong>（自駕、機器人）：過去 12 個月累計營收突破 $9B</li>
+      <li><strong>資料中心網路</strong>：Spectrum-X 以太網平台規模已超越所有乙太網路競爭對手總和；InfiniBand 本季 YoY +4倍</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ────────── 03. Q2 FY2027 Guidance vs 市場預期 ────────── -->
+<div class="section">
+  <div class="section-title">03 ｜ Q2 FY2027 Guidance vs 市場預期</div>
+
+  <div class="guidance-grid">
+    <div class="guidance-card">
+      <div class="g-label">Q2 FY27 總營收 Guidance</div>
+      <div class="g-value">$91.0B ±2%</div>
+      <div class="g-vs">▲ 超過市場預期 $87.3B（+4.2%）</div>
+      <div class="g-note">區間：$89.1B–$92.8B｜排除中國 DC 計算收入</div>
+    </div>
+    <div class="guidance-card">
+      <div class="g-label">Q2 毛利率 Guidance</div>
+      <div class="g-value">Non-GAAP 75% ±50bps</div>
+      <div class="g-note">全年仍維持 mid-70s 預期不變</div>
+    </div>
+    <div class="guidance-card">
+      <div class="g-label">Q2 Non-GAAP OpEx</div>
+      <div class="g-value">~$8.3B</div>
+      <div class="g-note">全年 OpEx 成長預期調升至「upper 40s」YoY<br>（主因 R&D 擴張 + AI 工具使用加速）</div>
+    </div>
+    <div class="guidance-card">
+      <div class="g-label">全年有效稅率 (FY2027)</div>
+      <div class="g-value">16%–18%</div>
+      <div class="g-note">低於原先 17%–19% 預期<br>（地理業務組合優化）</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:16px;">
+    Colette Kress 在 call 中重申：從 2025 年至 2027 年日曆年，NVIDIA 對 <strong>Blackwell + Rubin 合計 $1 兆</strong>營收前景具完整信心，並持續在加速供應鏈佈局以應對需求。
+  </div>
+</div>
+
+
+<!-- ────────── 04. 與市場預期的差異點分析 ────────── -->
+<div class="section">
+  <div class="section-title">04 ｜ 本季核心超預期 / 預期差分析</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%">項目</th>
+        <th style="width:15%">結果</th>
+        <th>預期差詳解</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">ACIE 分部成長速度</td>
+        <td class="beat-cell">強超預期</td>
+        <td>+31% QoQ 顯著快於 Hyperscale +12%；AI 雲端收入 YoY 三倍以上，市場原未充分預期 Neo Cloud 增量的量級</td>
+      </tr>
+      <tr>
+        <td class="row-label">Q2 Revenue Guidance</td>
+        <td class="beat-cell">大幅超預期</td>
+        <td>$91B 中值 vs 市場預期 $87.3B，beat 幅度 ~4%。本季 guidance 明顯超越 whisper number，扭轉近四季 guide 低於市場的慣例</td>
+      </tr>
+      <tr>
+        <td class="row-label">Vera CPU 規模化</td>
+        <td class="beat-cell">超預期驚喜</td>
+        <td>CEO 明確揭示本年 standalone CPU 能見度近 <strong>$20B</strong>，稱「有望成為全球領先 CPU 供應商」，市場原先未將此列為重大收入貢獻項</td>
+      </tr>
+      <tr>
+        <td class="row-label">股東回報方案</td>
+        <td class="beat-cell">大幅超預期</td>
+        <td>季度股息從 $0.01 → <strong>$0.25</strong>（25倍）；新增 $80B 回購授權（疊加原有 $39B 餘額），市場未有充分預期此規模</td>
+      </tr>
+      <tr>
+        <td class="row-label">Non-GAAP 毛利率</td>
+        <td style="background:var(--neutral-bg);font-family:'DM Mono',monospace;">符合預期</td>
+        <td>75.0% 持平 Q4，Blackwell 出貨仍為主體。未能進一步提升為本季毛利率微小隱憂（供應鏈複雜系統成本仍高）</td>
+      </tr>
+      <tr>
+        <td class="row-label">中國市場</td>
+        <td style="background:var(--miss-bg);color:var(--miss-red);font-family:'DM Mono',monospace;">不確定性持續</td>
+        <td>H200 雖獲 US 出口許可，但尚未產生任何收入，且不確定進口是否獲允。Guidance 明確排除中國 DC 計算收入，與上季立場一致</td>
+      </tr>
+      <tr>
+        <td class="row-label">股價反應（盤後）</td>
+        <td style="background:var(--neutral-bg);font-family:'DM Mono',monospace;">+1.4% 後轉跌</td>
+        <td>盤後一度漲 ~1.4% 至 $223，但隨後承壓（上季 Q4 大 beat 後仍跌 5.5%，市場已習慣以「超預期後賣出」應對）</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ────────── 05. 產品 Roadmap 更新 ────────── -->
+<div class="section">
+  <div class="section-title">05 ｜ 產品 Roadmap 重要更新</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%">產品</th>
+        <th style="width:18%">時程</th>
+        <th>重點規格與競爭優勢</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Blackwell / GB300<br><span class="row-sub">（現行主力）</span></td>
+        <td>大量出貨中</td>
+        <td>全球最快訓練系統 + 最低推論 token 成本；MLPerf 推論全數最高分；GB300 vs 6個月前：吞吐量 +2.7x、成本/token -60%。現為公司史上最快產品爬坡</td>
+      </tr>
+      <tr>
+        <td class="row-label">Vera Rubin<br><span class="row-sub">（次世代旗艦）</span></td>
+        <td>H2 2026 量產<br>Q3 開始出貨，Q4 加速</td>
+        <td>vs Blackwell：推論吞吐 <strong>+35x</strong>、AI 工廠收入潛力 <strong>+10x</strong>；7顆專用晶片 × 5 加速機架；全球首個端對端 Confidential Computing 平台；Google A5X 可支援高達 96 萬顆 Rubin GPU</td>
+      </tr>
+      <tr>
+        <td class="row-label">Vera CPU<br><span class="row-sub">（全新 TAM）</span></td>
+        <td>本年出貨<br>能見度近 $20B</td>
+        <td>基於 ARM 定製核心；vs x86：性能/核 +1.5x、性能/瓦 +2x、密度/機架 +4x；三種使用模式：① Vera Rubin 搭配 ② 獨立 CPU ③ 搭 CX9 存儲/安全方案；Jensen 稱開闢 <strong>$200B 全新 TAM</strong></td>
+      </tr>
+      <tr>
+        <td class="row-label">LPX<br><span class="row-sub">（高頻 token 利基）</span></td>
+        <td>現有產品</td>
+        <td>低延遲、高 token 速率，但吞吐低、context 處理能力受限（SRAM 架構本質）；Jensen 坦承用例不廣，定位為 niche；搭配 Blackwell/Rubin 組合使用</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ────────── 06. 中國風險 ────────── -->
+<div class="section">
+  <div class="section-title">06 ｜ 中國出口管制風險</div>
+  <div class="risk-box">
+    <strong>現狀：</strong>美國政府已批准 H200 出口至中國客戶的許可證，但 NVIDIA <strong>尚未產生任何收入</strong>，亦不確定進口是否最終被允許。<br><br>
+    <strong>Guidance 處理方式：</strong>與上季相同，Q2 Guidance ($91B) <strong>明確不含</strong>任何中國 DC 計算收入。換言之，任何中國訂單均屬純粹上行選擇權 (upside optionality)，而非基準情境。<br><br>
+    <strong>對推論的啟示：</strong>若中國最終獲准進口，潛在增量可觀；但若持續受阻，現有 Guidance 已完整反映此風險，不構成下修壓力。
+  </div>
+</div>
+
+
+<!-- ────────── 07. 股東回報 ────────── -->
+<div class="section">
+  <div class="section-title">07 ｜ 資本配置與股東回報</div>
+
+  <div class="capital-grid">
+    <div class="cap-card">
+      <div class="cap-label">Q1 股東回報</div>
+      <div class="cap-value">$20B</div>
+      <div class="cap-note">歷史單季最高，含回購 + 股息</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-label">新增回購授權</div>
+      <div class="cap-value">$80B</div>
+      <div class="cap-note">疊加現有 $39B 餘額，合計 $119B 可動用額度</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-label">季度股息</div>
+      <div class="cap-value">$0.25/股</div>
+      <div class="cap-note">前季 $0.01，本季大幅調升（25倍）；Toshiya 現場更正 Colette 誤述的 $0.20</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-label">全年回報目標</div>
+      <div class="cap-value">50% FCF</div>
+      <div class="cap-note">與 GTC 時承諾一致</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-label">Q1 自由現金流</div>
+      <div class="cap-value">$49B</div>
+      <div class="cap-note">前季 $35B，創歷史新高</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-label">供應鏈承諾總額</div>
+      <div class="cap-value">$145B</div>
+      <div class="cap-note">含庫存 + 採購承諾 + 預付款（本季擴增）</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ────────── 08. Earnings Call 重點摘要 ────────── -->
+<div class="section">
+  <div class="section-title">08 ｜ Earnings Call 核心 Q&A 精華</div>
+
+  <ul class="bullet-list">
+    <li>
+      <strong>【新分部框架邏輯】（Morgan Stanley / Joseph Moore）</strong><br>
+      Jensen 解釋分部重組反映 AI 應用的三層多樣性：①資料類型（語言、3D、蛋白質、物理）②應用場景（超大規模雲、AI 原生、企業/工業邊緣）③治理方式（公有雲 vs 主權 vs 機密運算）。新框架幫助市場更清楚理解各自的 go-to-market 邏輯
+    </li>
+    <li>
+      <strong>【成長是否快於超大規模 CapEx？】（Melius / Ben Reitzes）</strong><br>
+      Jensen 明確確認「理應如此」，因 ACIE 分部（AI 原生雲、企業、工業）的成長速度高於 Hyperscale，加上物理 AI 未來加入，均為獨立且額外的成長動能，非替代
+    </li>
+    <li>
+      <strong>【推論市場份額】（Cantor Fitzgerald / CJ Muse）</strong><br>
+      Jensen：「我們在推論的份額正在非常快速地增長。」關鍵因素：① 正式納入 Anthropic 作為策略夥伴，過去 coverage 幾乎為零；② Vera Rubin 將比 Blackwell 更成功，每一家前沿模型公司均計劃從一開始即採用；③ 非 Hyperscale 的第二類別 AI 資料中心，推論份額「幾乎 100%」來自 NVIDIA
+    </li>
+    <li>
+      <strong>【LPX / CPX 定位】（UBS / Tim Arcuri）</strong><br>
+      Jensen 重申 LPX（SRAM 架構）屬利基定位：低延遲高 token 速率，但吞吐量低、context 視窗小。現階段市場占比可能遠低於 20%；未來高端溢價 token 服務或達 20%。LPX 作為 Vera Rubin 平台的「加掛」選項，而非替代
+    </li>
+    <li>
+      <strong>【CPU vs GPU 關係是否蠶食？】（BofA / Vivek Arya）</strong><br>
+      Jensen 明確否認：Agent 架構中，「所有思考在 GPU，所有協調在 CPU」。Vera 定位為 Agentic CPU，類比每個 Agent 均需一台 PC；未來 agent 數量可能達數十億，形成全新 $200B TAM。$20B 為 standalone CPU 能見度，Vera Rubin 內含的 Vera 另計
+    </li>
+    <li>
+      <strong>【$1兆之上的 Upside 來源排序】（Goldman Sachs / Jim Schneider）</strong><br>
+      Jensen 排序：①前沿 AI 模型份額持續擴大（Anthropic 等新夥伴）②Vera 獨立 CPU（$1兆基準未含）③LPX。整合 Vera + Vera Rubin + LPX 可覆蓋完整 AI 全週期
+    </li>
+    <li>
+      <strong>【Vera Rubin 爬坡速度】（TD Cowen / Joshua Buchalter）</strong><br>
+      Colette：Q3 開始出貨（初始），Q4 加速，FY28 Q1 應相當大規模。客戶 PO 已到位，幾乎所有主要客戶準備就緒；系統極為複雜，速度取決於生產整合時程，非需求問題
+    </li>
+    <li>
+      <strong>【ACIE vs Hyperscale 長期成長差異】（Bernstein / Stacy Rasgon）</strong><br>
+      Jensen 確認 Neo Cloud（AI 原生雲）歸屬第二類別（ACIE）。預期 ACIE 長期成長仍快於 Hyperscale，原因是企業 / 工業市場代表 $50–80 兆全球經濟，AI 滲透率仍極低；物理 AI 的第三類別有望在 5 年內快速成長
+    </li>
+  </ul>
+</div>
+
+
+<!-- ────────── 09. Jensen 五大結語 ────────── -->
+<div class="section">
+  <div class="section-title">09 ｜ Jensen 結語：五大戰略支柱</div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="num">1</div>
+      <div class="p-text">唯一運行<strong>所有前沿 AI 模型</strong>的平台<br>（含新加入的 Anthropic）</div>
+    </div>
+    <div class="pillar">
+      <div class="num">2</div>
+      <div class="p-text">覆蓋<strong>每一家超大規模雲</strong><br>內部 ML + 公有雲 NVIDIA 需求</div>
+    </div>
+    <div class="pillar">
+      <div class="num">3</div>
+      <div class="p-text">全棧 AI 工廠方案覆蓋<strong>ACIE 第二類別</strong><br>AI 原生、主權、企業、工業</div>
+    </div>
+    <div class="pillar">
+      <div class="num">4</div>
+      <div class="p-text">CUDA 延伸至邊緣<br><strong>物理 AI / 機器人</strong><br>下一波十億機器節點</div>
+    </div>
+    <div class="pillar">
+      <div class="num">5</div>
+      <div class="p-text"><strong>Vera CPU</strong><br>全球首款 Agentic CPU<br>$200B 全新 TAM</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:16px;">
+    Jensen 閉幕詞：「Agentic AI 已到來。AI 現在能做有生產力、有價值的工作。Token 現在是有利潤的。在 AI 時代，算力即收入，算力即利潤。<strong>NVIDIA 是這個時代的平台。It has arrived.</strong>」
+  </div>
+</div>
+
+
+<!-- ────────── 10. 關鍵觀察與投資含義 ────────── -->
+<div class="section">
+  <div class="section-title">10 ｜ 關鍵觀察與投資含義</div>
+
+  <ul class="bullet-list">
+    <li><strong>成長引擎從「Hyperscale 單引擎」轉向「雙引擎」：</strong>ACIE 本季 QoQ 成長 31% 遠快於 Hyperscale 的 12%，若持續，NVIDIA 的成長將不再完全依賴超大規模 CapEx 週期，結構性多元化程度提升</li>
+    <li><strong>Vera CPU 是本季最大意外驚喜：</strong>$20B 年度 CPU 能見度為市場首次明確量化，開啟 NVIDIA 進軍 $200B CPU TAM 的新敘事，長期可挑戰 Intel / AMD 企業 CPU 市場</li>
+    <li><strong>Anthropic 夥伴關係重要性被低估：</strong>Call 中多次強調過去對 Anthropic 的 coverage「幾乎為零」，現在正在快速補量，AWS / Azure / CoreWeave 等多管道佈局，代表短期推論需求的重要增量</li>
+    <li><strong>Q2 Guidance 是近期最重要的催化劑：</strong>$91B 中值高於 consensus $87.3B 約 4%，且毛利率無下修，排除了近幾季最大隱憂；本次 guidance beat 幅度為近年最大</li>
+    <li><strong>股價不漲、甚至回跌的反直覺現象延續：</strong>NVIDIA 已連續數季「超預期後股價下跌」，反映買方 whisper number 慣性高於 consensus；然而 Q2 guidance 明顯超預期，此次後續走勢或有所不同，值得觀察</li>
+    <li><strong>毛利率短期天花板已相對清晰：</strong>Non-GAAP 75% 為管理層全年目標上限，Blackwell/Rubin 系統複雜度使進一步提升受限；供應鏈成本壓力（OpEx 全年成長 upper 40s）需持續監控</li>
+  </ul>
+</div>
+
+
+<div class="report-footer">
+  資料來源：Bloomberg INITIAL DRAFT TRANSCRIPT 2026-05-20 ｜ Investing.com / GuruFocus / 247WallSt / QuiverQuant ｜ 本報告僅供參考，不構成投資建議
+</div>
+
+</body>
+</html>

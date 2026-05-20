@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADI Q2 FY2026 Earnings Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #5C5C5C;
+    --accent: #1B4F72;
+    --accent-light: #EAF0F5;
+    --orange: #C0623A;
+    --orange-light: #FDF3EE;
+    --green: #1E7D5A;
+    --green-light: #EDF7F2;
+    --red: #B8382C;
+    --red-light: #FDF0EF;
+    --border: #E0DDD8;
+    --divider: #EDEDEB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* Header */
+  .report-header {
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+
+  .report-header .ticker {
+    font-family: 'Source Sans 3', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  .report-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .report-header .subtitle {
+    font-size: 20px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .report-header .meta {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Beat badges */
+  .beat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+
+  .beat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+
+  .beat-card .label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .beat-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .beat-card .versus {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .beat-card .badge {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+  }
+
+  .badge.green { background: var(--green-light); color: var(--green); }
+  .badge.red { background: var(--red-light); color: var(--red); }
+
+  /* Section */
+  section {
+    margin-bottom: 44px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 28px 0 14px;
+  }
+
+  p {
+    margin-bottom: 14px;
+    font-size: 18px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 17px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  thead th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+
+  tbody td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #F7F7F5; }
+
+  td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+
+  td.positive { color: var(--green); font-weight: 600; }
+  td.negative { color: var(--red); font-weight: 600; }
+  td.highlight { background: var(--accent-light); font-weight: 600; }
+
+  /* Callout */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin: 24px 0;
+    font-size: 17px;
+  }
+
+  .callout.warn {
+    border-left-color: var(--orange);
+    background: var(--orange-light);
+  }
+
+  .callout.good {
+    border-left-color: var(--green);
+    background: var(--green-light);
+  }
+
+  .callout strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+
+  /* Bullet list */
+  ul.insight-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.insight-list li {
+    position: relative;
+    padding: 10px 0 10px 28px;
+    border-bottom: 1px solid var(--divider);
+    font-size: 18px;
+  }
+
+  ul.insight-list li:last-child { border-bottom: none; }
+
+  ul.insight-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Stock reaction box */
+  .stock-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .stock-box .price-change {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--red);
+    white-space: nowrap;
+  }
+
+  .stock-box .explanation {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Verdict section */
+  .verdict {
+    background: var(--card);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 32px;
+    margin-top: 36px;
+  }
+
+  .verdict h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 16px;
+  }
+
+  .verdict p { font-size: 18px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--divider);
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 60px; }
+    .report-header h1 { font-size: 28px; }
+    .beat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .beat-card .value { font-size: 26px; }
+    .stock-box { flex-direction: column; text-align: center; }
+    table { font-size: 15px; }
+    thead th, tbody td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="report-header">
+    <div class="ticker">NASDAQ: ADI</div>
+    <h1>Analog Devices — Q2 FY2026 財報總整理</h1>
+    <div class="subtitle">業績全面超預期，六年最大 EPS Beat，但股價逆勢下跌</div>
+    <div class="meta">報告日期：2026/05/20 ｜ 財季截止：2026/05/02 ｜ 資料來源：公司財報、Earnings Call Transcript</div>
+  </header>
+
+  <!-- HEADLINE NUMBERS -->
+  <div class="beat-grid">
+    <div class="beat-card">
+      <div class="label">營收</div>
+      <div class="value">$3.62B</div>
+      <div class="versus">共識 $3.51B</div>
+      <div class="badge green">Beat +3.1%</div>
+    </div>
+    <div class="beat-card">
+      <div class="label">Adj. EPS</div>
+      <div class="value">$3.09</div>
+      <div class="versus">共識 $2.89</div>
+      <div class="badge green">Beat +6.8%</div>
+    </div>
+    <div class="beat-card">
+      <div class="label">毛利率</div>
+      <div class="value">73.0%</div>
+      <div class="versus">YoY +360bps</div>
+      <div class="badge green">Record</div>
+    </div>
+    <div class="beat-card">
+      <div class="label">營業利益率</div>
+      <div class="value">49.0%</div>
+      <div class="versus">YoY +780bps</div>
+      <div class="badge green">Record</div>
+    </div>
+  </div>
+
+  <!-- SEGMENT BREAKDOWN -->
+  <section>
+    <h2>一、事業部營收拆解</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>事業部</th>
+          <th style="text-align:right">營收</th>
+          <th style="text-align:right">佔比</th>
+          <th style="text-align:right">QoQ</th>
+          <th style="text-align:right">YoY</th>
+          <th>備註</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Industrial</strong></td>
+          <td class="num">$1.80B</td>
+          <td class="num">50%</td>
+          <td class="num positive">+20%</td>
+          <td class="num positive">+56%</td>
+          <td>A&D、ATE、ETM、broad market 全面成長</td>
+        </tr>
+        <tr>
+          <td><strong>Automotive</strong></td>
+          <td class="num">$871.6M</td>
+          <td class="num">24%</td>
+          <td class="num positive">+8%</td>
+          <td class="num positive">+2%</td>
+          <td>BMS 兩年來首次 YoY 雙位數成長</td>
+        </tr>
+        <tr>
+          <td><strong>Communications</strong></td>
+          <td class="num">$554.7M</td>
+          <td class="num">15%</td>
+          <td class="num positive">+22%</td>
+          <td class="num positive">+79%</td>
+          <td>Data center 佔 75%+，YoY &gt;90%</td>
+        </tr>
+        <tr>
+          <td><strong>Consumer</strong></td>
+          <td class="num">$397.8M</td>
+          <td class="num">11%</td>
+          <td class="num">Flat</td>
+          <td class="num positive">+23%</td>
+          <td>高端消費與 prosumer 業務貢獻</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout good">
+      <strong>🔑 關鍵亮點</strong>
+      Data Center 營收 YoY 成長超過 90%，由光學（Optical）和電源（Power）兩大組合近乎等額貢獻。CFO 確認 Communications 事業整體毛利率高於公司平均。
+    </div>
+  </section>
+
+  <!-- GUIDANCE -->
+  <section>
+    <h2>二、Q3 FY2026 Guidance vs. 共識</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>指標</th>
+          <th style="text-align:right">公司指引</th>
+          <th style="text-align:right">共識預估</th>
+          <th style="text-align:right">差異</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>營收</strong></td>
+          <td class="num">$3.80B – $4.00B</td>
+          <td class="num">$3.61B</td>
+          <td class="num positive">中間值高出 ~8%</td>
+        </tr>
+        <tr>
+          <td><strong>Adj. EPS</strong></td>
+          <td class="num">$3.15 – $3.45</td>
+          <td class="num">$3.00</td>
+          <td class="num positive">中間值高出 ~10%</td>
+        </tr>
+        <tr>
+          <td><strong>營業利益率</strong></td>
+          <td class="num">49% ± 100bps</td>
+          <td class="num">—</td>
+          <td class="num">持平 Q2</td>
+        </tr>
+        <tr>
+          <td><strong>稅率</strong></td>
+          <td class="num">12% – 14%</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Q3 各事業部展望（CFO Color）</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>事業部</th>
+          <th>Q3 QoQ 預期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Industrial</td><td class="positive">Mid-to-high single digits ↑</td></tr>
+        <tr><td>Automotive</td><td class="positive">Mid-to-high single digits ↑</td></tr>
+        <tr><td>Communications</td><td class="positive">Low-to-mid teens ↑（最快成長者）</td></tr>
+        <tr><td>Consumer</td><td class="negative">Single digits ↓</td></tr>
+      </tbody>
+    </table>
+    <p>通路庫存週數維持在 6–7 週目標區間，guidance 中假設 flat。Q4 歷史季節性通常 QoQ low single digits 成長。</p>
+  </section>
+
+  <!-- EARNINGS CALL -->
+  <section>
+    <h2>三、Earnings Call 重點摘要</h2>
+
+    <h3>1. 訂單與需求</h3>
+    <p>B2B 市場（Industrial、Automotive、Communications）訂單量創紀錄，book-to-bill 正向。CEO Roche 表示客戶端「大致平靜」，但對半導體供應鏈某些瓶頸（如記憶體）有些擔憂。ADI 自身 lead time 保持良好，內部產能較 COVID 前翻倍以上。</p>
+
+    <h3>2. AI / Data Center 成長動能</h3>
+    <p>Data center 與 ATE 業務均處於陡峭成長軌道。管理層表示隨著進入 2026 年下半年，對這些業務延續成長至 2027 年的信心正在增強。Data center 中光學和電源組合的成長率「幾乎相等」，雙引擎並進。</p>
+
+    <h3>3. Empower Semiconductor 收購（$1.5B 全現金）</h3>
+    <p>取得 Integrated Voltage Regulator (IVR) 和矽電容專有技術，實現真正的「垂直電源傳輸」(Vertical Power Delivery)。能將客戶的電源佔地面積縮小達 4 倍，並預估降低數據中心運算功耗 10%–15%。CEO 強調這是填補 ADI 從電網到核心 (Grid-to-Core) 電源平台的最後一塊拼圖。預計 2027 年開始看到顯著營收貢獻。</p>
+
+    <h3>4. 定價策略</h3>
+    <p>Q2 超出 guidance 高標的全部增量來自 <strong>volume</strong>，非額外定價。全年定價行動對營收成長率貢獻約 2 個百分點。產品平均 ASP 為業界 4–5 倍，設計粘性極高，competitive substitution 接近零。</p>
+
+    <h3>5. 毛利率展望</h3>
+    <p>Bernstein 分析師追問毛利率天花板。CFO 確認：稼動率已接近最大化，73% 附近是合理的近期上限思維。若營收繼續增長，額外產能需要仰賴外包，這可能會壓制毛利率擴張。Q3 指引毛利率將因上季一次性通路重新定價效益消失而下降約 50bps。</p>
+
+    <h3>6. Automotive 回溫</h3>
+    <p>歐洲與日本營收創紀錄，中國在季度後半段出現明顯回升。BMS 兩年來首次恢復 YoY 雙位數成長，受惠歐洲和中國 EV 滲透率持續提升。預期中國 L3 ADAS 年底前部署。管理層判斷汽車客戶庫存仍偏低，支撐後續成長展望。</p>
+
+    <h3>7. 產能規劃</h3>
+    <p>內部產能已翻倍，外部建立多地區供應備選。現有產能足以支撐至 $20B 營收的 2030 願景。CapEx 維持長期模型 4%–6% 的營收佔比。</p>
+  </section>
+
+  <!-- STOCK REACTION -->
+  <section>
+    <h2>四、股價反應</h2>
+    <div class="stock-box">
+      <div class="price-change">−7.1%</div>
+      <div class="explanation">
+        儘管業績全面超預期，ADI 股價盤中下跌約 6–7%，收於 $385 附近。<br>
+        股價 YTD 已漲 ~53%、P/E 約 72.7x。典型的「Buy the Rumor, Sell the News」獲利了結格局。<br>
+        大盤同日上漲（S&P 500 +0.7%），ADI 跌幅完全是個股因素。
+      </div>
+    </div>
+  </section>
+
+  <!-- VERDICT -->
+  <section>
+    <h2>五、是否有不如預期之處？</h2>
+
+    <div class="callout good">
+      <strong>✅ 結論：業績本身零 Miss</strong>
+      Q2 營收、EPS、毛利率、營業利益率全部超出 guidance 高標。Q3 指引營收和 EPS 分別高出共識 ~8% 和 ~10%。這是六年來最大的 EPS beat。
+    </div>
+
+    <h3>但市場擔憂的隱性風險</h3>
+    <ul class="insight-list">
+      <li><strong>毛利率見頂：</strong>73% 可能是短期天花板，稼動率已最大化。後續營收增長若依賴外包，毛利率擴張空間受限。</li>
+      <li><strong>Consumer 放緩：</strong>Q3 預期 QoQ 下滑，受消費者信心和通膨壓力影響，是唯一預計衰退的事業部。</li>
+      <li><strong>Automotive YoY 僅 +2%：</strong>雖 QoQ 回升，年增率在四大事業部中最弱。中國拉貨可持續性仍有觀察空間。</li>
+      <li><strong>Empower 收購整合風險：</strong>$1.5B 全現金收購一家營收極小的公司，設計導入和量產放量需等到 2027 年。</li>
+      <li><strong>估值過高下的獲利了結：</strong>P/E ~73x，YTD +53%，市場早已充分反映強勁預期，空間收斂後自然回吐。</li>
+      <li><strong>地緣與總經不確定性：</strong>管理層多次提及地緣政治緊張與宏觀環境挑戰，但目前尚未對訂單造成實質影響。</li>
+    </ul>
+  </section>
+
+  <!-- KEY FINANCIALS TABLE -->
+  <section>
+    <h2>六、關鍵財務數據總覽</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>指標</th>
+          <th style="text-align:right">Q2 FY2026</th>
+          <th style="text-align:right">Q1 FY2026</th>
+          <th style="text-align:right">Q2 FY2025</th>
+          <th style="text-align:right">QoQ</th>
+          <th style="text-align:right">YoY</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>營收</td>
+          <td class="num">$3.62B</td>
+          <td class="num">$3.16B</td>
+          <td class="num">$2.64B</td>
+          <td class="num positive">+15%</td>
+          <td class="num positive">+37%</td>
+        </tr>
+        <tr>
+          <td>毛利率</td>
+          <td class="num">73.0%</td>
+          <td class="num">71.2%</td>
+          <td class="num">69.4%</td>
+          <td class="num positive">+180bps</td>
+          <td class="num positive">+360bps</td>
+        </tr>
+        <tr>
+          <td>營業利益率</td>
+          <td class="num">49.0%</td>
+          <td class="num">45.5%</td>
+          <td class="num">41.2%</td>
+          <td class="num positive">+350bps</td>
+          <td class="num positive">+780bps</td>
+        </tr>
+        <tr>
+          <td>Adj. EPS</td>
+          <td class="num">$3.09</td>
+          <td class="num">$2.46</td>
+          <td class="num">$1.85</td>
+          <td class="num positive">+26%</td>
+          <td class="num positive">+67%</td>
+        </tr>
+        <tr>
+          <td>TTM 營業現金流</td>
+          <td class="num">$5.1B</td>
+          <td class="num" colspan="4">FCF $4.6B（TTM FCF margin 36%）</td>
+        </tr>
+        <tr>
+          <td>現金及短投</td>
+          <td class="num">$3.4B</td>
+          <td class="num" colspan="4">淨槓桿比率 0.8x</td>
+        </tr>
+        <tr>
+          <td>股東回報（TTM）</td>
+          <td class="num" colspan="5">$5.0B（股息 + 回購）；季度股息調高 11% 至 $1.10</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="footer">
+    ADI Q2 FY2026 Earnings Summary ｜ Compiled from SEC filings, company press release, and earnings call transcript ｜ 2026/05/21
+  </div>
+
+</div>
+</body>
+</html>
