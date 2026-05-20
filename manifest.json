@@ -26,33 +26,37 @@
     { "id": "other", "name": "其他", "color": "slate" }
   ],
   "earnings": [
-    {
-  "id": "nvda-fq1-2027",
-  "title": "NVIDIA Q1 FY2027 財報深度分析",
-  "subtitle": "Data Center 營收 $75.2B、Vera CPU 意外驚喜，Q2 Guidance 大幅超越共識",
-  "category": "earnings",
-  "tags": ["NVIDIA", "AI晶片", "資料中心", "Blackwell", "GPU"],
-  "date": "2026-05",
-  "stats": [
-    { "value": "$81.6B", "label": "季營收" },
-    { "value": "+85%", "label": "YoY 成長" }
-  ],
-  "eyebrow": "NASDAQ: NVDA · Q1 FY2027 財報",
-  "file": "research/nvda-fq1-2027.html"
-}
-    {
-  "id": "adi-fq2-2026",
-  "title": "ADI Q2 FY2026 財報總整理",
-  "subtitle": "業績全面超預期，六年最大 EPS Beat，但股價逆勢下跌",
-  "category": "earnings",
-  "tags": ["ADI", "類比IC", "工業半導體", "資料中心", "汽車電子"],
-  "date": "2026-05",
-  "stats": [
-    { "value": "$3.62B", "label": "季營收" },
-    { "value": "+6.8%", "label": "EPS Beat" }
-  ],
-  "eyebrow": "NASDAQ: ADI · Q2 FY2026 財報",
-  "file": "research/adi-fq2-2026.html"
+   {
+  "id": "nvda-q1-fy2027",
+  "ticker": "NVDA",
+  "company_en": "NVIDIA",
+  "company_zh": "輝達",
+  "quarter": "Q1 FY2027",
+  "date": "2026-05-20",
+  "category": "semiconductor",
+  "tags": ["AI晶片", "資料中心", "Blackwell", "GPU"],
+  "headline": "營收 $81.6B beat +3.1%、EPS beat +5.6%、FCF $49B 歷史新高；Data Center $75.2B YoY +92%，Q2 Guidance $91B 高共識 ~4% 為近年最大",
+  "metrics": {
+    "rev_yoy": "+85%",
+    "rev_yoy_dir": "up"
+  },
+  "file": "earnings/nvda-q1-fy2027.html"
+},
+   {
+  "id": "adi-q2-fy2026",
+  "ticker": "ADI",
+  "company_en": "Analog Devices",
+  "company_zh": "亞德諾",
+  "quarter": "Q2 FY2026",
+  "date": "2026-05-20",
+  "category": "semiconductor",
+  "tags": ["類比IC", "工業半導體", "資料中心", "汽車電子"],
+  "headline": "營收 $3.62B beat +3.1%、EPS beat +6.8%、六年最大 EPS Beat；Industrial YoY +56%、Data Center YoY +90%，Q3 指引高共識 ~8%",
+  "metrics": {
+    "rev_yoy": "+37%",
+    "rev_yoy_dir": "up"
+  },
+  "file": "earnings/adi-q2-fy2026.html"
 },
     {
       "id": "ftnt-q1-2026",
