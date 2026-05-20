@@ -27,6 +27,34 @@
   ],
   "earnings": [
     {
+  "id": "nvda-fq1-2027",
+  "title": "NVIDIA Q1 FY2027 財報深度分析",
+  "subtitle": "Data Center 營收 $75.2B、Vera CPU 意外驚喜，Q2 Guidance 大幅超越共識",
+  "category": "earnings",
+  "tags": ["NVIDIA", "AI晶片", "資料中心", "Blackwell", "GPU"],
+  "date": "2026-05",
+  "stats": [
+    { "value": "$81.6B", "label": "季營收" },
+    { "value": "+85%", "label": "YoY 成長" }
+  ],
+  "eyebrow": "NASDAQ: NVDA · Q1 FY2027 財報",
+  "file": "research/nvda-fq1-2027.html"
+}
+    {
+  "id": "adi-fq2-2026",
+  "title": "ADI Q2 FY2026 財報總整理",
+  "subtitle": "業績全面超預期，六年最大 EPS Beat，但股價逆勢下跌",
+  "category": "earnings",
+  "tags": ["ADI", "類比IC", "工業半導體", "資料中心", "汽車電子"],
+  "date": "2026-05",
+  "stats": [
+    { "value": "$3.62B", "label": "季營收" },
+    { "value": "+6.8%", "label": "EPS Beat" }
+  ],
+  "eyebrow": "NASDAQ: ADI · Q2 FY2026 財報",
+  "file": "research/adi-fq2-2026.html"
+},
+    {
       "id": "ftnt-q1-2026",
       "ticker": "FTNT",
       "company_en": "Fortinet",
