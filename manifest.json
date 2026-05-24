@@ -8,11 +8,11 @@
   "weekly": {
     "url": "https://weekly-market-recap.netlify.app/archive",
     "latest": {
-      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-15",
-      "range": "May 11–May 15",
+      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-22",
+      "range": "May 18–22",
       "year": "2026",
-      "title": "川習峰會、CPI 3.8%、Warsh 就任、Cerebras IPO",
-      "summary":"WTI 破 $109、10Y 殖利率升至年高 4.54%、Cisco AI 爆發 +13%",
+      "title": "Nvidia 財報· AI科技硬體領漲· 道瓊費半創新高",
+      "summary":"SpaceX S-1 公開申報估值破 $2 兆 · 印尼 MSCI 正式除名",
       "flags": ["最新", "US"]
     }
   },
