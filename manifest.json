@@ -26,6 +26,40 @@
     { "id": "other", "name": "其他", "color": "slate" }
   ],
   "earnings": [
+    {
+      "id": "mrvl-fq1-2027",
+      "ticker": "MRVL",
+      "company_en": "Marvell Technology",
+      "company_zh": "邁威爾",
+      "quarter": "Q1 FY2027",
+      "date": "2026-05-27",
+      "category": "semi",
+      "tags": ["AI 資料中心", "光纖互連", "XPU", "Ethernet 交換"],
+      "headline": "營收歷史新高 +28%、Q2 指引 $2.7B 大超預期；Interconnect 全年上調至 >70% YoY，盤後股價持平反映高期望差",
+      "metrics": {
+        "rev_yoy": "+28%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/mrvl-fq1-2027.html"
+    },
+    {
+      "id": "cisco-fq3-2026",
+      "ticker": "CSCO",
+      "company_en": "Cisco Systems",
+      "company_zh": "思科",
+      "quarter": "Q3 FY2026",
+      "date": "2026-05-13",
+      "category": "tech",
+      "tags": ["AI 基礎建設", "Silicon One", "CPO", "光通訊"],
+      "headline": "AI 訂單 YTD $5.3B（+217%）超全年目標、Q4 指引高出共識 ~$900M；CPO 整合者敘事確立，+17% 創 2002 年以來最大單日漲幅",
+      "metrics": {
+        "stock_reaction": "+17.0%",
+        "stock_reaction_dir": "up",
+        "rev_yoy": "+12%",
+        "rev_yoy_dir": "up"
+      },
+      "file": "earnings/cisco-fq3-2026.html"
+    },
    {
   "id": "nvda-q1-fy2027",
   "ticker": "NVDA",
