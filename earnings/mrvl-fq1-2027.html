@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marvell Q1 FY27 財報深度筆記｜2026.05.27</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE1;
+    --sand: #E8E0D0;
+    --warm-gray: #8C8070;
+    --ink: #2A2218;
+    --ink-light: #4A3F30;
+    --accent-blue: #2D5A8E;
+    --accent-blue-light: #EAF0F8;
+    --accent-green: #2D6E4E;
+    --accent-green-light: #E8F4ED;
+    --accent-red: #8E2D2D;
+    --accent-red-light: #F4E8E8;
+    --accent-amber: #8E6020;
+    --accent-amber-light: #FBF3E3;
+    --accent-purple: #5A3A8E;
+    --accent-purple-light: #EEE8F8;
+    --border: #D8CFC0;
+    --serif: 'Noto Serif TC', Georgia, serif;
+    --sans: 'Noto Sans TC', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 48px 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: 'MRVL';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: var(--mono);
+    font-size: 140px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.05);
+    letter-spacing: -4px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .header-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 15px;
+    color: rgba(250,247,242,0.6);
+    margin-bottom: 28px;
+  }
+  .header-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--sans);
+  }
+  .pill-green { background: var(--accent-green-light); color: var(--accent-green); }
+  .pill-blue  { background: var(--accent-blue-light); color: var(--accent-blue); }
+  .pill-amber { background: var(--accent-amber-light); color: var(--accent-amber); }
+  .pill-red   { background: var(--accent-red-light); color: var(--accent-red); }
+  .pill-purple{ background: var(--accent-purple-light); color: var(--accent-purple); }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  /* ── Section titles ── */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-number {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--warm-gray);
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* ── Explainer box (for readers unfamiliar with Marvell) ── */
+  .explainer {
+    background: var(--accent-blue-light);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-light);
+  }
+  .explainer strong { color: var(--accent-blue); }
+
+  /* ── Metric cards ── */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .metric-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .metric-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .metric-value {
+    font-family: var(--mono);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .metric-note {
+    font-size: 13px;
+    color: var(--warm-gray);
+  }
+  .metric-beat { border-top: 3px solid var(--accent-green); }
+  .metric-inline { border-top: 3px solid var(--accent-amber); }
+  .metric-miss { border-top: 3px solid var(--accent-red); }
+
+  /* ── Tables ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .data-table thead th {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 14px;
+    text-align: left;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .data-table tbody tr:nth-child(odd) { background: white; }
+  .data-table tbody tr:nth-child(even) { background: var(--cream-dark); }
+  .data-table tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .up { color: var(--accent-green); font-weight: 600; }
+  .down { color: var(--accent-red); font-weight: 600; }
+  .neutral { color: var(--accent-amber); font-weight: 600; }
+
+  /* ── Business segment blocks ── */
+  .biz-block {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .biz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .biz-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .biz-rev {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent-blue);
+    background: var(--accent-blue-light);
+    padding: 4px 12px;
+    border-radius: 16px;
+  }
+  .biz-body {
+    padding: 18px 22px;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--ink-light);
+  }
+  .biz-body p { margin-bottom: 10px; }
+  .biz-body p:last-child { margin-bottom: 0; }
+  .biz-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 22px 16px;
+  }
+  .biz-tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  .tag-g { background: var(--accent-green-light); color: var(--accent-green); }
+  .tag-b { background: var(--accent-blue-light); color: var(--accent-blue); }
+  .tag-a { background: var(--accent-amber-light); color: var(--accent-amber); }
+
+  /* ── Guidance arrow table ── */
+  .guidance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin-bottom: 24px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+  }
+  .guidance-table th {
+    background: var(--cream-dark);
+    color: var(--ink);
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .guidance-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .guidance-table tr:last-child td { border-bottom: none; }
+  .arrow-up {
+    display: inline-block;
+    background: var(--accent-green-light);
+    color: var(--accent-green);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: var(--mono);
+  }
+  .arrow-same {
+    display: inline-block;
+    background: var(--accent-amber-light);
+    color: var(--accent-amber);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: var(--mono);
+  }
+
+  /* ── Q&A cards ── */
+  .qa-block {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .qa-q {
+    background: var(--cream-dark);
+    padding: 12px 18px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .qa-q-badge {
+    flex-shrink: 0;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+  .qa-a {
+    padding: 14px 18px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-light);
+  }
+
+  /* ── Broker view cards ── */
+  .broker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .broker-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .broker-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--warm-gray);
+    margin-bottom: 4px;
+  }
+  .broker-rating {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .broker-tp {
+    font-family: var(--mono);
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .broker-body {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-light);
+  }
+  .rating-buy { color: var(--accent-green); }
+  .rating-neutral { color: var(--accent-amber); }
+
+  /* ── Risk / info boxes ── */
+  .callout {
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .callout-risk {
+    background: var(--accent-red-light);
+    border-left: 4px solid var(--accent-red);
+    color: var(--ink-light);
+  }
+  .callout-info {
+    background: var(--accent-green-light);
+    border-left: 4px solid var(--accent-green);
+    color: var(--ink-light);
+  }
+  .callout-note {
+    background: var(--accent-amber-light);
+    border-left: 4px solid var(--accent-amber);
+    color: var(--ink-light);
+  }
+  .callout strong { color: var(--ink); }
+
+  /* ── Glossary ── */
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .glossary-item {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .glossary-term {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent-blue);
+    margin-bottom: 4px;
+  }
+  .glossary-def {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-light);
+  }
+
+
+  /* ── XPU Customer Tracker ── */
+  .xpu-disclaimer {
+    background: #F5F0E8;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--warm-gray);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--warm-gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .xpu-summary-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .xpu-stat {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .xpu-stat-val {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .xpu-stat-lbl {
+    font-size: 11px;
+    color: var(--warm-gray);
+    margin-top: 3px;
+  }
+  .cust-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .cust-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px 20px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .cust-hdr-left { display: flex; align-items: center; gap: 12px; }
+  .cust-logo {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    flex-shrink: 0;
+  }
+  .logo-aws { background: #FFF8ED; color: #D08000; border: 1.5px solid #F0C060; }
+  .logo-ms  { background: #EDF4FC; color: #0060B0; border: 1.5px solid #90B8E0; }
+  .logo-goo { background: #EDF8F1; color: #1E7840; border: 1.5px solid #70C090; }
+  .logo-t1  { background: #EEE8F8; color: #5030A0; border: 1.5px solid #B090E0; }
+  .cust-name { font-family: var(--serif); font-size: 17px; font-weight: 700; }
+  .cust-sub  { font-size: 12px; color: var(--warm-gray); margin-top: 2px; }
+  .cust-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .cbadge {
+    font-size: 11.5px; font-weight: 500;
+    padding: 3px 10px; border-radius: 14px;
+  }
+  .cb-prod   { background: #E8F4ED; color: #1E6040; }
+  .cb-ramp   { background: #EAF0F8; color: #1A4A80; }
+  .cb-dev    { background: #FBF3E3; color: #7A5010; }
+  .cb-rumor  { background: #F0F0F0; color: #606060; }
+  .prog-section { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+  .prog-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .prog-meta {
+    background: var(--cream-dark);
+    padding: 12px 14px;
+    border-right: 1px solid var(--border);
+  }
+  .prog-title { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+  .prog-chip-label { font-family: var(--mono); font-size: 11px; color: var(--warm-gray); margin-bottom: 6px; }
+  .prog-badge {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .pb-prod  { background: #E8F4ED; color: #1E6040; }
+  .pb-ramp  { background: #EAF0F8; color: #1A4A80; }
+  .pb-dev   { background: #FBF3E3; color: #7A5010; }
+  .pb-rumor { background: #F0F0F0; color: #606060; }
+  .prog-detail { padding: 12px 16px; background: white; }
+  .prog-tl {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    align-items: center; margin-bottom: 8px; font-size: 12px;
+  }
+  .tl-node {
+    display: flex; align-items: center; gap: 4px;
+    color: var(--ink-light);
+  }
+  .tl-dot {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  }
+  .td-done   { background: var(--accent-green); }
+  .td-active { background: var(--accent-blue); }
+  .td-next   { background: var(--accent-amber); }
+  .td-far    { background: #CCC; }
+  .tl-arrow  { color: #CCC; font-size: 10px; margin: 0 2px; }
+  .prog-bullets { margin: 0; padding: 0; list-style: none; }
+  .prog-bullets li {
+    font-size: 13.5px; line-height: 1.65; color: var(--ink-light);
+    padding-left: 14px; position: relative; margin-bottom: 2px;
+  }
+  .prog-bullets li::before {
+    content: '›'; position: absolute; left: 0;
+    color: var(--warm-gray); font-size: 12px; top: 2px;
+  }
+  .prog-rev-tag {
+    display: inline-block; margin-top: 6px;
+    background: var(--cream-dark); color: var(--ink-light);
+    font-family: var(--mono); font-size: 11.5px;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .cust-summary-bar {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--border);
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--ink-light);
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .csb-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--warm-gray); flex-shrink: 0; padding-top: 2px;
+  }
+  .attach-outer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .attach-mini {
+    background: white;
+    border: 1.5px solid #F0C888;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .am-title {
+    font-weight: 600; font-size: 14px;
+    color: #8E6020; margin-bottom: 6px;
+  }
+  .am-body {
+    font-size: 13px; line-height: 1.6;
+    color: var(--ink-light);
+  }
+  .am-body li {
+    list-style: none; padding-left: 12px;
+    position: relative; margin-bottom: 2px;
+  }
+  .am-body li::before {
+    content: '·'; position: absolute; left: 2px;
+    color: #8E6020; font-weight: 700;
+  }
+  .rev-roadmap {
+    width: 100%; border-collapse: collapse;
+    font-size: 14px; background: white;
+    border-radius: 10px; overflow: hidden;
+    border: 1.5px solid var(--border);
+    margin-top: 20px;
+  }
+  .rev-roadmap thead th {
+    background: var(--ink); color: var(--cream);
+    padding: 9px 14px; text-align: left;
+    font-family: var(--mono); font-size: 11.5px;
+    letter-spacing: 0.04em; font-weight: 400;
+  }
+  .rev-roadmap tbody td {
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .rev-roadmap tbody tr:nth-child(even) td { background: var(--cream-dark); }
+  .rev-roadmap tbody tr:last-child td { border-bottom: none; }
+  .rr-num { font-family: var(--mono); font-weight: 500; }
+  .rr-up  { color: var(--accent-green); font-weight: 600; }
+
+  /* ── Footer ── */
+  .page-footer {
+    border-top: 2px solid var(--border);
+    padding: 24px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: var(--warm-gray);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--cream-dark);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .toc-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .toc ul { list-style: none; }
+  .toc li {
+    padding: 3px 0;
+    font-size: 14.5px;
+  }
+  .toc a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+  .toc a:hover { text-decoration: underline; }
+  .toc-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--warm-gray);
+    flex-shrink: 0;
+  }
+
+  /* ── Scroll behavior ── */
+  html { scroll-behavior: smooth; }
+  h2[id], div[id] { scroll-margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<div class="page-header">
+  <div class="header-tag">Equity Research Note｜Capital Investment Trust</div>
+  <div class="header-title">Marvell Technology (MRVL)<br>Q1 FY2027 財報深度筆記</div>
+  <div class="header-sub">法說日：2026年5月27日｜本文整理日：2026年5月28日</div>
+  <div class="header-pills">
+    <span class="pill pill-green">Revenue beat</span>
+    <span class="pill pill-green">Q2 Guidance 大超預期</span>
+    <span class="pill pill-green">FY27/28 全年上調</span>
+    <span class="pill pill-amber">GAAP EPS 遠低於預期（一次性）</span>
+    <span class="pill pill-blue">盤後 +3.6%</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════ MAIN ══════════════════════════ -->
+<div class="container">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">📋 本文目錄</div>
+    <ul>
+      <li><a href="#company"><span class="toc-num">0.</span> Marvell 是什麼公司？（先看這裡）</a></li>
+      <li><a href="#numbers"><span class="toc-num">1.</span> 財報數字 vs 市場預期</a></li>
+      <li><a href="#guidance"><span class="toc-num">2.</span> 前瞻指引（Guidance）重點</a></li>
+      <li><a href="#business"><span class="toc-num">3.</span> 四大業務詳解</a></li>
+      <li><a href="#xpu-customers"><span class="toc-num">3.5</span> XPU 客戶進度追蹤（Amazon / Microsoft / Google）</a></li>
+      <li><a href="#earnings-call"><span class="toc-num">4.</span> 法說會 Q&A 精華</a></li>
+      <li><a href="#brokers"><span class="toc-num">5.</span> 券商觀點整理</a></li>
+      <li><a href="#stock"><span class="toc-num">6.</span> 為什麼盤後只漲 3%？</a></li>
+      <li><a href="#glossary"><span class="toc-num">7.</span> 名詞解釋</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══ SECTION 0: COMPANY INTRO ═══ -->
+  <div class="section" id="company">
+    <div class="section-header">
+      <span class="section-number">00</span>
+      <span class="section-title">Marvell 是什麼公司？（先看這裡）</span>
+    </div>
+
+    <div class="explainer">
+      <strong>一句話定位：</strong>Marvell 是一家半導體公司，專門做 AI 資料中心裡面的「神經系統」晶片——不是 GPU（NVIDIA 做的），而是讓 GPU 之間能夠高速互相溝通、記憶體能夠擴充、以及幫大客戶設計專屬 AI 晶片的公司。
+    </div>
+
+    <p style="margin-bottom:14px; font-size:16px; line-height:1.8;">現在全球 AI 基礎建設大爆發，每一個 AI 資料中心裡面都需要幾樣東西：</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>比喻</th>
+          <th>實際是什麼</th>
+          <th>Marvell 的角色</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🚗 GPU（NVIDIA）</td>
+          <td>AI 計算的引擎，做訓練和推論</td>
+          <td>Marvell 做客製化版本（XPU）給 Amazon、Microsoft 等</td>
+        </tr>
+        <tr>
+          <td>🛣️ 高速公路（光纖）</td>
+          <td>資料在伺服器之間傳輸的通道</td>
+          <td>Marvell 做光纖模組裡的核心晶片（DSP、TIA、Driver）</td>
+        </tr>
+        <tr>
+          <td>🔀 交流道（交換器）</td>
+          <td>把資料路由到正確的目的地</td>
+          <td>Marvell 做 Ethernet 交換器 ASIC 晶片</td>
+        </tr>
+        <tr>
+          <td>🗄️ 擴充記憶體</td>
+          <td>AI 推論需要大量記憶體，超過單機上限</td>
+          <td>Marvell 做 CXL 記憶體擴展晶片</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <strong>為什麼現在特別重要：</strong>AI 運算從單機訓練進入到「多個資料中心、幾十萬張 GPU 同時運作」的時代，機器之間的通訊需求爆炸性增長，Marvell 做的這些「連接和路由」的晶片，需求跟著 AI 算力一起成長，甚至更快。
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 1: NUMBERS ═══ -->
+  <div class="section" id="numbers">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <span class="section-title">財報數字 vs 市場預期</span>
+    </div>
+
+    <div class="explainer">
+      <strong>Q1 FY27 = 2026年2月到5月。</strong>Marvell 的財年從2月開始，所以「FY27的第一季」反而是2026年的事。「市場預期（consensus）」是法說前所有賣方分析師估算的平均值；「GS 預估」是 Goldman Sachs 個別估計，通常是最精確的。
+    </div>
+
+    <!-- ① 核心損益表 -->
+    <h3 style="font-family:var(--serif);font-size:16px;margin:0 0 10px;color:var(--ink);">① 核心損益指標</h3>
+    <table class="data-table" style="margin-bottom:24px;">
+      <thead>
+        <tr>
+          <th>指標</th>
+          <th>Q1 FY27 實際</th>
+          <th>市場預期</th>
+          <th>vs 預期</th>
+          <th>QoQ</th>
+          <th>YoY</th>
+          <th>說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>總營收</strong></td>
+          <td style="font-family:var(--mono);font-weight:600;">$2,418M</td>
+          <td style="font-family:var(--mono);">$2,412M</td>
+          <td class="up">+$6M&nbsp;(+0.2%)</td>
+          <td class="up">+9%</td>
+          <td class="up">+28%</td>
+          <td>歷史新高</td>
+        </tr>
+        <tr>
+          <td><strong>Non-GAAP 毛利率</strong></td>
+          <td style="font-family:var(--mono);font-weight:600;">58.9%</td>
+          <td style="font-family:var(--mono);">58.8%</td>
+          <td class="up">+7 bps</td>
+          <td class="neutral">-10 bps</td>
+          <td class="down">-90 bps</td>
+          <td>仍在緩步下滑趨勢中</td>
+        </tr>
+        <tr>
+          <td><strong>Non-GAAP 營業利潤率</strong></td>
+          <td style="font-family:var(--mono);font-weight:600;">35.0%</td>
+          <td style="font-family:var(--mono);">35.0%</td>
+          <td class="neutral">符合</td>
+          <td class="neutral">-70 bps</td>
+          <td class="up">+80 bps</td>
+          <td>OpEx 因收購增加而上升</td>
+        </tr>
+        <tr>
+          <td><strong>Non-GAAP EPS</strong></td>
+          <td style="font-family:var(--mono);font-weight:600;">$0.80</td>
+          <td style="font-family:var(--mono);">$0.80</td>
+          <td class="neutral">符合</td>
+          <td class="neutral">0%</td>
+          <td class="up">+29%</td>
+          <td></td>
+        </tr>
+        <tr style="background:#FEF8EE;">
+          <td><strong>GAAP EPS</strong></td>
+          <td style="font-family:var(--mono);font-weight:600;color:#8E2D2D;">$0.04</td>
+          <td style="font-family:var(--mono);">~$0.30+</td>
+          <td class="down">大幅低於</td>
+          <td class="down">-91%</td>
+          <td class="down">-80%</td>
+          <td style="font-size:12.5px;color:#8E6020;">⚠️ 一次性：Celestial AI / XConn 收購的 contingent consideration fair value 變動 +$331.8M，屬純會計項目，Q2 起正常化</td>
+        </tr>
+        <tr>
+          <td><strong>營業現金流</strong></td>
+          <td style="font-family:var(--mono);font-weight:600;">$639M</td>
+          <td>—</td>
+          <td class="up">歷史新高 🎯</td>
+          <td class="up">+71%</td>
+          <td class="up">+92%</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ② 業務別營收拆分 -->
+    <h3 style="font-family:var(--serif);font-size:16px;margin:0 0 10px;color:var(--ink);">② 各業務別營收拆分</h3>
+
+    <div style="font-size:12.5px;color:var(--warm-gray);background:var(--cream-dark);border:1px solid var(--border);border-radius:6px;padding:8px 14px;margin-bottom:12px;line-height:1.6;">
+      ⚠️ Marvell <strong>官方只揭露兩個業務別</strong>（Data Center / Comms &amp; Other）。Data Center 內的三個支柱（Interconnect / Switching / Custom）由管理層法說會指引及分析師 primary research 估算，<strong>非官方財報數字</strong>，標記「*」者為估算值。FY27 全年指引為管理層官方說法。
+    </div>
+
+    <table class="data-table" style="margin-bottom:6px;">
+      <thead>
+        <tr>
+          <th style="width:26%;">業務</th>
+          <th>Q1 FY27 營收</th>
+          <th>佔總營收</th>
+          <th>佔 DC 內部</th>
+          <th>QoQ</th>
+          <th>YoY（Q1）</th>
+          <th>FY27 全年展望</th>
+          <th>vs 街頭預期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- DATA CENTER HEADER ROW -->
+        <tr style="background:var(--ink);">
+          <td colspan="8" style="color:var(--cream);font-family:var(--mono);font-size:12px;letter-spacing:0.08em;padding:7px 14px;">
+            🖥&nbsp; DATA CENTER &nbsp;—&nbsp; 官方揭露
+          </td>
+        </tr>
+        <!-- DC Total -->
+        <tr style="background:#EAF0F8;">
+          <td style="padding-left:14px;"><strong>Data Center 合計</strong></td>
+          <td style="font-family:var(--mono);font-weight:600;">$1,833M</td>
+          <td style="font-family:var(--mono);font-weight:700;color:var(--accent-blue);">76%</td>
+          <td>—</td>
+          <td class="up">+11%</td>
+          <td class="up">+27%</td>
+          <td class="up">~50% YoY</td>
+          <td class="up">vs $1,832M<br><span style="font-size:11.5px;color:var(--accent-green);">+0.0%（符合）</span></td>
+        </tr>
+        <!-- Interconnect -->
+        <tr>
+          <td style="padding-left:28px;color:var(--ink-light);">
+            ┣ 📡 Interconnect *<br>
+            <span style="font-size:11.5px;color:var(--warm-gray);">DSP、TIA、Driver、DCI 模組</span>
+          </td>
+          <td style="font-family:var(--mono);">~$1,200M *</td>
+          <td style="font-family:var(--mono);color:var(--accent-blue);">~50%</td>
+          <td style="font-family:var(--mono);">~65%</td>
+          <td class="up">持續強勁</td>
+          <td class="up">~+40%+</td>
+          <td class="up" style="font-size:13px;"><strong>&gt;70% YoY</strong><br><span style="font-size:11.5px;">(從50%上調)</span></td>
+          <td style="font-size:12.5px;color:var(--warm-gray);">
+            HSBC FY27全年估：$5.18B<br>vs consensus $4.72B<br><span style="color:var(--accent-green);">高出 +10%</span>
+          </td>
+        </tr>
+        <!-- Switching -->
+        <tr>
+          <td style="padding-left:28px;color:var(--ink-light);">
+            ┣ 🔀 Switching *<br>
+            <span style="font-size:11.5px;color:var(--warm-gray);">Scale-out Ethernet ASIC</span>
+          </td>
+          <td style="font-family:var(--mono);">~$160M *</td>
+          <td style="font-family:var(--mono);color:var(--accent-blue);">~7%</td>
+          <td style="font-family:var(--mono);">~9%</td>
+          <td class="up">快速 ramp</td>
+          <td class="up">~+80%+</td>
+          <td class="up" style="font-size:13px;"><strong>&gt;$600M FY27</strong><br><span style="font-size:11.5px;">(YoY 翻倍)</span></td>
+          <td style="font-size:12.5px;color:var(--warm-gray);">
+            含於 DC 整體；<br>FY28 朝 $1B 年化推進
+          </td>
+        </tr>
+        <!-- Custom -->
+        <tr>
+          <td style="padding-left:28px;color:var(--ink-light);">
+            ┗ 🧠 Custom Silicon *<br>
+            <span style="font-size:11.5px;color:var(--warm-gray);">XPU + XPU-attached（10+計畫）</span>
+          </td>
+          <td style="font-family:var(--mono);">~$470M *</td>
+          <td style="font-family:var(--mono);color:var(--accent-blue);">~19%</td>
+          <td style="font-family:var(--mono);">~26%</td>
+          <td class="up">穩健成長</td>
+          <td class="up">~+25%</td>
+          <td class="up" style="font-size:13px;"><strong>&gt;20% YoY</strong><br><span style="font-size:11.5px;">(FY28 >2x)</span></td>
+          <td style="font-size:12.5px;color:var(--warm-gray);">
+            HSBC FY27全年估：$2.02B<br>vs consensus $2.06B<br><span style="color:var(--neutral);">接近 consensus</span>
+          </td>
+        </tr>
+        <!-- COMMS HEADER ROW -->
+        <tr style="background:var(--ink);">
+          <td colspan="8" style="color:var(--cream);font-family:var(--mono);font-size:12px;letter-spacing:0.08em;padding:7px 14px;">
+            📶&nbsp; COMMS &amp; OTHER &nbsp;—&nbsp; 官方揭露
+          </td>
+        </tr>
+        <!-- Comms -->
+        <tr>
+          <td style="padding-left:14px;"><strong>Comms &amp; Other</strong><br><span style="font-size:11.5px;color:var(--warm-gray);">企業網路、電信、消費者</span></td>
+          <td style="font-family:var(--mono);font-weight:600;">$585M</td>
+          <td style="font-family:var(--mono);font-weight:700;color:var(--accent-blue);">24%</td>
+          <td>—</td>
+          <td class="up">+3%</td>
+          <td class="up">+29%</td>
+          <td class="up">~+10% YoY</td>
+          <td class="up">vs $580M<br><span style="font-size:11.5px;color:var(--accent-green);">+0.8%（略超）</span></td>
+        </tr>
+        <!-- TOTAL -->
+        <tr style="background:var(--cream-dark);border-top:2px solid var(--ink);">
+          <td><strong>總營收</strong></td>
+          <td style="font-family:var(--mono);font-weight:700;">$2,418M</td>
+          <td style="font-family:var(--mono);font-weight:700;">100%</td>
+          <td>—</td>
+          <td class="up"><strong>+9%</strong></td>
+          <td class="up"><strong>+28%</strong></td>
+          <td class="up"><strong>~40% YoY</strong></td>
+          <td class="up">vs $2,412M<br><span style="font-size:11.5px;color:var(--accent-green);">+0.2%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--warm-gray);margin-bottom:24px;">* 估算值：由管理層法說會指引（FY27全年展望）及 JPMorgan / HSBC primary research 推算。GS variance 數據：DC $1,833M vs GS $1,827M（+0.3%）；Comms $585M vs GS $569M（+2.8%）。</p>
+
+    <!-- ③ 值得關注的訊號（原④）-->
+    <div class="callout callout-note">
+      <strong>本季數字的三個訊號：</strong><br>
+      1️⃣ <strong>Data Center 佔比回到 76%</strong>（Q2–Q3 FY26 曾降至 73–74%），顯示 AI 需求動能再度加強。<br>
+      2️⃣ <strong>Non-GAAP 毛利率 58.9%</strong>——連續 3 季從 59.8% 緩步下降，主因是 Custom Silicon（毛利率較低）比重提升，以及新收購帶來的成本。管理層目標 FY28 挑戰 40% 非 GAAP 營業利潤率。<br>
+      3️⃣ <strong>GAAP EPS $0.04 遠低於預期</strong>——這是一次性的收購帳務衝擊（contingent consideration），不影響業務基本面，Q2 起正常化。
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2: GUIDANCE ═══ -->
+  <div class="section" id="guidance">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <span class="section-title">前瞻指引（Guidance）重點</span>
+    </div>
+
+    <div class="explainer">
+      <strong>Guidance 是本季最大的驚喜來源。</strong>公司不只給下一季的目標，還大幅上調了整個 FY27 和 FY28 的全年展望，這才是推動股價的核心。
+    </div>
+
+    <h3 style="font-family:var(--serif); font-size:17px; margin-bottom:14px; color:var(--ink);">Q2 FY27 Guidance（下一季展望）</h3>
+    <table class="guidance-table">
+      <thead>
+        <tr><th>指標</th><th>Guidance 中值</th><th>GS 預估</th><th>街頭預估</th><th>超出幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Q2 總營收</strong></td>
+          <td>$2.70B ± 5%</td>
+          <td>$2.61B</td>
+          <td>$2.62B</td>
+          <td><span class="arrow-up">↑ +$100M</span> 這是最大的 positive surprise</td>
+        </tr>
+        <tr>
+          <td>Non-GAAP 毛利率</td>
+          <td>58.25–59.25%</td>
+          <td>58.5%</td>
+          <td>58.6%</td>
+          <td><span class="arrow-up">略超</span></td>
+        </tr>
+        <tr>
+          <td>Non-GAAP EPS 中值</td>
+          <td>$0.93 ± $0.05</td>
+          <td>$0.90</td>
+          <td>$0.91</td>
+          <td><span class="arrow-up">↑ QoQ +16%</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:var(--serif); font-size:17px; margin-bottom:14px; color:var(--ink);">全年展望大幅上調</h3>
+    <table class="guidance-table">
+      <thead>
+        <tr><th>指標</th><th>Q4 FY26 給的 Guidance</th><th>本季更新</th><th>上調幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FY27 全年營收</strong></td>
+          <td>~$11.0B</td>
+          <td><strong>~$11.5B</strong></td>
+          <td><span class="arrow-up">↑ +$500M+</span></td>
+        </tr>
+        <tr>
+          <td>FY27 Data Center YoY 成長</td>
+          <td>~40%</td>
+          <td><strong>~50%</strong></td>
+          <td><span class="arrow-up">↑ +10ppt</span></td>
+        </tr>
+        <tr>
+          <td>FY27 Interconnect YoY 成長</td>
+          <td>~50%</td>
+          <td><strong>&gt;70%</strong></td>
+          <td><span class="arrow-up">↑ 大幅上調</span></td>
+        </tr>
+        <tr>
+          <td><strong>FY28 全年營收</strong></td>
+          <td>~$15.0B</td>
+          <td><strong>~$16.5B</strong></td>
+          <td><span class="arrow-up">↑ +$1.5B</span> 最關鍵的數字</td>
+        </tr>
+        <tr>
+          <td>FY28 Data Center YoY 成長</td>
+          <td>~50%</td>
+          <td><strong>~55%</strong></td>
+          <td><span class="arrow-up">↑ 成長加速</span></td>
+        </tr>
+        <tr>
+          <td>FY28 Custom Silicon YoY</td>
+          <td>—</td>
+          <td><strong>&gt;2x YoY</strong></td>
+          <td><span class="arrow-up">↑ 翻倍以上</span></td>
+        </tr>
+        <tr>
+          <td>FY29 Custom Silicon 目標</td>
+          <td>$10B+</td>
+          <td><strong>$10B+ 維持</strong></td>
+          <td><span class="arrow-same">→ 持續達成中</span></td>
+        </tr>
+        <tr>
+          <td>FY28 Non-GAAP 營業利潤率</td>
+          <td>38–40% 目標區間</td>
+          <td><strong>挑戰 40% 上緣</strong></td>
+          <td><span class="arrow-up">↑ 逐季提升</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-note">
+      <strong>關於 $1B 預付款（Prepayments）：</strong>
+      管理層宣布 FY27 全年將向上游供應商（主要是 TSMC 等晶圓廠）預付約 $1B。方向是 <strong>Marvell 付錢給供應商</strong>，不是客戶付給 Marvell。這是為了提前「鎖定」稀缺的 AI 晶片產能，預付款未來會折抵原料採購費用，屬於先付訂金的概念。這代表公司對未來需求高度有信心，同時也代表 AI 晶片產能仍然非常緊張。
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3: BUSINESS ═══ -->
+  <div class="section" id="business">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <span class="section-title">四大業務詳解</span>
+    </div>
+
+    <!-- Interconnect -->
+    <div class="biz-block">
+      <div class="biz-header">
+        <div class="biz-name">📡 Interconnect（光纖互連）</div>
+        <div class="biz-rev">佔 DC 最大份額 ｜ FY27 >70% YoY</div>
+      </div>
+      <div class="biz-body">
+        <p><strong>是什麼：</strong>AI 資料中心裡，幾萬張 GPU 要互相傳資料，走的是光纖。Marvell 做的是光纖模組裡最核心的半導體元件：<strong>DSP（數位訊號處理器）</strong>、<strong>TIA（跨阻抗放大器）</strong>、<strong>Driver（驅動器）</strong>，以及整合式的 <strong>DCI 模組（跨資料中心互連模組）</strong>。光模組廠商（如 Coherent、II-VI）把這些元件封裝成模組，再賣給超大型雲端客戶。</p>
+        <p><strong>三個子市場：</strong></p>
+        <p>① <strong>Scale-out（橫向）</strong>：同一資料中心內、機架對機架的連線。主流是 800G PAM4，1.6T（更快的新規格）正快速 ramp。Marvell 在 800G DSP 市場份額約 70%，1.6T 約 50%。</p>
+        <p>② <strong>Scale-across（跨站互連）</strong>：多個資料中心之間的後端 AI 網路。過去主要是前端流量（一般網路），現在因為 AI 叢集必須跨資料中心，後端 AI 流量也進來了，帶寬需求是舊有的 10 倍以上。Marvell 的 DCI 模組是這個市場的開創者，現在供應給全部 5 大美國超大型雲端客戶，目標 FY28 達到年化 $1B 收入（FY26 約 $500M）。</p>
+        <p>③ <strong>Scale-up（縱向，最新興）</strong>：XPU 之間的超短距高頻寬連接，需要 silicon photonics（矽光子）技術，包含 CPO（共封裝光學）和 NPO（近封裝光學）。透過收購 <strong>Celestial AI</strong> 取得關鍵技術，已獲一家 Tier 1 超大型雲端客戶採用。FY28 scale-up optics 收入預計超過 $300M，比先前估計翻倍以上，且仍有上行空間。</p>
+        <p><strong>新收購 Polariton：</strong>做 plasmonic 矽光子技術，其 modulator bandwidth 超過 1 THz，是現有技術的 10 倍，讓 Marvell 技術路徑延伸到 3.2T 及以上。</p>
+        <p><strong>TIA &amp; Driver 小插曲：</strong>這個細分業務快速成長，預計在未來幾季達到年化 $1B+ 的 run rate。</p>
+      </div>
+      <div class="biz-tags">
+        <span class="biz-tag tag-g">800G DSP 市場份額 70%</span>
+        <span class="biz-tag tag-g">1.6T 市場份額 50%</span>
+        <span class="biz-tag tag-b">DCI 供貨全部 5 大美國超大型雲端客戶</span>
+        <span class="biz-tag tag-g">FY27 >70% YoY 成長</span>
+      </div>
+    </div>
+
+    <!-- Switching -->
+    <div class="biz-block">
+      <div class="biz-header">
+        <div class="biz-name">🔀 Switching（交換器晶片）</div>
+        <div class="biz-rev">FY27 >$600M ｜ FY28 >$1B 年化</div>
+      </div>
+      <div class="biz-body">
+        <p><strong>是什麼：</strong>AI 資料中心裡的交換器（Switch）負責路由所有的資料流量，Marvell 做的是交換器內部的 ASIC 晶片。這個市場目前 Broadcom 是絕對龍頭，Marvell 是挑戰者。</p>
+        <p><strong>Scale-out switching（橫向）：</strong>成熟市場，Marvell 目前在售 12.8T（仍在持續出貨）和新一代 51.2T Teralynx 10（快速 ramp），正在開發 100T（業界最佳功耗效率）以及 200T 路線圖。FY27 預計超過 $600M（YoY 翻倍），FY28 朝 $1B+ 年化 run rate 邁進。五年前這個業務幾乎是零，現在是 Marvell 重要的成長引擎。</p>
+        <p><strong>Scale-up switching（縱向，全新市場）：</strong>當 AI 叢集規模越來越大，XPU 之間需要專用的低延遲、高帶寬交換器，現有的 PCIe 協議帶寬和端口數量有限制，將推動向 <strong>UALink、ESUN、NVLink</strong> 等新協議轉移。Marvell 透過收購 <strong>XConn</strong> 強化能力，並與 NVIDIA 達成 <strong>NVLink Fusion 合作</strong>。重要：<strong>管理層明確說這塊幾乎完全沒有計入 $16.5B 的 FY28 指引</strong>，完全是額外的 upside，每個 Tier 1 客戶合作都是「數十億美元的終生營收機會」。</p>
+      </div>
+      <div class="biz-tags">
+        <span class="biz-tag tag-g">Scale-out FY27 翻倍</span>
+        <span class="biz-tag tag-b">Scale-up = $16.5B 以外的 upside</span>
+        <span class="biz-tag tag-a">Broadcom 是競爭對手</span>
+      </div>
+    </div>
+
+    <!-- Custom Silicon -->
+    <div class="biz-block">
+      <div class="biz-header">
+        <div class="biz-name">🧠 Custom Silicon（客製化晶片）</div>
+        <div class="biz-rev">FY27 >20% YoY ｜ FY28 >2x YoY ｜ FY29 目標 >$10B</div>
+      </div>
+      <div class="biz-body">
+        <p><strong>是什麼：</strong>Amazon、Google、Microsoft 等超大型雲端客戶想要自己設計專屬 AI 晶片（比通用 GPU 更省電、更符合自己的工作負載），但不想從零開始做晶片設計，於是委託 Marvell 做「客製化晶片代工設計」。Marvell 負責晶片架構、IP 整合（SerDes 高速傳輸、SRAM 記憶體、先進封裝等）和 TSMC 量產導入。</p>
+        <p><strong>三個驅動（FY28 各約三分之一）：</strong></p>
+        <p>① <strong>現有 XPU 計畫繼續成長</strong>：Amazon Trainium 2 持續出貨 + Trainium 3 從 FY27 ramp 的基礎上繼續放大。</p>
+        <p>② <strong>XPU-attached 超預期規模化</strong>：10+ 個計畫，含 CXL 記憶體擴展器（KV cache 需求爆炸 + DRAM 短缺）、NIC（Agentic AI 帶動 CPU 部署增加）、PCIe Switch（XConn 收購）。XPU-attached 單獨目標達 $1B+ 年收入。</p>
+        <p>③ <strong>新 Tier 1 XPU 量產 ramp</strong>：身份保密的新大客戶，FY28 全力量產，FY28 全年需求已有 firm requirements 確認。</p>
+        <p><strong>SRAM IP 競爭護城河：</strong>業界領先的 2nm 高密度 SRAM IP（來自 Avera 收購，源自 GlobalFoundries/IBM 團隊），是 AI 推論 offload 晶片設計的關鍵差異化。Marvell 曾幫 Groq 設計第一代 LPU。</p>
+        <p style="margin-top:8px;"><a href="#xpu-customers" style="color:var(--accent-blue); font-size:14px;">→ 各客戶詳細進度請見下方 3.5 節：XPU 客戶進度追蹤</a></p>
+      </div>
+      <div class="biz-tags">
+        <span class="biz-tag tag-g">FY28 翻倍以上</span>
+        <span class="biz-tag tag-g">FY29 目標 >$10B</span>
+        <span class="biz-tag tag-b">覆蓋所有美國超大型雲端客戶</span>
+        <span class="biz-tag tag-a">客戶名稱不公開</span>
+      </div>
+    </div>
+
+    <!-- Comms & Other continues below, XPU tracker inserted as new section after this section -->
+
+    <!-- Comms & Other -->
+    <div class="biz-block">
+      <div class="biz-header">
+        <div class="biz-name">📶 Communications & Other（通訊及其他）</div>
+        <div class="biz-rev">Q1 FY27：$585M ｜ FY27 全年 +10% YoY</div>
+      </div>
+      <div class="biz-body">
+        <p><strong>是什麼：</strong>Marvell 的傳統業務，包括企業網路（Enterprise Networking）、電信運營商基礎設施（Carrier，主力是 Octeon 5G 基地台處理器）以及消費者/汽車相關晶片。</p>
+        <p><strong>本季情況：</strong>Q1 FY27 $585M，YoY +29%、QoQ +3%，略超預期。管理層說「客戶庫存修正已大致恢復正常」，未來這塊業務主要反映底層需求，不再有庫存去化干擾。</p>
+        <p><strong>AI-RAN 新機會：</strong>與 NVIDIA 合作的新方向，將 Octeon 基地台處理器與 NVIDIA GPU 整合，讓電信運營商在同一套硬體上同時跑 5G/6G 無線電 + 高效能 AI 應用，是中長期的潛在成長機會。</p>
+        <p><strong>FY27 展望：</strong>全年 +10% YoY（維持不變）。FY28 低個位數成長，是公司整體成長率最低的板塊，但相對穩定。</p>
+      </div>
+      <div class="biz-tags">
+        <span class="biz-tag tag-b">庫存修正已結束</span>
+        <span class="biz-tag tag-a">AI-RAN 是新機會</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ SECTION 3.5: XPU CUSTOMERS ═══ -->
+  <div class="section" id="xpu-customers">
+    <div class="section-header">
+      <span class="section-number">3.5</span>
+      <span class="section-title">XPU 客戶進度追蹤</span>
+    </div>
+
+    <div class="xpu-disclaimer">
+      ⚠️ <strong>資料來源說明：</strong>Marvell 官方從不公開客戶名稱。以下客戶資訊來源為 JPMorgan（Harlan Sur）primary research、HSBC 研究報告及 Reuters 等媒體報導，均未獲 Marvell 正式確認。「新 Tier 1」客戶身份至今仍為公司保密。
+    </div>
+
+    <div class="xpu-summary-bar">
+      <div class="xpu-stat">
+        <div class="xpu-stat-val">&gt;20%</div>
+        <div class="xpu-stat-lbl">Custom FY27 YoY</div>
+      </div>
+      <div class="xpu-stat">
+        <div class="xpu-stat-val">&gt;2x</div>
+        <div class="xpu-stat-lbl">Custom FY28 成長</div>
+      </div>
+      <div class="xpu-stat">
+        <div class="xpu-stat-val">$10B+</div>
+        <div class="xpu-stat-lbl">Custom FY29 目標</div>
+      </div>
+      <div class="xpu-stat">
+        <div class="xpu-stat-val">10+</div>
+        <div class="xpu-stat-lbl">XPU-attached 計畫數</div>
+      </div>
+    </div>
+
+    <!-- ── Amazon ── -->
+    <div class="cust-card">
+      <div class="cust-hdr">
+        <div class="cust-hdr-left">
+          <div class="cust-logo logo-aws">AWS</div>
+          <div>
+            <div class="cust-name">Amazon Web Services（AWS）</div>
+            <div class="cust-sub">關係時間最長、最成熟的 XPU 客戶，三代接棒式成長</div>
+          </div>
+        </div>
+        <div class="cust-badges">
+          <span class="cbadge cb-prod">🟢 現有量產中</span>
+          <span class="cbadge cb-ramp">🔵 新世代 Ramp</span>
+        </div>
+      </div>
+      <div class="prog-section">
+
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">Trainium 2</div>
+            <div class="prog-chip-label">第二代 AI 訓練晶片</div>
+            <span class="prog-badge pb-prod">量產中</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-done"></div>FY25–26 大量出貨</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-active"></div>FY27 持續出貨</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>現為 Marvell Custom 最主要的現金牛，Amazon 用於 AWS AI 訓練服務</li>
+              <li>Marvell 提供完整 XPU 晶片設計，含 SerDes、先進封裝整合</li>
+              <li>FY27 仍在持續出貨，逐漸被 Trainium 3 接棒</li>
+            </ul>
+            <span class="prog-rev-tag">年化約 $1B+ 量級</span>
+          </div>
+        </div>
+
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">Trainium 3</div>
+            <div class="prog-chip-label">第三代 AI 訓練晶片</div>
+            <span class="prog-badge pb-ramp">Q2 FY27 Ramp 啟動</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-active"></div>Q2 FY27 啟動</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-active"></div>FY27 H2 加速</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-next"></div>FY28 全速</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>這是管理層說的「新 Tier 1 XPU 計畫」（JPMorgan 研究指向 Trainium 3）</li>
+              <li>FY27 H2 加速量產，業務朝年化 $2B+ run rate 推進</li>
+              <li>FY28 全年需求已有 <strong>firm requirements 確認</strong>——管理層少見明確表述</li>
+              <li>佔 FY28 Custom 成長三個 bucket 中的「約三分之一」</li>
+            </ul>
+            <span class="prog-rev-tag">FY28 目標：年化 $2B+</span>
+          </div>
+        </div>
+
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">Trainium 4</div>
+            <div class="prog-chip-label">下一代 2nm AI 晶片</div>
+            <span class="prog-badge pb-dev">設計開發中</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-active"></div>設計進行中</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-next"></div>CY27/FY28 初始 ramp</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-far"></div>FY29 全速</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>採用 <strong>2nm 製程</strong>（台積電 N2 節點）</li>
+              <li>Marvell 在 T4 已拿到額外設計 win：① CPO connectivity（共封裝光學介面）② NVLink I/O chiplet（NVIDIA 合作） ③ UALink switching chip（與 Astera Labs 分享市場）</li>
+              <li>每顆 T4 XPU 的 Marvell dollar content 比 T3 更大</li>
+            </ul>
+            <span class="prog-rev-tag">FY29 Custom $10B+ 目標的重要支柱</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="cust-summary-bar">
+        <span class="csb-label">客戶小結</span>
+        三代計畫（T2→T3→T4）形成接棒式成長。T3 是今年主要驅動力，T4 的額外 content win（光學＋NVLink＋UALink）代表 Marvell 每顆晶片的收入比例持續擴大，是最成熟也最核心的 XPU 關係。
+      </div>
+    </div>
+
+    <!-- ── Microsoft ── -->
+    <div class="cust-card">
+      <div class="cust-hdr">
+        <div class="cust-hdr-left">
+          <div class="cust-logo logo-ms">MS</div>
+          <div>
+            <div class="cust-name">Microsoft Azure</div>
+            <div class="cust-sub">Maia 系列自定義 AI 加速晶片，今年下半年開始放量</div>
+          </div>
+        </div>
+        <div class="cust-badges">
+          <span class="cbadge cb-ramp">🔵 Maia 3nm 今年 Ramp</span>
+          <span class="cbadge cb-dev">🟡 Maia 2nm 設計中</span>
+        </div>
+      </div>
+      <div class="prog-section">
+
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">Maia 3nm</div>
+            <div class="prog-chip-label">Azure AI 加速晶片</div>
+            <span class="prog-badge pb-ramp">H2 CY26 Ramp</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-done"></div>設計完成</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-active"></div>2026 H2 ramp</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-next"></div>CY27 大量出貨</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>Microsoft 自研 AI 加速晶片，用於 Azure AI 服務（含 OpenAI 合作的基礎設施）</li>
+              <li>JPMorgan：2026 下半年進入 ramp，CY27（FY28）大量出貨</li>
+              <li>過去 90 天 CY27 的訂單量顯著增強</li>
+              <li>是 FY28 Custom 三個成長 bucket 之一的重要貢獻者</li>
+            </ul>
+            <span class="prog-rev-tag">FY28 Custom 三個 bucket 之一</span>
+          </div>
+        </div>
+
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">Maia 2nm</div>
+            <div class="prog-chip-label">Microsoft 下一代 AI 晶片</div>
+            <span class="prog-badge pb-dev">設計啟動中</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-active"></div>設計活動已啟動</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-far"></div>CY28/FY29 ramp 預期</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>JPMorgan：Marvell 已開始 Microsoft 下一代 2nm Maia 計畫的設計活動</li>
+              <li>2nm 節點帶來更大的 Marvell IP 內容機會（SerDes、SRAM、先進封裝）</li>
+              <li>預計是 FY29 Custom >$10B 目標的支撐之一</li>
+            </ul>
+            <span class="prog-rev-tag">FY29 長期成長計畫</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="cust-summary-bar">
+        <span class="csb-label">客戶小結</span>
+        Maia 3nm 今年下半年開始出貨，FY28 是主要貢獻季度。2nm 設計已在進行中，確保 FY29 的持續性。Microsoft 是第二大 XPU 客戶，重要性僅次於 Amazon。
+      </div>
+    </div>
+
+    <!-- ── Google ── -->
+    <div class="cust-card">
+      <div class="cust-hdr">
+        <div class="cust-hdr-left">
+          <div class="cust-logo logo-goo">G</div>
+          <div>
+            <div class="cust-name">Google（部分確認，部分傳言）</div>
+            <div class="cust-sub">XPU-attached 已確認 ramp；完整 TPU 合作尚未確認</div>
+          </div>
+        </div>
+        <div class="cust-badges">
+          <span class="cbadge cb-prod">🟢 DPU/CXL 量產中</span>
+          <span class="cbadge cb-rumor">⚪ TPU 傳言未確認</span>
+        </div>
+      </div>
+      <div class="prog-section">
+
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">Google DPU</div>
+            <div class="prog-chip-label">數據處理單元（XPU-attached）</div>
+            <span class="prog-badge pb-prod">FY27 量產中</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-active"></div>FY27 量產 ramp</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-next"></div>FY28 持續擴大</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>Google TPU 的附屬晶片，由 Marvell 設計的 DPU（Data Processing Unit）</li>
+              <li>JPMorgan 確認已在 FY27 量產 ramp</li>
+              <li>計入 XPU-attached 業務，非完整 XPU</li>
+            </ul>
+            <span class="prog-rev-tag">計入 XPU-attached $1B+ 目標</span>
+          </div>
+        </div>
+
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">CXL Controller</div>
+            <div class="prog-chip-label">記憶體擴展控制器（XPU-attached）</div>
+            <span class="prog-badge pb-ramp">FY27 Ramp 中</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-active"></div>FY27 量產</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-next"></div>FY28 需求快速增長</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>Google AI 基礎設施的 CXL 記憶體擴展方案，Marvell 提供 CXL controller</li>
+              <li>Agentic AI 帶動 KV cache 需求暴增，雙重推動（需求 + DRAM 短缺）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="prog-row" style="border-color: #D0D0D0;">
+          <div class="prog-meta" style="background: #F5F5F5;">
+            <div class="prog-title" style="color:#666;">新一代 TPU＋MPU</div>
+            <div class="prog-chip-label">完整 AI 晶片（傳言）</div>
+            <span class="prog-badge pb-rumor">⚪ 傳言未確認</span>
+          </div>
+          <div class="prog-detail" style="background: #FAFAFA;">
+            <div class="prog-tl" style="color:#999;">
+              <div class="tl-node" style="color:#AAA;"><div class="tl-dot td-far"></div>Reuters 4/19 報導談判中</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node" style="color:#AAA;"><div class="tl-dot td-far"></div>若確認：FY29 ramp</div>
+            </div>
+            <ul class="prog-bullets">
+              <li style="color:#888;">Reuters（2026/4/19）：Google 與 Marvell 就兩顆新晶片進行談判（TPU 本體 + MPU 記憶體處理單元）</li>
+              <li style="color:#888;">Marvell 法說會上管理層<strong>未確認</strong>，只說「設計活動創歷史新高」</li>
+              <li style="color:#888;">HSBC 敏感度分析：若拿下，FY29 EPS 可比 base case 高 <strong>28–85%</strong>（按 1–3M 顆 × $5K ASP 計算）</li>
+              <li style="color:#888;">GS 也列為本季法說會關注重點，但什麼線索都沒等到</li>
+            </ul>
+            <span class="prog-rev-tag" style="background:#EBEBEB; color:#888;">若確認：$5–15B 潛在規模（FY29）</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="cust-summary-bar">
+        <span class="csb-label">客戶小結</span>
+        Google 目前的 DPU 和 CXL controller 已確認在 ramp，屬 XPU-attached。傳言中的新 TPU 是市場最大的潛在 catalyst，未獲確認是本季法說會最大的「催化劑缺席」，也是 GS 盤後反應冷淡的原因之一。
+      </div>
+    </div>
+
+    <!-- ── New Tier 1 ── -->
+    <div class="cust-card">
+      <div class="cust-hdr">
+        <div class="cust-hdr-left">
+          <div class="cust-logo logo-t1">T1</div>
+          <div>
+            <div class="cust-name">「新 Tier 1 客戶」（身份保密）</div>
+            <div class="cust-sub">部分分析師推測為 Meta 或其他超大型雲端客戶，公司從未透露</div>
+          </div>
+        </div>
+        <div class="cust-badges">
+          <span class="cbadge cb-ramp">🔵 FY28 量產 Ramp</span>
+        </div>
+      </div>
+      <div class="prog-section">
+        <div class="prog-row">
+          <div class="prog-meta">
+            <div class="prog-title">新 XPU 計畫</div>
+            <div class="prog-chip-label">身份不明的全新客戶</div>
+            <span class="prog-badge pb-ramp">FY28 量產</span>
+          </div>
+          <div class="prog-detail">
+            <div class="prog-tl">
+              <div class="tl-node"><div class="tl-dot td-done"></div>FY27 開發/驗證完成</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-active"></div>FY28 量產 ramp</div>
+              <span class="tl-arrow">→</span>
+              <div class="tl-node"><div class="tl-dot td-next"></div>FY29 全速</div>
+            </div>
+            <ul class="prog-bullets">
+              <li>管理層：「所有里程碑都已達成」</li>
+              <li>管理層：「FY29 整年的 firm requirements 已確認」——高可見度罕見表述</li>
+              <li>管理層：「我們有意識地把這個計畫的預測保守估計，後來規模比預期大很多」</li>
+              <li>佔 FY28 Custom 三個成長 bucket 的「約三分之一」，重要性不亞於 T3</li>
+              <li>Marvell 明確說隨著 2026 年進展，市場信心也會隨之累積</li>
+            </ul>
+            <span class="prog-rev-tag">FY28 Custom 約 1/3 增量｜FY29 全速貢獻</span>
+          </div>
+        </div>
+      </div>
+      <div class="cust-summary-bar">
+        <span class="csb-label">客戶小結</span>
+        目前市場最大的懸念之一。管理層強調一切在軌道上，但就是不說是誰。這個客戶的 ramp 是 FY28 Custom 翻倍計畫的核心支柱之一，市場的信心會隨公司每季披露的資訊逐漸累積。
+      </div>
+    </div>
+
+    <!-- XPU-Attached -->
+    <h3 style="font-family:var(--serif); font-size:17px; margin: 24px 0 12px; color:var(--ink);">XPU-Attached 計畫群（覆蓋所有超大型雲端客戶，合計目標 $1B+）</h3>
+
+    <div class="callout callout-note" style="margin-bottom:14px;">
+      <strong>什麼是 XPU-Attached？</strong> XPU 是主晶片（AI 加速器本體），XPU-Attached 是周邊配套晶片：記憶體擴展（CXL）、網路介面（NIC）、PCIe 交換器等。超過 10 個計畫分散在各大客戶，每個規模雖比完整 XPU 小，但合計目標達到 <strong>$1B+ 年化營收</strong>，且 FY28 需求持續超過原始預測。
+    </div>
+
+    <div class="attach-outer">
+      <div class="attach-mini">
+        <div class="am-title">🗄️ CXL 記憶體擴展器</div>
+        <div class="am-body"><ul>
+          <li>產品線：Structera X（擴展）、Structera A（近記憶體加速）、Structera S（共享記憶體池）</li>
+          <li>雙重推動：AI 推論 KV cache 需求爆炸 + DRAM 供應緊張</li>
+          <li>多家超大型雲端客戶已在 ramp（含 Google CXL controller）</li>
+          <li>HSBC 認為這塊被市場嚴重低估，是升評核心理由之一</li>
+        </ul></div>
+      </div>
+      <div class="attach-mini">
+        <div class="am-title">🌐 NIC（網路介面卡）</div>
+        <div class="am-body"><ul>
+          <li>Agentic AI 帶動資料中心 CPU 部署量大增</li>
+          <li>每個 CPU 都需要 NIC，直接帶動 Marvell NIC 出貨量</li>
+          <li>多客戶計畫，FY28 需求持續超過預測</li>
+          <li>XPU-attached 中成長最快的子項目之一</li>
+        </ul></div>
+      </div>
+      <div class="attach-mini">
+        <div class="am-title">🔌 PCIe Gen 6 Switch</div>
+        <div class="am-body"><ul>
+          <li>來自收購 XConn（2026年2月完成）</li>
+          <li>PCIe Gen 6 + CXL 3.1 組合方案</li>
+          <li>搭配 Marvell retimer，提供完整 end-to-end 參考設計</li>
+          <li>已看到客戶強勁興趣</li>
+        </ul></div>
+      </div>
+      <div class="attach-mini">
+        <div class="am-title">🔗 AEC（主動電纜）+ Retimer</div>
+        <div class="am-body"><ul>
+          <li>Golden Cable 計畫，已獲 3 家 Tier 1 美國超大型雲端客戶設計勝選</li>
+          <li>AEC + Retimer 合計 FY27 翻倍以上，FY28 繼續快速成長</li>
+          <li>Agentic AI 帶動 CPU 和伺服器大量部署，每個系統都需要 retimer</li>
+        </ul></div>
+      </div>
+      <div class="attach-mini">
+        <div class="am-title">🧮 LPU SRAM-based 推論晶片</div>
+        <div class="am-body"><ul>
+          <li>最早期機會，尚無確認計畫或 revenue</li>
+          <li>Marvell 2nm SRAM IP：15–17x 帶寬/mm²，40–60% 低功耗</li>
+          <li>曾幫 Groq（後被 NVIDIA 收購）設計第一代 LPU</li>
+          <li>目前與多家超大型雲端客戶有早期接觸</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- Revenue Roadmap -->
+    <table class="rev-roadmap">
+      <thead>
+        <tr>
+          <th>財年</th>
+          <th>主要驅動</th>
+          <th>YoY 成長</th>
+          <th>估計規模</th>
+          <th>備注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FY26（已結束）</strong></td>
+          <td>Trainium 2 主力 + Maia 初始 ramp</td>
+          <td class="rr-up">約 +30–40%</td>
+          <td class="rr-num">~$1.5B</td>
+          <td>公司曾明確提及 $1.5B 水準</td>
+        </tr>
+        <tr>
+          <td><strong>FY27（現在進行中）</strong></td>
+          <td>T2 持續 + T3 啟動 + XPU-attached ramp</td>
+          <td class="rr-up">&gt;20% YoY</td>
+          <td class="rr-num">~$1.8–2B</td>
+          <td>管理層偏保守；JPM 估 ~$1.9B</td>
+        </tr>
+        <tr>
+          <td><strong>FY28（下一年）</strong></td>
+          <td>T3 全速 + Maia 3nm 全速 + 新 Tier 1 ramp + XPU-attached 超預期</td>
+          <td class="rr-up">&gt;2x（翻倍以上）</td>
+          <td class="rr-num">~$3.6–4.5B+</td>
+          <td>三個 bucket 各約 1/3；JPM 估 $4B，HSBC 估 $4.55B</td>
+        </tr>
+        <tr>
+          <td><strong>FY29（長期目標）</strong></td>
+          <td>T4 2nm + Maia 2nm + Google TPU（若確認）+ XPU-attached 全面開花</td>
+          <td class="rr-up">目標 &gt;$10B</td>
+          <td class="rr-num">&gt;$10B</td>
+          <td>$55B TAM × 20% 市佔；若 Google TPU 確認，可達 $15B 以上</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- ═══ SECTION 4: Q&A ═══ -->
+  <div class="section" id="earnings-call">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <span class="section-title">法說會 Q&amp;A 精華</span>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">BofA</span>
+        Custom XPU 在 FY29 能達到 $10B+ 嗎？新的 Tier 1 XPU 計畫何時會有更多透明度？
+      </div>
+      <div class="qa-a">
+        管理層確認 FY29 Custom >$10B 目標不變，背後是 $55B TAM 的 20% 市佔率估計。這個目標兩年前看起來很難，現在可見度明顯提升。新 Tier 1 XPU 計畫目前里程碑全部達標，FY28 全年需求已有 firm requirements。新計畫佔 FY28 Custom 成長的「約三分之一」，其他三分之二來自舊有計畫和 XPU-attached 的擴大。隨著 2026 年進展，市場對這個計畫的信心也會提升。
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">JPMorgan</span>
+        SRAM IP 優勢和 LPU 推論晶片機會？
+      </div>
+      <div class="qa-a">
+        管理層說 2nm 高密度 SRAM IP 是贏得 XPU-attached 設計的重要武器之一，在推論場景（inferencing）需求持續增加的環境下更顯重要。但更大的競爭優勢是「全套解決方案」的能力：先進封裝 + 高速 IO + 快速交付時程 + 製造能力的組合。Marvell 的確幫助 Groq 設計過第一代 LPU（Language Processing Unit），這個 SRAM 記憶體能力正在轉化為新的 AI 推論 offload 設計機會。
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">UBS</span>
+        客製化晶片客戶廣度如何？是否切入更大的 Compute TAM？
+      </div>
+      <div class="qa-a">
+        管理層確認與「所有美國大型超大型雲端客戶」都有客製化合作，形式不同（有些是完整 XPU，有些是 XPU + XPU-attached，有些只有 XPU-attached）。所有指引都基於已確定的設計合約，新贏的設計是額外保險。特別點出在高速 SerDes、die-to-die 整合上，「能做到這種層次的全球只有我們和另外幾家」，這在推動設計活動爆發性增長。
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">Jefferies</span>
+        CXL 記憶體擴展的機會有多真實？
+      </div>
+      <div class="qa-a">
+        管理層說 CXL 是非常真實的機會，且比預期發展得更快。三個推動力：一是 AI 推論的 KV cache 需求推動 CXL 採用，二是 DRAM（普通記憶體）供應緊張使 CXL 記憶體擴展方案更受歡迎，三是客戶群持續擴大。XPU-attached（NIC + CXL 合計）目標達到 $1B+ 年收入。
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">Wolfe</span>
+        供應鏈如何應對需求不斷上調？
+      </div>
+      <div class="qa-a">
+        COO Chris Koopmans：「自 2020-2021 年以來，碰到 AI 的東西就沒有在不供應緊張的環境下做過事。」解決方案是與少數核心供應商（TSMC 等）建立深度關係，提供五年需求預測，並以 prepayments（預付款，FY27 約 $1B）背書。「我們能夠大幅擴大營收，正是因為同業受供應限制時我們沒有。」
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">Deutsche Bank</span>
+        Interconnect FY28 成長率會不會放緩？
+      </div>
+      <div class="qa-a">
+        管理層承認 FY28 Interconnect 成長速度會比 FY27 的 70%+ 略低，接近但仍高於超大型雲端 CapEx 成長率，但話鋒一轉說底部構建分析顯示有「明顯上行偏差」：1.6T 在 FY28 再一次大幅跳升、DCI ramp 加速、AEC 和 retimer 高速成長、scale-up optics 約 $300M（全新業務，有進一步 upside）。總之 $16.5B 是舒適的基準，但有明確上行可能。
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">RBC</span>
+        Scale-up switching 在 FY28 及以後的機會有多大？
+      </div>
+      <div class="qa-a">
+        管理層明確表示：scale-up switching 幾乎<strong>完全沒有計入任何一個指引數字（包括 $16.5B FY28）</strong>，完全是額外 upside。市場份額尚未建立，Marvell 在 SerDes、switch silicon 設計以及「押注多個標準（UALink、ESUN、NVLink）」的策略上有獨特優勢，「可以在不預設立場的情況下，跟任何一個客戶展示真實的工程能力和量產晶片。」
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q">
+        <span class="qa-q-badge">Raymond James</span>
+        FY28 Custom 翻倍的三個驅動各佔多少比例？
+      </div>
+      <div class="qa-a">
+        現有計畫繼續成長、XPU-attached 多個計畫規模化、以及新 Tier 1 XPU ramp，大約各佔三分之一（與上季比例相同），但三者都比上季看到的數字更大了，所以結果是「double-plus（翻倍以上）」。
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 5: BROKERS ═══ -->
+  <div class="section" id="brokers">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <span class="section-title">券商觀點整理</span>
+    </div>
+
+    <div class="broker-grid">
+      <div class="broker-card">
+        <div class="broker-name">Goldman Sachs</div>
+        <div class="broker-rating rating-neutral">Neutral（持有）</div>
+        <div class="broker-tp">TP $125</div>
+        <div class="broker-body">股價 $208，隱含 <strong style="color:var(--accent-red)">-40% 下行</strong>。GS 認為財報符合預期，Q2 guidance 超預期，但估值過高。他們用 28x PE on normalized $4.50 EPS 定價，認為市場已 priced in 成長故事。關注焦點：2H custom ramp 幅度 + Google ASIC 合作確認。</div>
+      </div>
+      <div class="broker-card" style="border-color: var(--accent-green); border-width: 2px;">
+        <div class="broker-name">HSBC（最激進多頭）</div>
+        <div class="broker-rating rating-buy">Buy（從 Hold 升級）</div>
+        <div class="broker-tp">TP <strong>$300</strong>（全街最高）</div>
+        <div class="broker-body">核心論點：光纖互連被嚴重低估。FY27/FY28 optical 估計比 consensus 高 10%/37%（絕對街頭最牛估值）。加上 CXL 需求被低估、Google TPU 傳言（若實現 FY29 EPS 可高 28-85%）。42x FY28 PE on $7.12 EPS = $300。</div>
+      </div>
+      <div class="broker-card">
+        <div class="broker-name">JPMorgan</div>
+        <div class="broker-rating rating-buy">Overweight（買入）</div>
+        <div class="broker-tp">TP $135（財報前）</div>
+        <div class="broker-body">最有 primary research 含量。具體點名：Trainium 3 在 Q2 FY27 開始 ramp、Maia 3nm 今年下半年 ramp、Trainium 4 FY28 大量出貨。FY28 DC 成長預期 60%（比公司 55% 更積極）。CY27 總收入看 >$16B，年化 EPS >$8。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--serif); font-size:17px; margin-bottom:14px; color:var(--ink);">HSBC 的光纖互連估計 vs Consensus</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>業務</th><th>HSBC FY27 估</th><th>Consensus</th><th>差距</th><th>HSBC FY28 估</th><th>Consensus</th><th>差距</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Optical Interconnect</td>
+          <td>$5.18B</td>
+          <td>$4.72B</td>
+          <td class="up">+10%</td>
+          <td>$8.79B</td>
+          <td>$6.41B</td>
+          <td class="up">+37% 大幅超出</td>
+        </tr>
+        <tr>
+          <td>ASIC（含 XPU+attached）</td>
+          <td>$2.02B</td>
+          <td>$2.06B</td>
+          <td class="neutral">-2%</td>
+          <td>$4.55B</td>
+          <td>$3.92B</td>
+          <td class="up">+16%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ SECTION 6: STOCK REACTION ═══ -->
+  <div class="section" id="stock">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <span class="section-title">為什麼盤後只漲 ~3%？</span>
+    </div>
+
+    <div class="callout callout-info">
+      股票在財報前已上漲 <strong>140%+ YTD</strong>，市場對這次財報的預期非常高。用一句話總結：<strong>「結果符合高預期，但沒有達到最激進的預期。」</strong>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>原因</th><th>說明</th><th>市場影響</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>①  Headline beat 幅度太薄</strong></td>
+          <td>Q1 revenue 只比 consensus 高 $8M（+0.2%），EPS 在線。不是「大超」，只是「小超」。</td>
+          <td class="neutral">中性</td>
+        </tr>
+        <tr>
+          <td><strong>② FY28 $16.5B 低於最激進預期</strong></td>
+          <td>HSBC 估 FY28 $18.1B，GS consensus $15.4B。公司給的 $16.5B 對最激進的多頭來說是「低於期待」。</td>
+          <td class="down">輕微失望</td>
+        </tr>
+        <tr>
+          <td><strong>③ 毛利率沒有轉機</strong></td>
+          <td>Non-GAAP 毛利率 Q1 FY26: 59.8% → Q1 FY27: 58.9%，仍在下滑。多頭希望看到 60%+，但沒有。</td>
+          <td class="down">輕微負面</td>
+        </tr>
+        <tr>
+          <td><strong>④ GAAP EPS 視覺衝擊</strong></td>
+          <td>GAAP EPS $0.04（一次性收購帳務），雖然屬會計調整，仍讓部分投資人感到不安。</td>
+          <td class="down">短期雜訊</td>
+        </tr>
+        <tr>
+          <td><strong>⑤ Google TPU 傳言未確認</strong></td>
+          <td>GS 和 HSBC 都把 Google TPU 合作視為重要催化劑，但法說會上管理層沒有確認。</td>
+          <td class="down">未兌現催化</td>
+        </tr>
+        <tr>
+          <td><strong>⑥ SBC 跳升</strong></td>
+          <td>Q1 FY27 SBC $207.6M，QoQ +45%（因 Celestial AI/XConn 收購）。GAAP EPS 受到壓制。</td>
+          <td class="neutral">中性（技術性）</td>
+        </tr>
+        <tr>
+          <td><strong>⑦ 估值天花板</strong></td>
+          <td>股票以 63x FY27e PE 交易（GS 模型），在如此高估值下需要「大幅超預期」才能推動股價，「符合預期」只換來溫和上漲。</td>
+          <td class="neutral">結構性限制</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-note">
+      <strong>多空分歧的核心：</strong>GS（$125 TP）認為任何合理估值框架下股票都已太貴；HSBC（$300 TP）認為光纖互連機會被嚴重低估，市場還沒充分反映 FY28 的盈利能力。這個分歧解釋了為什麼股票在兩個觀點的中間停下來——+3%。
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 7: GLOSSARY ═══ -->
+  <div class="section" id="glossary">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <span class="section-title">名詞解釋</span>
+    </div>
+
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <div class="glossary-term">XPU</div>
+        <div class="glossary-def">客製化 AI 加速晶片，由超大型雲端客戶（Amazon、Microsoft 等）委託 Marvell 設計，比通用 GPU 更省電、更符合特定工作負載需求。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">DSP（數位訊號處理器）</div>
+        <div class="glossary-def">光纖模組的大腦，負責訊號編碼/解碼、補償光纖傳輸失真、錯誤糾正等。每個 800G 或 1.6T 光模組都需要一顆 DSP，Marvell 在這個市場市佔率超過 50%。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">PAM4</div>
+        <div class="glossary-def">一種光訊號調製技術，讓單一光纖通道可以傳更多資料。800G PAM4 代表每秒 800 Gbps，1.6T 代表每秒 1.6 Tbps（更快）。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">CPO / NPO</div>
+        <div class="glossary-def">Co-Packaged Optics（共封裝光學）/ Near-Packaged Optics。把光學元件和晶片封裝在一起，減少電訊號轉換損耗，是 scale-up 網路的關鍵技術。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">CXL（Compute Express Link）</div>
+        <div class="glossary-def">一種新的高速連接協議，讓伺服器可以「動態分享」記憶體，突破單機記憶體上限。AI 推論（尤其是 KV cache）需求爆炸，CXL 成為解決記憶體不足的關鍵方案。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">DCI 模組</div>
+        <div class="glossary-def">Data Center Interconnect，資料中心間互連模組。讓不同地點的資料中心之間透過光纖高速傳輸，現在 AI 叢集需要跨多個資料中心，需求快速成長。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Scale-out / Scale-up / Scale-across</div>
+        <div class="glossary-def">三種 AI 網路架構：Scale-out = 同資料中心內機架間；Scale-up = XPU 之間的超短距超高速連接；Scale-across = 跨資料中心的後端 AI 流量。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Non-GAAP vs GAAP</div>
+        <div class="glossary-def">GAAP 是按照會計準則計算的利潤，包含股票薪酬（SBC）、攤銷、一次性收購費用等。Non-GAAP 把這些加回去，更能反映核心業務的獲利能力。科技公司通常同時提供兩個版本。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">SBC（股票薪酬）</div>
+        <div class="glossary-def">Stock-Based Compensation，公司用股票替代現金給員工的薪資。不是現金支出，但在 GAAP 上必須認列為費用，且會稀釋現有股東的持股比例。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">超大型雲端客戶（Hyperscaler）</div>
+        <div class="glossary-def">指 Amazon AWS、Microsoft Azure、Google Cloud、Meta、Apple 這五大美國雲端業者，是 AI 基礎建設最主要的投資方，也是 Marvell 最重要的客戶群。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Silicon Photonics（矽光子）</div>
+        <div class="glossary-def">用半導體製程製造光學元件的技術，讓光通訊元件可以和晶片整合在一起，是下一代高速光纖互連的關鍵技術。Marvell 透過收購 Celestial AI 強化了這方面能力。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Agentic AI</div>
+        <div class="glossary-def">智能代理型 AI，一個用戶請求會觸發 AI 連續多次查詢不同模型來完成複雜任務（不是單次問答），這大幅增加網路流量、記憶體需求和 CPU 部署需求，是 Marvell 的新成長催化劑。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ NEXT QUARTER CHECKLIST ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <span class="section-title">下季回來要看的事（Checklist）</span>
+    </div>
+
+    <div class="callout callout-info">
+      Q2 FY27 法說日預計：<strong>2026年8月下旬</strong>（通常是 8/26 或 8/27）
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>項目</th><th>本季情況</th><th>下季要確認的事</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q2 FY27 總營收</td>
+          <td>Guidance $2.70B ± 5%</td>
+          <td>是否達到或超過 $2.7B 中值？有沒有再次上調 FY27/28？</td>
+        </tr>
+        <tr>
+          <td>Interconnect 成長</td>
+          <td>FY27 全年 >70% YoY</td>
+          <td>1.6T ramp 速度是否如預期？DCI 模組有沒有往 $1B 年化邁進？</td>
+        </tr>
+        <tr>
+          <td>新 Tier 1 XPU 計畫</td>
+          <td>Q2 FY27 開始 ramp</td>
+          <td>有沒有確認 ramp 啟動？有沒有更多數量可見度？</td>
+        </tr>
+        <tr>
+          <td>Scale-up optics（Celestial AI）</td>
+          <td>FY28 預計 >$300M</td>
+          <td>有無新的 tier 1 客戶確認？或 NPO/CPO 量產時程更新？</td>
+        </tr>
+        <tr>
+          <td>Google TPU 傳言</td>
+          <td>本季未確認</td>
+          <td>是否有任何 ASIC 新客戶的暗示或確認？</td>
+        </tr>
+        <tr>
+          <td>Non-GAAP 毛利率</td>
+          <td>Q1 FY27: 58.9%（下滑趨勢）</td>
+          <td>有沒有止跌跡象？有沒有往 59%+ 回升？</td>
+        </tr>
+        <tr>
+          <td>$1B Prepayments 執行</td>
+          <td>Q2 FY27 開始</td>
+          <td>有沒有更新供應保障的情況？</td>
+        </tr>
+        <tr>
+          <td>Scale-up switching</td>
+          <td>本季完全未計入指引</td>
+          <td>有沒有任何客戶合作具體化的消息？協議標準選擇有沒有更明朗？</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- end container -->
+
+<div class="page-footer">
+  <span>MRVL Q1 FY27｜整理日期：2026.05.28</span>
+  <span>資料來源：公司財報、Earnings Call Transcript、Goldman Sachs、HSBC、JP Morgan</span>
+  <span>僅供內部研究參考，不構成投資建議</span>
+</div>
+
+</body>
+</html>
