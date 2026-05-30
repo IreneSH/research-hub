@@ -8,11 +8,11 @@
   "weekly": {
     "url": "https://weekly-market-recap.netlify.app/archive",
     "latest": {
-      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-22",
-      "range": "May 18–22",
+      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-29",
+      "range": "May 25–29",
       "year": "2026",
-      "title": "Nvidia 財報· AI科技硬體領漲· 道瓊費半創新高",
-      "summary":"SpaceX S-1 公開申報估值破 $2 兆 · 印尼 MSCI 正式除名",
+      "title": "AI 基礎設施大爆發，軟體股全面反攻",
+      "summary":"Dell +33%、Snowflake +36%、Anthropic 估值 $9,650 億",
       "flags": ["最新", "US"]
     }
   },
