@@ -8,11 +8,11 @@
   "weekly": {
     "url": "https://weekly-market-recap.netlify.app/archive",
     "latest": {
-      "url": "https://weekly-market-recap.netlify.app/reports/2026-05-29",
-      "range": "May 25–29",
+      "url": "https://weekly-market-recap.netlify.app/reports/2026-07-03",
+      "range": "Jun 29– Jul 03",
       "year": "2026",
-      "title": "AI 基礎設施大爆發，軟體股全面反攻",
-      "summary":"Dell +33%、Snowflake +36%、Anthropic 估值 $9,650 億",
+      "title": "AI 晶片獲利了結，道瓊、歐股逆勢創高",
+      "summary":"Micron 兩日 −17%、Samsung −9%、Meta Compute 遭市場誤讀",
       "flags": ["最新", "US"]
     }
   },
