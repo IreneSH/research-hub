@@ -444,6 +444,7 @@ button { cursor: pointer; font-family: inherit; }
 .tag-cat-software   { background: var(--violet-bg);  color: var(--violet-text); }
 .tag-cat-industrial { background: var(--amber-bg);   color: var(--amber-text); }
 .tag-cat-utility    { background: var(--emerald-bg); color: var(--emerald-text); }
+.tag-cat-geopolitics { background: var(--rose-bg);    color: var(--rose-text); }
 .tag-cat-other      { background: var(--slate-bg);   color: var(--slate-text); }
 .tag-theme          { background: var(--accent-soft); color: var(--accent-hover); }
 
