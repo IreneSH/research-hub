@@ -283,6 +283,20 @@
   ],
   "research": [
     {
+  "id": "iran-conflict-timeline",
+  "title": "美伊衝突升級時間軸",
+  "subtitle": "停火破裂後的18天：荷莫茲封鎖、紅海外溢與油價階梯的互動地圖",
+  "category": "other",
+  "tags": ["地緣政治", "原油", "荷莫茲海峽"],
+  "date": "2026-07",
+  "stats": [
+    { "value": "10", "label": "關鍵事件" },
+    { "value": "+34%", "label": "布蘭特漲幅" }
+  ],
+  "eyebrow": "GEOPOLITICS · 中東衝突",
+  "file": "research/iran-conflict-timeline.html"
+}
+    {
       "id": "storage-memory-1q26",
       "title": "儲存 & 記憶體產業 1Q26 財報整合分析",
       "subtitle": "AI 超級週期下五大龍頭同步創歷史最強季度：STX、WDC、SNDK、SK Hynix、Samsung",
