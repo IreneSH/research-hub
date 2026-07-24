@@ -23,6 +23,7 @@
     { "id": "software", "name": "軟體", "color": "violet" },
     { "id": "industrial", "name": "工業", "color": "amber" },
     { "id": "utility", "name": "公用事業與能源", "color": "emerald" },
+    { "id": "geopolitics", "name": "地緣政治", "color": "rose" },
     { "id": "other", "name": "其他", "color": "slate" }
   ],
   "earnings": [
@@ -286,7 +287,7 @@
   "id": "iran-conflict-timeline",
   "title": "美伊衝突升級時間軸",
   "subtitle": "停火破裂後的18天：荷莫茲封鎖、紅海外溢與油價階梯的互動地圖",
-  "category": "other",
+  "category": "geopolitics",
   "tags": ["地緣政治", "原油", "荷莫茲海峽"],
   "date": "2026-07",
   "stats": [
@@ -295,7 +296,7 @@
   ],
   "eyebrow": "GEOPOLITICS · 中東衝突",
   "file": "research/iran-conflict-timeline.html"
-}
+ },
     {
       "id": "storage-memory-1q26",
       "title": "儲存 & 記憶體產業 1Q26 財報整合分析",
