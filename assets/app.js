@@ -25,6 +25,7 @@ function getCategoryTagClass(catId) {
     software: 'tag-cat-software',
     industrial: 'tag-cat-industrial',
     utility: 'tag-cat-utility',
+    geopolitics: 'tag-cat-geopolitics',
     other: 'tag-cat-other'
   };
   return map[catId] || 'tag-cat-other';
