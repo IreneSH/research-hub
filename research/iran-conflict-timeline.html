@@ -114,8 +114,8 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Conflict tracker · 2026.7.6 – 7.23</div>
-    <h1>美伊衝突升級時間軸 <span>停火破裂後的18天</span></h1>
+    <div class="eyebrow">Conflict tracker · 2026.7.6 – 7.25</div>
+    <h1>美伊衝突升級時間軸 <span>停火破裂後的20天</span></h1>
   </header>
 
   <div class="mapbox">
@@ -170,7 +170,7 @@
       <g id="active"></g>
     </svg>
     <div class="legend">
-      <span><b style="background:var(--us)"></b>美軍打擊</span>
+      <span><b style="background:var(--us)"></b>美軍／盟軍打擊</span>
       <span><b style="background:var(--iran)"></b>伊朗／代理人攻擊</span>
       <span><b style="background:var(--naval)"></b>航運與封鎖事件</span>
       <span style="margin-left:auto">淡色小點＝已發生事件</span>
@@ -181,7 +181,7 @@
     <button id="play" aria-label="播放">▶ 播放</button>
     <button id="prev" aria-label="上一個">←</button>
     <button id="next" aria-label="下一個">→</button>
-    <input type="range" id="scrub" min="0" max="9" step="1" value="0" aria-label="時間軸">
+    <input type="range" id="scrub" min="0" max="11" step="1" value="0" aria-label="時間軸">
     <span class="datelbl" id="datelbl">7/6</span>
   </div>
 
@@ -205,7 +205,7 @@
 
   <footer>
     資料來源：CNN、CBS、Al Jazeera、Reuters／Kpler、Lloyd's List、TradingEconomics。<br>
-    最後更新：2026.7.24（事件涵蓋至7.23）<br>
+    最後更新：2026.7.26（事件涵蓋至7.25）<br>
     地圖為示意性質，非精確地理位置。油價為各日約略收盤／盤中水位。
   </footer>
 </div>
@@ -231,7 +231,11 @@ const EV = [
   {d:"7/22", t:"川普：一艘船換一座橋或電廠", desc:"美軍連續第11–12晚空襲；川普揚言伊朗每攻擊一艘海峽船隻，美方就摧毀一座伊朗橋樑或發電廠；伊朗回應將打擊區域內基礎設施與能源設施。美軍陣亡累計18人，戰爭成本達375億美元。", brent:94,
    m:[{x:660,y:100,c:"var(--us)"},{x:590,y:230,c:"var(--us)"}]},
   {d:"7/23", t:"Houthi封鎖紅海，擊中兩艘沙國油輪", desc:"葉門青年運動宣布對沙烏地船隻實施海上封鎖，並聲稱在紅海擊中兩艘沙國油輪；革命衛隊稱一艘油輪在海峽爆炸起火。衝突正式外溢至第二條航道——荷莫茲與曼德海峽同時受阻。", brent:95,
-   m:[{x:100,y:512,c:"var(--iran)"},{x:80,y:420,c:"var(--iran)"},{x:712,y:298,c:"var(--naval)"}]}
+   m:[{x:100,y:512,c:"var(--iran)"},{x:80,y:420,c:"var(--iran)"},{x:712,y:298,c:"var(--naval)"}]},
+{d:"7/24", t:"邊打邊談：第13晚空襲、川普稱伊朗「更認真」", desc:"美軍轟炸進入第13晚，並癱瘓一艘試圖突破伊朗港口封鎖的油輪；川普證實美伊仍在談判、認為德黑蘭「正變得更認真」，但同時與內閣討論談判無果時的升級選項。沙烏地空襲葉門Hodeidah港報復Houthi。", brent:99,
+   m:[{x:590,y:170,c:"var(--us)"},{x:730,y:310,c:"var(--naval)"},{x:130,y:520,c:"var(--us)"}]},
+{d:"7/25", t:"Houthi打擊沙國油業命脈：Jizan起火、Yanbu遇襲", desc:"Houthi以數十枚飛彈與無人機攻擊沙烏地Aramco設施——Jizan煉油廠（40萬桶/日）起火，Yanbu兩枚飛彈被愛國者攔截。Yanbu是荷莫茲被封後沙國唯一出口命脈（7月扛78%海運原油出口）。布蘭特盤中破100美元（7月累漲約40%）後回落至90美元區間；黑海CPC終端同日因烏克蘭無人機攻擊停止裝載，三重供給衝擊並發。", brent:100,
+   m:[{x:150,y:475,c:"var(--iran)"},{x:122,y:330,c:"var(--iran)"}]}
 ];
 
 const NS = "http://www.w3.org/2000/svg";
@@ -258,7 +262,7 @@ function mkCircle(x,y,r,fill,cls,op){
 }
 
 function sparkline(){
-  const min=68, max=98, w=120, h=34, pad=3;
+  const min=68, max=104, w=120, h=34, pad=3;
   const pts = EV.slice(0, idx+1).map((e,i)=>{
     const x = pad + (w-2*pad) * (i/(EV.length-1));
     const y = h - pad - (h-2*pad) * ((e.brent-min)/(max-min));
