@@ -114,8 +114,8 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Conflict tracker · 2026.7.6 – 7.25</div>
-    <h1>美伊衝突升級時間軸 <span>停火破裂後的20天</span></h1>
+    <div class="eyebrow">Conflict tracker · 2026.7.6 – 7.31</div>
+    <h1>美伊衝突升級時間軸 <span>停火破裂後的26天</span></h1>
   </header>
 
   <div class="mapbox">
@@ -181,7 +181,7 @@
     <button id="play" aria-label="播放">▶ 播放</button>
     <button id="prev" aria-label="上一個">←</button>
     <button id="next" aria-label="下一個">→</button>
-    <input type="range" id="scrub" min="0" max="11" step="1" value="0" aria-label="時間軸">
+    <input type="range" id="scrub" min="0" max="15" step="1" value="0" aria-label="時間軸">
     <span class="datelbl" id="datelbl">7/6</span>
   </div>
 
@@ -205,7 +205,7 @@
 
   <footer>
     資料來源：CNN、CBS、Al Jazeera、Reuters／Kpler、Lloyd's List、TradingEconomics。<br>
-    最後更新：2026.7.26（事件涵蓋至7.25）<br>
+    最後更新：2026.8.1（事件涵蓋至7.31）<br>
     地圖為示意性質，非精確地理位置。油價為各日約略收盤／盤中水位。
   </footer>
 </div>
@@ -235,7 +235,15 @@ const EV = [
 {d:"7/24", t:"邊打邊談：第13晚空襲、川普稱伊朗「更認真」", desc:"美軍轟炸進入第13晚，並癱瘓一艘試圖突破伊朗港口封鎖的油輪；川普證實美伊仍在談判、認為德黑蘭「正變得更認真」，但同時與內閣討論談判無果時的升級選項。沙烏地空襲葉門Hodeidah港報復Houthi。", brent:99,
    m:[{x:590,y:170,c:"var(--us)"},{x:730,y:310,c:"var(--naval)"},{x:130,y:520,c:"var(--us)"}]},
 {d:"7/25", t:"Houthi打擊沙國油業命脈：Jizan起火、Yanbu遇襲", desc:"Houthi以數十枚飛彈與無人機攻擊沙烏地Aramco設施——Jizan煉油廠（40萬桶/日）起火，Yanbu兩枚飛彈被愛國者攔截。Yanbu是荷莫茲被封後沙國唯一出口命脈（7月扛78%海運原油出口）。布蘭特盤中破100美元（7月累漲約40%）後回落至90美元區間；黑海CPC終端同日因烏克蘭無人機攻擊停止裝載，三重供給衝擊並發。", brent:100,
-   m:[{x:150,y:475,c:"var(--iran)"},{x:122,y:330,c:"var(--iran)"}]}
+   m:[{x:150,y:475,c:"var(--iran)"},{x:122,y:330,c:"var(--iran)"}]},
+{d:"7/26-27", t:"美軍暫停空襲、油價暴跌16%——第三次停火試探", desc:"美軍在連續兩週轟炸後暫停打擊，為和談留「空間」；市場傳出10天停火（德黑蘭否認），布蘭特三日暴跌16%至84美元，創2020年以來最大三日跌幅。但Houthi未跟隨降溫，7/27攻擊輸往延布的東西管線設施。", brent:84,
+   m:[{x:195,y:330,c:"var(--iran)"}]},
+{d:"7/28", t:"伊朗突襲美軍，停火試探破局", desc:"伊朗對中東美軍發動長達兩小時的突襲式彈道飛彈攻擊（美方稱已攔阻），科威特再度成為報復目標；伊拉克親伊朗民兵同日首次以無人機攻擊沙烏地利雅德與東部省油設施，美沙戰機聯合空襲伊拉克民兵陣地報復——戰線再添一條。", brent:88,
+   m:[{x:348,y:175,c:"var(--iran)"},{x:290,y:350,c:"var(--iran)"},{x:355,y:270,c:"var(--iran)"},{x:270,y:90,c:"var(--us)"}]},
+{d:"7/29-30", t:"美軍恢復重擊；沙烏地召集40國海軍聯盟", desc:"美軍全面恢復對伊朗的打擊，CENTCOM稱為「強力回應」，川普放話「他們會挨一頓毒打」，布蘭特單日大漲近8%收復90美元。沙烏地防部召集40餘國討論組建護航聯盟、把海上通道安全多邊化，油價聞訊回落2%。", brent:89,
+   m:[{x:560,y:150,c:"var(--us)"},{x:640,y:200,c:"var(--us)"},{x:450,y:230,c:"var(--naval)"}]},
+{d:"7/31", t:"IRGC開火攻擊美軍護航油輪；週末新一波打擊待命", desc:"美軍開始武裝護航油輪硬闖荷莫茲，IRGC聲稱擊中兩艘受護航油輪、另有四艘掉頭——美伊海軍距直接交火僅一步。CNN引述官員：美軍計劃最快週末發動新一波打擊；川普稱未來四週會「非常狠地打」。布蘭特收90.12美元，7月月內波動區間近32美元。", brent:90,
+   m:[{x:712,y:298,c:"var(--iran)"},{x:730,y:285,c:"var(--naval)"}]}
 ];
 
 const NS = "http://www.w3.org/2000/svg";
